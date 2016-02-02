@@ -1,5 +1,5 @@
 #include "ImageRenderer.h"
-
+#include"NowLoading.h"
 
 
 ImageRenderer::ImageRenderer(){
@@ -136,6 +136,7 @@ void ImageRenderer::SetupAnimeDataMap(){
 }
 
 void ImageRenderer::SetupImageMapInstance(){
+	SetUseASyncLoadFlag(TRUE);
 	AddImageMap(imageAsset_player_fighter);
 	AddImageMap(imageAsset_Enemy_Bat);
 	AddImageMap(imageAsset_Enemy_Ghost);
@@ -144,6 +145,8 @@ void ImageRenderer::SetupImageMapInstance(){
 	AddImageMap(imageAsset_Title_BackGround);
 	AddImageMap(imageAsset_Title_PushButton);
 	AddImageMap(imageAsset_GameMain_BackGround);
+	SetUseASyncLoadFlag(FALSE);
+	NowLoading("Resource/Title_BackGround.png");
 }
 
 void ImageRenderer::AddImageMap(IMAGE_ASSET_NAME assetName){

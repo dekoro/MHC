@@ -14,6 +14,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	DeviceManager*	deviceManager	= DeviceManager::GetInstance();
 	SceneManager*	sceneManager	= new SceneManager();
 	FPS*			fps				= new FPS();
+
 	SetAlwaysRunFlag(TRUE);
 	SetDrawScreen(DX_SCREEN_BACK);
 
