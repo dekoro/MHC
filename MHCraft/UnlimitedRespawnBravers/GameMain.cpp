@@ -14,9 +14,13 @@ void SceneGameMain::Initialize(SceneMediateData sceneData){
 }
 
 SceneMediateData SceneGameMain::Update(){
-	SceneMediateData nextScene;
-	nextScene = AllManagersUpdate();
-	return nextScene;
+	//SceneMediateData nextScene;
+	//nextScene = AllManagersUpdate();
+	//‚Æ‚è‚ÜƒV[ƒ“Ø‚è‘Ö‚¦‚µ‚È‚¢‚æ‚¤‚ÉŒÅ’è
+	SceneMediateData a;
+	a.nextScene = SCENE_GAMEMAIN;
+	a.playerIndex = 0;
+	return a;
 }
 
 void SceneGameMain::Draw(){
@@ -31,32 +35,24 @@ void SceneGameMain::Finalize(){
 //-----private-----
 
 void SceneGameMain::AllManagersInitialize(int startPlayerIndex){
-	managers->Player()->Initialize(startPlayerIndex);
-	managers->Enemy()->Initialize();
-	managers->Damage()->Initialize();
-	managers->Item()->Initialize();
+
 
 }
 
 SceneMediateData SceneGameMain::AllManagersUpdate(){
-	managers->Player()->Update();
-	SceneMediateData nextScene = managers->Enemy()->Update();
-	managers->Damage()->Update();
-	managers->Item()->Update();
+	//“K“–‚É‘‚¢‚½
+	SceneMediateData a;
+	a.nextScene = SCENE_GAMEMAIN;
+	a.playerIndex = 0;
 
-	return nextScene;
+
+	return a;
 }
 
 void SceneGameMain::AllManagersDraw(){
-	managers->Damage()->Draw();
-	managers->Item()->Draw();
-	managers->Player()->Draw();
-	managers->Enemy()->Draw();
+	DrawBox(0,0,100,100,GetColor(255,100,255),FALSE);
 }
 
 void SceneGameMain::AllManagersFinalize(){
-	managers->Player()->Finalize();
-	managers->Enemy()->Finalize();
-	managers->Damage()->Finalize();
-	managers->Item()->Finalize();
+
 }

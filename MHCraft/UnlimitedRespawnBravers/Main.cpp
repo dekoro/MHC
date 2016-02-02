@@ -3,17 +3,21 @@
 
 
 
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int cCmdShow){
 
 	ChangeWindowMode(TRUE);	
 	SetWindowText("UnlimitedRespawnBravers -oƒ¿- HALLOWEEN EDITION");
 	SetGraphMode(Window::WIDTH, Window::HEIGHT, Window::COLOR_BIT);
 
+	SetUseDirect3DVersion(DX_DIRECT3D_9EX);
+
 	if (DxLib_Init() == -1){ return -1; }
 	Debug::CheckDebugMode();
 	DeviceManager*	deviceManager	= DeviceManager::GetInstance();
 	SceneManager*	sceneManager	= new SceneManager();
 	FPS*			fps				= new FPS();
+
 	SetAlwaysRunFlag(TRUE);
 	SetDrawScreen(DX_SCREEN_BACK);
 

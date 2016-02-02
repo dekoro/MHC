@@ -2,6 +2,9 @@
 #define _SCENEMANAGER_TITLE_TITLE_H_
 #include "HeaderHub.h"
 #include "IScenes.h"
+#include"TextureMapping.h"
+#include"PostEffect.h"
+#include<memory>
 
 class SceneTitle : public IScenes
 {
@@ -24,6 +27,11 @@ private:
 	int		CheckControllPadNo();
 	void	CountdownNextScene();
 	void	DrawFlashPushXButton();
+
+	std::shared_ptr<PostEffect> postEffect;
+	TextureMapping texMapEffect;
+
+	int x = 0,y = 0;
 
 
 };

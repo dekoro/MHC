@@ -75,6 +75,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BaseEffect.cpp" />
     <ClCompile Include="CharacterImageData.cpp" />
     <ClCompile Include="CharacterManager.cpp" />
     <ClCompile Include="DamageAreaCircle.cpp" />
@@ -88,6 +89,7 @@
     <ClCompile Include="EnemyKingPumpkin.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="Enemy_Test.cpp" />
+    <ClCompile Include="ErrorCheck.cpp" />
     <ClCompile Include="FlagManager.cpp" />
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="GamePad.cpp" />
@@ -106,18 +108,24 @@
     <ClCompile Include="Macro.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Managers.cpp" />
+    <ClCompile Include="NowLoading.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
+    <ClCompile Include="PostEffect.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="ScreenLayout.cpp" />
     <ClCompile Include="SoundData.cpp" />
     <ClCompile Include="SoundRenderer.cpp" />
+    <ClCompile Include="TextureMapping.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="Vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BaseEffect.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CharacterImageData.h" />
     <ClInclude Include="CharacterManager.h" />
@@ -134,6 +142,7 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="EnumGKey.h" />
+    <ClInclude Include="ErrorCheck.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="FlagManager.h" />
     <ClInclude Include="GCircle.h" />
@@ -159,14 +168,19 @@
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Macro.h" />
     <ClInclude Include="Managers.h" />
+    <ClInclude Include="NowLoading.h" />
     <ClInclude Include="NumPad.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerManager.h" />
+    <ClInclude Include="PostEffect.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="ScreenLayout.h" />
     <ClInclude Include="SoundData.h" />
     <ClInclude Include="SoundRenderer.h" />
     <ClInclude Include="SystemHub.h" />
+    <ClInclude Include="TextureMapping.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="Vec2.h" />

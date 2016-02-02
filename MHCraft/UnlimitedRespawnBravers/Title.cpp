@@ -3,6 +3,7 @@
 SceneTitle::SceneTitle(){
 	device			= DeviceManager::GetInstance();
 	imageBackGround = device->Image()->CopyImageData(imageAsset_Title_BackGround);
+	postEffect = std::make_shared<PostEffect>(MakeScreen(Window::WIDTH,Window::HEIGHT),&texMapEffect);
 }
 
 SceneTitle::~SceneTitle(){
@@ -15,6 +16,7 @@ void SceneTitle::Initialize(SceneMediateData sceneData){
 	enterPlayerIndex = -1;
 	counter = 0;
 	isEnd = false;
+	SetupCamera_Ortho(2000.0f);
 }
 
 SceneMediateData SceneTitle::Update(){
@@ -33,12 +35,16 @@ SceneMediateData SceneTitle::Update(){
 	}
 	counter++;
 	return sceneData;
+
+	SetCameraPositionAndTarget_UpVecY(VGet(x,y,-10),VGet(0,0,0));
 }
 
 void SceneTitle::Draw(){
-	
-	device->Image()->DrawBackGround(imageBackGround->GetImageHandle());
-	DrawFlashPushXButton();
+	postEffect->Rendaring([&](){
+		device->Image()->DrawBackGround(imageBackGround->GetImageHandle());
+		DrawFlashPushXButton();
+	});
+
 }
 
 void SceneTitle::Finalize(){

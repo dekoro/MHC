@@ -97,6 +97,60 @@
     <Filter Include="ヘッダー ファイル\Character\Item">
       <UniqueIdentifier>{b61fa276-5a08-433f-8f23-ec69c39b77f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Effect">
+      <UniqueIdentifier>{1111c1d7-79a8-4b58-8aaf-8d25f70153ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\BaseEffect">
+      <UniqueIdentifier>{ec241e34-dc38-4978-84d0-df4724df0777}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect">
+      <UniqueIdentifier>{48e03657-a2ea-42bf-923e-9bbb690cd671}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\BaseEffect">
+      <UniqueIdentifier>{91d1a4de-d788-4dbb-94b1-3e69854b169c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\EffectManager">
+      <UniqueIdentifier>{be4adde6-f54e-409a-a475-5711e4bb41a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\EffectManager">
+      <UniqueIdentifier>{9a479cf2-11d0-462b-9fa9-8b2df0bed2ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ErorrCheck">
+      <UniqueIdentifier>{7b1303cf-160d-4ec9-8ad2-2ec0c5fbe590}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ErorrCheck">
+      <UniqueIdentifier>{89659727-132e-4882-8881-d14e5c1e3c9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneManager\NowLoading">
+      <UniqueIdentifier>{d2320f56-142a-4cfe-a78e-4b79ac4d91b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\SceneManager\NowLoading">
+      <UniqueIdentifier>{c86c5a90-25ac-497a-b3cc-420103d92531}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Device\Timer">
+      <UniqueIdentifier>{cbe23d79-0f63-491e-8a8a-64c0b51fe8cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Device\Timer">
+      <UniqueIdentifier>{3fce0fcf-705c-4b50-af6b-1ba07e9c51d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\PostEffect">
+      <UniqueIdentifier>{7c229c71-b336-4f55-adb7-ffc33b267ed0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\PostEffect">
+      <UniqueIdentifier>{c8c62ff9-4d35-46eb-a11a-3b89dec9cfdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\TextureMapping">
+      <UniqueIdentifier>{a2c043d5-cd24-4aa4-a533-c7c126907869}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\TextureMapping">
+      <UniqueIdentifier>{13f4d46b-a233-4a7e-94f8-e0e074076741}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Device\ScreenLayout">
+      <UniqueIdentifier>{64c6e1a7-426f-4ff5-938b-0c0bf321ad11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Device\ScreenLayout">
+      <UniqueIdentifier>{266e233a-0976-44b1-9bb8-1ff3da545a0d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FlagManager.cpp">
@@ -221,6 +275,27 @@
     </ClCompile>
     <ClCompile Include="UI.cpp">
       <Filter>ソース ファイル\GSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureMapping.cpp">
+      <Filter>ソース ファイル\Effect\TextureMapping</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseEffect.cpp">
+      <Filter>ソース ファイル\Effect\BaseEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>ソース ファイル\Device\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="PostEffect.cpp">
+      <Filter>ソース ファイル\Effect\PostEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="NowLoading.cpp">
+      <Filter>ソース ファイル\SceneManager\NowLoading</Filter>
+    </ClCompile>
+    <ClCompile Include="ErrorCheck.cpp">
+      <Filter>ソース ファイル\ErorrCheck</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenLayout.cpp">
+      <Filter>ソース ファイル\Device\ScreenLayout</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -379,6 +454,27 @@
     </ClInclude>
     <ClInclude Include="EnemyKingPumpkin.h">
       <Filter>ヘッダー ファイル\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureMapping.h">
+      <Filter>ヘッダー ファイル\Effect\TextureMapping</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseEffect.h">
+      <Filter>ヘッダー ファイル\Effect\BaseEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>ヘッダー ファイル\Device\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="PostEffect.h">
+      <Filter>ヘッダー ファイル\Effect\PostEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="NowLoading.h">
+      <Filter>ヘッダー ファイル\SceneManager\NowLoading</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorCheck.h">
+      <Filter>ヘッダー ファイル\ErorrCheck</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenLayout.h">
+      <Filter>ヘッダー ファイル\Device\ScreenLayout</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
