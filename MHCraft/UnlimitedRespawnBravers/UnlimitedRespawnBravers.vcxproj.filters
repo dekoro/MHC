@@ -133,6 +133,12 @@
     <Filter Include="ヘッダー ファイル\Device\Timer">
       <UniqueIdentifier>{3fce0fcf-705c-4b50-af6b-1ba07e9c51d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\PostEffect">
+      <UniqueIdentifier>{7c229c71-b336-4f55-adb7-ffc33b267ed0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\PostEffect">
+      <UniqueIdentifier>{c8c62ff9-4d35-46eb-a11a-3b89dec9cfdf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FlagManager.cpp">
@@ -272,6 +278,9 @@
     </ClCompile>
     <ClCompile Include="F:\シェーダんｄｆじゃんふぁｆ\Timer.cpp">
       <Filter>ソース ファイル\Device\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\シェーダんｄｆじゃんふぁｆ\PostEffect.cpp">
+      <Filter>ソース ファイル\Effect\PostEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -445,6 +454,9 @@
     </ClInclude>
     <ClInclude Include="F:\シェーダんｄｆじゃんふぁｆ\Timer.h">
       <Filter>ヘッダー ファイル\Device\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="F:\シェーダんｄｆじゃんふぁｆ\PostEffect.h">
+      <Filter>ヘッダー ファイル\Effect\PostEffect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

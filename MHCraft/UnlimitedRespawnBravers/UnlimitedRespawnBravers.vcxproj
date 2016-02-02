@@ -92,6 +92,7 @@
     <ClCompile Include="F:\シェーダんｄｆじゃんふぁｆ\EffectManager.cpp" />
     <ClCompile Include="F:\シェーダんｄｆじゃんふぁｆ\ErrorCHeck.cpp" />
     <ClCompile Include="F:\シェーダんｄｆじゃんふぁｆ\NowLoading.cpp" />
+    <ClCompile Include="F:\シェーダんｄｆじゃんふぁｆ\PostEffect.cpp" />
     <ClCompile Include="F:\シェーダんｄｆじゃんふぁｆ\Timer.cpp" />
     <ClCompile Include="FlagManager.cpp" />
     <ClCompile Include="GameMain.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="F:\シェーダんｄｆじゃんふぁｆ\EffectManager.h" />
     <ClInclude Include="F:\シェーダんｄｆじゃんふぁｆ\ErrorCheck.h" />
     <ClInclude Include="F:\シェーダんｄｆじゃんふぁｆ\NowLoading.h" />
+    <ClInclude Include="F:\シェーダんｄｆじゃんふぁｆ\PostEffect.h" />
     <ClInclude Include="F:\シェーダんｄｆじゃんふぁｆ\Timer.h" />
     <ClInclude Include="FlagManager.h" />
     <ClInclude Include="GCircle.h" />
