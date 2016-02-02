@@ -2,6 +2,7 @@
 #define BASE_EFFECT
 
 #include<functional>
+#include<DxLib.h>
 
 class BaseEffect
 {
@@ -11,9 +12,6 @@ public:
 
 	virtual void Rendering(std::function<void()> Draw);
 
-protected:
-	//シェーダーに定数をセットする
-	virtual void ConstantShader(){};
 
 protected:
 	int ps;

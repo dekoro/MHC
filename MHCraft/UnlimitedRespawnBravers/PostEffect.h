@@ -5,7 +5,12 @@
 #include<DxLib.h>
 
 /*
-ポストエフェクトに使う描画ターゲットは1つ
+ポストエフェクト
+このクラス１つにつき１つのゲーム画面。
+４つに画面分割する場合は４つ生成する。
+
+コンストラクタで受け取るエフェクトは、ピクセルシェーダを含みかつテクスチャマッピングをする物。
+引数のエフェクトによって画面に与えるエフェクトを変える。
 */
 
 class BaseEffect;
@@ -22,7 +27,7 @@ private:
 
 
 private:
-	int hGraphics;//この一つのハンドルをいろんなポストエフェクトで使いまわす
+	int hGraphics;
 	BaseEffect* effect;
 	VERTEX2DSHADER vertex[4];
 };

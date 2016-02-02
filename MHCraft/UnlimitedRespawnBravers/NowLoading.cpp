@@ -24,7 +24,7 @@ void NowLoading(const char* filePath)
 
 		scale = GetASyncLoadNum() / tmp;
 
-		DrawGraph(100,100,graHundle,true);
+		DrawGraph(0,0,graHundle,true);
 
 		DrawBox(WIDTH_BEGIN, HIGHT_BEGIN, WIDTH_END, HIGHT_END, GetColor(0, 50, 100), TRUE);
 

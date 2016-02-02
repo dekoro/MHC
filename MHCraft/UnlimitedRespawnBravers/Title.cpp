@@ -3,6 +3,7 @@
 SceneTitle::SceneTitle(){
 	device			= DeviceManager::GetInstance();
 	imageBackGround = device->Image()->CopyImageData(imageAsset_Title_BackGround);
+	postEffect = std::make_shared<PostEffect>(MakeScreen(Window::WIDTH,Window::HEIGHT),&texMapEffect);
 }
 
 SceneTitle::~SceneTitle(){
@@ -36,9 +37,11 @@ SceneMediateData SceneTitle::Update(){
 }
 
 void SceneTitle::Draw(){
-	
-	device->Image()->DrawBackGround(imageBackGround->GetImageHandle());
-	DrawFlashPushXButton();
+	postEffect->Rendaring([&](){
+		device->Image()->DrawBackGround(imageBackGround->GetImageHandle());
+		DrawFlashPushXButton();
+	});
+
 }
 
 void SceneTitle::Finalize(){

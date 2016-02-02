@@ -139,6 +139,12 @@
     <Filter Include="ソース ファイル\Effect\PostEffect">
       <UniqueIdentifier>{c8c62ff9-4d35-46eb-a11a-3b89dec9cfdf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\TextureMapping">
+      <UniqueIdentifier>{a2c043d5-cd24-4aa4-a533-c7c126907869}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\TextureMapping">
+      <UniqueIdentifier>{13f4d46b-a233-4a7e-94f8-e0e074076741}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FlagManager.cpp">
@@ -264,23 +270,23 @@
     <ClCompile Include="UI.cpp">
       <Filter>ソース ファイル\GSystem</Filter>
     </ClCompile>
-    <ClCompile Include="F:\シェーダんｄｆじゃんふぁｆ\BaseEffect.cpp">
+    <ClCompile Include="TextureMapping.cpp">
+      <Filter>ソース ファイル\Effect\TextureMapping</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseEffect.cpp">
       <Filter>ソース ファイル\Effect\BaseEffect</Filter>
     </ClCompile>
-    <ClCompile Include="F:\シェーダんｄｆじゃんふぁｆ\EffectManager.cpp">
-      <Filter>ソース ファイル\Effect\EffectManager</Filter>
-    </ClCompile>
-    <ClCompile Include="F:\シェーダんｄｆじゃんふぁｆ\ErrorCHeck.cpp">
-      <Filter>ソース ファイル\ErorrCheck</Filter>
-    </ClCompile>
-    <ClCompile Include="F:\シェーダんｄｆじゃんふぁｆ\NowLoading.cpp">
-      <Filter>ソース ファイル\SceneManager\NowLoading</Filter>
-    </ClCompile>
-    <ClCompile Include="F:\シェーダんｄｆじゃんふぁｆ\Timer.cpp">
+    <ClCompile Include="Timer.cpp">
       <Filter>ソース ファイル\Device\Timer</Filter>
     </ClCompile>
-    <ClCompile Include="F:\シェーダんｄｆじゃんふぁｆ\PostEffect.cpp">
+    <ClCompile Include="PostEffect.cpp">
       <Filter>ソース ファイル\Effect\PostEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="NowLoading.cpp">
+      <Filter>ソース ファイル\SceneManager\NowLoading</Filter>
+    </ClCompile>
+    <ClCompile Include="ErrorCheck.cpp">
+      <Filter>ソース ファイル\ErorrCheck</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -440,23 +446,23 @@
     <ClInclude Include="EnemyKingPumpkin.h">
       <Filter>ヘッダー ファイル\Character\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="F:\シェーダんｄｆじゃんふぁｆ\BaseEffect.h">
+    <ClInclude Include="TextureMapping.h">
+      <Filter>ヘッダー ファイル\Effect\TextureMapping</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseEffect.h">
       <Filter>ヘッダー ファイル\Effect\BaseEffect</Filter>
     </ClInclude>
-    <ClInclude Include="F:\シェーダんｄｆじゃんふぁｆ\EffectManager.h">
-      <Filter>ヘッダー ファイル\Effect\EffectManager</Filter>
-    </ClInclude>
-    <ClInclude Include="F:\シェーダんｄｆじゃんふぁｆ\ErrorCheck.h">
-      <Filter>ヘッダー ファイル\ErorrCheck</Filter>
-    </ClInclude>
-    <ClInclude Include="F:\シェーダんｄｆじゃんふぁｆ\NowLoading.h">
-      <Filter>ヘッダー ファイル\SceneManager\NowLoading</Filter>
-    </ClInclude>
-    <ClInclude Include="F:\シェーダんｄｆじゃんふぁｆ\Timer.h">
+    <ClInclude Include="Timer.h">
       <Filter>ヘッダー ファイル\Device\Timer</Filter>
     </ClInclude>
-    <ClInclude Include="F:\シェーダんｄｆじゃんふぁｆ\PostEffect.h">
+    <ClInclude Include="PostEffect.h">
       <Filter>ヘッダー ファイル\Effect\PostEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="NowLoading.h">
+      <Filter>ヘッダー ファイル\SceneManager\NowLoading</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorCheck.h">
+      <Filter>ヘッダー ファイル\ErorrCheck</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

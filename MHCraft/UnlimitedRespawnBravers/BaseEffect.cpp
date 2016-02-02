@@ -16,20 +16,17 @@ BaseEffect::~BaseEffect()
 	DeleteShader(vs);
 };
 
-
 void BaseEffect::Rendering(std::function<void()> Draw)
 {
 	assert(vs != -1 || ps != -1 && "オリジナルシェーダーが読み込みに失敗しています");
 
 	MV1SetUseOrigShader(TRUE);//シェーダ使用ＯＮ
 
-	//if (vs != 0)
-		SetUseVertexShader(vs);
 
-	//if (ps != 0)
-		SetUsePixelShader(ps);
+	SetUseVertexShader(vs);//シェーダハンドルが0なら固定機能に切り替わると思う
 
-	ConstantShader();//シェーダに定数を渡す
+
+	SetUsePixelShader(ps);
 
 	Draw();//描画処理
 
