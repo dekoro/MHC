@@ -31,6 +31,8 @@ private:
 	std::shared_ptr<PostEffect> postEffect;
 	TextureMapping texMapEffect;
 
+	int x = 0,y = 0;
+
 
 };
 

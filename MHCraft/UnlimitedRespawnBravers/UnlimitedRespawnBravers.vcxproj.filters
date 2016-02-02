@@ -145,6 +145,12 @@
     <Filter Include="ソース ファイル\Effect\TextureMapping">
       <UniqueIdentifier>{13f4d46b-a233-4a7e-94f8-e0e074076741}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Device\ScreenLayout">
+      <UniqueIdentifier>{64c6e1a7-426f-4ff5-938b-0c0bf321ad11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Device\ScreenLayout">
+      <UniqueIdentifier>{266e233a-0976-44b1-9bb8-1ff3da545a0d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FlagManager.cpp">
@@ -287,6 +293,9 @@
     </ClCompile>
     <ClCompile Include="ErrorCheck.cpp">
       <Filter>ソース ファイル\ErorrCheck</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenLayout.cpp">
+      <Filter>ソース ファイル\Device\ScreenLayout</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -463,6 +472,9 @@
     </ClInclude>
     <ClInclude Include="ErrorCheck.h">
       <Filter>ヘッダー ファイル\ErorrCheck</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenLayout.h">
+      <Filter>ヘッダー ファイル\Device\ScreenLayout</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

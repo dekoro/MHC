@@ -115,6 +115,7 @@
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="ScreenLayout.cpp" />
     <ClCompile Include="SoundData.cpp" />
     <ClCompile Include="SoundRenderer.cpp" />
     <ClCompile Include="TextureMapping.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="PostEffect.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="ScreenLayout.h" />
     <ClInclude Include="SoundData.h" />
     <ClInclude Include="SoundRenderer.h" />
     <ClInclude Include="SystemHub.h" />

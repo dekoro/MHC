@@ -30,6 +30,8 @@ private:
 	int hGraphics;
 	BaseEffect* effect;
 	VERTEX2DSHADER vertex[4];
+	VERTEX2DSHADER vertex2[4];
+	FLOAT4 pos = {};
 };
 
 #endif
