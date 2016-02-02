@@ -7,15 +7,25 @@
 #include "IInput.h"
 #include "FlagManager.h"
 
-class Keyboard : public IInput
+class Keyboard
 {
 public:
-	Keyboard(int PlayerNo);
+	Keyboard();
 	~Keyboard();
 
+	void Update();
+
+	int GetKeyFalme(int key);
+
+	bool IsKeyDown(int key);
+
+	bool IsDownTrigger(int key);
+
 private:
-	unsigned int keyConfig[GKEY_NUM];
-	unsigned int GetInputState();
+	const int keyNumber = 256;
+	int keyFlame[256];
+	char tempKey[256];
+
 };
 
 #endif

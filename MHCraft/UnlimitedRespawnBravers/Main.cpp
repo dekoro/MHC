@@ -14,18 +14,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	DeviceManager*	deviceManager	= DeviceManager::GetInstance();
 	SceneManager*	sceneManager	= new SceneManager();
 	FPS*			fps				= new FPS();
+	SetAlwaysRunFlag(TRUE);
 	SetDrawScreen(DX_SCREEN_BACK);
 
-
-	while (true){
-		if (ProcessMessage() == -1){ break; }
+	while (!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen()){
 		///ここから更新
 		deviceManager->Input()->Update();
 		deviceManager->Image()->Update();
 		sceneManager->Update();
 		///ここまで更新
 
-		ClearDrawScreen();
 		DrawFillBox(0, 0, 1280, 720, GetColor(32, 32, 32));
 
 		///ここから描画
@@ -33,9 +31,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		///ここまで描画
 	//	fps->SleepNextFrame();
-	//	Debug::ClearPrint();
-		ScreenFlip();
-		if (CheckHitKey(KEY_INPUT_ESCAPE)){ break; }
+		//Debug::ClearPrint();
+		if (CheckHitKey(KEY_INPUT_ESCAPE))
+		{
+			if (MessageBox(NULL, TEXT("終了させますか?"),TEXT(""), MB_YESNO | MB_ICONQUESTION) == IDYES)
+				break;
+		}
 	}
 
 	SAFE_DELETE(sceneManager);

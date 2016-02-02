@@ -22,9 +22,6 @@
     <Filter Include="ヘッダー ファイル\SceneManager">
       <UniqueIdentifier>{f2f487b1-9a56-489d-b783-63bdcf6bfc88}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\StageManager">
-      <UniqueIdentifier>{9d24a46e-7473-4600-91cc-5b3383e8a74a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\GSystem">
       <UniqueIdentifier>{89f247e4-eae5-4228-a15f-e90ec7257345}</UniqueIdentifier>
     </Filter>

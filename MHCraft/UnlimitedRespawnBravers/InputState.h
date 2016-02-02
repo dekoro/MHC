@@ -26,6 +26,8 @@ public:
 	void Leave();
 	bool CheckJoinSign();
 
+
+	int keyConfigListKeyboard[GKEY_NUM];
 protected:
 	void ResetKeyConfig();
 	bool IsInput(int preORcurState, GKey key);
@@ -35,7 +37,6 @@ private:
 	int padIndex;
 	bool isUse;
 	int keyConfigList[GKEY_NUM];
-	int keyConfigListKeyboard[GKEY_NUM];
 	int curState;
 	int preState;
 	int GetDxPadType();
