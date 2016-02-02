@@ -14,6 +14,7 @@ void SceneTitle::Initialize(SceneMediateData sceneData){
 	nextSceneCount = 30;
 	enterPlayerIndex = -1;
 	counter = 0;
+	isEnd = false;
 }
 
 SceneMediateData SceneTitle::Update(){
@@ -25,7 +26,11 @@ SceneMediateData SceneTitle::Update(){
 		sceneData.playerIndex	= enterPlayerIndex;
 		sceneData.nextScene		= SCENE_GAMEMAIN;
 	}
-	CountdownNextScene();
+	if (device->Input()->CheckKeyPushAllPad(GKey_Attack)) isEnd = true;
+	if (isEnd)
+	{
+		CountdownNextScene();
+	}
 	counter++;
 	return sceneData;
 }
@@ -50,7 +55,6 @@ int SceneTitle::CheckControllPadNo(){
 }
 
 void SceneTitle::CountdownNextScene(){
-	if (enterPlayerIndex == -1){ return; }
 	if (nextSceneCount == 30){
 		device->Sound()->Play(SE_Decision);
 	}

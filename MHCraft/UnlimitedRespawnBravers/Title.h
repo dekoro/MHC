@@ -20,7 +20,7 @@ private:
 	DeviceManager* device;
 	int		nextSceneCount;
 	int		enterPlayerIndex;
-
+	bool isEnd;
 	int		CheckControllPadNo();
 	void	CountdownNextScene();
 	void	DrawFlashPushXButton();
