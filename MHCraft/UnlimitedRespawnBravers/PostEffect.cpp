@@ -6,7 +6,7 @@ PostEffect::PostEffect(int hGraphics, BaseEffect* effect) : hGraphics(hGraphics)
 {
 	for (int i = 0; i < 4; ++i)
 	{
-		vertex[i].pos = VGet((i % 2) * Window::WIDTH /2, (i / 2) * Window::HEIGHT,0);
+		vertex[i].pos = VGet((i % 2) * Window::WIDTH, (i / 2) * Window::HEIGHT,0);
 		vertex[i].rhw = 1.0f;//アルファ値
 		vertex[i].dif = GetColorU8(255, 255, 255, 255);
 		vertex[i].spc = GetColorU8(0, 0, 0, 0);
@@ -45,6 +45,7 @@ void PostEffect::Rendaring(std::function<void()> Draw)
 
 	SetUseTextureToShader(0, hGraphics);
 
+	//DrawBillboard3D(VGet(0, 0, 0), 0, 0, 0, 0, hGraphics, FALSE);
 	effect->Rendering([&](){DrawPrimitive2DToShader(vertex, 4, DX_PRIMTYPE_TRIANGLESTRIP); });
 	//effect->Rendering([&](){DrawPrimitive2DToShader(vertex2, 4, DX_PRIMTYPE_TRIANGLESTRIP); });
 

@@ -20,18 +20,12 @@ void ImageRenderer::Update(){
 void ImageRenderer::DrawPlayerCenter(int imageIndex, Vec2 positionCenter){
 	int imageHandle = characterImageMap[imageIndex]->GetImageHandle();
 	Draw(imageHandle, positionCenter.GetIntX() - GetSizeHalfImageX(imageIndex), positionCenter.GetIntY() - GetSizeHalfImageY(imageIndex));
-
 }
 
 
 void	ImageRenderer::DrawCeter(IMAGE_ASSET_NAME assetName, Vec2 posCenter){
-	DrawCeter(assetName, posCenter.GetIntX(), posCenter.GetIntY());
-}
-
-void	ImageRenderer::DrawCeter(IMAGE_ASSET_NAME assetName, int posCX, int posCY){
-	int X = posCX -imageMap[assetName]->GetSizeHalfImageX();
-	int Y = posCY -imageMap[assetName]->GetSizeHalfImageY();
-	DrawLT(imageMap[assetName]->GetImageHandle(), X, Y);
+	//DrawCeter(assetName, posCenter.GetIntX(), posCenter.GetIntY());
+	DrawBillboard3D(VGet(posCenter.X, posCenter.Y, 0), 0.5f, 0.5f, imageMap[assetName]->GetSizeHalfImageX(), 0.0f, imageMap[assetName]->GetImageHandle(),TRUE);
 }
 
 void ImageRenderer::DrawRotation(IMAGE_ASSET_NAME asset, int posCX, int posCY, double angleDeg){

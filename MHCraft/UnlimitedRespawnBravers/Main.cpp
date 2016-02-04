@@ -1,5 +1,6 @@
 
 #include "SceneManager.h"
+#include"ChildWindow.h"
 
 
 
@@ -12,14 +13,22 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	SetUseDirect3DVersion(DX_DIRECT3D_9EX);
 
+	ChildWindow childWindow(TEXT("Map"), hInstance);
+
+//	childWindow.Initialize(cCmdShow);//ウィンドウの初期化Dxintを呼ぶ前に使う
+
 	if (DxLib_Init() == -1){ return -1; }
 	Debug::CheckDebugMode();
 	DeviceManager*	deviceManager	= DeviceManager::GetInstance();
 	SceneManager*	sceneManager	= new SceneManager();
 	FPS*			fps				= new FPS();
-
+	MSG msg;
+	
 	SetAlwaysRunFlag(TRUE);
 	SetDrawScreen(DX_SCREEN_BACK);
+	//SetScreenFlipTargetWindow(childWindow.GetHWnd());//描画先を子ウィンドウにする
+
+	//SetScreenFlipTargetWindow(NULL);
 
 	while (!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen()){
 		///ここから更新
@@ -40,6 +49,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		{
 			if (MessageBox(NULL, TEXT("終了させますか?"),TEXT(""), MB_YESNO | MB_ICONQUESTION) == IDYES)
 				break;
+		}
+
+		if (PeekMessage(&msg, childWindow.GetHWnd(), 0, 0, PM_NOREMOVE))
+		{
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
 		}
 	}
 

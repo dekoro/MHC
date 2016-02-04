@@ -1,9 +1,10 @@
 #include "Title.h"
 
+
 SceneTitle::SceneTitle(){
-	device			= DeviceManager::GetInstance();
+	device = DeviceManager::GetInstance();
 	imageBackGround = device->Image()->CopyImageData(imageAsset_Title_BackGround);
-	postEffect = std::make_shared<PostEffect>(MakeScreen(Window::WIDTH,Window::HEIGHT),&texMapEffect);
+	postEffect = std::make_shared<PostEffect>(MakeScreen(Window::WIDTH, Window::HEIGHT), &texMapEffect);//ÉeÉXÉg
 }
 
 SceneTitle::~SceneTitle(){
@@ -16,17 +17,19 @@ void SceneTitle::Initialize(SceneMediateData sceneData){
 	enterPlayerIndex = -1;
 	counter = 0;
 	isEnd = false;
-	SetupCamera_Ortho(2000.0f);
+	//SetCameraPositionAndTarget_UpVecY(VGet(500,0, -50), VGet(0, 0, 0));
+
+	SetupCamera_Ortho(2000.0f);//ÇQÇcÉJÉÅÉâê›íË
 }
 
 SceneMediateData SceneTitle::Update(){
-	SceneMediateData sceneData	= SceneMediateData::Setup(SCENE_TITLE);
+	SceneMediateData sceneData = SceneMediateData::Setup(SCENE_TITLE);
 	if (enterPlayerIndex == -1){
 		enterPlayerIndex = CheckControllPadNo();;
 	}
-	if (nextSceneCount<=0){
-		sceneData.playerIndex	= enterPlayerIndex;
-		sceneData.nextScene		= SCENE_GAMEMAIN;
+	if (nextSceneCount <= 0){
+		sceneData.playerIndex = enterPlayerIndex;
+		sceneData.nextScene = SCENE_GAMEMAIN;
 	}
 	if (device->Input()->CheckKeyPushAllPad(GKey_Attack)) isEnd = true;
 	if (isEnd)
@@ -36,14 +39,33 @@ SceneMediateData SceneTitle::Update(){
 	counter++;
 	return sceneData;
 
-	SetCameraPositionAndTarget_UpVecY(VGet(x,y,-10),VGet(0,0,0));
 }
 
 void SceneTitle::Draw(){
-	postEffect->Rendaring([&](){
-		device->Image()->DrawBackGround(imageBackGround->GetImageHandle());
-		DrawFlashPushXButton();
-	});
+
+	static int g = 100, h = 100;
+
+	//postEffect->Rendaring([&](){
+
+	SetupCamera_Ortho(2000.0f);//ÇQÇcÉJÉÅÉâê›íË
+
+	camera.SetPosition();
+
+	int x;
+
+	GetGraphSize(a, &x, nullptr);
+
+	if (device->Input()->CheckKeyDownAllPad(GKey_Up))
+	{
+		h += 1;
+	}
+
+	DrawBillboard3D(VGet(h, h, 0), 0.5f, 0.5f, x *3, 0.0f, a, TRUE);
+
+	device->Image()->DrawCeter(imageAsset_Title_BackGround, Vec2(h,h));
+	//device->Image()->DrawBackGround(imageBackGround->GetImageHandle());
+	DrawFlashPushXButton();
+	//	});
 
 }
 

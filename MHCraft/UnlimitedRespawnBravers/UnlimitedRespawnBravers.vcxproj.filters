@@ -19,9 +19,6 @@
     <Filter Include="ヘッダー ファイル\DataManager">
       <UniqueIdentifier>{49240f5b-924f-4e04-9f2f-98b430543645}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\SceneManager">
-      <UniqueIdentifier>{f2f487b1-9a56-489d-b783-63bdcf6bfc88}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\GSystem">
       <UniqueIdentifier>{89f247e4-eae5-4228-a15f-e90ec7257345}</UniqueIdentifier>
     </Filter>
@@ -30,18 +27,6 @@
     </Filter>
     <Filter Include="ヘッダー ファイル\Character">
       <UniqueIdentifier>{9468593c-d072-4e64-98de-83536bfc96c4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\SceneManager\Title">
-      <UniqueIdentifier>{879c4aeb-5a10-426f-ba25-a8e7d93bff82}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\SceneManager\GameMain">
-      <UniqueIdentifier>{216ea36e-30c5-4a0d-878e-b8ebfd906dd3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\SceneManager\Ending">
-      <UniqueIdentifier>{baa71f66-f7b0-4ec3-abda-93a7630e6c7d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\SceneManager\GameMain\Events">
-      <UniqueIdentifier>{1dea7320-f07d-4163-a9e4-ec6b940a7f9f}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\Device">
       <UniqueIdentifier>{a3524f99-da7b-4388-8fef-7baab1d3acab}</UniqueIdentifier>
@@ -124,9 +109,6 @@
     <Filter Include="ソース ファイル\SceneManager\NowLoading">
       <UniqueIdentifier>{d2320f56-142a-4cfe-a78e-4b79ac4d91b4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\SceneManager\NowLoading">
-      <UniqueIdentifier>{c86c5a90-25ac-497a-b3cc-420103d92531}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Device\Timer">
       <UniqueIdentifier>{cbe23d79-0f63-491e-8a8a-64c0b51fe8cd}</UniqueIdentifier>
     </Filter>
@@ -150,6 +132,36 @@
     </Filter>
     <Filter Include="ソース ファイル\Device\ScreenLayout">
       <UniqueIdentifier>{266e233a-0976-44b1-9bb8-1ff3da545a0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ChildWindow">
+      <UniqueIdentifier>{79d21264-a9c8-41a5-865f-ead681d3032e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ChildWindow">
+      <UniqueIdentifier>{f8ebd639-80d6-4925-a320-c31076a10d2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\GSystem\SceneManager">
+      <UniqueIdentifier>{f2f487b1-9a56-489d-b783-63bdcf6bfc88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\GSystem\SceneManager\Title">
+      <UniqueIdentifier>{879c4aeb-5a10-426f-ba25-a8e7d93bff82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\GSystem\SceneManager\GameMain">
+      <UniqueIdentifier>{216ea36e-30c5-4a0d-878e-b8ebfd906dd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\GSystem\SceneManager\GameMain\Events">
+      <UniqueIdentifier>{1dea7320-f07d-4163-a9e4-ec6b940a7f9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\GSystem\SceneManager\Ending">
+      <UniqueIdentifier>{baa71f66-f7b0-4ec3-abda-93a7630e6c7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\GSystem\SceneManager\NowLoading">
+      <UniqueIdentifier>{c86c5a90-25ac-497a-b3cc-420103d92531}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Device\Camera">
+      <UniqueIdentifier>{5ba443e1-dde9-4e73-a610-c86fd2225483}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Device\Camera">
+      <UniqueIdentifier>{4dc1ac93-2808-493d-8a19-9b98c0f9c2d3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -297,31 +309,37 @@
     <ClCompile Include="ScreenLayout.cpp">
       <Filter>ソース ファイル\Device\ScreenLayout</Filter>
     </ClCompile>
+    <ClCompile Include="ChildWindow.cpp">
+      <Filter>ソース ファイル\ChildWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>ソース ファイル\Device\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GMath.h">
       <Filter>ヘッダー ファイル\GSystem</Filter>
     </ClInclude>
     <ClInclude Include="IScenes.h">
-      <Filter>ヘッダー ファイル\SceneManager</Filter>
+      <Filter>ヘッダー ファイル\GSystem\SceneManager</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
-      <Filter>ヘッダー ファイル\SceneManager</Filter>
+      <Filter>ヘッダー ファイル\GSystem\SceneManager</Filter>
     </ClInclude>
     <ClInclude Include="GameMain.h">
-      <Filter>ヘッダー ファイル\SceneManager\GameMain</Filter>
+      <Filter>ヘッダー ファイル\GSystem\SceneManager\GameMain</Filter>
     </ClInclude>
     <ClInclude Include="Ending.h">
-      <Filter>ヘッダー ファイル\SceneManager\Ending</Filter>
+      <Filter>ヘッダー ファイル\GSystem\SceneManager\Ending</Filter>
     </ClInclude>
     <ClInclude Include="Title.h">
-      <Filter>ヘッダー ファイル\SceneManager\Title</Filter>
+      <Filter>ヘッダー ファイル\GSystem\SceneManager\Title</Filter>
     </ClInclude>
     <ClInclude Include="GSystem.h">
       <Filter>ヘッダー ファイル\GSystem</Filter>
     </ClInclude>
     <ClInclude Include="EventManager.h">
-      <Filter>ヘッダー ファイル\SceneManager\GameMain\Events</Filter>
+      <Filter>ヘッダー ファイル\GSystem\SceneManager\GameMain\Events</Filter>
     </ClInclude>
     <ClInclude Include="EnumGKey.h">
       <Filter>ヘッダー ファイル\Device\Input</Filter>
@@ -331,9 +349,6 @@
     </ClInclude>
     <ClInclude Include="ImageData.h">
       <Filter>ヘッダー ファイル\DataManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>ヘッダー ファイル\GSystem</Filter>
     </ClInclude>
     <ClInclude Include="Macro.h">
       <Filter>ヘッダー ファイル\GSystem</Filter>
@@ -468,13 +483,19 @@
       <Filter>ヘッダー ファイル\Effect\PostEffect</Filter>
     </ClInclude>
     <ClInclude Include="NowLoading.h">
-      <Filter>ヘッダー ファイル\SceneManager\NowLoading</Filter>
+      <Filter>ヘッダー ファイル\GSystem\SceneManager\NowLoading</Filter>
     </ClInclude>
     <ClInclude Include="ErrorCheck.h">
       <Filter>ヘッダー ファイル\ErorrCheck</Filter>
     </ClInclude>
     <ClInclude Include="ScreenLayout.h">
       <Filter>ヘッダー ファイル\Device\ScreenLayout</Filter>
+    </ClInclude>
+    <ClInclude Include="ChildWindow.h">
+      <Filter>ヘッダー ファイル\ChildWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>ヘッダー ファイル\Device\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
