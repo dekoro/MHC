@@ -24,6 +24,7 @@ enum IMAGE_ASSET_NAME{
 
 class ImageRenderer{
 public:
+
 	ImageRenderer();
 	~ImageRenderer();
 

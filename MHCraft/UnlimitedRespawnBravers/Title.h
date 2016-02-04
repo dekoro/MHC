@@ -6,6 +6,8 @@
 #include"PostEffect.h"
 #include<memory>
 
+#include"Camera.h"
+
 class SceneTitle : public IScenes
 {
 public:
@@ -32,8 +34,9 @@ private:
 	TextureMapping texMapEffect;
 
 	int x = 0,y = 0;
-
-
+	//ƒeƒXƒg
+	Camera camera;
+	int a = LoadGraph("Resource/GameMain_BackGround.png");
 };
 
 
