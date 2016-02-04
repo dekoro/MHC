@@ -23,6 +23,7 @@ ChildWindow::~ChildWindow()
 {
 }
 
+//後で名前をクリエイトウィンドウに変更
 void ChildWindow::Initialize(int cmdShow)
 {
 	HWND tenpWnd = CreateWindow(

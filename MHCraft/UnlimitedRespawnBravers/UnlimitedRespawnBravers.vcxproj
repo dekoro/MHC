@@ -79,6 +79,7 @@
   <ItemGroup>
     <ClCompile Include="BaseEffect.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="CharacterImageData.cpp" />
     <ClCompile Include="CharacterManager.cpp" />
     <ClCompile Include="ChildWindow.cpp" />
@@ -131,6 +132,7 @@
   <ItemGroup>
     <ClInclude Include="BaseEffect.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraManager.h" />
     <ClInclude Include="CharacterImageData.h" />
     <ClInclude Include="CharacterManager.h" />
     <ClInclude Include="ChildWindow.h" />

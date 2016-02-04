@@ -14,15 +14,16 @@ SetPosition()は描画先を変更するたびに呼ばないとリセットされてしまうので注意
 class Camera
 {
 public:
+#if _DEBUG
 	Camera(){};
+#endif
 	Camera(Player* player);
 	~Camera();
 
-	//カメラの拡縮をセット
-	//void SetScale(VECTOR scale);
+	void Initialize();
 
-	//カメラのポジションをセット
-	//void SetMove(Vec2 pos);
+	//カメラの拡縮をセット
+	void SetScale(VECTOR scale);
 
 	void Update();
 
@@ -30,8 +31,8 @@ public:
 
 private:
 	Player* player;//こいつからポジションをもらいカメラの中心座標にする
-
-	VECTOR lookPos;//視点
+	VECTOR position;//視点
+	VECTOR lookPos;//注視点
 	VECTOR scale ;//拡大縮小率
 
 

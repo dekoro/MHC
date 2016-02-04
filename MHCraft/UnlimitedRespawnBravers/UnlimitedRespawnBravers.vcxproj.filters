@@ -163,6 +163,12 @@
     <Filter Include="ソース ファイル\Device\Camera">
       <UniqueIdentifier>{4dc1ac93-2808-493d-8a19-9b98c0f9c2d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Device\Camera\CameraManager">
+      <UniqueIdentifier>{ed51001c-6d83-4d39-a24e-657c01915773}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Device\Camera\CameraManager">
+      <UniqueIdentifier>{61915d36-5635-4286-9f2f-54a151565900}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FlagManager.cpp">
@@ -314,6 +320,9 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>ソース ファイル\Device\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>ソース ファイル\Device\Camera\CameraManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -496,6 +505,9 @@
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>ヘッダー ファイル\Device\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h">
+      <Filter>ヘッダー ファイル\Device\Camera\CameraManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
