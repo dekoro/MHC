@@ -25,7 +25,7 @@ void ImageRenderer::DrawPlayerCenter(int imageIndex, Vec2 positionCenter){
 
 void	ImageRenderer::DrawCeter(IMAGE_ASSET_NAME assetName, Vec2 posCenter){
 	//DrawCeter(assetName, posCenter.GetIntX(), posCenter.GetIntY());
-	DrawBillboard3D(VGet(posCenter.X, posCenter.Y, 0), 0.5f, 0.5f, imageMap[assetName]->GetSizeHalfImageX(), 0.0f, imageMap[assetName]->GetImageHandle(),TRUE);
+	DrawBillboard3D(VGet(posCenter.X, posCenter.Y, 0), 0.5f, 0.5f, imageMap[assetName]->GetSizeHalfImageX() * 2, 0.0f, imageMap[assetName]->GetImageHandle(),TRUE);
 }
 
 void ImageRenderer::DrawRotation(IMAGE_ASSET_NAME asset, int posCX, int posCY, double angleDeg){

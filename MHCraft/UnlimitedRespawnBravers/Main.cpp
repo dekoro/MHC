@@ -3,8 +3,6 @@
 #include"ChildWindow.h"
 
 
-
-
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int cCmdShow){
 
 	ChangeWindowMode(TRUE);	
@@ -15,7 +13,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	ChildWindow childWindow(TEXT("Map"), hInstance);
 
-//	childWindow.Initialize(cCmdShow);//ウィンドウの初期化Dxintを呼ぶ前に使う
+	//childWindow.Initialize(cCmdShow);//ウィンドウの初期化Dxintを呼ぶ前に使う
 
 	if (DxLib_Init() == -1){ return -1; }
 	Debug::CheckDebugMode();
@@ -26,7 +24,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	
 	SetAlwaysRunFlag(TRUE);
 	SetDrawScreen(DX_SCREEN_BACK);
-	//SetScreenFlipTargetWindow(childWindow.GetHWnd());//描画先を子ウィンドウにする
+//	SetScreenFlipTargetWindow(childWindow.GetHWnd());//描画先を子ウィンドウにする
 
 	//SetScreenFlipTargetWindow(NULL);
 
