@@ -5,6 +5,8 @@ SceneTitle::SceneTitle(){
 	device = DeviceManager::GetInstance();
 	imageBackGround = device->Image()->CopyImageData(imageAsset_Title_BackGround);
 	postEffect = std::make_shared<PostEffect>(MakeScreen(Window::WIDTH, Window::HEIGHT), &texMapEffect);//ƒeƒXƒg
+	SetCameraNearFar(1, 1000);
+
 }
 
 SceneTitle::~SceneTitle(){
@@ -19,7 +21,7 @@ void SceneTitle::Initialize(SceneMediateData sceneData){
 	isEnd = false;
 	//SetCameraPositionAndTarget_UpVecY(VGet(500,0, -50), VGet(0, 0, 0));
 
-	SetupCamera_Ortho(2000.0f);//‚Q‚cƒJƒƒ‰Ý’è
+	//SetupCamera_Ortho(2000.0f);//‚Q‚cƒJƒƒ‰Ý’è
 }
 
 SceneMediateData SceneTitle::Update(){
@@ -43,29 +45,14 @@ SceneMediateData SceneTitle::Update(){
 
 void SceneTitle::Draw(){
 
-	static int g = 100, h = 100;
-
-	//postEffect->Rendaring([&](){
-
-	SetupCamera_Ortho(2000.0f);//‚Q‚cƒJƒƒ‰Ý’è
+	postEffect->Rendaring([&](){
 
 	camera.SetPosition();
 
-	int x;
-
-	GetGraphSize(a, &x, nullptr);
-
-	if (device->Input()->CheckKeyDownAllPad(GKey_Up))
-	{
-		h += 1;
-	}
-
-	DrawBillboard3D(VGet(h, h, 0), 0.5f, 0.5f, x *3, 0.0f, a, TRUE);
-
-	device->Image()->DrawCeter(imageAsset_Title_BackGround, Vec2(h,h));
+	device->Image()->DrawCeter(imageAsset_Title_BackGround, Vec2(0, 0));
 	//device->Image()->DrawBackGround(imageBackGround->GetImageHandle());
 	DrawFlashPushXButton();
-	//	});
+	});
 
 }
 
