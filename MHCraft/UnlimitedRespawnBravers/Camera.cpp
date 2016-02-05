@@ -35,6 +35,7 @@ void Camera::Update()
 //これを格描画ターゲットに変更したあとに呼ぶ
 void Camera::SetPosition()
 {
+
 	SetCameraPositionAndTarget_UpVecY(VGet(0, 0, 200), VGet(0, 0, 0));
 	SetupCamera_Ortho(2000.0f);//２Ｄカメラ設定
 
