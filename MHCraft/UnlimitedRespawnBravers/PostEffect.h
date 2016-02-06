@@ -3,6 +3,8 @@
 
 #include<functional>
 #include<DxLib.h>
+#include"e_ScreenLayout.h"
+#include<functional>
 
 /*
 ポストエフェクト
@@ -19,19 +21,19 @@ class PostEffect
 {
 public:
 	PostEffect(int hGraphics, BaseEffect* effect);
+	PostEffect(int hGraphics, BaseEffect* effect,e_ScreenLayout lauOut);
 	virtual ~PostEffect();
 
 	void Rendaring(std::function<void()> Draw);
 	
 private:
+	void VertexErch(std::function<void (int x)> action);
 
 
 private:
 	int hGraphics;
 	BaseEffect* effect;
 	VERTEX2DSHADER vertex[4];
-	VERTEX2DSHADER vertex2[4];
-	FLOAT4 pos = {};
 };
 
 #endif

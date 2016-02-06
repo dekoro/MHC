@@ -2,27 +2,69 @@
 #include<DxLib.h>
 #include"BaseEffect.h"
 #include"GSystem.h"
+
+//レイアウトが無ければシングルウィンドウ用配置
 PostEffect::PostEffect(int hGraphics, BaseEffect* effect) : hGraphics(hGraphics), effect(effect)
 {
-	for (int i = 0; i < 4; ++i)
-	{
-		vertex[i].pos = VGet((i % 2) * Window::WIDTH, (i / 2) * Window::HEIGHT,0);
+
+	VertexErch([&](int i){
+		vertex[i].pos = VGet((i % 2) * Window::WIDTH, (i / 2) * Window::HEIGHT, 0);
 		vertex[i].rhw = 1.0f;//アルファ値
 		vertex[i].dif = GetColorU8(255, 255, 255, 255);
 		vertex[i].spc = GetColorU8(0, 0, 0, 0);
 		vertex[i].u = vertex[i].su = (float)(i % 2);
 		vertex[i].v = vertex[i].sv = (float)(i / 2);
-	}
-	//for (int i = 0; i < 4; ++i)
-	//{
-	//	vertex2[i].pos = VGet(((i % 2) * Window::WIDTH) + Window::WIDTH / 2, (i / 2) * Window::HEIGHT, 0);
-	//	vertex2[i].rhw = 1.0f;//アルファ値
-	//	vertex2[i].dif = GetColorU8(255, 255, 255, 255);
-	//	vertex2[i].spc = GetColorU8(0, 0, 0, 0);
-	//	vertex2[i].u = vertex[i].su = (float)(i % 2);
-	//	vertex2[i].v = vertex[i].sv = (float)(i / 2);
-	//}
+	});
 }
+
+PostEffect::PostEffect(int hGraphics, BaseEffect* effect, e_ScreenLayout layOut) : hGraphics(hGraphics), effect(effect)
+{
+	//画面の数に応じてレンダーターゲットを配置
+	switch (layOut)
+	{
+	case e_Single:
+		VertexErch([&](int i){
+			vertex[i].pos = VGet((i % 2) * Window::WIDTH, (i / 2) * Window::HEIGHT, 0);
+		});
+		break;
+	case e_Double:
+		VertexErch([&](int i){
+			vertex[i].pos = VGet((i % 2) * Window::WIDTH, (i / 2) * Window::HEIGHT, 0);
+		});
+		break;
+
+	case e_Triple:
+		VertexErch([&](int i){
+			vertex[i].pos = VGet((i % 2) * Window::WIDTH, (i / 2) * Window::HEIGHT, 0);
+		});
+		break;
+	case e_Quad:
+		VertexErch([&](int i){
+			vertex[i].pos = VGet((i % 2) * Window::WIDTH, (i / 2) * Window::HEIGHT, 0);
+		});
+		break;
+
+	//どれでもなかったら1P画面
+	default:
+		VertexErch([&](int i){
+			vertex[i].pos = VGet((i % 2) * Window::WIDTH, (i / 2) * Window::HEIGHT, 0);
+		});
+		break;
+	}
+
+	VertexErch([&](int i)
+	{
+		vertex[i].rhw = 1.0f;//アルファ値
+		vertex[i].dif = GetColorU8(255, 255, 255, 255);
+		vertex[i].spc = GetColorU8(0, 0, 0, 0);
+		vertex[i].u = vertex[i].su = (float)(i % 2);
+		vertex[i].v = vertex[i].sv = (float)(i / 2);
+	});
+
+
+
+}
+
 
 PostEffect::~PostEffect()
 {
@@ -31,10 +73,6 @@ PostEffect::~PostEffect()
 
 void PostEffect::Rendaring(std::function<void()> Draw)
 {
-	pos.x = 0.0f;
-	pos.y = 0.0f;
-	SetPSConstF(0,pos);
-
 	SetDrawScreen(this->hGraphics);
 
 	ClearDrawScreen();
@@ -45,9 +83,14 @@ void PostEffect::Rendaring(std::function<void()> Draw)
 
 	SetUseTextureToShader(0, hGraphics);
 
-	//DrawBillboard3D(VGet(0, 0, 0), 0, 0, 0, 0, hGraphics, FALSE);
 	effect->Rendering([&](){DrawPrimitive2DToShader(vertex, 4, DX_PRIMTYPE_TRIANGLESTRIP); });
-	//effect->Rendering([&](){DrawPrimitive2DToShader(vertex2, 4, DX_PRIMTYPE_TRIANGLESTRIP); });
+}
 
-	//DrawGraph(0,0,hGraphics,TRUE);
+
+void PostEffect::VertexErch(std::function<void(int x)> action)
+{
+	for (int i = 0; i < 4; ++i)
+	{
+		action(i);
+	}
 }

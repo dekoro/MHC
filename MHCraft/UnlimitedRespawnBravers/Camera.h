@@ -15,9 +15,13 @@ class Camera
 {
 public:
 #if _DEBUG
-	Camera(){};
+	Camera()
+	{
+		position = VGet(0,0,0);
+		this->scale = 2000.f;
+	};
 #endif
-	Camera(Player* player);
+	Camera(Player* player,int padNum);
 	~Camera();
 
 	void Initialize();
@@ -31,9 +35,10 @@ public:
 
 private:
 	Player* player;//こいつからポジションをもらいカメラの中心座標にする
+	int padNum;//どのプレイヤーが操作するカメラか識別するため
+
 	VECTOR position;//視点
-	VECTOR lookPos;//注視点
-	VECTOR scale ;//拡大縮小率
+	float scale ;//拡大縮小率
 
 
 };

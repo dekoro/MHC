@@ -169,6 +169,9 @@
     <Filter Include="ヘッダー ファイル\Device\Camera\CameraManager">
       <UniqueIdentifier>{61915d36-5635-4286-9f2f-54a151565900}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Device\ScreenLayout\e_ScreenLayout">
+      <UniqueIdentifier>{c732468f-205a-4115-b648-19e4735f54e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FlagManager.cpp">
@@ -508,6 +511,9 @@
     </ClInclude>
     <ClInclude Include="CameraManager.h">
       <Filter>ヘッダー ファイル\Device\Camera\CameraManager</Filter>
+    </ClInclude>
+    <ClInclude Include="e_ScreenLayout.h">
+      <Filter>ヘッダー ファイル\Device\ScreenLayout\e_ScreenLayout</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
