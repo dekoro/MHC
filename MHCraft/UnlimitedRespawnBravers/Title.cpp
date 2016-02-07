@@ -4,7 +4,7 @@
 SceneTitle::SceneTitle(){
 	device = DeviceManager::GetInstance();
 	imageBackGround = device->Image()->CopyImageData(imageAsset_Title_BackGround);
-	postEffect = std::make_shared<PostEffect>(MakeScreen(Window::WIDTH, Window::HEIGHT), &texMapEffect);//テスト
+	postEffect = std::make_shared<PostEffect>(Window::WIDTH, Window::HEIGHT, &texMapEffect,e_Quad,e_Fourth);//テスト
 	SetCameraNearFar(1, 1000);
 
 }

@@ -8,15 +8,15 @@
 	コンストラクタで受け取った数だけ画面を生成する
 */
 
-class ScreenLayout
-{
-public:
-	ScreenLayout();
-	~ScreenLayout();
-
-private:
-	std::vector<>
-
-};
+//class ScreenLayout
+//{
+//public:
+//	ScreenLayout();
+//	~ScreenLayout();
+//
+//private:
+//	std::vector<>
+//
+//};
 
 #endif

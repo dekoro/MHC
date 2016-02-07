@@ -20,8 +20,8 @@ class BaseEffect;
 class PostEffect
 {
 public:
-	PostEffect(int hGraphics, BaseEffect* effect);
-	PostEffect(int hGraphics, BaseEffect* effect,e_ScreenLayout lauOut);
+	PostEffect(int width, int height, BaseEffect* effect);
+	PostEffect(int width, int height, BaseEffect* effect, e_ScreenLayout lauOut, e_ScreenNumber);
 	virtual ~PostEffect();
 
 	void Rendaring(std::function<void()> Draw);

@@ -4,8 +4,9 @@
 #include"GSystem.h"
 
 //レイアウトが無ければシングルウィンドウ用配置
-PostEffect::PostEffect(int hGraphics, BaseEffect* effect) : hGraphics(hGraphics), effect(effect)
+PostEffect::PostEffect(int width,int height, BaseEffect* effect) : hGraphics(hGraphics), effect(effect)
 {
+	this->hGraphics = MakeScreen(width,height);
 
 	VertexErch([&](int i){
 		vertex[i].pos = VGet((i % 2) * Window::WIDTH, (i / 2) * Window::HEIGHT, 0);
@@ -17,37 +18,97 @@ PostEffect::PostEffect(int hGraphics, BaseEffect* effect) : hGraphics(hGraphics)
 	});
 }
 
-PostEffect::PostEffect(int hGraphics, BaseEffect* effect, e_ScreenLayout layOut) : hGraphics(hGraphics), effect(effect)
+//とりあえずswitchで、後でファクタリング
+PostEffect::PostEffect(int width,int height, BaseEffect* effect, e_ScreenLayout layOut,e_ScreenNumber number) : hGraphics(hGraphics), effect(effect)
 {
+	int lWidth = Window::WIDTH, lHeight = Window::HEIGHT;
+
 	//画面の数に応じてレンダーターゲットを配置
 	switch (layOut)
 	{
-	case e_Single:
-		VertexErch([&](int i){
-			vertex[i].pos = VGet((i % 2) * Window::WIDTH, (i / 2) * Window::HEIGHT, 0);
-		});
-		break;
 	case e_Double:
-		VertexErch([&](int i){
-			vertex[i].pos = VGet((i % 2) * Window::WIDTH, (i / 2) * Window::HEIGHT, 0);
-		});
-		break;
+		lWidth = Window::WIDTH / 2;
+		lHeight = Window::HEIGHT;
 
+		this->hGraphics = MakeScreen(lWidth, lHeight);
+
+		switch (number)
+		{
+		case e_First:
+		default:
+			VertexErch([&](int i){
+				vertex[i].pos = VGet((i % 2) * lWidth, (i / 2) * lHeight, 0);
+			});
+			break;
+		case e_Second:
+			VertexErch([&](int i){
+				vertex[i].pos = VGet((i % 2) * lWidth + (lWidth), (i / 2) * lHeight, 0);
+			});
+			break;
+		}
+		break;
 	case e_Triple:
-		VertexErch([&](int i){
-			vertex[i].pos = VGet((i % 2) * Window::WIDTH, (i / 2) * Window::HEIGHT, 0);
-		});
+		lWidth = Window::WIDTH / 2;
+		lHeight = Window::HEIGHT / 2;
+		this->hGraphics = MakeScreen(lWidth, lHeight);
+		switch (number)
+		{
+		case e_First:
+		default:
+			VertexErch([&](int i){
+				vertex[i].pos = VGet((i % 2) * lWidth, (i / 2) *lHeight, 0);
+			});
+
+			break;
+		case e_Second:
+			VertexErch([&](int i){
+				vertex[i].pos = VGet((i % 2) * lWidth + (lWidth), (i / 2) * lHeight, 0);
+			});
+			break;
+		case e_Third:
+			VertexErch([&](int i){
+				vertex[i].pos = VGet((i % 2) * lWidth, (i / 2) * lHeight + (lHeight), 0);
+			});
+			break;
+		}
 		break;
 	case e_Quad:
-		VertexErch([&](int i){
-			vertex[i].pos = VGet((i % 2) * Window::WIDTH, (i / 2) * Window::HEIGHT, 0);
-		});
+		lWidth = Window::WIDTH / 2;
+		lHeight = Window::HEIGHT / 2;
+		this->hGraphics = MakeScreen(lWidth, lHeight);
+		switch (number)
+		{
+		case e_First:
+		default:
+			VertexErch([&](int i){
+				vertex[i].pos = VGet((i % 2) * lWidth, (i / 2) * lHeight, 0);
+			});
+
+			break;
+		case e_Second:
+			VertexErch([&](int i){
+				vertex[i].pos = VGet((i % 2) * lWidth + (lWidth), (i / 2) * lHeight, 0);
+			});
+			break;
+		case e_Third:
+			VertexErch([&](int i){
+				vertex[i].pos = VGet((i % 2) * lWidth, (i / 2) * lHeight + (lHeight), 0);
+			});
+			break;
+		case e_Fourth:
+			VertexErch([&](int i){
+				vertex[i].pos = VGet((i % 2) * lWidth + (lWidth), (i / 2) * lHeight + (lHeight), 0);
+			});
+			break;
+		}
 		break;
 
-	//どれでもなかったら1P画面
+	//1Pかどれでもなかったら1P画面
+	case e_Single:
 	default:
+		this->hGraphics = MakeScreen(lWidth, lHeight);
 		VertexErch([&](int i){
-			vertex[i].pos = VGet((i % 2) * Window::WIDTH, (i / 2) * Window::HEIGHT, 0);
+			vertex[i].pos = VGet((i % 2) * lWidth, (i / 2) * Window::HEIGHT, 0);
 		});
 		break;
 	}
@@ -64,6 +125,7 @@ PostEffect::PostEffect(int hGraphics, BaseEffect* effect, e_ScreenLayout layOut)
 
 
 }
+
 
 
 PostEffect::~PostEffect()
