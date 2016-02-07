@@ -20,8 +20,9 @@ class BaseEffect;
 class PostEffect
 {
 public:
-	PostEffect(int width, int height, BaseEffect* effect);
-	PostEffect(int width, int height, BaseEffect* effect, e_ScreenLayout lauOut, e_ScreenNumber);
+	//エフェクトは後でシングルトンにする必要がありそう。
+	PostEffect(BaseEffect* effect);
+	PostEffect(BaseEffect* effect, e_ScreenLayout lauOut, e_ScreenNumber);
 	virtual ~PostEffect();
 
 	void Rendaring(std::function<void()> Draw);

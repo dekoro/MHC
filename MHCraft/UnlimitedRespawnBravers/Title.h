@@ -5,6 +5,7 @@
 #include"TextureMapping.h"
 #include"PostEffect.h"
 #include<memory>
+#include"ScreenLayout.h"
 
 #include"Camera.h"
 
@@ -30,6 +31,8 @@ private:
 	void	CountdownNextScene();
 	void	DrawFlashPushXButton();
 
+	void LocalDraw();
+
 	std::shared_ptr<PostEffect> postEffect;
 	TextureMapping texMapEffect;
 
@@ -37,6 +40,8 @@ private:
 	//ƒeƒXƒg
 	Camera camera;
 	int a = LoadGraph("Resource/GameMain_BackGround.png");
+
+	std::shared_ptr<ScreenLayout> screen;
 };
 
 

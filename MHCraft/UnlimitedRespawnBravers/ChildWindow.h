@@ -12,6 +12,8 @@ public:
 
 	static HRESULT CALLBACK WindProc(HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam);
 
+	void Draw();
+
 	HWND GetHWnd();
 
 private:

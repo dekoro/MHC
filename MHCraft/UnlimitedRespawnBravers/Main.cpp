@@ -13,7 +13,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	ChildWindow childWindow(TEXT("Map"), hInstance);
 
-	//childWindow.Initialize(cCmdShow);//ウィンドウの初期化Dxintを呼ぶ前に使う
+	childWindow.Initialize(cCmdShow);//ウィンドウの初期化Dxintを呼ぶ前に使う
 
 	if (DxLib_Init() == -1){ return -1; }
 	Debug::CheckDebugMode();
@@ -28,6 +28,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	//SetScreenFlipTargetWindow(NULL);
 
+	int a = 0;
+
 	while (!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen()){
 		///ここから更新
 		deviceManager->Input()->Update();
@@ -38,6 +40,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		DrawFillBox(0, 0, 1280, 720, GetColor(32, 32, 32));
 
 		///ここから描画
+		a++;
+		if (a % 2 == 0)
+		{
+			SetScreenFlipTargetWindow(childWindow.GetHWnd());//描画先を子ウィンドウにする
+		}
+		else
+		{
+			SetScreenFlipTargetWindow(NULL);//描画先を子ウィンドウにする
+		}
 		sceneManager->Draw();
 
 		///ここまで描画

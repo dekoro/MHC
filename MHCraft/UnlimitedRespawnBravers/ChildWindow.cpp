@@ -93,6 +93,13 @@ HRESULT ChildWindow::WindProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	default:
 		return DefWindowProc(hWnd, msg, wParam, lParam);;
 	}
+}
 
+void ChildWindow::Draw()
+{
+	RECT rect;
 
+	GetWindowRect(hWnd,&rect);
+
+	RedrawWindow(NULL,&rect,NULL,RDW_ERASE);
 }

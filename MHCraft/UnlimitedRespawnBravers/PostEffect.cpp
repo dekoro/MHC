@@ -2,11 +2,12 @@
 #include<DxLib.h>
 #include"BaseEffect.h"
 #include"GSystem.h"
+#include"ChildWindow.h"
 
 //レイアウトが無ければシングルウィンドウ用配置
-PostEffect::PostEffect(int width,int height, BaseEffect* effect) : hGraphics(hGraphics), effect(effect)
+PostEffect::PostEffect(BaseEffect* effect) : hGraphics(hGraphics), effect(effect)
 {
-	this->hGraphics = MakeScreen(width,height);
+	this->hGraphics = MakeScreen(Window::WIDTH, Window::HEIGHT);
 
 	VertexErch([&](int i){
 		vertex[i].pos = VGet((i % 2) * Window::WIDTH, (i / 2) * Window::HEIGHT, 0);
@@ -19,7 +20,7 @@ PostEffect::PostEffect(int width,int height, BaseEffect* effect) : hGraphics(hGr
 }
 
 //とりあえずswitchで、後でファクタリング
-PostEffect::PostEffect(int width,int height, BaseEffect* effect, e_ScreenLayout layOut,e_ScreenNumber number) : hGraphics(hGraphics), effect(effect)
+PostEffect::PostEffect(BaseEffect* effect, e_ScreenLayout layOut, e_ScreenNumber number) : hGraphics(hGraphics), effect(effect)
 {
 	int lWidth = Window::WIDTH, lHeight = Window::HEIGHT;
 
@@ -30,7 +31,7 @@ PostEffect::PostEffect(int width,int height, BaseEffect* effect, e_ScreenLayout 
 		lWidth = Window::WIDTH / 2;
 		lHeight = Window::HEIGHT;
 
-		this->hGraphics = MakeScreen(lWidth, lHeight);
+		this->hGraphics = MakeScreen(lWidth, lHeight / 2);
 
 		switch (number)
 		{
@@ -103,12 +104,12 @@ PostEffect::PostEffect(int width,int height, BaseEffect* effect, e_ScreenLayout 
 		}
 		break;
 
-	//1Pかどれでもなかったら1P画面
+		//1Pかどれでもなかったら1P画面
 	case e_Single:
 	default:
 		this->hGraphics = MakeScreen(lWidth, lHeight);
 		VertexErch([&](int i){
-			vertex[i].pos = VGet((i % 2) * lWidth, (i / 2) * Window::HEIGHT, 0);
+			vertex[i].pos = VGet((i % 2) * lWidth, (i / 2) * lHeight, 0);
 		});
 		break;
 	}
@@ -145,7 +146,11 @@ void PostEffect::Rendaring(std::function<void()> Draw)
 
 	SetUseTextureToShader(0, hGraphics);
 
-	effect->Rendering([&](){DrawPrimitive2DToShader(vertex, 4, DX_PRIMTYPE_TRIANGLESTRIP); });
+	//effect->Rendering([&](){
+
+	DrawPrimitive2DToShader(vertex, 4, DX_PRIMTYPE_TRIANGLESTRIP);
+
+	//});
 }
 
 
