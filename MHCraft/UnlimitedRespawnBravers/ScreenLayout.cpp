@@ -38,8 +38,9 @@ ScreenLayout::~ScreenLayout()
 
 void ScreenLayout::Rendaring(std::function<void()> Draw)
 {
+	float a[4] = {20,500,1000,2000};
 	for (int i = 0; i <= layOut; ++i)
 	{
-		this->Screens[(e_ScreenLayout)i]->Rendaring(Draw);
+		this->Screens[(e_ScreenLayout)i]->Rendaring(Draw,a[i]);
 	}
 }

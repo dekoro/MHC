@@ -4,7 +4,7 @@
 
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int cCmdShow){
-	bool windowMode = TRUE;
+	bool windowMode = FALSE;
 	ChangeWindowMode(windowMode);
 	SetWindowText("UnlimitedRespawnBravers -oƒ¿- HALLOWEEN EDITION");
 	SetGraphMode(Window::WIDTH, Window::HEIGHT, Window::COLOR_BIT);

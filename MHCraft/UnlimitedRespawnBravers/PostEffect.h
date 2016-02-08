@@ -25,7 +25,7 @@ public:
 	PostEffect(BaseEffect* effect, e_ScreenLayout lauOut, e_ScreenNumber);
 	virtual ~PostEffect();
 
-	void Rendaring(std::function<void()> Draw);
+	void Rendaring(std::function<void()> Draw,float scale);
 	
 private:
 	void VertexErch(std::function<void (int x)> action);
@@ -35,6 +35,7 @@ private:
 	int hGraphics;
 	BaseEffect* effect;
 	VERTEX2DSHADER vertex[4];
+	unsigned int color;
 };
 
 #endif

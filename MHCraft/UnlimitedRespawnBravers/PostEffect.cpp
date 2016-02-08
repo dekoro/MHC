@@ -8,7 +8,7 @@
 PostEffect::PostEffect(BaseEffect* effect) : hGraphics(hGraphics), effect(effect)
 {
 	this->hGraphics = MakeScreen(Window::WIDTH, Window::HEIGHT);
-
+	this->color = GetColor(255,0,0);
 	VertexErch([&](int i){
 		vertex[i].pos = VGet((i % 2) * Window::WIDTH, (i / 2) * Window::HEIGHT, 0);
 		vertex[i].rhw = 1.0f;//アルファ値
@@ -37,11 +37,13 @@ PostEffect::PostEffect(BaseEffect* effect, e_ScreenLayout layOut, e_ScreenNumber
 		{
 		case e_First:
 		default:
+			this->color = GetColor(255, 0, 0);
 			VertexErch([&](int i){
 				vertex[i].pos = VGet((i % 2) * lWidth, (i / 2) * lHeight, 0);
 			});
 			break;
 		case e_Second:
+			this->color = GetColor(0, 0, 255);
 			VertexErch([&](int i){
 				vertex[i].pos = VGet((i % 2) * lWidth + (lWidth), (i / 2) * lHeight, 0);
 			});
@@ -56,17 +58,20 @@ PostEffect::PostEffect(BaseEffect* effect, e_ScreenLayout layOut, e_ScreenNumber
 		{
 		case e_First:
 		default:
+			this->color = GetColor(255, 0, 0);
 			VertexErch([&](int i){
 				vertex[i].pos = VGet((i % 2) * lWidth, (i / 2) *lHeight, 0);
 			});
 
 			break;
 		case e_Second:
+			this->color = GetColor(0, 0, 255);
 			VertexErch([&](int i){
 				vertex[i].pos = VGet((i % 2) * lWidth + (lWidth), (i / 2) * lHeight, 0);
 			});
 			break;
 		case e_Third:
+			this->color = GetColor(0, 255, 0);
 			VertexErch([&](int i){
 				vertex[i].pos = VGet((i % 2) * lWidth, (i / 2) * lHeight + (lHeight), 0);
 			});
@@ -81,22 +86,26 @@ PostEffect::PostEffect(BaseEffect* effect, e_ScreenLayout layOut, e_ScreenNumber
 		{
 		case e_First:
 		default:
+			this->color = GetColor(255, 0, 0);
 			VertexErch([&](int i){
 				vertex[i].pos = VGet((i % 2) * lWidth, (i / 2) * lHeight, 0);
 			});
 
 			break;
 		case e_Second:
+			this->color = GetColor(0, 0, 255);
 			VertexErch([&](int i){
 				vertex[i].pos = VGet((i % 2) * lWidth + (lWidth), (i / 2) * lHeight, 0);
 			});
 			break;
 		case e_Third:
+			this->color = GetColor(0, 255, 0);
 			VertexErch([&](int i){
 				vertex[i].pos = VGet((i % 2) * lWidth, (i / 2) * lHeight + (lHeight), 0);
 			});
 			break;
 		case e_Fourth:
+			this->color = GetColor(0, 255, 255);
 			VertexErch([&](int i){
 				vertex[i].pos = VGet((i % 2) * lWidth + (lWidth), (i / 2) * lHeight + (lHeight), 0);
 			});
@@ -134,12 +143,12 @@ PostEffect::~PostEffect()
 	delete(effect);
 }
 
-void PostEffect::Rendaring(std::function<void()> Draw)
+void PostEffect::Rendaring(std::function<void()> Draw,float scale)
 {
 	SetDrawScreen(this->hGraphics);
 
 	ClearDrawScreen();
-
+	SetupCamera_Ortho(scale);//２Ｄカメラ設定
 	Draw();
 
 	SetDrawScreen(DX_SCREEN_BACK);
@@ -149,7 +158,7 @@ void PostEffect::Rendaring(std::function<void()> Draw)
 	//effect->Rendering([&](){
 
 	DrawPrimitive2DToShader(vertex, 4, DX_PRIMTYPE_TRIANGLESTRIP);
-
+	DrawLineBox(vertex[0].pos.x, vertex[0].pos.y, vertex[3].pos.x, vertex[3].pos.y,color);
 	//});
 }
 
