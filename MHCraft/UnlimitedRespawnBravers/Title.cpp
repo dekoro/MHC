@@ -5,9 +5,6 @@ SceneTitle::SceneTitle(){
 	device = DeviceManager::GetInstance();
 	imageBackGround = device->Image()->CopyImageData(imageAsset_Title_BackGround);
 	//	postEffect = std::make_shared<PostEffect>(&texMapEffect);//ƒeƒXƒg
-	this->screen = std::make_shared<ScreenLayout>(e_Quad, &texMapEffect);
-	SetCameraNearFar(1, 1000);
-
 }
 
 SceneTitle::~SceneTitle(){
@@ -46,36 +43,13 @@ SceneMediateData SceneTitle::Update(){
 
 void SceneTitle::Draw(){
 
-	screen->Rendaring([&](){LocalDraw(); });
-	//LocalDraw();
+	LocalDraw();
 }
 
 void SceneTitle::LocalDraw()
 {
-	static int x = 0, y = 0;
-	if (device->GetInstance()->Input()->CheckKeyDownAllPad(GKey_Up))
-	{
-		y += 1;
-	}
-	if (device->GetInstance()->Input()->CheckKeyDownAllPad(GKey_Down))
-	{
-		y -= 1;
-	}
-	if (device->GetInstance()->Input()->CheckKeyDownAllPad(GKey_Right))
-	{
-		x += 1;
-	}
-	if (device->GetInstance()->Input()->CheckKeyDownAllPad(GKey_Left))
-	{
-		x -= 1;
-	}
-
-
-	camera.SetPosition();
-
-	device->Image()->DrawCeter(imageAsset_Title_BackGround, Vec2(x, y));
 	//device->Image()->DrawBackGround(imageBackGround->GetImageHandle());
-	//DrawGraph(0, 0, imageBackGround->GetImageHandle(), TRUE);
+	DrawGraph(0, 0, imageBackGround->GetImageHandle(), TRUE);
 	DrawFlashPushXButton();
 
 }

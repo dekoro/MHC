@@ -9,6 +9,11 @@
 #include "EnemyManager.h"
 #include "ItemManager.h"
 
+#include<memory>
+#include"Camera.h"
+#include"TextureMapping.h"
+#include"ScreenLayout.h"
+
 class SceneGameMain: public IScenes
 {
 public:
@@ -24,6 +29,14 @@ private:
 	Managers*		managers;
 	ImageData*		imageBackGround;
 
+	//テスト
+
+	TextureMapping texMapEffect;
+	//テスト
+	std::shared_ptr<Camera> camera;
+	std::shared_ptr<ScreenLayout> screen;
+
+	void LocalDraw();
 	void AllManagersInitialize(int startPlayerIndex);
 	SceneMediateData AllManagersUpdate();
 	void AllManagersDraw();

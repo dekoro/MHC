@@ -231,9 +231,6 @@
     <ClCompile Include="SceneManager.cpp">
       <Filter>ソース ファイル\SceneManager</Filter>
     </ClCompile>
-    <ClCompile Include="GameMain.cpp">
-      <Filter>ソース ファイル\SceneManager\GameMain</Filter>
-    </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>ソース ファイル\Device\Input</Filter>
     </ClCompile>
@@ -327,6 +324,9 @@
     <ClCompile Include="CameraManager.cpp">
       <Filter>ソース ファイル\Device\Camera\CameraManager</Filter>
     </ClCompile>
+    <ClCompile Include="GameMain.cpp">
+      <Filter>ソース ファイル\SceneManager\GameMain</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GMath.h">
@@ -337,9 +337,6 @@
     </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>ヘッダー ファイル\GSystem\SceneManager</Filter>
-    </ClInclude>
-    <ClInclude Include="GameMain.h">
-      <Filter>ヘッダー ファイル\GSystem\SceneManager\GameMain</Filter>
     </ClInclude>
     <ClInclude Include="Ending.h">
       <Filter>ヘッダー ファイル\GSystem\SceneManager\Ending</Filter>
@@ -514,6 +511,9 @@
     </ClInclude>
     <ClInclude Include="e_ScreenLayout.h">
       <Filter>ヘッダー ファイル\Device\ScreenLayout\e_ScreenLayout</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMain.h">
+      <Filter>ヘッダー ファイル\GSystem\SceneManager\GameMain</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

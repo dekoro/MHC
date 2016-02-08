@@ -7,6 +7,7 @@
 Camera::Camera(Player* player, int padNum) : player(player), padNum(padNum)
 {
 	this->scale = 2000.f;
+	SetCameraNearFar(1, 1000);
 }
 
 Camera::~Camera()
@@ -43,7 +44,6 @@ void Camera::SetPosition()
 {
 	//Z‚Í“K“–‚È‹——£—£‚·
 	SetCameraPositionAndTarget_UpVecY(VGet(this->position.x, this->position.y, 200), VGet(this->position.x, this->position.y, 0));
-	//SetupCamera_Ortho(scale);//‚Q‚cƒJƒƒ‰İ’è
 
 }
 

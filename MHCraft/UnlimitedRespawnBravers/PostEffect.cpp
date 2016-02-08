@@ -148,7 +148,9 @@ void PostEffect::Rendaring(std::function<void()> Draw,float scale)
 	SetDrawScreen(this->hGraphics);
 
 	ClearDrawScreen();
-	SetupCamera_Ortho(scale);//‚Q‚cƒJƒƒ‰İ’è
+
+	SetupCamera_Ortho(2000);//‚Q‚cƒJƒƒ‰İ’è
+
 	Draw();
 
 	SetDrawScreen(DX_SCREEN_BACK);
@@ -158,6 +160,7 @@ void PostEffect::Rendaring(std::function<void()> Draw,float scale)
 	//effect->Rendering([&](){
 
 	DrawPrimitive2DToShader(vertex, 4, DX_PRIMTYPE_TRIANGLESTRIP);
+
 	DrawLineBox(vertex[0].pos.x, vertex[0].pos.y, vertex[3].pos.x, vertex[3].pos.y,color);
 	//});
 }

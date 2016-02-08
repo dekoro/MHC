@@ -1,4 +1,5 @@
 #include "SceneManager.h"
+#include"GameMain.h"
 
 SceneManager::SceneManager(){
 	SceneMediateData startupSceneData = SceneMediateData::Setup(SCENE_TITLE);

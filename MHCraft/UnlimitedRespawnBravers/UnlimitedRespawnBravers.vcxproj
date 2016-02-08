@@ -153,11 +153,11 @@
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="e_ScreenLayout.h" />
     <ClInclude Include="FlagManager.h" />
+    <ClInclude Include="GameMain.h" />
     <ClInclude Include="GCircle.h" />
     <ClInclude Include="GRectangle.h" />
     <ClInclude Include="GSystem.h" />
     <ClInclude Include="Ending.h" />
-    <ClInclude Include="GameMain.h" />
     <ClInclude Include="GamePad.h" />
     <ClInclude Include="GMath.h" />
     <ClInclude Include="GSystemHub.h" />

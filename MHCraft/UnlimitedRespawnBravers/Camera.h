@@ -19,6 +19,7 @@ public:
 	{
 		position = VGet(0,0,0);
 		this->scale = 2000.f;
+		SetCameraNearFar(1, 1000);
 	};
 #endif
 	Camera(Player* player,int padNum);
