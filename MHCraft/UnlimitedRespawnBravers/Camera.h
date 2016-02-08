@@ -27,7 +27,7 @@ public:
 	void Initialize();
 
 	//カメラの拡縮をセット
-	void SetScale(VECTOR scale);
+	void SetScale(float scale);
 
 	void Update();
 

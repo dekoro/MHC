@@ -47,4 +47,9 @@ void Camera::SetPosition()
 
 }
 
+void Camera :: SetScale(float scale)
+{
+	this->scale = scale;
+}
+
 
