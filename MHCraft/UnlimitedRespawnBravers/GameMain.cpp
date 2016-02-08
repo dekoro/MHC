@@ -7,7 +7,7 @@ SceneGameMain::SceneGameMain(){
 	managers		= Managers::GetInstance();
 	imageBackGround = device->Image()->CopyImageData(imageAsset_GameMain_BackGround);
 
-	this->screen = std::make_shared<ScreenLayout>(e_Quad, &texMapEffect);
+	this->screen = std::make_shared<ScreenLayout>(e_Single, &texMapEffect);
 }
 
 SceneGameMain::~SceneGameMain(){
@@ -24,12 +24,12 @@ SceneMediateData SceneGameMain::Update(){
 	return nextScene;
 }
 
+
 void SceneGameMain::Draw(){
 
 	screen->Rendaring([&]()
 	{
 
-		SetupCamera_Ortho(2000);//‚Q‚cƒJƒƒ‰Ý’è
 		camera->SetPosition();
 		LocalDraw();
 	});
@@ -43,7 +43,7 @@ void SceneGameMain::Finalize(){
 
 void SceneGameMain::LocalDraw()
 {
-	device->Image()->DrawBackGround(imageBackGround->GetImageHandle());
+	device->GetInstance()->Image()->DrawBackGround();
 	AllManagersDraw();
 }
 

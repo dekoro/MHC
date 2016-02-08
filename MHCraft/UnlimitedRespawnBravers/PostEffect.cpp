@@ -148,8 +148,7 @@ void PostEffect::Rendaring(std::function<void()> Draw,float scale)
 	SetDrawScreen(this->hGraphics);
 
 	ClearDrawScreen();
-
-	SetupCamera_Ortho(2000);//‚Q‚cƒJƒƒ‰İ’è
+	SetupCamera_Ortho(1000);//‚Q‚cƒJƒƒ‰İ’è
 
 	Draw();
 

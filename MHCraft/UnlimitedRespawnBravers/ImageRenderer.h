@@ -36,7 +36,7 @@ public:
 	void		DrawRotation(int imageHandle, int posX, int posY, double angleDeg);
 	void		DrawLT(int imageHandle, Vec2 position);
 	void		DrawLT(int imageHandle, int posX, int posY);
-	void		DrawBackGround(int imageHandle);
+	void		DrawBackGround();
 	void		ChangeImageType(int imageIndex, int	type);
 	void		ChangeAnimePlay(int imageIndex, bool isPlay);
 	int			AddCharacterImageMap(IMAGE_ASSET_NAME pathIndex, PlayerColorList playerColorList);
@@ -60,6 +60,7 @@ private:
 	void AddImageMap(IMAGE_ASSET_NAME assetName);
 	void SetupImageMapInstance();
 	void Draw(int imageHandle, int posX, int posY);
+	void Draw(int imageHandle, VECTOR pos, float scale);
 	bool CheckConnotationCharacterImageMap(int index);
 	bool CheckConnotationBaseImageMap(IMAGE_ASSET_NAME assetName);
 	int  GetSizeHalfImageX(int imageIndex);

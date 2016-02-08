@@ -32,9 +32,9 @@ private:
 	//テスト
 
 	TextureMapping texMapEffect;
-	//テスト
 	std::shared_ptr<Camera> camera;
 	std::shared_ptr<ScreenLayout> screen;
+
 
 	void LocalDraw();
 	void AllManagersInitialize(int startPlayerIndex);

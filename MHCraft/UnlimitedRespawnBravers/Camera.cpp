@@ -27,6 +27,8 @@ void Camera::Initialize()
 //ポジション更新
 void Camera::Update()
 {
+	//プレイヤーが死ぬと参照エラー起こすので後で変更
+
 	this->position.x = player->GetPosition().X;
 	this->position.y = player->GetPosition().Y;
 
@@ -44,7 +46,7 @@ void Camera::SetPosition()
 {
 	//Zは適当な距離離す
 	SetCameraPositionAndTarget_UpVecY(VGet(this->position.x, this->position.y, 200), VGet(this->position.x, this->position.y, 0));
-
+	//SetCameraPositionAndTarget_UpVecY(VGet(0, 0, 200), VGet(0, 0, 0));
 }
 
 void Camera :: SetScale(float scale)

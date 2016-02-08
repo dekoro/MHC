@@ -6,7 +6,8 @@ Player::Player(int padNo, int health, int sp, float speed, IMAGE_ASSET_NAME asse
 	this->device		= DeviceManager::GetInstance();
 	this->managers		= Managers::GetInstance();
 	this->padNo			= padNo;
-	position			= Vec2::Setup(Window::WIDTH/2, Window::HEIGHT*4/5);
+	//position			= Vec2::Setup(Window::WIDTH/2, Window::HEIGHT*4/5);
+	position = Vec2(0,0);
 	SetupPlayer(health, sp, speed, assetName, colors);
 	Initialize();
 	maxCntAttack = 20;
