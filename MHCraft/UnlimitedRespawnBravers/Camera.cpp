@@ -6,7 +6,7 @@
 
 Camera::Camera(Player* player, int padNum) : player(player), padNum(padNum)
 {
-	this->scale = 2000.f;
+	this->scale = originScale;
 	SetCameraNearFar(1, 1000);
 }
 
@@ -22,21 +22,32 @@ void Camera::Initialize()
 	this->position.y = player->GetPosition().Y;
 	this->position.z = -750;
 	this->scale = 2000.f;
+	this->scaleSpeed = 2;
 }
 
 //ポジション更新
 void Camera::Update()
 {
 	//プレイヤーが死ぬと参照エラー起こすので後で変更
-
 	this->position.x = player->GetPosition().X;
 	this->position.y = player->GetPosition().Y;
 
-	/*if (DeviceManager::GetInstance()->Input()->GetInputState(padNum)->"RTが押されたらスケールを増やす")
-	{
-		this->scale += 0.1f;
-	}*/
 
+	//とりあえず0を指定、後でメンバ変数のpadNumを引数に入れる
+	if (DeviceManager::GetInstance()->Input()->GetInputState(0)->CheckKeyDown(GKey_Attack))
+	{
+		this->scale += scaleUp;
+	}
+	if (DeviceManager::GetInstance()->Input()->GetInputState(0)->CheckKeyDown(GKey_Skill))
+	{
+		this->scale -= scaleUp;
+	}
+	
+	if (DeviceManager::GetInstance()->Input()->GetInputState(0)->CheckKeyDown(GKey_Skill) && 
+		DeviceManager::GetInstance()->Input()->GetInputState(0)->CheckKeyDown(GKey_Attack))
+	{
+		scale = originScale;
+	}
 }
 
 
@@ -46,12 +57,7 @@ void Camera::SetPosition()
 {
 	//Zは適当な距離離す
 	SetCameraPositionAndTarget_UpVecY(VGet(this->position.x, this->position.y, 200), VGet(this->position.x, this->position.y, 0));
-	//SetCameraPositionAndTarget_UpVecY(VGet(0, 0, 200), VGet(0, 0, 0));
-}
-
-void Camera :: SetScale(float scale)
-{
-	this->scale = scale;
+	SetupCamera_Ortho(scale);//２Ｄカメラ設定
 }
 
 

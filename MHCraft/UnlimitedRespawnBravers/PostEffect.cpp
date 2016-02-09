@@ -31,7 +31,7 @@ PostEffect::PostEffect(BaseEffect* effect, e_ScreenLayout layOut, e_ScreenNumber
 		lWidth = Window::WIDTH / 2;
 		lHeight = Window::HEIGHT;
 
-		this->hGraphics = MakeScreen(lWidth, lHeight / 2);
+		this->hGraphics = MakeScreen(lWidth, lHeight);
 
 		switch (number)
 		{
@@ -148,7 +148,7 @@ void PostEffect::Rendaring(std::function<void()> Draw,float scale)
 	SetDrawScreen(this->hGraphics);
 
 	ClearDrawScreen();
-	SetupCamera_Ortho(1000);//２Ｄカメラ設定
+	//各カメラのスケールをあてる
 
 	Draw();
 

@@ -7,7 +7,7 @@ SceneGameMain::SceneGameMain(){
 	managers		= Managers::GetInstance();
 	imageBackGround = device->Image()->CopyImageData(imageAsset_GameMain_BackGround);
 
-	this->screen = std::make_shared<ScreenLayout>(e_Single, &texMapEffect);
+	this->screen = std::make_shared<ScreenLayout>(e_Double, &texMapEffect);
 }
 
 SceneGameMain::~SceneGameMain(){
@@ -29,7 +29,6 @@ void SceneGameMain::Draw(){
 
 	screen->Rendaring([&]()
 	{
-
 		camera->SetPosition();
 		LocalDraw();
 	});

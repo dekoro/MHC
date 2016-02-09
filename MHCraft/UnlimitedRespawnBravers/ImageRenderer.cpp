@@ -187,7 +187,8 @@ void  ImageRenderer::Draw(int imageHandle,VECTOR pos,float scale)
 
 void ImageRenderer::DrawRotation(int imageHandle, int posX, int posY, double angleDeg){
 	double angleRad = angleDeg / 180.0*DX_PI;
-	DrawRotaGraph(posX, posY, 1.0, angleRad, imageHandle, TRUE, FALSE);
+	//DrawRotaGraph(posX, posY, 1.0, angleRad, imageHandle, TRUE, FALSE);
+	Draw(imageHandle,posX,posY);
 }
 
 bool ImageRenderer::CheckConnotationCharacterImageMap(int index){

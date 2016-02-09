@@ -27,9 +27,6 @@ public:
 
 	void Initialize();
 
-	//カメラの拡縮をセット
-	void SetScale(float scale);
-
 	void Update();
 
 	void SetPosition();//カメラのポジションをセットする
@@ -40,8 +37,9 @@ private:
 
 	VECTOR position;//視点
 	float scale ;//拡大縮小率
-
-
+	float scaleSpeed;//拡縮するスピード
+	const float originScale = 2000.0f;//はじめのスピード
+	const float scaleUp = 20;
 };
 
 
