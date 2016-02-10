@@ -38,8 +38,10 @@ private:
 	VECTOR position;//視点
 	float scale ;//拡大縮小率
 	float scaleSpeed;//拡縮するスピード
-	const float originScale = 2000.0f;//はじめのスピード
+	const float originScale = 1000.0f;//はじめのスピード
 	const float scaleUp = 20;
+	const int MAX_SCALE = 2000;
+	const int MIN_SCALE = 300;
 };
 
 

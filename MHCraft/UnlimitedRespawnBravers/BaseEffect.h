@@ -14,6 +14,9 @@ public:
 
 
 protected:
+	virtual void ConstSet(){};//シェーダーに定数セット
+
+protected:
 	int ps;
 	int vs;
 

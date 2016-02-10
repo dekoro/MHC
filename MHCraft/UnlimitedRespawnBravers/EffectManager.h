@@ -4,15 +4,17 @@
 #include<unordered_map>
 #include<memory>
 
+/*
+シェーダには読み込み制限あるためほかにも複数生成されたら困るためにシングルトンにする。
+
+*/
+
 class BaseEffect;
 
  class EffectManager
 {
 public:
-	EffectManager();
 	~EffectManager();
-
-	void AddEffect(std::string name, std::shared_ptr<BaseEffect> effect);
 
 	BaseEffect* GetEffect(std::string name);
 
@@ -22,7 +24,14 @@ public:
 	//条件削除
 	void RemoveCondition(std::string name);
 
+	static EffectManager* GetInstance();
+
 private:
+	void AddEffect(std::string name, std::shared_ptr<BaseEffect> effect);
+	EffectManager();
+
+private:
+	static std::shared_ptr<EffectManager> effectMangaer;
 	std::unordered_map<std::string, std::shared_ptr<BaseEffect>> effects;
 
 };

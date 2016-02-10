@@ -33,9 +33,12 @@ void Player::Update(){
 
 void Player::Draw(){
 	int attackImage = (cntAttack > 0) ? 4 : 0;
-	device->Image()->ChangeImageType(imageHandle, imageType+attackImage);
-	device->Image()->ChangeAnimePlay(imageHandle, animeData.isAnimation);
-	device->Image()->DrawPlayerCenter(imageHandle, position);
+	cut.Rendering([&]()
+	{
+		device->Image()->ChangeImageType(imageHandle, imageType + attackImage);
+		device->Image()->ChangeAnimePlay(imageHandle, animeData.isAnimation);
+		device->Image()->DrawPlayerCenter(imageHandle, position);
+	});
 }
 
 int Player::GetImageHandle(){

@@ -28,7 +28,7 @@ PostEffect::PostEffect(BaseEffect* effect, e_ScreenLayout layOut, e_ScreenNumber
 	switch (layOut)
 	{
 	case e_Double:
-		lWidth = Window::WIDTH / 2;
+		lWidth = Window::WIDTH/2;
 		lHeight = Window::HEIGHT;
 
 		this->hGraphics = MakeScreen(lWidth, lHeight);
@@ -131,9 +131,6 @@ PostEffect::PostEffect(BaseEffect* effect, e_ScreenLayout layOut, e_ScreenNumber
 		vertex[i].u = vertex[i].su = (float)(i % 2);
 		vertex[i].v = vertex[i].sv = (float)(i / 2);
 	});
-
-
-
 }
 
 
@@ -156,12 +153,13 @@ void PostEffect::Rendaring(std::function<void()> Draw,float scale)
 
 	SetUseTextureToShader(0, hGraphics);
 
-	//effect->Rendering([&](){
+	effect->Rendering([&](){
 
 	DrawPrimitive2DToShader(vertex, 4, DX_PRIMTYPE_TRIANGLESTRIP);
 
+	});
+
 	DrawLineBox(vertex[0].pos.x, vertex[0].pos.y, vertex[3].pos.x, vertex[3].pos.y,color);
-	//});
 }
 
 

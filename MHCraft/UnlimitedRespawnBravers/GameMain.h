@@ -13,6 +13,8 @@
 #include"Camera.h"
 #include"TextureMapping.h"
 #include"ScreenLayout.h"
+#include"Cutting.h"
+#include"Blur.h"
 
 class SceneGameMain: public IScenes
 {
@@ -32,6 +34,9 @@ private:
 	//ƒeƒXƒg
 
 	TextureMapping texMapEffect;
+	Cutting cut;
+	Blur blur;
+
 	std::shared_ptr<Camera> camera;
 	std::shared_ptr<ScreenLayout> screen;
 

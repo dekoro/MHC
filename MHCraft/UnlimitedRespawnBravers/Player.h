@@ -6,6 +6,7 @@
 #include "ICharacter.h"
 #include "IAttackable.h"
 #include "DamageAreaManager.h"
+#include"Cutting.h"//Œã‚Åíœ
 
 class Player : public ICharacter, public IAttackable
 {
@@ -46,6 +47,9 @@ private:
 	int						maxCntAttack;
 	bool					isEnd;
 	bool					isWalk;
+
+	//ƒeƒXƒgŒã‚Åíœ
+	Cutting cut;
 
 	void SetPlayerColor(PlayerColorList colors);
 	void SetAnimeData(AnimeData animeData);

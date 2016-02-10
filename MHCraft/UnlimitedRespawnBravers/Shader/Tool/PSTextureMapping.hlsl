@@ -15,7 +15,7 @@ OutPut main(float2 uv : TEXCOORD0)//“ü—Í’l
 {
 	OutPut o;
 
-	o.color0 = tex2D(Texture, uv + float2(pos.x,pos.y)) + float4(1,0,0,0);
+	o.color0 = tex2D(Texture, uv);
 
 	return o;
 }

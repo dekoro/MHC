@@ -2,6 +2,7 @@
 #include"Player.h"
 #include"DeviceManager.h"
 #include"InputManager.h"
+#include<minmax.h>
 
 
 Camera::Camera(Player* player, int padNum) : player(player), padNum(padNum)
@@ -32,7 +33,6 @@ void Camera::Update()
 	this->position.x = player->GetPosition().X;
 	this->position.y = player->GetPosition().Y;
 
-
 	//‚Æ‚è‚ ‚¦‚¸0‚ðŽw’èAŒã‚Åƒƒ“ƒo•Ï”‚ÌpadNum‚ðˆø”‚É“ü‚ê‚é
 	if (DeviceManager::GetInstance()->Input()->GetInputState(0)->CheckKeyDown(GKey_Attack))
 	{
@@ -48,6 +48,8 @@ void Camera::Update()
 	{
 		scale = originScale;
 	}
+
+	scale = min(max(MIN_SCALE, scale), MAX_SCALE);
 }
 
 

@@ -7,7 +7,7 @@ SceneGameMain::SceneGameMain(){
 	managers		= Managers::GetInstance();
 	imageBackGround = device->Image()->CopyImageData(imageAsset_GameMain_BackGround);
 
-	this->screen = std::make_shared<ScreenLayout>(e_Double, &texMapEffect);
+	this->screen = std::make_shared<ScreenLayout>(e_Double, &blur);
 }
 
 SceneGameMain::~SceneGameMain(){

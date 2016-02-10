@@ -25,10 +25,15 @@ void BaseEffect::Rendering(std::function<void()> Draw)
 
 	SetUseVertexShader(vs);//シェーダハンドルが0なら固定機能に切り替わると思う
 
-
 	SetUsePixelShader(ps);
+
+	ConstSet();
 
 	Draw();//描画処理
 
 	MV1SetUseOrigShader(FALSE);//シェーダ使用ＯFF
+
+	SetUseVertexShader(0);//シェーダハンドルが0なら固定機能に切り替わると思う
+
+	SetUsePixelShader(0);
 }

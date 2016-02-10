@@ -78,17 +78,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BaseEffect.cpp" />
+    <ClCompile Include="Blur.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="CharacterImageData.cpp" />
     <ClCompile Include="CharacterManager.cpp" />
     <ClCompile Include="ChildWindow.cpp" />
+    <ClCompile Include="Cutting.cpp" />
     <ClCompile Include="DamageAreaCircle.cpp" />
     <ClCompile Include="AbstractDamageArea.cpp" />
     <ClCompile Include="DamageAreaManager.cpp" />
     <ClCompile Include="DamageAreaRectangle.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="DeviceManager.cpp" />
+    <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyGhost.cpp" />
     <ClCompile Include="EnemyKingPumpkin.cpp" />
@@ -131,16 +134,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseEffect.h" />
+    <ClInclude Include="Blur.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="CharacterImageData.h" />
     <ClInclude Include="CharacterManager.h" />
     <ClInclude Include="ChildWindow.h" />
+    <ClInclude Include="Cutting.h" />
     <ClInclude Include="DamageAreaCircle.h" />
     <ClInclude Include="AbstractDamageArea.h" />
     <ClInclude Include="DamageAreaManager.h" />
     <ClInclude Include="DamageAreaRectangle.h" />
     <ClInclude Include="DeviceManager.h" />
+    <ClInclude Include="EffectManager.h" />
     <ClInclude Include="EnemyGhost.h" />
     <ClInclude Include="EnemyKingPumpkin.h" />
     <ClInclude Include="Enemy_Test.h" />
