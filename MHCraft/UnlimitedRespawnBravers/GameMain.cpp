@@ -1,9 +1,13 @@
 #include "GameMain.h"
+#include"ScreenLayout.h"
+#include"TextureMapping.h"
 
 SceneGameMain::SceneGameMain(){
 	device			= DeviceManager::GetInstance();
 	managers		= Managers::GetInstance();
 	imageBackGround = device->Image()->CopyImageData(imageAsset_GameMain_BackGround);
+
+	this->screen = std::make_shared<ScreenLayout>(e_Double, &blur);
 }
 
 SceneGameMain::~SceneGameMain(){
@@ -15,13 +19,19 @@ void SceneGameMain::Initialize(SceneMediateData sceneData){
 
 SceneMediateData SceneGameMain::Update(){
 	SceneMediateData nextScene;
+	camera->Update();
 	nextScene = AllManagersUpdate();
 	return nextScene;
 }
 
+
 void SceneGameMain::Draw(){
-	device->Image()->DrawBackGround(imageBackGround->GetImageHandle());
-	AllManagersDraw();
+
+	screen->Rendaring([&]()
+	{
+		camera->SetPosition();
+		LocalDraw();
+	});
 }
 
 void SceneGameMain::Finalize(){
@@ -30,12 +40,19 @@ void SceneGameMain::Finalize(){
 
 //-----private-----
 
+void SceneGameMain::LocalDraw()
+{
+	device->GetInstance()->Image()->DrawBackGround();
+	AllManagersDraw();
+}
+
 void SceneGameMain::AllManagersInitialize(int startPlayerIndex){
 	managers->Player()->Initialize(startPlayerIndex);
 	managers->Enemy()->Initialize();
 	managers->Damage()->Initialize();
 	managers->Item()->Initialize();
 
+	camera = std::make_shared<Camera>(managers->Player()->GetPlayerData(0),0);
 }
 
 SceneMediateData SceneGameMain::AllManagersUpdate(){

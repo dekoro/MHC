@@ -1,26 +1,42 @@
 #include "Keyboard.h"
 
-Keyboard::Keyboard(int PlayerNo){
-	GKeyType_Keyboard;
+Keyboard::Keyboard(){
+
 }
 
 Keyboard::~Keyboard(){
 
 }
 
-//--private--
+void Keyboard::Update(){
 
-unsigned int Keyboard::GetInputState(){
-	unsigned int tmpInput = 0;
-	unsigned int *pTmpInput = 0;
-	char Buf[KEYBOARD_NUM];
+	GetHitKeyStateAll(this->tempKey);
 
-#ifndef WAKANNE_SKIP
-	GetHitKeyStateAll(Buf);
-	for (int i = 0; i < GKEY_NUM; i++){
-		FlagManager<unsigned int>::GetAllFlags(&tmpInput);
-	//	FlagManager<unsigned int>::PrintFlag();
+	for (int i = 0; i < keyNumber; i++)
+	{
+		if (tempKey[i] != 0)
+		{
+			this->keyFlame[i]++;
+		}
+		else
+		{
+			this->keyFlame[i] = 0;
+		}
 	}
-#endif
-	return (unsigned int)tmpInput;
+}
+
+
+int Keyboard::GetKeyFalme(int Key)
+{
+	return this->keyFlame[Key];
+}
+
+bool Keyboard::IsDownTrigger(int Key)
+{
+	return this->keyFlame[Key] == 1;
+}
+
+bool Keyboard::IsKeyDown(int key)
+{
+	return this->keyFlame[key] != 0;
 }

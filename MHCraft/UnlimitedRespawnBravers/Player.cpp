@@ -6,7 +6,8 @@ Player::Player(int padNo, int health, int sp, float speed, IMAGE_ASSET_NAME asse
 	this->device		= DeviceManager::GetInstance();
 	this->managers		= Managers::GetInstance();
 	this->padNo			= padNo;
-	position			= Vec2::Setup(Window::WIDTH/2, Window::HEIGHT*4/5);
+	//position			= Vec2::Setup(Window::WIDTH/2, Window::HEIGHT*4/5);
+	position = Vec2(0,0);
 	SetupPlayer(health, sp, speed, assetName, colors);
 	Initialize();
 	maxCntAttack = 20;
@@ -32,9 +33,12 @@ void Player::Update(){
 
 void Player::Draw(){
 	int attackImage = (cntAttack > 0) ? 4 : 0;
-	device->Image()->ChangeImageType(imageHandle, imageType+attackImage);
-	device->Image()->ChangeAnimePlay(imageHandle, animeData.isAnimation);
-	device->Image()->DrawPlayerCenter(imageHandle, position);
+	cut.Rendering([&]()
+	{
+		device->Image()->ChangeImageType(imageHandle, imageType + attackImage);
+		device->Image()->ChangeAnimePlay(imageHandle, animeData.isAnimation);
+		device->Image()->DrawPlayerCenter(imageHandle, position);
+	});
 }
 
 int Player::GetImageHandle(){

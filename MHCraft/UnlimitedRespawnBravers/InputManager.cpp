@@ -12,6 +12,7 @@ void InputManager::Update(){
 	for (int i = 0; i < USE_PAD_MAX; i++){
 		inputStateList[i]->Update();
 	}
+	key.Update();
 }
 
 InputState* InputManager::GetInputState(int padNo){
@@ -23,13 +24,22 @@ bool InputManager::CheckKeyDownAllPad(GKey key){
 		if (inputStateList[i]->CheckKeyDown(key)){
 			return true;
 		}
+
+		if (this->key.IsKeyDown(inputStateList[i]->keyConfigListKeyboard[key])){
+			return true;
+		}
 	}
 	return false;
 }
 
+
+//ƒgƒŠƒK[”»’è
 bool InputManager::CheckKeyPushAllPad(GKey key){
 	for (int i = 0; i < USE_PAD_MAX; i++){
 		if (inputStateList[i]->CheckKeyPush(key)){
+			return true;
+		}
+		if (this->key.IsDownTrigger(inputStateList[i]->keyConfigListKeyboard[key])){
 			return true;
 		}
 	}
@@ -42,6 +52,7 @@ bool InputManager::CheckKeyReleaseAllPad(GKey key){
 			return true;
 		}
 	}
+
 	return false;
 }
 
@@ -73,17 +84,6 @@ void InputManager::FinalizeGamePadList(){
 	}
 }
 
-/*
-int InputManager::JoinGamePad(){
-	for (int i = 0; i < USE_PAD_MAX; i++){
-		if (!inputStateList[i]->GetIsUse()){
-			inputStateList[i]->SetupInputState(i);
-			return i;
-		}
-	}
-	return -1;
-}
-*/
 
 
 

@@ -1,21 +1,48 @@
-#ifndef _GSYSTEM_CAMERA_H_
-#define _GSYSTEM_CAMERA_H_
+#ifndef CAMERA
+#define CAMERA
 
-#include "SystemHub.h"
+#include<DxLib.h>
+#include"GMath.h"
+
+class Player;
+
+/*
+うけとったプレイヤーのポジションを中心にカメラは更新する。
+SetPosition()は描画先を変更するたびに呼ばないとリセットされてしまうので注意
+*/
 
 class Camera
 {
 public:
+#if _DEBUG
+	Camera()
+	{
+		position = VGet(0,0,0);
+		this->scale = 2000.f;
+		SetCameraNearFar(1, 1000);
+	};
+#endif
+	Camera(Player* player,int padNum);
 	~Camera();
 
-	Camera Instance();
+	void Initialize();
+
+	void Update();
+
+	void SetPosition();//カメラのポジションをセットする
 
 private:
-	static Camera instance;
+	Player* player;//こいつからポジションをもらいカメラの中心座標にする
+	int padNum;//どのプレイヤーが操作するカメラか識別するため
 
-	Camera();
-
+	VECTOR position;//視点
+	float scale ;//拡大縮小率
+	float scaleSpeed;//拡縮するスピード
+	const float originScale = 1000.0f;//はじめのスピード
+	const float scaleUp = 20;
+	const int MAX_SCALE = 2000;
+	const int MIN_SCALE = 300;
 };
 
 
-#endif // !_GSYSTEM_CAMERA_H_
+#endif

@@ -1,5 +1,5 @@
 #include "ImageRenderer.h"
-
+#include"NowLoading.h"
 
 
 ImageRenderer::ImageRenderer(){
@@ -20,18 +20,12 @@ void ImageRenderer::Update(){
 void ImageRenderer::DrawPlayerCenter(int imageIndex, Vec2 positionCenter){
 	int imageHandle = characterImageMap[imageIndex]->GetImageHandle();
 	Draw(imageHandle, positionCenter.GetIntX() - GetSizeHalfImageX(imageIndex), positionCenter.GetIntY() - GetSizeHalfImageY(imageIndex));
-
 }
 
 
-void	ImageRenderer::DrawCeter(IMAGE_ASSET_NAME assetName, Vec2 posCenter){
-	DrawCeter(assetName, posCenter.GetIntX(), posCenter.GetIntY());
-}
-
-void	ImageRenderer::DrawCeter(IMAGE_ASSET_NAME assetName, int posCX, int posCY){
-	int X = posCX -imageMap[assetName]->GetSizeHalfImageX();
-	int Y = posCY -imageMap[assetName]->GetSizeHalfImageY();
-	DrawLT(imageMap[assetName]->GetImageHandle(), X, Y);
+void ImageRenderer::DrawCeter(IMAGE_ASSET_NAME assetName, Vec2 posCenter){
+	//DrawCeter(assetName, posCenter.GetIntX(), posCenter.GetIntY());
+	DrawBillboard3D(VGet(posCenter.X, posCenter.Y, 0), 0.5f, 0.5f, imageMap[assetName]->GetSizeHalfImageX() * 2, 0.0f, imageMap[assetName]->GetImageHandle(),TRUE);
 }
 
 void ImageRenderer::DrawRotation(IMAGE_ASSET_NAME asset, int posCX, int posCY, double angleDeg){
@@ -47,8 +41,9 @@ void ImageRenderer::DrawLT(int imageHandle, int posX, int posY){
 	Draw(imageHandle, posX, posY);
 }
 
-void ImageRenderer::DrawBackGround(int imageHandle){
-	Draw(imageHandle, 0, 0);
+//背景
+void ImageRenderer::DrawBackGround(){
+	Draw(imageMap[imageAsset_Title_BackGround]->GetImageHandle(),VGet(0,0,0),10 );
 }
 
 int  ImageRenderer::AddCharacterImageMap(IMAGE_ASSET_NAME pathIndex, PlayerColorList plColorList){
@@ -100,7 +95,7 @@ Vec2 ImageRenderer::GetCharacterImageHalfSize(int imageIndex){
 //---private---
 
 void ImageRenderer::SetupImageFilePathMap(){
-	imageFilePathMap.insert(map<IMAGE_ASSET_NAME, char*>::value_type(imageAsset_player_fighter		, "./Resource/FIGHTER_WALK.bmp"));
+	imageFilePathMap.insert(map<IMAGE_ASSET_NAME, char*>::value_type(imageAsset_player_fighter		, "./Resource/Enemy_KingPumpkin.png"));
 
 	imageFilePathMap.insert(map<IMAGE_ASSET_NAME, char*>::value_type(imageAsset_Enemy_Bat			, "./Resource/Enemy_Bat.png"));
 	imageFilePathMap.insert(map<IMAGE_ASSET_NAME, char*>::value_type(imageAsset_Enemy_Ghost			, "./Resource/Enemy_Ghost.png"));
@@ -136,6 +131,7 @@ void ImageRenderer::SetupAnimeDataMap(){
 }
 
 void ImageRenderer::SetupImageMapInstance(){
+	SetUseASyncLoadFlag(TRUE);
 	AddImageMap(imageAsset_player_fighter);
 	AddImageMap(imageAsset_Enemy_Bat);
 	AddImageMap(imageAsset_Enemy_Ghost);
@@ -144,6 +140,8 @@ void ImageRenderer::SetupImageMapInstance(){
 	AddImageMap(imageAsset_Title_BackGround);
 	AddImageMap(imageAsset_Title_PushButton);
 	AddImageMap(imageAsset_GameMain_BackGround);
+	SetUseASyncLoadFlag(FALSE);
+	NowLoading("Resource/Title_BackGround.png");
 }
 
 void ImageRenderer::AddImageMap(IMAGE_ASSET_NAME assetName){
@@ -160,13 +158,37 @@ void ImageRenderer::SetupImageMap(){
 	SetupImageMapInstance();
 }
 
+//画像サイズを毎フレーム取得しているので直す必要あり
 void ImageRenderer::Draw(int imageHandle, int posX, int posY){
-	DrawGraph(posX, posY, imageHandle, TRUE);
+	int x;//GetSizeHalfImageXが正常に動作しないのでとりあえず毎フレーム取得後で修正
+	GetGraphSize(imageHandle,&x,nullptr);
+	DrawBillboard3D(VGet(posX, posY, 0), 0.5f, 0.5f, x, 0.0f, imageHandle, TRUE);
+}
+
+//ハンドル　中心　拡大率
+void  ImageRenderer::Draw(int imageHandle,VECTOR pos,float scale)
+{
+	int x, y;//なんかGetSizeHalfImageYが正常に動かないのでとりあえず毎フレーム半径を取得する
+	GetGraphSize(imageHandle,&x,&y);
+/*
+	DrawModiBillboard3D(VGet(0, 0, 0), (-GetSizeHalfImageX(imageHandle) / 2) * scale, (GetSizeHalfImageY(imageHandle) / 2) * scale,
+		(GetSizeHalfImageX(imageHandle) / 2) * scale, (GetSizeHalfImageY(imageHandle) / 2) * scale,
+		(GetSizeHalfImageX(imageHandle) / 2) * scale, (-GetSizeHalfImageY(imageHandle) / 2) * scale,
+		(-GetSizeHalfImageX(imageHandle) / 2) * scale, (-GetSizeHalfImageY(imageHandle) / 2) * scale,
+		imageHandle,
+		TRUE);*/
+	DrawModiBillboard3D(VGet(0, 0, 0), (-x / 2) * scale, (y/ 2) * scale,
+		(x/ 2) * scale, (y/ 2) * scale,
+		(x/ 2) * scale, (-y/ 2) * scale,
+		(-x/ 2) * scale, (-y/ 2) * scale,
+		imageHandle,
+		TRUE);
 }
 
 void ImageRenderer::DrawRotation(int imageHandle, int posX, int posY, double angleDeg){
 	double angleRad = angleDeg / 180.0*DX_PI;
-	DrawRotaGraph(posX, posY, 1.0, angleRad, imageHandle, TRUE, FALSE);
+	//DrawRotaGraph(posX, posY, 1.0, angleRad, imageHandle, TRUE, FALSE);
+	Draw(imageHandle,posX,posY);
 }
 
 bool ImageRenderer::CheckConnotationCharacterImageMap(int index){

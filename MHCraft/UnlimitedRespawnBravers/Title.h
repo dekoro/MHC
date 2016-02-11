@@ -3,6 +3,7 @@
 #include "HeaderHub.h"
 #include "IScenes.h"
 
+
 class SceneTitle : public IScenes
 {
 public:
@@ -20,11 +21,12 @@ private:
 	DeviceManager* device;
 	int		nextSceneCount;
 	int		enterPlayerIndex;
-
+	bool isEnd;
 	int		CheckControllPadNo();
 	void	CountdownNextScene();
 	void	DrawFlashPushXButton();
 
+	void LocalDraw();
 
 };
 

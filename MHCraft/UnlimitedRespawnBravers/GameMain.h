@@ -9,6 +9,13 @@
 #include "EnemyManager.h"
 #include "ItemManager.h"
 
+#include<memory>
+#include"Camera.h"
+#include"TextureMapping.h"
+#include"ScreenLayout.h"
+#include"Cutting.h"
+#include"Blur.h"
+
 class SceneGameMain: public IScenes
 {
 public:
@@ -24,6 +31,17 @@ private:
 	Managers*		managers;
 	ImageData*		imageBackGround;
 
+	//ƒeƒXƒg
+
+	TextureMapping texMapEffect;
+	Cutting cut;
+	Blur blur;
+
+	std::shared_ptr<Camera> camera;
+	std::shared_ptr<ScreenLayout> screen;
+
+
+	void LocalDraw();
 	void AllManagersInitialize(int startPlayerIndex);
 	SceneMediateData AllManagersUpdate();
 	void AllManagersDraw();

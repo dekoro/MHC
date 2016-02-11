@@ -19,12 +19,6 @@
     <Filter Include="ヘッダー ファイル\DataManager">
       <UniqueIdentifier>{49240f5b-924f-4e04-9f2f-98b430543645}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\SceneManager">
-      <UniqueIdentifier>{f2f487b1-9a56-489d-b783-63bdcf6bfc88}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\StageManager">
-      <UniqueIdentifier>{9d24a46e-7473-4600-91cc-5b3383e8a74a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\GSystem">
       <UniqueIdentifier>{89f247e4-eae5-4228-a15f-e90ec7257345}</UniqueIdentifier>
     </Filter>
@@ -33,18 +27,6 @@
     </Filter>
     <Filter Include="ヘッダー ファイル\Character">
       <UniqueIdentifier>{9468593c-d072-4e64-98de-83536bfc96c4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\SceneManager\Title">
-      <UniqueIdentifier>{879c4aeb-5a10-426f-ba25-a8e7d93bff82}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\SceneManager\GameMain">
-      <UniqueIdentifier>{216ea36e-30c5-4a0d-878e-b8ebfd906dd3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\SceneManager\Ending">
-      <UniqueIdentifier>{baa71f66-f7b0-4ec3-abda-93a7630e6c7d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\SceneManager\GameMain\Events">
-      <UniqueIdentifier>{1dea7320-f07d-4163-a9e4-ec6b940a7f9f}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\Device">
       <UniqueIdentifier>{a3524f99-da7b-4388-8fef-7baab1d3acab}</UniqueIdentifier>
@@ -99,6 +81,108 @@
     </Filter>
     <Filter Include="ヘッダー ファイル\Character\Item">
       <UniqueIdentifier>{b61fa276-5a08-433f-8f23-ec69c39b77f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect">
+      <UniqueIdentifier>{1111c1d7-79a8-4b58-8aaf-8d25f70153ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\BaseEffect">
+      <UniqueIdentifier>{ec241e34-dc38-4978-84d0-df4724df0777}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect">
+      <UniqueIdentifier>{48e03657-a2ea-42bf-923e-9bbb690cd671}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\BaseEffect">
+      <UniqueIdentifier>{91d1a4de-d788-4dbb-94b1-3e69854b169c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\EffectManager">
+      <UniqueIdentifier>{be4adde6-f54e-409a-a475-5711e4bb41a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\EffectManager">
+      <UniqueIdentifier>{9a479cf2-11d0-462b-9fa9-8b2df0bed2ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ErorrCheck">
+      <UniqueIdentifier>{7b1303cf-160d-4ec9-8ad2-2ec0c5fbe590}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ErorrCheck">
+      <UniqueIdentifier>{89659727-132e-4882-8881-d14e5c1e3c9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneManager\NowLoading">
+      <UniqueIdentifier>{d2320f56-142a-4cfe-a78e-4b79ac4d91b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Device\Timer">
+      <UniqueIdentifier>{cbe23d79-0f63-491e-8a8a-64c0b51fe8cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Device\Timer">
+      <UniqueIdentifier>{3fce0fcf-705c-4b50-af6b-1ba07e9c51d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\PostEffect">
+      <UniqueIdentifier>{7c229c71-b336-4f55-adb7-ffc33b267ed0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\PostEffect">
+      <UniqueIdentifier>{c8c62ff9-4d35-46eb-a11a-3b89dec9cfdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\TextureMapping">
+      <UniqueIdentifier>{a2c043d5-cd24-4aa4-a533-c7c126907869}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\TextureMapping">
+      <UniqueIdentifier>{13f4d46b-a233-4a7e-94f8-e0e074076741}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Device\ScreenLayout">
+      <UniqueIdentifier>{64c6e1a7-426f-4ff5-938b-0c0bf321ad11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Device\ScreenLayout">
+      <UniqueIdentifier>{266e233a-0976-44b1-9bb8-1ff3da545a0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ChildWindow">
+      <UniqueIdentifier>{79d21264-a9c8-41a5-865f-ead681d3032e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ChildWindow">
+      <UniqueIdentifier>{f8ebd639-80d6-4925-a320-c31076a10d2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\GSystem\SceneManager">
+      <UniqueIdentifier>{f2f487b1-9a56-489d-b783-63bdcf6bfc88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\GSystem\SceneManager\Title">
+      <UniqueIdentifier>{879c4aeb-5a10-426f-ba25-a8e7d93bff82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\GSystem\SceneManager\GameMain">
+      <UniqueIdentifier>{216ea36e-30c5-4a0d-878e-b8ebfd906dd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\GSystem\SceneManager\GameMain\Events">
+      <UniqueIdentifier>{1dea7320-f07d-4163-a9e4-ec6b940a7f9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\GSystem\SceneManager\Ending">
+      <UniqueIdentifier>{baa71f66-f7b0-4ec3-abda-93a7630e6c7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\GSystem\SceneManager\NowLoading">
+      <UniqueIdentifier>{c86c5a90-25ac-497a-b3cc-420103d92531}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Device\Camera">
+      <UniqueIdentifier>{5ba443e1-dde9-4e73-a610-c86fd2225483}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Device\Camera">
+      <UniqueIdentifier>{4dc1ac93-2808-493d-8a19-9b98c0f9c2d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Device\Camera\CameraManager">
+      <UniqueIdentifier>{ed51001c-6d83-4d39-a24e-657c01915773}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Device\Camera\CameraManager">
+      <UniqueIdentifier>{61915d36-5635-4286-9f2f-54a151565900}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Device\ScreenLayout\e_ScreenLayout">
+      <UniqueIdentifier>{c732468f-205a-4115-b648-19e4735f54e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\Cutting">
+      <UniqueIdentifier>{4e9e6c49-2784-40db-965c-174d8c37c8ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\Cutting">
+      <UniqueIdentifier>{bb1c8d61-ac97-449a-b74e-34a2db30d24f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\Blur">
+      <UniqueIdentifier>{b64a9b06-f144-4b3b-b626-9fa9a6a0ce62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\Blur">
+      <UniqueIdentifier>{8b6ee218-ba61-45cb-bd6b-17b66d34e3f3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -158,9 +242,6 @@
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>ソース ファイル\SceneManager</Filter>
-    </ClCompile>
-    <ClCompile Include="GameMain.cpp">
-      <Filter>ソース ファイル\SceneManager\GameMain</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>ソース ファイル\Device\Input</Filter>
@@ -225,31 +306,70 @@
     <ClCompile Include="UI.cpp">
       <Filter>ソース ファイル\GSystem</Filter>
     </ClCompile>
+    <ClCompile Include="TextureMapping.cpp">
+      <Filter>ソース ファイル\Effect\TextureMapping</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseEffect.cpp">
+      <Filter>ソース ファイル\Effect\BaseEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>ソース ファイル\Device\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="PostEffect.cpp">
+      <Filter>ソース ファイル\Effect\PostEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="NowLoading.cpp">
+      <Filter>ソース ファイル\SceneManager\NowLoading</Filter>
+    </ClCompile>
+    <ClCompile Include="ErrorCheck.cpp">
+      <Filter>ソース ファイル\ErorrCheck</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenLayout.cpp">
+      <Filter>ソース ファイル\Device\ScreenLayout</Filter>
+    </ClCompile>
+    <ClCompile Include="ChildWindow.cpp">
+      <Filter>ソース ファイル\ChildWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>ソース ファイル\Device\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>ソース ファイル\Device\Camera\CameraManager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMain.cpp">
+      <Filter>ソース ファイル\SceneManager\GameMain</Filter>
+    </ClCompile>
+    <ClCompile Include="Cutting.cpp">
+      <Filter>ソース ファイル\Effect\Cutting</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectManager.cpp">
+      <Filter>ソース ファイル\Effect\EffectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Blur.cpp">
+      <Filter>ソース ファイル\Effect\Blur</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GMath.h">
       <Filter>ヘッダー ファイル\GSystem</Filter>
     </ClInclude>
     <ClInclude Include="IScenes.h">
-      <Filter>ヘッダー ファイル\SceneManager</Filter>
+      <Filter>ヘッダー ファイル\GSystem\SceneManager</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
-      <Filter>ヘッダー ファイル\SceneManager</Filter>
-    </ClInclude>
-    <ClInclude Include="GameMain.h">
-      <Filter>ヘッダー ファイル\SceneManager\GameMain</Filter>
+      <Filter>ヘッダー ファイル\GSystem\SceneManager</Filter>
     </ClInclude>
     <ClInclude Include="Ending.h">
-      <Filter>ヘッダー ファイル\SceneManager\Ending</Filter>
+      <Filter>ヘッダー ファイル\GSystem\SceneManager\Ending</Filter>
     </ClInclude>
     <ClInclude Include="Title.h">
-      <Filter>ヘッダー ファイル\SceneManager\Title</Filter>
+      <Filter>ヘッダー ファイル\GSystem\SceneManager\Title</Filter>
     </ClInclude>
     <ClInclude Include="GSystem.h">
       <Filter>ヘッダー ファイル\GSystem</Filter>
     </ClInclude>
     <ClInclude Include="EventManager.h">
-      <Filter>ヘッダー ファイル\SceneManager\GameMain\Events</Filter>
+      <Filter>ヘッダー ファイル\GSystem\SceneManager\GameMain\Events</Filter>
     </ClInclude>
     <ClInclude Include="EnumGKey.h">
       <Filter>ヘッダー ファイル\Device\Input</Filter>
@@ -259,9 +379,6 @@
     </ClInclude>
     <ClInclude Include="ImageData.h">
       <Filter>ヘッダー ファイル\DataManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>ヘッダー ファイル\GSystem</Filter>
     </ClInclude>
     <ClInclude Include="Macro.h">
       <Filter>ヘッダー ファイル\GSystem</Filter>
@@ -382,6 +499,51 @@
     </ClInclude>
     <ClInclude Include="EnemyKingPumpkin.h">
       <Filter>ヘッダー ファイル\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureMapping.h">
+      <Filter>ヘッダー ファイル\Effect\TextureMapping</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseEffect.h">
+      <Filter>ヘッダー ファイル\Effect\BaseEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>ヘッダー ファイル\Device\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="PostEffect.h">
+      <Filter>ヘッダー ファイル\Effect\PostEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="NowLoading.h">
+      <Filter>ヘッダー ファイル\GSystem\SceneManager\NowLoading</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorCheck.h">
+      <Filter>ヘッダー ファイル\ErorrCheck</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenLayout.h">
+      <Filter>ヘッダー ファイル\Device\ScreenLayout</Filter>
+    </ClInclude>
+    <ClInclude Include="ChildWindow.h">
+      <Filter>ヘッダー ファイル\ChildWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>ヘッダー ファイル\Device\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h">
+      <Filter>ヘッダー ファイル\Device\Camera\CameraManager</Filter>
+    </ClInclude>
+    <ClInclude Include="e_ScreenLayout.h">
+      <Filter>ヘッダー ファイル\Device\ScreenLayout\e_ScreenLayout</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMain.h">
+      <Filter>ヘッダー ファイル\GSystem\SceneManager\GameMain</Filter>
+    </ClInclude>
+    <ClInclude Include="Cutting.h">
+      <Filter>ヘッダー ファイル\Effect\Cutting</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectManager.h">
+      <Filter>ヘッダー ファイル\Effect\EffectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Blur.h">
+      <Filter>ヘッダー ファイル\Effect\Blur</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
