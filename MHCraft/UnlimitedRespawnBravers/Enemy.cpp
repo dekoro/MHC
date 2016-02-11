@@ -1,6 +1,6 @@
 #include "Enemy.h"
 
-Enemy::Enemy(vector<Enemy*>* enemyList, IMAGE_ASSET_NAME assetName){
+Enemy::Enemy(vector<Enemy*>* enemyList, IMAGE_ASSET_NAME assetName):cutEffect(60 * 3,Vec2(1,1)){
 	enemyList->push_back(this);
 	device			= DeviceManager::GetInstance();
 	managers		= Managers::GetInstance();
@@ -20,11 +20,13 @@ void Enemy::SetupData(Vec2 startPos, CharacterInformation chParam, bool isKnockb
 	this->position		= startPos;
 	this->parameter		= chParam;
 	this->isKnockBack	= isKnockback;
+	this->cutEffect.Initialize();
 }
 
 void Enemy::Update(){
 	CheckHitDamageArea();
 	CountDeadTimer();
+	cutEffect.Update();
 }
 
 

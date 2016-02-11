@@ -2,11 +2,12 @@
 #define CUTTING
 
 #include"BaseEffect.h"
+#include"e_Directon.h"
 
 class Cutting : public BaseEffect
 {
 public:
-	Cutting();
+	Cutting(e_CutDirection e_Dir);
 	~Cutting();
 
 	void SetSlope(VECTOR);//アップキャストして使ってください

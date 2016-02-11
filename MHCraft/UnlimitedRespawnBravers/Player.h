@@ -48,8 +48,6 @@ private:
 	bool					isEnd;
 	bool					isWalk;
 
-	//ƒeƒXƒgŒã‚Åíœ
-	Cutting cut;
 
 	void SetPlayerColor(PlayerColorList colors);
 	void SetAnimeData(AnimeData animeData);

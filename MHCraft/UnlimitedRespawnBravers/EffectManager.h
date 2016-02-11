@@ -26,8 +26,9 @@ public:
 
 	static EffectManager* GetInstance();
 
+	void AddEffect(std::string name,std::shared_ptr<BaseEffect> effect);
+
 private:
-	void AddEffect(std::string name, std::shared_ptr<BaseEffect> effect);
 	EffectManager();
 
 private:

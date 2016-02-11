@@ -184,6 +184,18 @@
     <Filter Include="ソース ファイル\Effect\Blur">
       <UniqueIdentifier>{8b6ee218-ba61-45cb-bd6b-17b66d34e3f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Character\CutEffect">
+      <UniqueIdentifier>{94fc8deb-3e98-48b7-851f-790ed077e37d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Character\CutEffect">
+      <UniqueIdentifier>{378c591e-3558-427f-aab7-e4bb20a88ab7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Character\CutEffect\Fragment">
+      <UniqueIdentifier>{75aa0914-2a1b-4e20-a022-cb5d7e87452a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Character\CutEffect\Fragment">
+      <UniqueIdentifier>{9e4141c9-79f9-4a30-b534-f71eeef68fb0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FlagManager.cpp">
@@ -339,14 +351,20 @@
     <ClCompile Include="GameMain.cpp">
       <Filter>ソース ファイル\SceneManager\GameMain</Filter>
     </ClCompile>
-    <ClCompile Include="Cutting.cpp">
-      <Filter>ソース ファイル\Effect\Cutting</Filter>
-    </ClCompile>
     <ClCompile Include="EffectManager.cpp">
       <Filter>ソース ファイル\Effect\EffectManager</Filter>
     </ClCompile>
     <ClCompile Include="Blur.cpp">
       <Filter>ソース ファイル\Effect\Blur</Filter>
+    </ClCompile>
+    <ClCompile Include="CutEffect.cpp">
+      <Filter>ソース ファイル\Character\CutEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Fragment.cpp">
+      <Filter>ソース ファイル\Character\CutEffect\Fragment</Filter>
+    </ClCompile>
+    <ClCompile Include="Cutting.cpp">
+      <Filter>ソース ファイル\Effect\Cutting</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -536,14 +554,23 @@
     <ClInclude Include="GameMain.h">
       <Filter>ヘッダー ファイル\GSystem\SceneManager\GameMain</Filter>
     </ClInclude>
-    <ClInclude Include="Cutting.h">
-      <Filter>ヘッダー ファイル\Effect\Cutting</Filter>
-    </ClInclude>
     <ClInclude Include="EffectManager.h">
       <Filter>ヘッダー ファイル\Effect\EffectManager</Filter>
     </ClInclude>
     <ClInclude Include="Blur.h">
       <Filter>ヘッダー ファイル\Effect\Blur</Filter>
+    </ClInclude>
+    <ClInclude Include="CutEffect.h">
+      <Filter>ヘッダー ファイル\Character\CutEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Fragment.h">
+      <Filter>ヘッダー ファイル\Character\CutEffect\Fragment</Filter>
+    </ClInclude>
+    <ClInclude Include="Cutting.h">
+      <Filter>ヘッダー ファイル\Effect\Cutting</Filter>
+    </ClInclude>
+    <ClInclude Include="e_Directon.h">
+      <Filter>ヘッダー ファイル\Effect\Cutting</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

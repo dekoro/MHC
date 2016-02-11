@@ -2,15 +2,25 @@
 #include<assert.h>
 #include<DxLib.h>
 
-Cutting::Cutting() :BaseEffect(LoadPixelShader("Shader/PSCut.pso"), LoadVertexShader(""))
+Cutting::Cutting(e_CutDirection e_Dir)
 {
-	//x‚ªŒX‚«
+	switch (e_Dir)
+	{
+	case e_Right:
+	BaseEffect :
+		BaseEffect::BaseEffect(LoadPixelShader("Shader/PSCutRight.pso"));
+		break;
+	case e_Left:
+		BaseEffect::BaseEffect(LoadPixelShader("Shader/PSCutLeft.pso"));
+		break;
+	}
 
 	slope.x = 0.0;
 	slope.y = 0.0;
 	slope.z = 0.0;
 
 }
+
 
 Cutting::~Cutting()
 {

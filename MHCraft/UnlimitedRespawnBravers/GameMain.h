@@ -30,11 +30,9 @@ private:
 	DeviceManager*	device;
 	Managers*		managers;
 	ImageData*		imageBackGround;
+	
 
 	//ƒeƒXƒg
-
-	TextureMapping texMapEffect;
-	Cutting cut;
 	Blur blur;
 
 	std::shared_ptr<Camera> camera;
@@ -46,6 +44,8 @@ private:
 	SceneMediateData AllManagersUpdate();
 	void AllManagersDraw();
 	void AllManagersFinalize();
+	void ShaderLoad();
+	void SHaderDalete();
 };
 
 

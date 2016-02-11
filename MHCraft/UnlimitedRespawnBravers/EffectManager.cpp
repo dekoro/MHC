@@ -4,12 +4,12 @@
 #include"TextureMapping.h"
 #include"Cutting.h"
 
+
 std::shared_ptr<EffectManager> EffectManager::effectMangaer = std::shared_ptr<EffectManager>();
 
 EffectManager::EffectManager()
 {
-	AddEffect("texmap",std::make_shared<TextureMapping>());
-	AddEffect("cut", std::make_shared<Cutting>());
+
 }
 
 EffectManager::~EffectManager()

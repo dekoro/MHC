@@ -2,6 +2,8 @@
 #include "SceneManager.h"
 #include"ChildWindow.h"
 
+#include<time.h>
+#include<assert.h>
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int cCmdShow){
 	bool windowMode = TRUE;
@@ -30,8 +32,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	int a = 0;
 
+
 	while (!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen()){
 		///ここから更新
+
+		clock_t strt = clock();//スタート
+
 		deviceManager->Input()->Update();
 		deviceManager->Image()->Update();
 		sceneManager->Update();
@@ -50,6 +56,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		//			SetScreenFlipTargetWindow(NULL);//描画先を親ウィンドウにする
 		//}
 		sceneManager->Draw();
+
+		clock_t end = clock();//終わりの時間
+
+		double a = end - strt;
+
+		assert(a < 200 && "すごい時間かかってる");
 
 		///ここまで描画
 		//	fps->SleepNextFrame();
