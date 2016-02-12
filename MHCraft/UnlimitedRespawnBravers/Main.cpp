@@ -61,7 +61,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		double a = end - strt;
 
-		assert(a < 200 && "‚·‚²‚¢ŽžŠÔ‚©‚©‚Á‚Ä‚é");
+		assert(a < 1000 && "‚·‚²‚¢ŽžŠÔ‚©‚©‚Á‚Ä‚é");
 
 		///‚±‚±‚Ü‚Å•`‰æ
 		//	fps->SleepNextFrame();

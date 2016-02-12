@@ -6,22 +6,12 @@
 #include<stdio.h>
 
 Frangment::Frangment(Vec2 direction, float velocity, e_CutDirection e_Direction)
-	: originDirection(direction), velocity(Vec2(velocity * direction.X, velocity * direction.Y))
+	: originDirection(direction),
+	velocity(Vec2(velocity * direction.X, velocity * direction.Y)),
+	fragment(e_Direction)
 {
-	this->fragment = EffectManager::GetInstance()->GetEffect("Cutting");
 	pos = Vec2();
 	this->direction = originDirection;
-
-	switch (e_Direction)
-	{
-	case e_Right:
-		this->fragment = EffectManager::GetInstance()->GetEffect("CutRight");
-		break;
-	case e_Left:
-		this->fragment = EffectManager::GetInstance()->GetEffect("CutRight");
-		break;
-	}
-
 }
 
 Frangment::~Frangment()
@@ -42,7 +32,7 @@ void Frangment::Update()
 
 void Frangment::Draw(int hGraphics, Vec2 pos)
 {
-	fragment->Rendering([&](){
+	fragment.Rendering([&](){
 		DeviceManager::GetInstance()->Image()->DrawLT(hGraphics, pos + this->pos);
 	});
 }

@@ -1,24 +1,13 @@
 #include"Cutting.h"
 #include<assert.h>
 #include<DxLib.h>
+#include"EffectManager.h"
 
-Cutting::Cutting(e_CutDirection e_Dir)
+Cutting::Cutting(e_CutDirection e_Dir) :BaseEffect(e_Dir == e_Right ? EffectManager::GetInstance()->GetEffect("CutRight") : EffectManager::GetInstance()->GetEffect("CutLeft"))
 {
-	switch (e_Dir)
-	{
-	case e_Right:
-	BaseEffect :
-		BaseEffect::BaseEffect(LoadPixelShader("Shader/PSCutRight.pso"));
-		break;
-	case e_Left:
-		BaseEffect::BaseEffect(LoadPixelShader("Shader/PSCutLeft.pso"));
-		break;
-	}
-
 	slope.x = 0.0;
 	slope.y = 0.0;
 	slope.z = 0.0;
-
 }
 
 

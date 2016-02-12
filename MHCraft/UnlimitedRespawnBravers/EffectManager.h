@@ -7,6 +7,8 @@
 /*
 シェーダには読み込み制限あるためほかにも複数生成されたら困るためにシングルトンにする。
 
+ここでシェーダの読み込みと削除を管理する
+
 */
 
 class BaseEffect;
@@ -16,7 +18,7 @@ class BaseEffect;
 public:
 	~EffectManager();
 
-	BaseEffect* GetEffect(std::string name);
+	int GetEffect(std::string name);
 
 	//エフェクト全部削除
 	void RemoveAll();
@@ -26,14 +28,15 @@ public:
 
 	static EffectManager* GetInstance();
 
-	void AddEffect(std::string name,std::shared_ptr<BaseEffect> effect);
+	void AddEffect(std::string name, std::string path);
 
-private:
 	EffectManager();
+private:
+
 
 private:
 	static std::shared_ptr<EffectManager> effectMangaer;
-	std::unordered_map<std::string, std::shared_ptr<BaseEffect>> effects;
+	std::unordered_map<std::string, int> effects;
 
 };
 

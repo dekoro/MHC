@@ -1,8 +1,8 @@
 #include"Blur.h"
 #include"Vec2.h"
+#include"EffectManager.h"
 
-
-Blur::Blur() : BaseEffect(LoadPixelShader("Shader/PSBlur.pso"))
+Blur::Blur() : BaseEffect(EffectManager::GetInstance()->GetEffect("Blur"))
 {
 	Initialize();
 	input = DeviceManager::GetInstance()->Input();

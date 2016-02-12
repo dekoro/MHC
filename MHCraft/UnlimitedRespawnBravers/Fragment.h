@@ -2,6 +2,7 @@
 #define FRAGMENT
 #include"Vec2.h"
 #include"e_Directon.h"
+#include"Cutting.h"
 
 class BaseEffect;
 
@@ -19,7 +20,7 @@ public:
 	bool IsEnd();
 
 private:
-	BaseEffect* fragment;//Ø’f‚Ì’f•Ğ
+	Cutting fragment;//Ø’f‚Ì’f•Ğ
 	Vec2 pos;
 	Vec2 direction;
 	const Vec2 originDirection;

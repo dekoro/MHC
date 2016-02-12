@@ -2,7 +2,8 @@
 
 
 
-CutEffect::CutEffect(int time, Vec2 direction) : timer(time), right(direction, SPEED, e_Right), left(Vec2(-direction.X, -direction.Y), SPEED, e_Left)
+CutEffect::CutEffect(int time, Vec2 direction) 
+	:timer(time), right(direction, 4, e_Right), left(Vec2(-direction.X, -direction.Y), 4, e_Left)
 {
 	isStart = false;
 

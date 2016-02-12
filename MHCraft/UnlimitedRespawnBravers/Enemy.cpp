@@ -134,6 +134,7 @@ void Enemy::CheckIsOverHeal(){
 void Enemy::CountDeadTimer(){
 	if (!isDead){ return; }
 	cntDead--;
+	cutEffect.IsStart();
 	if (cntDead > 0){ return; }
 	isUse = false;
 }

@@ -4,6 +4,11 @@
 #include<functional>
 #include<DxLib.h>
 
+/*
+シェーダーの管理クラスが各シーンのInitialize部でロードしているため、
+このクラスを継承してるクラスも込みで動的に確保してくださいｓ
+*/
+
 class BaseEffect
 {
 public:

@@ -8,16 +8,16 @@ SceneGameMain::SceneGameMain(){
 	device			= DeviceManager::GetInstance();
 	managers		= Managers::GetInstance();
 	imageBackGround = device->Image()->CopyImageData(imageAsset_GameMain_BackGround);
-
-	this->screen = std::make_shared<ScreenLayout>(e_Quad, &blur);
 }
 
 SceneGameMain::~SceneGameMain(){
 }
 
 void SceneGameMain::Initialize(SceneMediateData sceneData){
-	AllManagersInitialize(sceneData.playerIndex);
 	ShaderLoad();
+	blur = std::make_shared<Blur>();
+	this->screen = std::make_shared<ScreenLayout>(e_Quad, blur.get());
+	AllManagersInitialize(sceneData.playerIndex);
 }
 
 SceneMediateData SceneGameMain::Update(){
@@ -83,11 +83,12 @@ void SceneGameMain::AllManagersFinalize(){
 
 void SceneGameMain::ShaderLoad()
 {
-	EffectManager::GetInstance()->AddEffect("CutLeft",std::make_shared<Cutting>(e_Left));
-	EffectManager::GetInstance()->AddEffect("CutRight", std::make_shared<Cutting>(e_Right));
-	EffectManager::GetInstance()->AddEffect("Blur",std::make_shared<Blur>());
-	EffectManager::GetInstance()->AddEffect("TexMap",std::make_shared<TextureMapping>());
+	EffectManager::GetInstance()->AddEffect("CutLeft", "Shader/PSCutRight.pso");
+	EffectManager::GetInstance()->AddEffect("CutRight", "Shader/PSCutRight.pso");
+	EffectManager::GetInstance()->AddEffect("Blur","Shader/PSBlur.pso");
+	EffectManager::GetInstance()->AddEffect("TexMap","Shader/PSCutRight.pso");
 	
+
 }
 
 void SceneGameMain::SHaderDalete()

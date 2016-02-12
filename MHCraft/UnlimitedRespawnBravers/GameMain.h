@@ -16,6 +16,7 @@
 #include"Cutting.h"
 #include"Blur.h"
 
+
 class SceneGameMain: public IScenes
 {
 public:
@@ -33,8 +34,7 @@ private:
 	
 
 	//ƒeƒXƒg
-	Blur blur;
-
+	std::shared_ptr<BaseEffect> blur;
 	std::shared_ptr<Camera> camera;
 	std::shared_ptr<ScreenLayout> screen;
 
