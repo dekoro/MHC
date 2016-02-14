@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include "DamageAreaManager.h"
 
 Enemy::Enemy(vector<Enemy*>* enemyList, IMAGE_ASSET_NAME assetName){
 	enemyList->push_back(this);
@@ -81,23 +82,6 @@ IMAGE_ASSET_NAME Enemy::GetAssetName(){
 //-----private-----
 
 void Enemy::GetRandomTarget(int forbiddenTarget){
-	vector<int> plList = managers->Player()->GetEnablePlayerIndexList();
-	int plNum = plList.size();
-	target = NULL;
-
-	if (plNum <= 0){
-		return;
-	}
-	if (plNum == 1 && plList[0] == forbiddenTarget){
-		return;
-	}
-
-	while (true){
-		int targetIndex = GetRand(plNum - 1);
-		if (plList[targetIndex] == forbiddenTarget){ continue; }
-		SetTarget(plList[targetIndex]);
-		break;
-	}
 }
 
 void Enemy::SetTarget(int targetIndex){

@@ -9,7 +9,7 @@ InputManager::~InputManager(){
 }
 
 void InputManager::Update(){
-	for (int i = 0; i < USE_PAD_MAX; i++){
+	for (int i = 0; i < MAX_PLAYER; i++){
 		inputStateList[i]->Update();
 	}
 }
@@ -19,7 +19,7 @@ InputState* InputManager::GetInputState(int padNo){
 }
 
 bool InputManager::CheckKeyDownAllPad(GKey key){
-	for (int i = 0; i < USE_PAD_MAX; i++){
+	for (int i = 0; i < MAX_PLAYER; i++){
 		if (inputStateList[i]->CheckKeyDown(key)){
 			return true;
 		}
@@ -28,7 +28,7 @@ bool InputManager::CheckKeyDownAllPad(GKey key){
 }
 
 bool InputManager::CheckKeyPushAllPad(GKey key){
-	for (int i = 0; i < USE_PAD_MAX; i++){
+	for (int i = 0; i < MAX_PLAYER; i++){
 		if (inputStateList[i]->CheckKeyPush(key)){
 			return true;
 		}
@@ -37,7 +37,7 @@ bool InputManager::CheckKeyPushAllPad(GKey key){
 }
 
 bool InputManager::CheckKeyReleaseAllPad(GKey key){
-	for (int i = 0; i < USE_PAD_MAX; i++){
+	for (int i = 0; i < MAX_PLAYER; i++){
 		if (inputStateList[i]->CheckKeyRelease(key)){
 			return true;
 		}
@@ -46,7 +46,7 @@ bool InputManager::CheckKeyReleaseAllPad(GKey key){
 }
 
 bool InputManager::CheckKeyFreeAllPad(GKey key){
-	for (int i = 0; i < USE_PAD_MAX; i++){
+	for (int i = 0; i < MAX_PLAYER; i++){
 		if (inputStateList[i]->CheckKeyFree(key)){
 			return true;
 		}
@@ -62,20 +62,20 @@ void InputManager::LeaveGamePad(int padNo){
 //---private---
 
 void InputManager::SetupGamePadList(){
-	for (int i = 0; i < USE_PAD_MAX; i++){
+	for (int i = 0; i < MAX_PLAYER; i++){
 		inputStateList[i] = new InputState(i);
 	}
 }
 
 void InputManager::FinalizeGamePadList(){
-	for (int i = 0; i < USE_PAD_MAX; i++){
+	for (int i = 0; i < MAX_PLAYER; i++){
 		SAFE_DELETE(inputStateList[i]);
 	}
 }
 
 /*
 int InputManager::JoinGamePad(){
-	for (int i = 0; i < USE_PAD_MAX; i++){
+	for (int i = 0; i < MAX_PLAYER; i++){
 		if (!inputStateList[i]->GetIsUse()){
 			inputStateList[i]->SetupInputState(i);
 			return i;

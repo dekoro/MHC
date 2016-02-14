@@ -4,7 +4,9 @@
 #include "GSystemHub.h"
 #include "GMath.h"
 #include "IScenes.h"
+#include "Player.h"
 #include "Managers.h"
+#include "DamageAreaManager.h"
 #include "PlayerManager.h"
 #include "EnemyManager.h"
 #include "ItemManager.h"
@@ -24,8 +26,8 @@ private:
 	Managers*		managers;
 	ImageData*		imageBackGround;
 
-	void AllManagersInitialize(int startPlayerIndex);
-	SceneMediateData AllManagersUpdate();
+	void AllManagersInitialize();
+	void AllManagersUpdate();
 	void AllManagersDraw();
 	void AllManagersFinalize();
 };

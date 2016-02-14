@@ -1,18 +1,16 @@
 #include "Random.h"
 
+std::shared_ptr<Random> Random::instance = std::shared_ptr<Random>();
+
 Random::Random(){
 
 }
 
 Random::~Random(){
-	SAFE_DELETE(instance);
 }
 
 Random* Random::Instance(){
-	if (!instance){
-		instance = new Random();
-	}
-	return instance;
+	return instance.get();
 }
 
 void Random::SetSeed(int seed){

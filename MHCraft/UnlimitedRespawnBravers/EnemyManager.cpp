@@ -21,62 +21,21 @@ void EnemyManager::Initialize(){
 	for each(Enemy* ie in enemyList){
 		ie->Initialize();
 	}
-	gameMode = GameMode_Main;
 	cntClear = cntGameOver = 60;
 	StageInitialize();
 }
 
-SceneMediateData EnemyManager::Update(){
-	bool isSceneEnd = false;
-	/*for each(Enemy* ie in enemyList){
-		ie->Update();
-	}*/
-
+void EnemyManager::Update(){
 	int enemyListNum = enemyList.size();
 	for (int i = 0; i < enemyListNum; i++){
 		enemyList[i]->Update();
 	}
-
-	if (managers->Player()->GetJoinNum() <= 0){ gameMode = GameMode_GameOver; }
-
-	switch (gameMode){
-	case GameMode_Main:
-		if (isBoss){
-			device->Sound()->Stop(Music_GameMain_BGM_Normal);
-			CalcSpawnBoss();
-		}else{
-			device->Sound()->Play(Music_GameMain_BGM_Normal);
-			CalcSpawnMob();
-		}
-		break;
-	case GameMode_Clear:
-		isSceneEnd = ClearMode();
-		break;
-	case GameMode_GameOver:
-		isSceneEnd = GameOverMode();
-		break;
-	default:
-		break;
-	}
-
 	RemoveNotUseEnemys();
-	if (isSceneEnd){
-		return SceneMediateData::Setup(SCENE_TITLE);
-	} else{
-		return SceneMediateData::Setup(SCENE_GAMEMAIN);
-	}
 }
 
 void EnemyManager::Draw(){
-	for each(Enemy* ie in enemyList){
-		if (ie->GetAssetName() != imageAsset_Enemy_BigPumpkin){
-			ie->Draw();
-		}
-	}
-	for each(Enemy* ie in enemyList){
-		if (ie->GetAssetName() == imageAsset_Enemy_BigPumpkin){
-			ie->Draw();
-		}
+	for(Enemy* e: enemyList){
+		e->Draw();
 	}
 	CalcHervestLollipop();
 }

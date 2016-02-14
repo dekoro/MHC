@@ -225,6 +225,9 @@
     <ClCompile Include="UI.cpp">
       <Filter>ソース ファイル\GSystem</Filter>
     </ClCompile>
+    <ClCompile Include="ItemData.cpp">
+      <Filter>ソース ファイル\Character\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GMath.h">
@@ -382,6 +385,9 @@
     </ClInclude>
     <ClInclude Include="EnemyKingPumpkin.h">
       <Filter>ヘッダー ファイル\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemData.h">
+      <Filter>ヘッダー ファイル\Character\Item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -38,7 +38,7 @@ public:
 	void		DrawBackGround(int imageHandle);
 	void		ChangeImageType(int imageIndex, int	type);
 	void		ChangeAnimePlay(int imageIndex, bool isPlay);
-	int			AddCharacterImageMap(IMAGE_ASSET_NAME pathIndex, PlayerColorList playerColorList);
+	int			AddCharacterImageMap(IMAGE_ASSET_NAME pathIndex);
 	void		RemoveBaseImageMap(IMAGE_ASSET_NAME assetName);
 	void		RemoveCharacterImageMap(int imageMap);
 	void		ClearImageMap();

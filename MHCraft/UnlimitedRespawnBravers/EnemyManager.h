@@ -23,7 +23,7 @@ public:
 	~EnemyManager();
 	
 	void				Initialize();
-	SceneMediateData	Update();
+	void	Update();
 	void				Draw();
 	void				Finalize();
 	void				AddEnemy(IMAGE_ASSET_NAME asset);

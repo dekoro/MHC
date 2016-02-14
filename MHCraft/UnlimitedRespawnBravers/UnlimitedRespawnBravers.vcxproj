@@ -97,6 +97,7 @@
     <ClCompile Include="InputState.cpp" />
     <ClCompile Include="IScenes.cpp" />
     <ClCompile Include="AItem.cpp" />
+    <ClCompile Include="ItemData.cpp" />
     <ClCompile Include="ItemLolipop.cpp" />
     <ClCompile Include="ItemManager.cpp" />
     <ClCompile Include="Keyboard.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="InputState.h" />
     <ClInclude Include="IScenes.h" />
     <ClInclude Include="AItem.h" />
+    <ClInclude Include="ItemData.h" />
     <ClInclude Include="ItemLollipop.h" />
     <ClInclude Include="ItemManager.h" />
     <ClInclude Include="Keyboard.h" />

@@ -2,6 +2,7 @@
 #include "PlayerManager.h"
 #include "EnemyManager.h"
 #include "ItemManager.h"
+#include "DamageAreaManager.h"
 
 
 Managers* Managers::instance = NULL;

@@ -1,15 +1,14 @@
 #include "Player.h"
-#include "PlayerManager.h"
-#include "EnemyManager.h"
+#include "Managers.h"
+#include "DeviceManager.h"
 
-Player::Player(int padNo, int health, int sp, float speed, IMAGE_ASSET_NAME assetName, PlayerColorList colors){
+Player::Player(int padNo){
 	this->device		= DeviceManager::GetInstance();
-	this->managers		= Managers::GetInstance();
 	this->padNo			= padNo;
-	position			= Vec2::Setup(Window::WIDTH/2, Window::HEIGHT*4/5);
-	SetupPlayer(health, sp, speed, assetName, colors);
-	Initialize();
-	maxCntAttack = 20;
+	SetupPlayer();
+	maxStopCntAttack	= PLAYER_ATTACK_STOP_COUNT;
+	cntInvincible		= PLAYER_DAMAGE_INVINCIBLE_COUNT;
+	isEnable			= false;
 }
 
 Player::~Player(){
@@ -19,41 +18,48 @@ Player::~Player(){
 void Player::Initialize(){
 	isDead			= false;
 	isWalk			= false;
-	isEnd			= false;
 	cntInvincible	= 120;
 }
 
 void Player::Update(){
-	Attack();
-	cntHoldDirection = device->Input()->GetInputState(padNo)->CheckKeyDown(GKey_Attack);
-	Move();
 	CountdownInvincible();
+	InputState* input = device->Input()->GetInputState(padNo);
+	if (input->CheckKeyPush(GKey_Attack)) {
+		Move(Vec2::Setup(0, -1));
+	}
 }
 
-void Player::Draw(){
-	int attackImage = (cntAttack > 0) ? 4 : 0;
-	device->Image()->ChangeImageType(imageHandle, imageType+attackImage);
+
+void Player::Draw() {
+	if (!isEnable) { return; }
+	int attackImage = (cntStop > 0) ? 4 : 0;
+	device->Image()->ChangeImageType(imageHandle, imageType + attackImage);
 	device->Image()->ChangeAnimePlay(imageHandle, animeData.isAnimation);
 	device->Image()->DrawPlayerCenter(imageHandle, position);
+}
+
+void Player::Finalize()
+{
+	Delete();
+}
+
+void Player::Delete()
+{
+	isEnable = false;
 }
 
 int Player::GetImageHandle(){
 	return imageHandle;
 }
 
-int Player::GetPadNo(){
-	return padNo;
-}
-
-void Player::SetupPlayer(int health, int sp, float speed, IMAGE_ASSET_NAME assetName, PlayerColorList colors){
+void Player::SetupPlayer(int health, int sp, float speed, IMAGE_ASSET_NAME assetName){
 	parameter.SetupSelf(health, sp, 1, 100, speed, 5);
-	SetPlayerColor(colors);
 	SetAnimeData(device->Image()->GetAnimeData(assetName));
 	LoadImageHandle(assetName);
 }
 
-bool Player::GetIsEnd(){
-	return isEnd;
+bool Player::IsEnable(){
+	return isEnable;
 }
 
 void Player::HitDamage(HitData hitData){
@@ -65,10 +71,6 @@ void Player::HitDamage(HitData hitData){
 
 CharacterInformation Player::GetParameter(){
 	return parameter;
-}
-
-Vec2 Player::GetPosition(){
-	return position;
 }
 
 GCircle Player::GetHitArea(){
@@ -90,29 +92,36 @@ void Player::Heal(int heal){
 	CheckIsOverHeal();
 }
 
+void Player::Spawn(Vec2 position)
+{
+	isEnable		= true;
+	this->position	= position;
 
-//---private---
-
-void Player::SetPlayerColor(PlayerColorList colors){
-	this->colors	= colors;
 }
 
+int Player::GetPadNo()
+{
+	return padNo;
+}
+
+
+//---private---
 void Player::SetAnimeData(AnimeData animeData){
 	this->animeData = animeData;
 }
 
 void Player::LoadImageHandle(IMAGE_ASSET_NAME assetName){
-	imageHandle = device->Image()->AddCharacterImageMap(assetName, colors);
+	imageHandle = device->Image()->AddCharacterImageMap(assetName);
 
 }
 
-void Player::Attack(){
-	if (--cntAttack > 0){
+void Player::Attack(float angleDeg, int chargeLevel){
+	if (--cntStop > 0){
 		return;
 	}
 	if (!device->Input()->GetInputState(padNo)->CheckKeyPush(GKey_Attack)){ return; }
-	SetDamageArea();
-	cntAttack = maxCntAttack;
+
+	cntStop = maxStopCntAttack;
 }
 
 void Player::ChangeImageType(int type){
@@ -120,88 +129,22 @@ void Player::ChangeImageType(int type){
 	imageType = type;
 }
 
-void Player::ChangeDirection(Vec2 moveTo){
-	if (device->Input()->GetInputState(padNo)->CheckKeyDown(GKey_Skill)){ return; }
-	if (moveTo.X == moveTo.Y){ return; }
-	if (moveTo.X == -moveTo.Y){ return; }
-	if (moveTo.X > 0){ direction = 3; }
-	if (moveTo.X < 0){ direction = 2; }
-	if (moveTo.Y > 0){ direction = 0; }
-	if (moveTo.Y < 0){ direction = 1; }
-	ChangeImageType(direction);
-}
-
-void Player::Move(){
-	if (cntAttack > 0){ return; }
-	Vec2 moveVec	=  MoveVector();
-	Vec2 moveTo		=  moveVec*parameter.speed;
-	position		+= moveTo;
+void Player::Move(Vec2 velocity, float multiply){
+	if (velocity == Vec2::Zero()) { return; }
+	if (cntStop > 0){ return; }
+	velocity.NormalizeSelf();
+	position		+= velocity * parameter.speed * multiply;
 	Clamp();
 }
 
-Vec2 Player::MoveVector(){
-	Vec2 pos = Vec2::Zero();
-	if (device->Input()->GetInputState(padNo)->CheckKeyDown(GKey_Up))	{
-		pos.Y -= 1;
-	}
-	if (device->Input()->GetInputState(padNo)->CheckKeyDown(GKey_Down))	{
-		pos.Y += 1;
-	}
-	if (device->Input()->GetInputState(padNo)->CheckKeyDown(GKey_Left))	{
-		pos.X -= 1;
-	}
-	if (device->Input()->GetInputState(padNo)->CheckKeyDown(GKey_Right)){
-		pos.X += 1; 
-	}
-	pos.NormalizeSelf();
-	if (pos == Vec2::Zero()){
-		animeData.isAnimation = false;
-		return pos;
-	}
-
-	animeData.isAnimation = true;
-	pos.NormalizeSelf();
-	ChangeDirection(pos);
-	return pos;
+void Player::SetPlayAnimation(Vec2 velocity) {
+	animeData.isAnimation = !(velocity == Vec2::Zero());
 }
 
 void Player::SetIsEnd(){
-	managers->Player()->SetAddForbiddenCounter();
-	managers->Enemy()->DeadPlayerActioon();
 	isDead	= true;
-	isEnd	= true;
 }
 
-void Player::SetDamageArea(){
-	Vec2		attackVec;
-	float		range	= 52;
-	int			width	= 32;
-	int			height	= 24;
-	GRectangle	hitArea;
-
-	switch (direction){
-	case 0:
-		attackVec	= Vec2(0, range);
-		hitArea		= GRectangle::Setup(position + attackVec, width, height);
-		break;
-	case 1:
-		attackVec	= Vec2(0, -range);
-		hitArea		= GRectangle::Setup(position + attackVec, width, height);
-		break;
-	case 2:
-		attackVec	= Vec2(-range, 0);
-		hitArea		= GRectangle::Setup(position + attackVec, height, width);
-		break;
-	case 3:
-		attackVec	= Vec2(range, 0);
-		hitArea		= GRectangle::Setup(position + attackVec, height, width);
-		break;
-	default:
-		break;
-	}
-	HitData	hitData = HitData::Setup(position, 100, 1);
-	managers->Damage()->AddDamageAreaRectangle(hitArea, 5, hitData, false, true);
-}
 
 void Player::Knockback(Vec2 fromPos, Vec2 toPos, int power){
 	Knockback(GMath::CalcAngleRad(fromPos, toPos), power);
@@ -227,14 +170,13 @@ void Player::CheckIsOverHeal(){
 
 void Player::CountDeadTimer(){
 	if (!isDead){ return; }
-	//cntDead--;
-	//if (cntDead > 0){ return; }
-	//isUse = false;
+	if (--cntDead > 0){ return; }
+	isEnable = false;
 }
 
 void Player::CountdownInvincible(){
 	if (cntInvincible <= 0){ return; }
-	cntInvincible--;
+	--cntInvincible;
 }
 
 bool Player::FlashManager(int counter){
@@ -247,6 +189,7 @@ bool Player::FlashManager(int counter){
 	}
 	return true;
 }
+
 
 void Player::Clamp(){
 	Vec2 imageHalfSize = device->Image()->GetCharacterImageHalfSize(imageHandle);

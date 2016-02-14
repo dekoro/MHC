@@ -31,6 +31,7 @@ public:
 	bool					GetIsDead();
 	IMAGE_ASSET_NAME		GetAssetName();
 
+
 protected:
 	DeviceManager*			device;
 	Managers*				managers;

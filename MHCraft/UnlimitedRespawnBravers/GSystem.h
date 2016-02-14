@@ -3,12 +3,21 @@
 
 #define DISPLAY_SIZE_W		1280
 #define DISPLAY_SIZE_H		720
-#define USE_PAD_MAX			16
+#define MAX_PLAYER			4
 #define GKEY_NUM			7
 #define KEYBOARD_NUM		256
 #define ANIME_FRAME_NUM		128
 #define	GAME_FPS			60
 #define PI					3.14159265359
+
+#define PLAYER_ATTACK_STOP_COUNT		20
+#define PLAYER_DAMAGE_INVINCIBLE_COUNT	120
+#define PLAYER_DAMAGE_STOP_COUNT		30
+
+#define DEFAULT_PLAYER_HEALTH	10
+#define DEFAULT_PLAYER_SP		10
+#define DEFAULT_PLAYER_SPEED	5
+
 
 #define WAKANNE_SKIP
 
@@ -18,7 +27,8 @@
 
 enum SceneName{
 	SCENE_TITLE,
-	SCENE_GAMEMAIN
+	SCENE_GAMEMAIN,
+	SCENE_NOCHANGE,
 };
 
 struct Window{
@@ -47,22 +57,6 @@ const int defaultKeyConfigKeyboard[ GKEY_NUM ] = {
 	KEY_INPUT_C,
 };
 
-class PlayerColorList{
-public:
-	PlayerColorList(){}
-	unsigned int colorHair;
-	unsigned int colorSkin;
-	unsigned int colorArmer;
-	unsigned int colorFrame;
-
-	static PlayerColorList Setup(unsigned int colorHair, unsigned int colorSkin, unsigned int colorArmer);
-	static PlayerColorList Setup(int colorHairR, int colorHairG, int colorHairB, int colorSkinR, int colorSkinG, int colorSkinB, int colorArmerR, int colorArmerG, int colorArmerB);
-
-	void SetupSelf(unsigned int colorHair, unsigned int colorSkin, unsigned int colorArmer);
-	void SetupSelf(int colorHairR, int colorHairG, int colorHairB, int colorSkinR, int colorSkinG, int colorSkinB, int colorArmerR, int colorArmerG, int colorArmerB);
-
-};
-
 class AnimeData{
 public:
 	AnimeData(){}
@@ -75,9 +69,9 @@ public:
 	bool	isAnimation;
 
 
-	void				SetupAnimeData(int XNum, int typeNum, int oneSizeX, int oneSizeY, int skipFrame, int isLoop);
+	void				SetupAnimeData(int XNum, int typeNum, int oneSizeX, int oneSizeY, int skipFrame, bool isLoop);
 	int					GetFrameAllNum(){ return (XNum * typeNum > 0) ? XNum*typeNum : 1; }
-	static AnimeData	Setup(int XNum, int typeNum, int oneSizeX, int oneSizeY, int skipFrame, int isLoop);
+	static AnimeData	Setup(int XNum, int typeNum, int oneSizeX, int oneSizeY, int skipFrame, bool isLoop);
 };
 
 class CharacterInformation
@@ -137,10 +131,10 @@ private:
 
 class SceneMediateData{
 public:
-	SceneName	nextScene;
+	SceneName	nextScene = SCENE_NOCHANGE;
 	int			playerIndex;
 
-	static SceneMediateData Setup(SceneName nextScene, int playerIndex=-1);
+	static SceneMediateData Setup(SceneName nextScene = SCENE_NOCHANGE, int playerIndex=-1);
 private:
 };
 

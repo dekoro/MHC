@@ -30,7 +30,8 @@ void SceneManager::Draw(){
 }
 
 void SceneManager::ChangeScene(SceneMediateData nextSceneData){
-	if (curScene == nextSceneData.nextScene){ return; }
+	if (nextSceneData.nextScene == SCENE_NOCHANGE)	{ return; }
+	if (curScene == nextSceneData.nextScene)		{ return; }
 	sceneMap[curScene]->Finalize();
 
 	sceneMap[nextSceneData.nextScene]->Initialize(nextSceneData);

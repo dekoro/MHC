@@ -1,34 +1,7 @@
 #include "GSystem.h"
 
-PlayerColorList PlayerColorList::Setup(unsigned int colorHair, unsigned int colorSkin, unsigned int colorArmer){
-	PlayerColorList tmp;
-	tmp.colorHair = colorHair;
-	tmp.colorSkin = colorSkin;
-	tmp.colorArmer = colorArmer;
-	return tmp;
-}
-PlayerColorList PlayerColorList::Setup(int colorHairR, int colorHairG, int colorHairB,
-												int colorSkinR, int colorSkinG, int colorSkinB,
-												int colorArmerR, int colorArmerG, int colorArmerB){
-	return Setup( GetColor(colorHairR	, colorHairG	, colorHairB)
-				, GetColor(colorSkinR	, colorSkinG	, colorSkinB)
-				, GetColor(colorArmerR	, colorArmerG	, colorArmerB));
-}
-void PlayerColorList::SetupSelf(unsigned int colorHair, unsigned int colorSkin, unsigned int colorArmer){
-	this->colorHair		= colorHair;
-	this->colorSkin		= colorSkin;
-	this->colorArmer	= colorArmer;
-}
-void PlayerColorList::SetupSelf(int colorHairR	, int colorHairG	, int colorHairB,
-								int colorSkinR	, int colorSkinG	, int colorSkinB,
-								int colorArmerR	, int colorArmerG	, int colorArmerB){
 
-	SetupSelf( GetColor(colorHairR	, colorHairG	, colorHairB)
-			 , GetColor(colorSkinR	, colorSkinG	, colorSkinB)
-			 , GetColor(colorArmerR	, colorArmerG	, colorArmerB));
-}
-
-void AnimeData::SetupAnimeData(int XNum, int typeNum, int oneSizeX, int oneSizeY, int skipFrame, int isLoop){
+void AnimeData::SetupAnimeData(int XNum, int typeNum, int oneSizeX, int oneSizeY, int skipFrame, bool isLoop){
 	this->XNum			= XNum;
 	this->typeNum		= typeNum;
 	this->oneSizeX		= oneSizeX;
@@ -38,7 +11,7 @@ void AnimeData::SetupAnimeData(int XNum, int typeNum, int oneSizeX, int oneSizeY
 	this->isAnimation	= (GetFrameAllNum() > 1);
 }
 
-AnimeData AnimeData::Setup(int XNum, int typeNum, int oneSizeX, int oneSizeY, int skipFrame, int isLoop){
+AnimeData AnimeData::Setup(int XNum, int typeNum, int oneSizeX, int oneSizeY, int skipFrame, bool isLoop){
 	AnimeData tmp;
 	tmp.SetupAnimeData(XNum, typeNum, oneSizeX, oneSizeY, skipFrame, isLoop);
 	return tmp;

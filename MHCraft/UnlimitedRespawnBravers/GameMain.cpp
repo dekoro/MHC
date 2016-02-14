@@ -9,14 +9,18 @@ SceneGameMain::SceneGameMain(){
 SceneGameMain::~SceneGameMain(){
 }
 
-void SceneGameMain::Initialize(SceneMediateData sceneData){
-	AllManagersInitialize(sceneData.playerIndex);
+void SceneGameMain::Initialize(SceneMediateData sceneData) {
+	AllManagersInitialize();
+	for (int i = 0; i < MAX_PLAYER; ++i) {
+		managers->Player()->SpawnPlayer(i, Vec2::Setup(150, 150));
+	}
 }
 
 SceneMediateData SceneGameMain::Update(){
-	SceneMediateData nextScene;
-	nextScene = AllManagersUpdate();
-	return nextScene;
+	if (managers->Player()->GetJoinNum() <= 0) { return SceneMediateData::Setup(SCENE_TITLE); }
+	managers->Player()->Update();
+	managers->Enemy()->Update();
+	return SceneMediateData::Setup(SCENE_NOCHANGE);
 }
 
 void SceneGameMain::Draw(){
@@ -30,21 +34,19 @@ void SceneGameMain::Finalize(){
 
 //-----private-----
 
-void SceneGameMain::AllManagersInitialize(int startPlayerIndex){
-	managers->Player()->Initialize(startPlayerIndex);
+void SceneGameMain::AllManagersInitialize(){
+	managers->Player()->Initialize();
 	managers->Enemy()->Initialize();
 	managers->Damage()->Initialize();
 	managers->Item()->Initialize();
 
 }
 
-SceneMediateData SceneGameMain::AllManagersUpdate(){
+void SceneGameMain::AllManagersUpdate(){
 	managers->Player()->Update();
-	SceneMediateData nextScene = managers->Enemy()->Update();
+	managers->Enemy()->Update();
 	managers->Damage()->Update();
 	managers->Item()->Update();
-
-	return nextScene;
 }
 
 void SceneGameMain::AllManagersDraw(){
