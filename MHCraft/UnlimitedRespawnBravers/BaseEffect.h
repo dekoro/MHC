@@ -17,6 +17,7 @@ public:
 
 	virtual void Rendering(std::function<void()> Draw);
 
+	virtual void Rendering(std::function<void()> Draw, int hGra);
 
 protected:
 	virtual void ConstSet(){};//シェーダーに定数セット

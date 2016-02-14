@@ -7,6 +7,7 @@
 #include "IAttackable.h"
 #include "DamageAreaManager.h"
 #include"Cutting.h"//å„Ç≈çÌèú
+#include<memory>
 
 class Player : public ICharacter, public IAttackable
 {
@@ -48,6 +49,7 @@ private:
 	bool					isEnd;
 	bool					isWalk;
 
+	std::shared_ptr<Cutting> cut;
 
 	void SetPlayerColor(PlayerColorList colors);
 	void SetAnimeData(AnimeData animeData);

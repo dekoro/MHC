@@ -1,6 +1,8 @@
 #include"Blur.h"
 #include"Vec2.h"
 #include"EffectManager.h"
+#include<minmax.h>
+
 
 Blur::Blur() : BaseEffect(EffectManager::GetInstance()->GetEffect("Blur"))
 {
@@ -56,6 +58,8 @@ void Blur::ConstSet()
 	{
 		velocity = 0;
 	}
+
+	velocity = min(velocity,0.008);
 
 	directoin.z = velocity;
 

@@ -17,7 +17,7 @@ Cutting::~Cutting()
 
 void Cutting::ConstSet()
 {
-	SetSlope(VGet(0.5,0.5,0.7));
+	SetSlope(VGet(0.5,0.3,0.7));
 	SetPSConstF(0,slope);
 }
 

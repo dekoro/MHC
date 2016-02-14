@@ -23,7 +23,7 @@ float4 main( float2 texCoord  : TEXCOORD0 ) : COLOR
       
       texCoord += normalize(Direction.xy) * Direction.z;
 
-      texCoord += accuracy;   
+      //texCoord += accuracy;   
       
       totalWeight += weight; 
    }

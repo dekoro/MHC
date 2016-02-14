@@ -15,6 +15,8 @@
 #include"ScreenLayout.h"
 #include"Cutting.h"
 #include"Blur.h"
+#include"Stage.h"
+#include"TextLoader.h"
 
 
 class SceneGameMain: public IScenes
@@ -35,8 +37,10 @@ private:
 
 	//ƒeƒXƒg
 	std::shared_ptr<BaseEffect> blur;
+	std::shared_ptr<Cutting> cut;
 	std::shared_ptr<Camera> camera;
 	std::shared_ptr<ScreenLayout> screen;
+	std::shared_ptr<Stage> stage;
 
 
 	void LocalDraw();

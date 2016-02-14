@@ -37,3 +37,28 @@ void BaseEffect::Rendering(std::function<void()> Draw)
 
 	SetUsePixelShader(0);
 }
+
+void BaseEffect::Rendering(std::function<void()> Draw,int hGra)
+{
+	assert(vs != -1 || ps != -1 && "オリジナルシェーダーが読み込みに失敗しています");
+
+	MV1SetUseOrigShader(TRUE);//シェーダ使用ＯＮ
+
+
+	SetUseVertexShader(vs);//シェーダハンドルが0なら固定機能に切り替わると思う
+
+	SetUsePixelShader(ps);
+
+	ConstSet();
+
+	SetUseTextureToShader(0, hGra);
+
+	Draw();//描画処理
+
+	MV1SetUseOrigShader(FALSE);//シェーダ使用ＯFF
+
+	SetUseVertexShader(0);//シェーダハンドルが0なら固定機能に切り替わると思う
+
+	SetUsePixelShader(0);
+}
+

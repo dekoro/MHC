@@ -9,7 +9,7 @@ class BaseEffect;
 class Frangment
 {
 public:
-	Frangment(Vec2 direction, float velocity,e_CutDirection e_Direction);
+	Frangment(Vec2 direction,e_CutDirection e_Direction);
 	~Frangment();
 	void Initialize();
 
@@ -24,7 +24,7 @@ private:
 	Vec2 pos;
 	Vec2 direction;
 	const Vec2 originDirection;
-	const Vec2  velocity;
+	const float  velocity = 0.2f;
 	const float END_VELOCITY = 10.0f;
 };
 

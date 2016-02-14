@@ -22,6 +22,7 @@ void Player::Initialize(){
 	isWalk			= false;
 	isEnd			= false;
 	cntInvincible	= 120;
+	cut = std::make_shared<Cutting>(e_Right);
 }
 
 void Player::Update(){
@@ -35,7 +36,12 @@ void Player::Draw(){
 	int attackImage = (cntAttack > 0) ? 4 : 0;
 		device->Image()->ChangeImageType(imageHandle, imageType + attackImage);
 		device->Image()->ChangeAnimePlay(imageHandle, animeData.isAnimation);
-		device->Image()->DrawPlayerCenter(imageHandle, position);
+
+		cut->Rendering([&]()
+		{
+			device->Image()->DrawPlayerCenter(imageHandle, position);
+		}, device->GetInstance()->Image()->GetHGraphics(imageHandle));
+
 
 }
 

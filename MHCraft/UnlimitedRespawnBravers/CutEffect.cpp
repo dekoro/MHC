@@ -3,7 +3,7 @@
 
 
 CutEffect::CutEffect(int time, Vec2 direction) 
-	:timer(time), right(direction, 4, e_Right), left(Vec2(-direction.X, -direction.Y), 4, e_Left)
+	:timer(time), right(direction, e_Right), left(Vec2(-direction.X, -direction.Y), e_Left)
 {
 	isStart = false;
 
@@ -52,4 +52,9 @@ void CutEffect::Cut(int hGraphics,Vec2 pos)
 void CutEffect::IsStart()
 {
 	isStart = true;
+}
+
+bool CutEffect::IsEnd()
+{
+	return right.IsEnd() && left.IsEnd();
 }

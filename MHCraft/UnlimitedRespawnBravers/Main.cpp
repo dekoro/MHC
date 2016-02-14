@@ -4,6 +4,7 @@
 
 #include<time.h>
 #include<assert.h>
+#include"TextLoader.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int cCmdShow){
 	bool windowMode = TRUE;
@@ -31,7 +32,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//SetScreenFlipTargetWindow(NULL);
 
 	int a = 0;
-
 
 	while (!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen()){
 		///Ç±Ç±Ç©ÇÁçXêV
@@ -61,7 +61,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		double a = end - strt;
 
-		assert(a < 1000 && "Ç∑Ç≤Ç¢éûä‘Ç©Ç©Ç¡ÇƒÇÈ");
+		//assert(a < 1000 && "Ç∑Ç≤Ç¢éûä‘Ç©Ç©Ç¡ÇƒÇÈ");
 
 		///Ç±Ç±Ç‹Ç≈ï`âÊ
 		//	fps->SleepNextFrame();

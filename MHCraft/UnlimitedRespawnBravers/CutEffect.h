@@ -21,6 +21,8 @@ public:
 
 	void IsStart();
 
+	bool IsEnd();
+
 private:
 	Frangment right;
 	Frangment left;

@@ -47,12 +47,26 @@ public:
 	void		AddCountPlayerAnimation(IMAGE_ASSET_NAME);
 	ImageData*	CopyImageData(IMAGE_ASSET_NAME);
 	Vec2		GetCharacterImageHalfSize(int imageIndex);
+
+
+	///////////追加↓////////
+	int GetHGraphics(int index);
+
+	int GetMapTipHundle(int num);
+
+	//現段階では１枚しかマップチップを読み込まないので注意
+	//ファイルパス 横の数　縦の数　総分割数 
+	void LoadMapTip(std::string filePath, int xNum, int yNum,int totalNum);
+
+	Vec2 GetMapTipSize();
 	
 private:
 	map<int, CharacterImageData*>		characterImageMap;
 	map<IMAGE_ASSET_NAME, ImageData*>	imageMap;
 	map<IMAGE_ASSET_NAME, char*>		imageFilePathMap;
 	map<IMAGE_ASSET_NAME, AnimeData>	animeDataMap;
+	vector<int> mapTip;
+	Vec2 mapTipSize;
 
 	void SetupImageMap();
 	void SetupImageFilePathMap();

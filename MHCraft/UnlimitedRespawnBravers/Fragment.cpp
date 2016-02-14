@@ -5,9 +5,8 @@
 #include"EffectManager.h"
 #include<stdio.h>
 
-Frangment::Frangment(Vec2 direction, float velocity, e_CutDirection e_Direction)
+Frangment::Frangment(Vec2 direction, e_CutDirection e_Direction)
 	: originDirection(direction),
-	velocity(Vec2(velocity * direction.X, velocity * direction.Y)),
 	fragment(e_Direction)
 {
 	pos = Vec2();
