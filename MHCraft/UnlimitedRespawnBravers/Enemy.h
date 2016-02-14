@@ -9,6 +9,8 @@
 #include "Managers.h"
 #include "PlayerManager.h"
 
+#include"CutEffect.h"
+
 class Enemy
 {
 public:
@@ -50,6 +52,7 @@ protected:
 	virtual void Damage(int damage);
 	void Heal(int Heal);
 	void CheckIsDead();
+	CutEffect cutEffect;
 private:
 
 	void SetTarget(int targetIndex);

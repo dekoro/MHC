@@ -4,33 +4,33 @@
 #include"TextureMapping.h"
 #include"Cutting.h"
 
-std::shared_ptr<EffectManager> EffectManager::effectMangaer = std::shared_ptr<EffectManager>();
+
+std::shared_ptr<EffectManager> EffectManager::effectMangaer = std::shared_ptr<EffectManager>(new EffectManager());
 
 EffectManager::EffectManager()
 {
-	AddEffect("texmap",std::make_shared<TextureMapping>());
-	AddEffect("cut", std::make_shared<Cutting>());
+
 }
 
 EffectManager::~EffectManager()
 {
 }
 
-void EffectManager::AddEffect(std::string name, std::shared_ptr<BaseEffect> effect)
+void EffectManager::AddEffect(std::string name, std::string path)
 {
 #if _DEBUG
 	CheckAlreadyThere(name, effects);//‚·‚Å‚É“o˜^‚³‚ê‚Ä‚¢‚é‚©
 #endif
 
-	this->effects[name] = effect;
+	this->effects[name] = LoadPixelShader(path.c_str());
 }
 
-BaseEffect* EffectManager::GetEffect(std::string name)
+int EffectManager::GetEffect(std::string name)
 {
 #if _DEBUG
 	CheckRegiserKey(name,effects);
 #endif
-	return effects[name].get();
+	return effects[name];
 }
 
 void EffectManager::RemoveAll()

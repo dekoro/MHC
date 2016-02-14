@@ -84,6 +84,7 @@
     <ClCompile Include="CharacterImageData.cpp" />
     <ClCompile Include="CharacterManager.cpp" />
     <ClCompile Include="ChildWindow.cpp" />
+    <ClCompile Include="CutEffect.cpp" />
     <ClCompile Include="Cutting.cpp" />
     <ClCompile Include="DamageAreaCircle.cpp" />
     <ClCompile Include="AbstractDamageArea.cpp" />
@@ -99,6 +100,7 @@
     <ClCompile Include="Enemy_Test.cpp" />
     <ClCompile Include="ErrorCheck.cpp" />
     <ClCompile Include="FlagManager.cpp" />
+    <ClCompile Include="Fragment.cpp" />
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="GamePad.cpp" />
     <ClCompile Include="GCircle.cpp" />
@@ -126,6 +128,8 @@
     <ClCompile Include="ScreenLayout.cpp" />
     <ClCompile Include="SoundData.cpp" />
     <ClCompile Include="SoundRenderer.cpp" />
+    <ClCompile Include="Stage.cpp" />
+    <ClCompile Include="TextLoader.cpp" />
     <ClCompile Include="TextureMapping.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Title.cpp" />
@@ -140,6 +144,7 @@
     <ClInclude Include="CharacterImageData.h" />
     <ClInclude Include="CharacterManager.h" />
     <ClInclude Include="ChildWindow.h" />
+    <ClInclude Include="CutEffect.h" />
     <ClInclude Include="Cutting.h" />
     <ClInclude Include="DamageAreaCircle.h" />
     <ClInclude Include="AbstractDamageArea.h" />
@@ -157,8 +162,10 @@
     <ClInclude Include="EnumGKey.h" />
     <ClInclude Include="ErrorCheck.h" />
     <ClInclude Include="EventManager.h" />
+    <ClInclude Include="e_Directon.h" />
     <ClInclude Include="e_ScreenLayout.h" />
     <ClInclude Include="FlagManager.h" />
+    <ClInclude Include="Fragment.h" />
     <ClInclude Include="GameMain.h" />
     <ClInclude Include="GCircle.h" />
     <ClInclude Include="GRectangle.h" />
@@ -192,7 +199,9 @@
     <ClInclude Include="ScreenLayout.h" />
     <ClInclude Include="SoundData.h" />
     <ClInclude Include="SoundRenderer.h" />
+    <ClInclude Include="Stage.h" />
     <ClInclude Include="SystemHub.h" />
+    <ClInclude Include="TextLoader.h" />
     <ClInclude Include="TextureMapping.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Title.h" />

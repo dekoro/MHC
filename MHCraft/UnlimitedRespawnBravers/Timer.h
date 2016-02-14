@@ -1,6 +1,10 @@
 #ifndef TIMER
 #define TIMER
 
+/*
+カウントアップ形式のタイマー
+*/
+
 class Timer
 {
 public:
@@ -12,6 +16,7 @@ public:
 	void Update();
 	int GetTime();
 	int GetMaxTim();
+	bool IsEnd();
 protected:
 	int currentTime;
 	int maxTime;

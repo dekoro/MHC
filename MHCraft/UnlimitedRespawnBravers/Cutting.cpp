@@ -1,16 +1,15 @@
 #include"Cutting.h"
 #include<assert.h>
 #include<DxLib.h>
+#include"EffectManager.h"
 
-Cutting::Cutting() :BaseEffect(LoadPixelShader("Shader/PSCut.pso"), LoadVertexShader(""))
+Cutting::Cutting(e_CutDirection e_Dir) :BaseEffect(e_Dir == e_Right ? EffectManager::GetInstance()->GetEffect("CutRight") : EffectManager::GetInstance()->GetEffect("CutLeft"))
 {
-	//x‚ªŒX‚«
-
 	slope.x = 0.0;
 	slope.y = 0.0;
 	slope.z = 0.0;
-
 }
+
 
 Cutting::~Cutting()
 {
@@ -18,7 +17,7 @@ Cutting::~Cutting()
 
 void Cutting::ConstSet()
 {
-	SetSlope(VGet(0.5,0.5,0.7));
+	SetSlope(VGet(0.5,0.3,0.7));
 	SetPSConstF(0,slope);
 }
 

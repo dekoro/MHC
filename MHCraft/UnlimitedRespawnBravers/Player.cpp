@@ -22,6 +22,7 @@ void Player::Initialize(){
 	isWalk			= false;
 	isEnd			= false;
 	cntInvincible	= 120;
+	cut = std::make_shared<Cutting>(e_Right);
 }
 
 void Player::Update(){
@@ -33,12 +34,15 @@ void Player::Update(){
 
 void Player::Draw(){
 	int attackImage = (cntAttack > 0) ? 4 : 0;
-	cut.Rendering([&]()
-	{
 		device->Image()->ChangeImageType(imageHandle, imageType + attackImage);
 		device->Image()->ChangeAnimePlay(imageHandle, animeData.isAnimation);
-		device->Image()->DrawPlayerCenter(imageHandle, position);
-	});
+
+		cut->Rendering([&]()
+		{
+			device->Image()->DrawPlayerCenter(imageHandle, position);
+		}, device->GetInstance()->Image()->GetHGraphics(imageHandle));
+
+
 }
 
 int Player::GetImageHandle(){
@@ -172,8 +176,8 @@ Vec2 Player::MoveVector(){
 void Player::SetIsEnd(){
 	managers->Player()->SetAddForbiddenCounter();
 	managers->Enemy()->DeadPlayerActioon();
-	isDead	= true;
-	isEnd	= true;
+	isDead	= false;
+	isEnd	= false;
 }
 
 void Player::SetDamageArea(){

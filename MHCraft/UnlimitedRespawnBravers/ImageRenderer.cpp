@@ -22,6 +22,11 @@ void ImageRenderer::DrawPlayerCenter(int imageIndex, Vec2 positionCenter){
 	Draw(imageHandle, positionCenter.GetIntX() - GetSizeHalfImageX(imageIndex), positionCenter.GetIntY() - GetSizeHalfImageY(imageIndex));
 }
 
+//プレイヤー専用？のグラフィックハンドル取得メソッド
+int ImageRenderer::GetHGraphics(int index)
+{
+	return characterImageMap[index]->GetImageHandle();
+}
 
 void ImageRenderer::DrawCeter(IMAGE_ASSET_NAME assetName, Vec2 posCenter){
 	//DrawCeter(assetName, posCenter.GetIntX(), posCenter.GetIntY());
@@ -213,4 +218,37 @@ void ImageRenderer::CheckNumAndSize(int imageHandle, int* numX, int* numY, int* 
 	GetGraphSize(imageHandle, sizeX, sizeY);
 }
 
+int ImageRenderer::GetMapTipHundle(int num)
+{
+	return	this->mapTip[num];
+}
 
+Vec2 ImageRenderer::GetMapTipSize()
+{
+	return mapTipSize;
+}
+
+void ImageRenderer::LoadMapTip(std::string filePath,int xNum,int yNum,int totalNum)
+{
+	int *gra = new int[totalNum];
+	this->mapTip.resize(totalNum);
+	int resourceGraphics = LoadGraph(filePath.c_str());
+	int x = 0, y = 0;//もと画像のサイズ
+	int localSizeX = 0, localSizeY = 0;
+	GetGraphSize(resourceGraphics,&x,&y);
+
+	localSizeX = x / xNum;
+	localSizeY= y / yNum;
+
+	this->mapTipSize = Vec2(localSizeX, localSizeY);
+
+	LoadDivGraph(filePath.c_str(), totalNum, xNum, yNum, localSizeX, localSizeY, gra);
+
+	//ローカル変数からメンバ変数への詰め替え
+	for (int i = 0; i < totalNum; ++i)
+	{
+		this->mapTip[i] = gra[i];
+	}
+
+	delete[] gra;
+}

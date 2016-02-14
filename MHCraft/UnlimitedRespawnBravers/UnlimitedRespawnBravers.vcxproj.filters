@@ -172,9 +172,6 @@
     <Filter Include="ヘッダー ファイル\Device\ScreenLayout\e_ScreenLayout">
       <UniqueIdentifier>{c732468f-205a-4115-b648-19e4735f54e4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Effect\Cutting">
-      <UniqueIdentifier>{4e9e6c49-2784-40db-965c-174d8c37c8ae}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\Effect\Cutting">
       <UniqueIdentifier>{bb1c8d61-ac97-449a-b74e-34a2db30d24f}</UniqueIdentifier>
     </Filter>
@@ -183,6 +180,33 @@
     </Filter>
     <Filter Include="ソース ファイル\Effect\Blur">
       <UniqueIdentifier>{8b6ee218-ba61-45cb-bd6b-17b66d34e3f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\CutEffect">
+      <UniqueIdentifier>{94fc8deb-3e98-48b7-851f-790ed077e37d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\CutEffect\Fragment">
+      <UniqueIdentifier>{9e4141c9-79f9-4a30-b534-f71eeef68fb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\CutEffect\Cutting">
+      <UniqueIdentifier>{4e9e6c49-2784-40db-965c-174d8c37c8ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Character\Stage">
+      <UniqueIdentifier>{e135ddf9-61a3-47ec-a8af-a1e6f5315ccd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\CutEffect">
+      <UniqueIdentifier>{378c591e-3558-427f-aab7-e4bb20a88ab7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\CutEffect\Fragment">
+      <UniqueIdentifier>{75aa0914-2a1b-4e20-a022-cb5d7e87452a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Character\Stage">
+      <UniqueIdentifier>{0fd26bae-391a-4193-9dd4-63a90fa8586f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Device\TextLoader">
+      <UniqueIdentifier>{554d4b23-78b7-428f-baf9-edf8c7c590ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Device\TextLoader">
+      <UniqueIdentifier>{1a4a1e5a-b1c5-4c7f-82d0-a255008eca3d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -339,14 +363,26 @@
     <ClCompile Include="GameMain.cpp">
       <Filter>ソース ファイル\SceneManager\GameMain</Filter>
     </ClCompile>
-    <ClCompile Include="Cutting.cpp">
-      <Filter>ソース ファイル\Effect\Cutting</Filter>
-    </ClCompile>
     <ClCompile Include="EffectManager.cpp">
       <Filter>ソース ファイル\Effect\EffectManager</Filter>
     </ClCompile>
     <ClCompile Include="Blur.cpp">
       <Filter>ソース ファイル\Effect\Blur</Filter>
+    </ClCompile>
+    <ClCompile Include="CutEffect.cpp">
+      <Filter>ソース ファイル\Effect\CutEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Fragment.cpp">
+      <Filter>ソース ファイル\Effect\CutEffect\Fragment</Filter>
+    </ClCompile>
+    <ClCompile Include="Cutting.cpp">
+      <Filter>ソース ファイル\Effect\CutEffect\Cutting</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage.cpp">
+      <Filter>ソース ファイル\Character\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="TextLoader.cpp">
+      <Filter>ソース ファイル\Device\TextLoader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -536,14 +572,29 @@
     <ClInclude Include="GameMain.h">
       <Filter>ヘッダー ファイル\GSystem\SceneManager\GameMain</Filter>
     </ClInclude>
-    <ClInclude Include="Cutting.h">
-      <Filter>ヘッダー ファイル\Effect\Cutting</Filter>
-    </ClInclude>
     <ClInclude Include="EffectManager.h">
       <Filter>ヘッダー ファイル\Effect\EffectManager</Filter>
     </ClInclude>
     <ClInclude Include="Blur.h">
       <Filter>ヘッダー ファイル\Effect\Blur</Filter>
+    </ClInclude>
+    <ClInclude Include="CutEffect.h">
+      <Filter>ヘッダー ファイル\Effect\CutEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Fragment.h">
+      <Filter>ヘッダー ファイル\Effect\CutEffect\Fragment</Filter>
+    </ClInclude>
+    <ClInclude Include="Cutting.h">
+      <Filter>ヘッダー ファイル\Effect\Cutting</Filter>
+    </ClInclude>
+    <ClInclude Include="e_Directon.h">
+      <Filter>ヘッダー ファイル\Effect\Cutting</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage.h">
+      <Filter>ヘッダー ファイル\Character\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="TextLoader.h">
+      <Filter>ヘッダー ファイル\Device\TextLoader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

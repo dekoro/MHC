@@ -34,3 +34,8 @@ int Timer::GetMaxTim()
 {
 	return maxTime;
 }
+
+bool Timer::IsEnd()
+{
+	return currentTime >= maxTime;
+}
