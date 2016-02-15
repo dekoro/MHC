@@ -7,12 +7,12 @@
 
 SceneGameMain::SceneGameMain(){
 	TextLoader loader;
-	loader.LoadDate("a.txt");
+	loader.LoadDate("testMap.csv");
 	device = DeviceManager::GetInstance();
 	managers = Managers::GetInstance();
 	imageBackGround = device->Image()->CopyImageData(imageAsset_GameMain_BackGround);
 	stage = std::make_shared<Stage>(loader.GetDate());
-	device->Image()->LoadMapTip("Resource/Title_BackGround.png",5,5,25);
+	device->Image()->LoadMapTip("Resource/mapchip.png",8,4,(4*8)-3);
 }
 
 SceneGameMain::~SceneGameMain(){

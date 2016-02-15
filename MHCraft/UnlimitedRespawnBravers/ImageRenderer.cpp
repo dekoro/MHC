@@ -220,6 +220,9 @@ void ImageRenderer::CheckNumAndSize(int imageHandle, int* numX, int* numY, int* 
 
 int ImageRenderer::GetMapTipHundle(int num)
 {
+	if (num == -1)
+		return 15;
+
 	return	this->mapTip[num];
 }
 
