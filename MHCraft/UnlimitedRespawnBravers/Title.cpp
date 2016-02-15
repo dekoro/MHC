@@ -25,7 +25,7 @@ void SceneTitle::Initialize(SceneMediateData sceneData){
 SceneMediateData SceneTitle::Update(){
 	SceneMediateData sceneData = SceneMediateData::Setup(SCENE_TITLE);
 	if (enterPlayerIndex == -1){
-		enterPlayerIndex = CheckControllPadNo();;
+		enterPlayerIndex = CheckControllPadNo();
 	}
 	if (nextSceneCount <= 0){
 		sceneData.playerIndex = enterPlayerIndex;

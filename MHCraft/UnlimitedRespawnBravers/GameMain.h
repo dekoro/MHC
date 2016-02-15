@@ -38,7 +38,6 @@ private:
 	//ƒeƒXƒg
 	std::shared_ptr<BaseEffect> blur;
 	std::shared_ptr<Cutting> cut;
-	std::shared_ptr<Camera> camera;
 	std::shared_ptr<ScreenLayout> screen;
 	std::shared_ptr<Stage> stage;
 

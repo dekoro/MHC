@@ -92,6 +92,7 @@
     <ClCompile Include="DamageAreaRectangle.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="DeviceManager.cpp" />
+    <ClCompile Include="EffectList.cpp" />
     <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyGhost.cpp" />
@@ -109,7 +110,6 @@
     <ClCompile Include="ImageData.cpp" />
     <ClCompile Include="ImageRenderer.cpp" />
     <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="InputState.cpp" />
     <ClCompile Include="IScenes.cpp" />
     <ClCompile Include="AItem.cpp" />
     <ClCompile Include="ItemLolipop.cpp" />
@@ -135,6 +135,7 @@
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="Vec2.cpp" />
+    <ClCompile Include="InputState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseEffect.h" />
@@ -151,6 +152,7 @@
     <ClInclude Include="DamageAreaManager.h" />
     <ClInclude Include="DamageAreaRectangle.h" />
     <ClInclude Include="DeviceManager.h" />
+    <ClInclude Include="EffectList.h" />
     <ClInclude Include="EffectManager.h" />
     <ClInclude Include="EnemyGhost.h" />
     <ClInclude Include="EnemyKingPumpkin.h" />
@@ -181,7 +183,6 @@
     <ClInclude Include="ImageData.h" />
     <ClInclude Include="ImageRenderer.h" />
     <ClInclude Include="InputManager.h" />
-    <ClInclude Include="InputState.h" />
     <ClInclude Include="IScenes.h" />
     <ClInclude Include="AItem.h" />
     <ClInclude Include="ItemLollipop.h" />
@@ -207,6 +208,7 @@
     <ClInclude Include="Title.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="Vec2.h" />
+    <ClInclude Include="InputState.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource\Enemy_Bat.png" />

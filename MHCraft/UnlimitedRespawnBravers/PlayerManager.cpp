@@ -77,7 +77,10 @@ void PlayerManager::CheckHitAllPlayer(){
 //----private---
 
 void PlayerManager::InitializeAllPlayers(int startPlayer){
-	AddTempPlayer(startPlayer);
+	AddTempPlayer(0);
+	AddTempPlayer(1);
+	AddTempPlayer(2);
+	AddTempPlayer(3);
 	for each(Player* pl in playerList){
 		if (pl == NULL){ return; }
 		pl->Initialize();

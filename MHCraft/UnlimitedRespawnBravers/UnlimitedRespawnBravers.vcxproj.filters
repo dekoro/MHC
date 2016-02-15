@@ -208,6 +208,12 @@
     <Filter Include="ソース ファイル\Device\TextLoader">
       <UniqueIdentifier>{1a4a1e5a-b1c5-4c7f-82d0-a255008eca3d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\EffectList">
+      <UniqueIdentifier>{d07b9a6f-5031-4bf1-aab5-5f0f7432d9a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\EffectList">
+      <UniqueIdentifier>{ef4fad16-8d5c-4c2a-9f32-95f4c9379b2f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FlagManager.cpp">
@@ -254,9 +260,6 @@
     </ClCompile>
     <ClCompile Include="Macro.cpp">
       <Filter>ソース ファイル\GSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="InputState.cpp">
-      <Filter>ソース ファイル\Device\Input</Filter>
     </ClCompile>
     <ClCompile Include="GamePad.cpp">
       <Filter>ソース ファイル\Device\Input</Filter>
@@ -384,6 +387,12 @@
     <ClCompile Include="TextLoader.cpp">
       <Filter>ソース ファイル\Device\TextLoader</Filter>
     </ClCompile>
+    <ClCompile Include="InputState.cpp">
+      <Filter>ソース ファイル\Device\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectList.cpp">
+      <Filter>ソース ファイル\Effect\EffectList</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GMath.h">
@@ -462,9 +471,6 @@
       <Filter>ヘッダー ファイル\GSystem</Filter>
     </ClInclude>
     <ClInclude Include="IInput.h">
-      <Filter>ヘッダー ファイル\Device\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="InputState.h">
       <Filter>ヘッダー ファイル\Device\Input</Filter>
     </ClInclude>
     <ClInclude Include="NumPad.h">
@@ -595,6 +601,12 @@
     </ClInclude>
     <ClInclude Include="TextLoader.h">
       <Filter>ヘッダー ファイル\Device\TextLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="InputState.h">
+      <Filter>ヘッダー ファイル\Device\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectList.h">
+      <Filter>ヘッダー ファイル\Effect\EffectList</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

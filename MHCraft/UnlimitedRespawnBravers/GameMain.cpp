@@ -12,7 +12,8 @@ SceneGameMain::SceneGameMain(){
 	managers = Managers::GetInstance();
 	imageBackGround = device->Image()->CopyImageData(imageAsset_GameMain_BackGround);
 	stage = std::make_shared<Stage>(loader.GetDate());
-	device->Image()->LoadMapTip("Resource/mapchip.png",8,4,(4*8)-3);
+	device->Image()->LoadMapTip("Resource/mapchip.png", 8, 4, (4 * 8) - 3);
+	this->screen = std::make_shared<ScreenLayout>(e_Quad);
 }
 
 SceneGameMain::~SceneGameMain(){
@@ -22,14 +23,12 @@ void SceneGameMain::Initialize(SceneMediateData sceneData){
 	ShaderLoad();
 	blur = std::make_shared<Blur>();
 	cut = std::make_shared<Cutting>(e_Left);
-	this->screen = std::make_shared<ScreenLayout>(e_Quad, blur.get());
-
 	AllManagersInitialize(sceneData.playerIndex);
+	screen->Initialize(managers->Player());
 }
 
 SceneMediateData SceneGameMain::Update(){
 	SceneMediateData nextScene;
-	camera->Update();
 	nextScene = AllManagersUpdate();
 	return nextScene;
 }
@@ -39,15 +38,10 @@ void SceneGameMain::Draw(){
 
 	screen->Rendaring([&]()
 	{
-		camera->SetPosition();
 		LocalDraw();
 	});
-	/*camera->SetPosition();
-	LocalDraw();*/
 
-	//blur->Rendering([&](){
-	//	device->GetInstance()->Image()->DrawBackGround();
-	//});
+	//LocalDraw();
 }
 
 void SceneGameMain::Finalize(){
@@ -66,11 +60,10 @@ void SceneGameMain::LocalDraw()
 
 void SceneGameMain::AllManagersInitialize(int startPlayerIndex){
 	managers->Player()->Initialize(startPlayerIndex);
+
 	managers->Enemy()->Initialize();
 	managers->Damage()->Initialize();
 	managers->Item()->Initialize();
-
-	camera = std::make_shared<Camera>(managers->Player()->GetPlayerData(0), 0);
 }
 
 SceneMediateData SceneGameMain::AllManagersUpdate(){

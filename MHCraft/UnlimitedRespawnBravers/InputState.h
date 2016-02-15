@@ -1,5 +1,5 @@
-#ifndef _DEVICE_INPUT_INPUT_H_
-#define _DEVICE_INPUT_INPUT_H_
+#ifndef INPUT_STATE
+#define INPUT_STATE
 
 #include "GSystem.h"
 #include "SystemHub.h"
@@ -18,6 +18,8 @@ public:
 	bool CheckKeyRelease(GKey key);
 	bool CheckKeyFree(GKey key);
 	bool CheckAnyKeyPush();
+	bool CheckLeftTrigger();
+	bool CheckRightTrigger();
 	void ChangeKeyConfig(GKey key, int inputKey);
 	void ChangeKeyConfig(GKey inputKey[GKEY_NUM]);
 	int  GetPadIndex();
@@ -30,15 +32,15 @@ public:
 	int keyConfigListKeyboard[GKEY_NUM];
 protected:
 	void ResetKeyConfig();
-	bool IsInput(int preORcurState, GKey key);
-	bool IsInput(int preORcurState, int keyCode);
+	bool IsInput(XINPUT_STATE preORcurState, GKey key);
+	bool IsInput(XINPUT_STATE preORcurState, int keyCode);
 
 private:
 	int padIndex;
 	bool isUse;
 	int keyConfigList[GKEY_NUM];
-	int curState;
-	int preState;
+	XINPUT_STATE curState;
+	XINPUT_STATE preState;
 	int GetDxPadType();
 
 
