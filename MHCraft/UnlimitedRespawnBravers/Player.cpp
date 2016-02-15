@@ -3,20 +3,27 @@
 #include "EnemyManager.h"
 
 Player::Player(int playerNo) {
-	this->padNo = padNo;
-	position = Vec2::Setup(Window::WIDTH / 2, Window::HEIGHT * 4 / 5);
-	Setup(CharacterInformation::Setup(10,10,10,10,1.0,10));
-	Initialize();
-	maxCntAttack = 20;
+	this->padNo		= padNo;
+	device = DeviceManager::GetInstance();
+	position		= Vec2::Setup(Window::WIDTH / 2, Window::HEIGHT * 4 / 5);
+	Setup(CharacterInformation::Setup(10, 10, 10, 10, 1.0, 10));
+	maxCntAttack	= 20;
 }
 
 Player::~Player() {
 
 }
 
-void Player::Setup(CharacterInformation parameter)
-{
-	this->parameter = parameter;
+void Player::Setup(CharacterInformation parameter){
+	this->parameter			= parameter;
+	PlayerColorList playerColor = PlayerColorList::Setup(GetRand(255), GetRand(255), GetRand(255),
+		GetRand(255), GetRand(255), GetRand(255),
+		GetRand(255), GetRand(255), GetRand(255));
+	SetPlayerColor(playerColor);
+	SetAnimeData(device->Image()->GetAnimeData(imageAsset_player_fighter));
+	imageHandle = device->Image()->AddCharacterImageMap(imageAsset_player_fighter, colors);
+//	LoadImageHandle(assetName);
+
 }
 
 void Player::Initialize() {
@@ -139,16 +146,16 @@ void Player::Move() {
 Vec2 Player::MoveVector() {
 	Vec2 pos = Vec2::Zero();
 	if (device->Input()->GetInputState(padNo)->CheckKeyDown(GKey_Up)) {
-		pos.Y -= 1;
-	}
-	if (device->Input()->GetInputState(padNo)->CheckKeyDown(GKey_Down)) {
 		pos.Y += 1;
 	}
+	if (device->Input()->GetInputState(padNo)->CheckKeyDown(GKey_Down)) {
+		pos.Y -= 1;
+	}
 	if (device->Input()->GetInputState(padNo)->CheckKeyDown(GKey_Left)) {
-		pos.X -= 1;
+		pos.X += 1;
 	}
 	if (device->Input()->GetInputState(padNo)->CheckKeyDown(GKey_Right)) {
-		pos.X += 1;
+		pos.X -= 1;
 	}
 	pos.NormalizeSelf();
 	if (pos == Vec2::Zero()) {

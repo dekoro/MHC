@@ -3,14 +3,12 @@
 
 #define DISPLAY_SIZE_W		1280
 #define DISPLAY_SIZE_H		720
-#define USE_PAD_MAX			16
+#define USE_PAD_MAX			4
 #define GKEY_NUM			7
 #define KEYBOARD_NUM		256
 #define ANIME_FRAME_NUM		128
 #define	GAME_FPS			60
 #define PI					3.14159265359
-
-#define WAKANNE_SKIP
 
 #include "SystemHub.h"
 #include "Vec2.h"

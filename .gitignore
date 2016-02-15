@@ -9,3 +9,7 @@ MHCraft/UnlimitedRespawnBravers/Release/Unlimite.95315697.tlog/cl.command.1.tlog
 MHCraft/UnlimitedRespawnBravers/Release/Unlimite.95315697.tlog/link.command.1.tlog
 MHCraft/UnlimitedRespawnBravers/Release/Unlimite.95315697.tlog/link.read.1.tlog
 MHCraft/UnlimitedRespawnBravers/Release/Unlimite.95315697.tlog/link.write.1.tlog
+*.user
+*.sdf
+*.suo
+MHCraft/UnlimitedRespawnBravers/Log.txt

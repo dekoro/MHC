@@ -9,21 +9,20 @@ PlayerManager::~PlayerManager(){
 	DeleteAllPlayers();
 }
 
-void PlayerManager::Setup()
-{
+void PlayerManager::Setup(){
 	for (int i = 0; i < USE_PAD_MAX; ++i) {
 		AddPlayerList(i, i);
 	}
 }
 
 void PlayerManager::AddPlayerList(int playerNo, int padNo){
-	if (playerList[playerNo] != NULL){
-		Debug::Alert(STR("PlyerManager::AddPlayerList\n"
-			,"Šù‚É“o˜^‚³‚ê‚Ä‚¢‚éƒCƒ“ƒfƒbƒNƒX("
-			+ std::to_string(playerNo)
-			+")‚É“o˜^‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚Ü‚·B"
-		));
-	}
+	//if (playerList[playerNo] != NULL){
+	//	//Debug::Alert(STR("PlyerManager::AddPlayerList\n"
+	//	//	,"Šù‚É“o˜^‚³‚ê‚Ä‚¢‚éƒCƒ“ƒfƒbƒNƒX("
+	//	//	+ std::to_string(playerNo)
+	//	//	+")‚É“o˜^‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚Ü‚·B"
+	//	//));
+	//}
 	playerList[playerNo]	= new Player(playerNo);
 	padNoList[playerNo]		= padNo;
 }

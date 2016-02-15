@@ -20,20 +20,20 @@ public:
 	Player*	GetPlayerData(int index);
 
 private:
-	DeviceManager*				device;
+	DeviceManager*						device;
 	std::array<Player*, USE_PAD_MAX>	playerList;
 	std::array<int, USE_PAD_MAX>		padNoList;
-	int							count;
-	int							countAddForbidden;
+	int		count;
+	int		countAddForbidden;
 
-	void InitializeAllPlayers();
-	void UpdateAllPlayers();
-	void DrawAllPlayers();
-	void PlayerDisable(int index);
-	void DeleteAllPlayers();
-	void Counting();
-	void ResetCounter();
-	void ResetAddPlayerForbiddenCounter();
+	void	InitializeAllPlayers();
+	void	UpdateAllPlayers();
+	void	DrawAllPlayers();
+	void	PlayerDisable(int index);
+	void	DeleteAllPlayers();
+	void	Counting();
+	void	ResetCounter();
+	void	ResetAddPlayerForbiddenCounter();
 };
 
 

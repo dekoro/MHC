@@ -1,19 +1,22 @@
 #ifndef _SCENEMANAGER_GAMEMAIN_GAMEMAIN_H_
 #define _SCENEMANAGER_GAMEMAIN_GAMEMAIN_H_
 
-#include "GSystemHub.h"
-#include "GMath.h"
-#include "IScenes.h"
-#include "PlayerManager.h"
-#include "EnemyManager.h"
-#include "ItemManager.h"
-
 #include<memory>
+
+#include "GSystemHub.h"
+#include "IScenes.h"
+
 #include"Camera.h"
 #include"TextureMapping.h"
 #include"ScreenLayout.h"
 #include"Cutting.h"
 #include"Blur.h"
+
+class PlayerManager;
+class EnemyManager;
+class ItemManager;
+class DamageAreaManager;
+
 
 class SceneGameMain: public IScenes
 {
@@ -28,10 +31,10 @@ public:
 private:
 	DeviceManager*		device;
 	ImageData*			imageBackGround;
-	PlayerManager*		playerManager;
-	EnemyManager*		enemyManager;
-	DamageAreaManager*	damageAreaManager;
-	ItemManager*		itemManager;
+	std::shared_ptr<PlayerManager>		playerManager;
+	std::shared_ptr<EnemyManager>		enemyManager;
+	std::shared_ptr<DamageAreaManager>	damageAreaManager;
+	std::shared_ptr<ItemManager>		itemManager;
 	
 
 	TextureMapping texMapEffect;

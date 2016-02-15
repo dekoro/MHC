@@ -1,4 +1,10 @@
 #include "GameMain.h"
+
+#include "GMath.h"
+#include "PlayerManager.h"
+#include "EnemyManager.h"
+#include "ItemManager.h"
+
 #include "ScreenLayout.h"
 #include "TextureMapping.h"
 #include "DamageAreaManager.h"
@@ -7,14 +13,20 @@
 SceneGameMain::SceneGameMain(){
 	device			= DeviceManager::GetInstance();
 	imageBackGround = device->Image()->CopyImageData(imageAsset_GameMain_BackGround);
-
 	this->screen = std::make_shared<ScreenLayout>(e_Double, &blur);
+
+	playerManager	  = std::make_shared<PlayerManager>();
+	enemyManager	  = std::make_shared<EnemyManager>();
+	itemManager		  = std::make_shared<ItemManager>();
+	damageAreaManager = std::make_shared<DamageAreaManager>();
+
 }
 
 SceneGameMain::~SceneGameMain(){
 }
 
 void SceneGameMain::Initialize(SceneMediateData sceneData){
+	
 	AllManagersInitialize(sceneData.playerIndex);
 }
 
@@ -47,6 +59,7 @@ void SceneGameMain::LocalDraw()
 }
 
 void SceneGameMain::AllManagersInitialize(int startPlayerIndex){
+	playerManager		->Setup();
 	playerManager		->Initialize();
 	enemyManager		->Initialize();
 	itemManager			->Initialize();
