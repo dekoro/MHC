@@ -1,6 +1,6 @@
 #include "GSystem.h"
 
-PlayerColorList PlayerColorList::Setup(unsigned int colorHair, unsigned int colorSkin, unsigned int colorArmer){
+PlayerColorList PlayerColorList::Setup(unsigned int colorHair, unsigned int colorSkin, unsigned int colorArmer) {
 	PlayerColorList tmp;
 	tmp.colorHair = colorHair;
 	tmp.colorSkin = colorSkin;
@@ -8,118 +8,118 @@ PlayerColorList PlayerColorList::Setup(unsigned int colorHair, unsigned int colo
 	return tmp;
 }
 PlayerColorList PlayerColorList::Setup(int colorHairR, int colorHairG, int colorHairB,
-												int colorSkinR, int colorSkinG, int colorSkinB,
-												int colorArmerR, int colorArmerG, int colorArmerB){
-	return Setup( GetColor(colorHairR	, colorHairG	, colorHairB)
-				, GetColor(colorSkinR	, colorSkinG	, colorSkinB)
-				, GetColor(colorArmerR	, colorArmerG	, colorArmerB));
+	int colorSkinR, int colorSkinG, int colorSkinB,
+	int colorArmerR, int colorArmerG, int colorArmerB) {
+	return Setup(GetColor(colorHairR, colorHairG, colorHairB)
+		, GetColor(colorSkinR, colorSkinG, colorSkinB)
+		, GetColor(colorArmerR, colorArmerG, colorArmerB));
 }
-void PlayerColorList::SetupSelf(unsigned int colorHair, unsigned int colorSkin, unsigned int colorArmer){
-	this->colorHair		= colorHair;
-	this->colorSkin		= colorSkin;
-	this->colorArmer	= colorArmer;
+void PlayerColorList::SetupSelf(unsigned int colorHair, unsigned int colorSkin, unsigned int colorArmer) {
+	this->colorHair = colorHair;
+	this->colorSkin = colorSkin;
+	this->colorArmer = colorArmer;
 }
-void PlayerColorList::SetupSelf(int colorHairR	, int colorHairG	, int colorHairB,
-								int colorSkinR	, int colorSkinG	, int colorSkinB,
-								int colorArmerR	, int colorArmerG	, int colorArmerB){
+void PlayerColorList::SetupSelf(int colorHairR, int colorHairG, int colorHairB,
+	int colorSkinR, int colorSkinG, int colorSkinB,
+	int colorArmerR, int colorArmerG, int colorArmerB) {
 
-	SetupSelf( GetColor(colorHairR	, colorHairG	, colorHairB)
-			 , GetColor(colorSkinR	, colorSkinG	, colorSkinB)
-			 , GetColor(colorArmerR	, colorArmerG	, colorArmerB));
-}
-
-void AnimeData::SetupAnimeData(int XNum, int typeNum, int oneSizeX, int oneSizeY, int skipFrame, int isLoop){
-	this->XNum			= XNum;
-	this->typeNum		= typeNum;
-	this->oneSizeX		= oneSizeX;
-	this->oneSizeY		= oneSizeY;
-	this->skipFrame		= skipFrame;
-	this->isLoop		= isLoop;
-	this->isAnimation	= (GetFrameAllNum() > 1);
+	SetupSelf(GetColor(colorHairR, colorHairG, colorHairB)
+		, GetColor(colorSkinR, colorSkinG, colorSkinB)
+		, GetColor(colorArmerR, colorArmerG, colorArmerB));
 }
 
-AnimeData AnimeData::Setup(int XNum, int typeNum, int oneSizeX, int oneSizeY, int skipFrame, int isLoop){
+void AnimeData::SetupAnimeData(int XNum, int typeNum, int oneSizeX, int oneSizeY, int skipFrame, int isLoop) {
+	this->XNum = XNum;
+	this->typeNum = typeNum;
+	this->oneSizeX = oneSizeX;
+	this->oneSizeY = oneSizeY;
+	this->skipFrame = skipFrame;
+	this->isLoop = isLoop;
+	this->isAnimation = (GetFrameAllNum() > 1);
+}
+
+AnimeData AnimeData::Setup(int XNum, int typeNum, int oneSizeX, int oneSizeY, int skipFrame, int isLoop) {
 	AnimeData tmp;
 	tmp.SetupAnimeData(XNum, typeNum, oneSizeX, oneSizeY, skipFrame, isLoop);
 	return tmp;
 }
 
-CharacterInformation CharacterInformation::Setup(int health, int sp, int attackPower, int pushPower, double speed, double hitRange){
+CharacterInformation CharacterInformation::Setup(int health, int sp, int attackPower, int pushPower, double speed, double hitRange) {
 	CharacterInformation prm;
 	prm.SetupSelf(health, sp, attackPower, pushPower, speed, hitRange);
 	return prm;
 }
 
-CharacterInformation* CharacterInformation::SetupSelf(int health, int sp, int attackPower, int pushPower, double speed, double hitRange){
-	this->health		= health;
-	this->maxHealth		= health;
-	this->sp			= sp;
-	this->maxSp			= sp;
-	this->attackPower	= attackPower;
-	this->pushPower		= pushPower;
-	this->speed			= speed;
-	this->hitRange		= hitRange;
+CharacterInformation* CharacterInformation::SetupSelf(int health, int sp, int attackPower, int pushPower, double speed, double hitRange) {
+	this->health = health;
+	this->maxHealth = health;
+	this->sp = sp;
+	this->maxSp = sp;
+	this->attackPower = attackPower;
+	this->pushPower = pushPower;
+	this->speed = speed;
+	this->hitRange = hitRange;
 	return this;
 }
 
-void FPS::SleepNextFrame(){
+void FPS::SleepNextFrame() {
 	Sleep(CalcSleepTime());
 }
 
-void FPS::SetNowCount(){
+void FPS::SetNowCount() {
 	preTimeCount = GetNowCount();
 }
 
-void FPS::SetNowSecondCount(){
+void FPS::SetNowSecondCount() {
 	preSecondCount = GetNowCount();
 	sleepCount = GAME_FPS;
 }
 
-void FPS::ResetCount(){
+void FPS::ResetCount() {
 	SetNowCount();
 	SetNowSecondCount();
 }
 
-int FPS::CalcSleepTime(){
+int FPS::CalcSleepTime() {
 	int nextSecondCount = preSecondCount + 1000;
 	int nowCount = GetNowCount();
 	sleepCount--;
-	if (sleepCount <= 0 || nextSecondCount <= nowCount){
+	if (sleepCount <= 0 || nextSecondCount <= nowCount) {
 		SetNowSecondCount();
 	}
-	return (int)((float)(nextSecondCount-nowCount)/(sleepCount));
+	return (int)((float)(nextSecondCount - nowCount) / (sleepCount));
 }
 
-HitData::HitData(Vec2 fromPos, int power, int damage):fromPosition(fromPos), knockbackPower(power), damage(damage){}
+HitData::HitData(Vec2 fromPos, int power, int damage) :fromPosition(fromPos), knockbackPower(power), damage(damage) {}
 
-HitData HitData::Setup(Vec2 fromPos, int power, int damage){
+HitData HitData::Setup(Vec2 fromPos, int power, int damage) {
 	return HitData(fromPos, power, damage);
 }
 
-HitData* HitData::SetupSelf(Vec2 fromPos , int power, int damage){
-	this->fromPosition	= fromPos;
-	this->damage			= power;
+HitData* HitData::SetupSelf(Vec2 fromPos, int power, int damage) {
+	this->fromPosition = fromPos;
+	this->damage = power;
 
 	return this;
 }
 
-HitData HitData::NoHit(){
+HitData HitData::NoHit() {
 	return HitData(Vec2::Zero(), -1, -1);
 }
 
-bool HitData::operator==(HitData other){
+bool HitData::operator==(HitData other) {
 	return (fromPosition == other.fromPosition
-		 && damage		 == damage);
+		&& damage == damage);
 }
-bool HitData::operator!=(HitData other){
+bool HitData::operator!=(HitData other) {
 	return (fromPosition != other.fromPosition
-		 || damage		 != damage);
+		|| damage != damage);
 }
 
-SceneMediateData SceneMediateData::Setup(SceneName nextScene, int playerIndex){
+SceneMediateData SceneMediateData::Setup(SceneName nextScene, int playerIndex) {
 	SceneMediateData tmp;
-	tmp.nextScene	= nextScene;
-	tmp.playerIndex	= playerIndex;
+	tmp.nextScene = nextScene;
+	tmp.playerIndex = playerIndex;
 
 	return tmp;
 }

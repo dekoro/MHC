@@ -25,25 +25,27 @@ SceneGameMain::SceneGameMain(){
 SceneGameMain::~SceneGameMain(){
 }
 
-void SceneGameMain::Initialize(SceneMediateData sceneData){
-	
-	AllManagersInitialize(sceneData.playerIndex);
+void SceneGameMain::Initialize(SceneMediateData sceneData) {
+	AllManagersInitialize();
+	for (int i = 0; i < MAX_PLAYER; ++i) {
+		playerManager->SpawnPlayer(i, Vec2::Setup(150, 150));
+	}
 }
 
 SceneMediateData SceneGameMain::Update(){
-	camera->Update();
+//	if (playerManager->GetJoinNum() <= 0) { return SceneMediateData::Setup(SCENE_TITLE); }
 	AllManagersUpdate();
 	return SceneMediateData::Setup(SCENE_GAMEMAIN);
 }
 
 
 void SceneGameMain::Draw(){
-
 	screen->Rendaring([&]()
 	{
 		camera->SetPosition();
 		LocalDraw();
 	});
+	AllManagersDraw();
 }
 
 void SceneGameMain::Finalize(){
@@ -58,7 +60,7 @@ void SceneGameMain::LocalDraw()
 	AllManagersDraw();
 }
 
-void SceneGameMain::AllManagersInitialize(int startPlayerIndex){
+void SceneGameMain::AllManagersInitialize(){
 	playerManager		->Setup();
 	playerManager		->Initialize();
 	enemyManager		->Initialize();

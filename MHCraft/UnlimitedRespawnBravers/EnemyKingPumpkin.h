@@ -2,7 +2,10 @@
 #define _CHARACTER_ENEMY_ENEMYGHOST_H_
 
 #include "Enemy.h"
+<<<<<<< HEAD
 
+=======
+>>>>>>> Omori_Branch_temp
 class Managers;
 class EnemyManager;
 

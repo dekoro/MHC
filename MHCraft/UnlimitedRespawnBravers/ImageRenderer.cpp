@@ -47,9 +47,9 @@ void ImageRenderer::DrawBackGround(){
 	Draw(imageMap[imageAsset_Title_BackGround]->GetImageHandle(),VGet(0,0,0),10 );
 }
 
-int  ImageRenderer::AddCharacterImageMap(IMAGE_ASSET_NAME pathIndex, PlayerColorList plColorList){
+int  ImageRenderer::AddCharacterImageMap(IMAGE_ASSET_NAME pathIndex){
 	int imageIndex = characterImageMap.size();
-	characterImageMap.insert(map<int, CharacterImageData*>::value_type(imageIndex, new CharacterImageData( imageFilePathMap[pathIndex], plColorList, animeDataMap[pathIndex])));
+	characterImageMap.insert(map<int, CharacterImageData*>::value_type(imageIndex, new CharacterImageData( imageFilePathMap[pathIndex], animeDataMap[pathIndex])));
 	return imageIndex;
 }
 

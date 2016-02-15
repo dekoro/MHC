@@ -1,108 +1,118 @@
 #include "PlayerManager.h"
+#include "player.h"
 #include "EnemyManager.h"
+#include "ItemManager.h"
+#include "DeviceManager.h"
 
 PlayerManager::PlayerManager(){
-	device		= DeviceManager::GetInstance();
+	device	= DeviceManager::GetInstance();
+	for (int i = 0; i < MAX_PLAYER; ++i) {
+		player[i] = new Player(i);
+	}
 }
 
 PlayerManager::~PlayerManager(){
 	DeleteAllPlayers();
 }
 
-void PlayerManager::Setup(){
-	for (int i = 0; i < USE_PAD_MAX; ++i) {
-		AddPlayerList(i, i);
-	}
+void PlayerManager::SpawnPlayer(int padNo, Vec2 position){
+	if (!GMath::Inner(padNo, 0, MAX_PLAYER)) { return; }
+	if (player[padNo]->IsEnable()) { return; }
+	player[padNo]->Setup(CharacterInformation::Setup(10, 10, 5, 5, 3, 5.0));
+	player[padNo]->Spawn(position);
 }
 
-void PlayerManager::AddPlayerList(int playerNo, int padNo){
-	//if (playerList[playerNo] != NULL){
-	//	//Debug::Alert(STR("PlyerManager::AddPlayerList\n"
-	//	//	,"既に登録されているインデックス("
-	//	//	+ std::to_string(playerNo)
-	//	//	+")に登録しようとしています。"
-	//	//));
-	//}
-	playerList[playerNo]	= new Player(playerNo);
-	padNoList[playerNo]		= padNo;
+void PlayerManager::Setup(){
+	for (int i = 0; i < MAX_PLAYER; ++i){
+
+		SpawnPlayer(i, Vec2::Setup(150, 150));
+	}
 }
 
 void PlayerManager::Initialize(){
 	InitializeAllPlayers();
-	ResetCounter();
-	ResetAddPlayerForbiddenCounter();
 }
 
 void PlayerManager::Update(){
+	MoveAllPlayers();
 	UpdateAllPlayers();
-	Counting();
 }
 
 void PlayerManager::Draw(){
-	for (int i = 0; i < USE_PAD_MAX; i++){
-		if (playerList[i] == NULL){ continue; }
-		playerList[i]->Draw();
-	}
+	DrawAllPlayers();
 }
 
 void PlayerManager::Finalize(){
+	FinalizeAllPlayers();
+}
 
+int PlayerManager::GetJoinNum(){
+	//Player* wheredPlayer = cpplinq::from_array(player)
+	//	>> cpplinq::where([](Player* pl) { return !pl->GetIsDead(); })
+	//	>> cpplinq::sum();
+	//return sizeof(wheredPlayer) / sizeof(Player*);
+	int joinNum = 0;
+	for (int i = 0; i < MAX_PLAYER; ++i) {
+		if (player[i]->IsEnable()) { ++joinNum; }
+
+	}
+	return joinNum;
 }
 
 Player* PlayerManager::GetPlayerData(int index){
-	if (index >=  (int)playerList.size()){
-		Debug::Alert("PlayerListの配列外("+ std::to_string(index)+ ")が参照されました");
+	if (!GMath::Inner(index, 0, MAX_PLAYER)) {
+		return nullptr;
 	}
-	return playerList[index];
+	return player[index];
 }
-
 
 //----private---
 
 void PlayerManager::InitializeAllPlayers(){
-	for (Player* pl : playerList) {
+	for (Player* pl : player) {
 		pl->Initialize();
 	}
 }
 
 void PlayerManager::UpdateAllPlayers(){
-	for (Player* pl: playerList) {
+	for (Player* pl: player) {
 		pl->Update();
 	}
 }
 
+void PlayerManager::MoveAllPlayers()
+{
+	for (int i = 0; i < MAX_PLAYER; ++i) {
+		InputState* input = device->Input()->GetInputState(i);
+		if (input->CheckKeyDown(GKey_Up))		{ player[i]->Move(Vec2::Setup( 0,  1)); }
+		if (input->CheckKeyDown(GKey_Down))		{ player[i]->Move(Vec2::Setup( 0, -1)); }
+		if (input->CheckKeyDown(GKey_Left))		{ player[i]->Move(Vec2::Setup(-1,  0)); }
+		if (input->CheckKeyDown(GKey_Right))	{ player[i]->Move(Vec2::Setup(1,  0)); }
+	}
+}
+
 void PlayerManager::DrawAllPlayers(){
-	for (Player* pl: playerList) {
+	for (Player* pl: player) {
 		pl->Draw();
 	}
 }
 
 void PlayerManager::PlayerDisable(int index){
-	playerList[index]->Dispone();
+	player[index]->Dispone();
 }
 
 void PlayerManager::DeleteAllPlayers(){
-	for (int i = 0; i < USE_PAD_MAX; i++){
-		SAFE_DELETE(playerList[i]);
+	for (int i = 0; i < MAX_PLAYER; i++){
+		SAFE_DELETE(player[i]);
 	}
 }
 
-
-void PlayerManager::Counting(){
-	if (++count >= 65000){ ResetCounter(); }
-	if (countAddForbidden > 0){ countAddForbidden--; }
+void PlayerManager::FinalizeAllPlayers(){
+	for (Player* pl : player) {
+		pl->Finalize();
+	}
 
 }
-
-void PlayerManager::ResetCounter(){
-	count = 0;
-}
-
-void PlayerManager::ResetAddPlayerForbiddenCounter(){
-	countAddForbidden = 0;
-}
-
-
 
 
 

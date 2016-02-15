@@ -43,10 +43,8 @@ private:
 
 	std::shared_ptr<Camera> camera;
 	std::shared_ptr<ScreenLayout> screen;
-
-
 	void LocalDraw();
-	void AllManagersInitialize(int startPlayerIndex);
+	void AllManagersInitialize();
 	void AllManagersUpdate();
 	void AllManagersDraw();
 	void AllManagersFinalize();

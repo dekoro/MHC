@@ -1,9 +1,11 @@
 #ifndef _CHARACTER_PLAYERMANAGER_H_
 #define _CHARACTER_PLAYERMANAGER_H_
 
-#include "Player.h"
-#include "DeviceManager.h"
-#include "ItemManager.h"
+#include "GSystem.h"
+class Player;
+class DeviceManager;
+class Managers;
+class ItemManager;
 
 class PlayerManager
 {
@@ -11,31 +13,29 @@ public:
 	PlayerManager();
 	~PlayerManager();
 
-	void	Setup();
-	void	AddPlayerList(int playerNo, int padNo);
-	void	Initialize();
-	void	Update();
-	void	Draw();
-	void	Finalize();
-	Player*	GetPlayerData(int index);
+	void		SpawnPlayer(int padNo, Vec2 position);
+	void		Setup();
+	void		Initialize();
+	void		Update();
+	void		Draw();
+	void		Finalize();
+	int			GetJoinNum();
+	Player*		GetPlayerData(int index);
 
 private:
-	DeviceManager*						device;
-	std::array<Player*, USE_PAD_MAX>	playerList;
-	std::array<int, USE_PAD_MAX>		padNoList;
-	int		count;
-	int		countAddForbidden;
+	DeviceManager*	device;
+	Managers*		managers;
+	Player*			player[MAX_PLAYER];
 
-	void	InitializeAllPlayers();
-	void	UpdateAllPlayers();
-	void	DrawAllPlayers();
-	void	PlayerDisable(int index);
-	void	DeleteAllPlayers();
-	void	Counting();
-	void	ResetCounter();
-	void	ResetAddPlayerForbiddenCounter();
+	void InitializeAllPlayers();
+	void UpdateAllPlayers();
+	void MoveAllPlayers();
+	void AttackAllPlayers();
+	void DrawAllPlayers();
+	void FinalizeAllPlayers();
+	void PlayerDisable(int index);
+	void DeleteAllPlayers();
 };
-
 
 
 #endif

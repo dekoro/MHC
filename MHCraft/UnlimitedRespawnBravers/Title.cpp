@@ -25,7 +25,7 @@ void SceneTitle::Initialize(SceneMediateData sceneData){
 SceneMediateData SceneTitle::Update(){
 	SceneMediateData sceneData = SceneMediateData::Setup(SCENE_TITLE);
 	if (enterPlayerIndex == -1){
-		enterPlayerIndex = CheckControllPadNo();;
+		enterPlayerIndex = CheckControllPadNo();
 	}
 	if (nextSceneCount <= 0){
 		sceneData.playerIndex = enterPlayerIndex;
@@ -61,7 +61,7 @@ void SceneTitle::Finalize(){
 }
 
 int SceneTitle::CheckControllPadNo(){
-	for (int i = 0; i < USE_PAD_MAX; i++){
+	for (int i = 0; i < MAX_PLAYER; i++){
 		if (device->Input()->GetInputState(i)->CheckKeyPush(GKey_Attack)){
 			return i;
 		}

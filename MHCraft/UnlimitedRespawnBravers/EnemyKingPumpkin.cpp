@@ -1,9 +1,18 @@
 
 #include "EnemyKingPumpkin.h"
+<<<<<<< HEAD
 #include "Managers.h"
 #include "EnemyManager.h"
 #include "DamageAreaManager.h"
 #include "SoundRenderer.h"
+=======
+#include "Enemy.h"
+#include "Managers.h"
+#include "ItemManager.h"
+#include "EnemyManager.h"
+#include "DamageAreaManager.h"
+
+>>>>>>> Omori_Branch_temp
 
 EnemyKingPumpkin::EnemyKingPumpkin(vector<Enemy*>* enemyList) :Enemy(enemyList, imageAsset_Enemy_BigPumpkin){
 	Vec2 pos = Vec2::Setup(640, 300);
@@ -148,8 +157,8 @@ void EnemyKingPumpkin::DeadEffect(){
 		float  oneSideLength = 192;
 		Vec2 dropPosition;
 		do{
-			dropPosition = Vec2::Setup(position.X + (float)(GetRand(oneSideLength * 2) - oneSideLength)
-									 , position.Y + (float)(GetRand(oneSideLength * 2) - oneSideLength));
+			dropPosition = Vec2::Setup(position.X + ((float)GetRand((int)oneSideLength * 2) - oneSideLength)
+									 , position.Y + ((float)GetRand((int)oneSideLength * 2) - oneSideLength));
 		} while (!GMath::CheckHitCircleToPoint(GCircle::Setup(position, (double)oneSideLength), dropPosition));
 		managers->Item()->AddItemLollipop(dropPosition);
 	}

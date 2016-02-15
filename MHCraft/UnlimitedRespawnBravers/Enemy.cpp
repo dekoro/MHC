@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include "DamageAreaManager.h"
 
 #include "Player.h"
 #include "DeviceManager.h"

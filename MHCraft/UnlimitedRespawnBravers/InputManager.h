@@ -19,10 +19,9 @@ public:
 	bool		CheckKeyReleaseAllPad(GKey key);
 	bool		CheckKeyFreeAllPad(GKey key);
 	void		LeaveGamePad(int padNo);
-	bool		CheckAnyKeyPush();
 
 private:
-	InputState*	inputStateList[USE_PAD_MAX];
+	InputState*	inputStateList[MAX_PLAYER];
 	void		SetupGamePadList();
 	void		FinalizeGamePadList();
 	Keyboard key;

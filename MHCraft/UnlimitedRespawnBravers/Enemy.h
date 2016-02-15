@@ -33,6 +33,7 @@ public:
 	bool					GetIsDead();
 	IMAGE_ASSET_NAME		GetAssetName();
 
+
 protected:
 	DeviceManager*			device;
 	EnemyManager*			enemyManager;
