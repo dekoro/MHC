@@ -2,10 +2,8 @@
 #define _CHARACTER_ITEM_ITEMMANAGER_H_
 
 #include "SystemHub.h"
-#include "Managers.h"
-#include "AItem.h"
-#include "ItemLollipop.h"
-
+class AItem;
+class Player;
 
 class ItemManager
 {
@@ -15,18 +13,15 @@ public:
 
 	void CheckHitPlayer(Player* player);
 	void Initialize();
-	SceneMediateData Update();
+	void Update();
 	void Draw();
 	void Finalize();
-	void AddItemLollipop(Vec2 position);
 	int	 GetCountGetItem();
 
 private:
-	Managers* managers;
-	vector<AItem*> itemList;
+	std::vector<AItem*> itemList;
 	int cntGetItem;
 
-	void RemoveIsEndItem();
 	void RefleshItemList();
 	void DeleteItemList(int index);
 	void ClearItemList();

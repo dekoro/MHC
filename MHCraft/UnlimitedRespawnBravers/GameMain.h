@@ -4,7 +4,6 @@
 #include "GSystemHub.h"
 #include "GMath.h"
 #include "IScenes.h"
-#include "Managers.h"
 #include "PlayerManager.h"
 #include "EnemyManager.h"
 #include "ItemManager.h"
@@ -27,11 +26,13 @@ public:
 	void				Finalize();
 
 private:
-	DeviceManager*	device;
-	Managers*		managers;
-	ImageData*		imageBackGround;
-
-	//ƒeƒXƒg
+	DeviceManager*		device;
+	ImageData*			imageBackGround;
+	PlayerManager*		playerManager;
+	EnemyManager*		enemyManager;
+	DamageAreaManager*	damageAreaManager;
+	ItemManager*		itemManager;
+	
 
 	TextureMapping texMapEffect;
 	Cutting cut;
@@ -43,7 +44,7 @@ private:
 
 	void LocalDraw();
 	void AllManagersInitialize(int startPlayerIndex);
-	SceneMediateData AllManagersUpdate();
+	void AllManagersUpdate();
 	void AllManagersDraw();
 	void AllManagersFinalize();
 };

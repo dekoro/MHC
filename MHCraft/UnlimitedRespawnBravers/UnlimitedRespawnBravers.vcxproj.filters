@@ -246,9 +246,6 @@
     <ClCompile Include="InputManager.cpp">
       <Filter>ソース ファイル\Device\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy_Test.cpp">
-      <Filter>ソース ファイル\Character\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>ソース ファイル\Character\Player</Filter>
     </ClCompile>
@@ -296,12 +293,6 @@
     </ClCompile>
     <ClCompile Include="AItem.cpp">
       <Filter>ソース ファイル\Character\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="Managers.cpp">
-      <Filter>ソース ファイル\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyKingPumpkin.cpp">
-      <Filter>ソース ファイル\Character\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="UI.cpp">
       <Filter>ソース ファイル\GSystem</Filter>
@@ -452,9 +443,6 @@
     <ClInclude Include="EnemyManager.h">
       <Filter>ヘッダー ファイル\Character\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy_Test.h">
-      <Filter>ヘッダー ファイル\Character\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>ヘッダー ファイル\Character\Enemy</Filter>
     </ClInclude>
@@ -491,14 +479,8 @@
     <ClInclude Include="AItem.h">
       <Filter>ヘッダー ファイル\Character\Item</Filter>
     </ClInclude>
-    <ClInclude Include="Managers.h">
-      <Filter>ヘッダー ファイル\Character</Filter>
-    </ClInclude>
     <ClInclude Include="UI.h">
       <Filter>ヘッダー ファイル\GSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyKingPumpkin.h">
-      <Filter>ヘッダー ファイル\Character\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="TextureMapping.h">
       <Filter>ヘッダー ファイル\Effect\TextureMapping</Filter>

@@ -1,6 +1,12 @@
 #include "EnemyGhost.h"
+#include "DeviceManager.h"
+#include "Player.h"
+#include "PlayerManager.h"
+#include "EnemyManager.h"
 
-EnemyGhost::EnemyGhost(vector<Enemy*>* enemyList) :Enemy(enemyList, imageAsset_Enemy_Ghost){
+
+EnemyGhost::EnemyGhost(std::vector<Enemy*>* enemyList) :Enemy(enemyList, imageAsset_Enemy_Ghost){
+	device		= DeviceManager::GetInstance();
 	Vec2 pos	= Vec2::Setup((float)GetRand(Window::WIDTH), (float)GetRand(Window::HEIGHT));
 	startSpeed	= 0.05;
 	maxSpeed	= 4;
@@ -47,25 +53,25 @@ void EnemyGhost::Move(){
 }
 
 //-----private-----
-void EnemyGhost::GetRandomTarget(int forbiddenTarget){
-	vector<int> plList	= managers->Player()->GetEnablePlayerIndexList();
-	int			plNum	= plList.size();
-	target				= NULL;
-	if (plNum <= 0){
-		return;
-	}
-
-	if (plNum == 1 && plList[0] == forbiddenTarget){
-		return;
-	}
-
-	while (true){
-		int targetIndex = GetRand(plNum - 1);
-		if (plList[targetIndex] == forbiddenTarget){ continue; }
-		SetTarget(plList[targetIndex]);
-		break;
-	}
-}
+//void EnemyGhost::GetRandomTarget(int forbiddenTarget){
+//	std::vector<int> plList	= playerManager->GetEnablePlayerIndexList();
+//	int			plNum	= plList.size();
+//	target				= NULL;
+//	if (plNum <= 0){
+//		return;
+//	}
+//
+//	if (plNum == 1 && plList[0] == forbiddenTarget){
+//		return;
+//	}
+//
+//	while (true){
+//		int targetIndex = GetRand(plNum - 1);
+//		if (plList[targetIndex] == forbiddenTarget){ continue; }
+//		SetTarget(plList[targetIndex]);
+//		break;
+//	}
+//}
 
 HitData	EnemyGhost::CalcAttackToPlayer(Vec2 posOther, double rangeOther){
 	if (IsHitToPlayer(posOther, rangeOther)){
@@ -75,9 +81,9 @@ HitData	EnemyGhost::CalcAttackToPlayer(Vec2 posOther, double rangeOther){
 	return HitData::NoHit();
 }
 
-void	EnemyGhost::SetTarget(int targetIndex){
-	this->target = managers->Player()->GetPlayerData(targetIndex);
-}
+//void	EnemyGhost::SetTarget(int targetIndex){
+//	this->target = managers->Player()->GetPlayerData(targetIndex);
+//}
 
 void EnemyGhost::Accelarate(){
 	parameter.speed = (parameter.speed < maxSpeed) ? parameter.speed + accelSpeed : maxSpeed;

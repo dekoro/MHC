@@ -10,23 +10,20 @@ CharacterManager::~CharacterManager(){
 }
 
 void CharacterManager::Initialize(){
-	int end = characters.end() - characters.begin();
-	for (int i=0; i < end; i++){
-		characters[i]->Initialize();
+	for(ICharacter* ch: characters){
+		ch->Initialize();
 	}
 }
 
 void CharacterManager::Update(){
-	int end = characters.end() - characters.begin();
-	for (int i=0; i < end; i++){
-		characters[i]->Update();
+	for (ICharacter* ch : characters) {
+		ch->Update();
 	}
 }
 
 void CharacterManager::Draw(){
-	int end = characters.end() - characters.begin();
-	for (int i=0; i < end; i++){
-		characters[i]->Draw();
+	for (ICharacter* ch : characters) {
+		ch->Draw();
 	}
 }
 

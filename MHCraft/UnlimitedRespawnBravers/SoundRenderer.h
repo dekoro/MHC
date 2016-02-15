@@ -33,8 +33,8 @@ public:
 	void Stop(SoundAsset assetName);
 	bool IsPlay(SoundAsset assetName);
 private:
-	map<SoundAsset, char*> soundPathMap;
-	map<SoundAsset, SoundData*> soundMap;
+	std::map<SoundAsset, char*> soundPathMap;
+	std::map<SoundAsset, SoundData*> soundMap;
 
 	void AddSoundMap(SoundAsset assetName, char* fileName, bool isMusic);
 	void ClearSoundMap();

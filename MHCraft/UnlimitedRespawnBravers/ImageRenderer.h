@@ -44,15 +44,14 @@ public:
 	void		RemoveCharacterImageMap(int imageMap);
 	void		ClearImageMap();
 	AnimeData	GetAnimeData(IMAGE_ASSET_NAME animeDataIndex);
-	void		AddCountPlayerAnimation(IMAGE_ASSET_NAME);
 	ImageData*	CopyImageData(IMAGE_ASSET_NAME);
 	Vec2		GetCharacterImageHalfSize(int imageIndex);
 	
 private:
-	map<int, CharacterImageData*>		characterImageMap;
-	map<IMAGE_ASSET_NAME, ImageData*>	imageMap;
-	map<IMAGE_ASSET_NAME, char*>		imageFilePathMap;
-	map<IMAGE_ASSET_NAME, AnimeData>	animeDataMap;
+	std::map<int, CharacterImageData*>		characterImageMap;
+	std::map<IMAGE_ASSET_NAME, ImageData*>	imageMap;
+	std::map<IMAGE_ASSET_NAME, char*>		imageFilePathMap;
+	std::map<IMAGE_ASSET_NAME, AnimeData>	animeDataMap;
 
 	void SetupImageMap();
 	void SetupImageFilePathMap();

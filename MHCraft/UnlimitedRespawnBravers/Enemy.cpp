@@ -1,9 +1,14 @@
 #include "Enemy.h"
 
-Enemy::Enemy(vector<Enemy*>* enemyList, IMAGE_ASSET_NAME assetName){
+#include "Player.h"
+#include "DeviceManager.h"
+#include "PlayerManager.h"
+#include "DamageAreaManager.h"
+
+
+Enemy::Enemy(std::vector<Enemy*>* enemyList, IMAGE_ASSET_NAME assetName){
 	enemyList->push_back(this);
 	device			= DeviceManager::GetInstance();
-	managers		= Managers::GetInstance();
 	cntDead			= 30;
 	isDead			= false;
 	isUse			= true;
@@ -33,8 +38,8 @@ void Enemy::ResearchTarget(int forbiddenTarget){
 }
 
 void Enemy::GetTarget(int forbiddenTarget){
-	if (target != NULL && target->GetPadNo() != forbiddenTarget){ return; }
-	GetRandomTarget(forbiddenTarget);
+	//if (target != NULL && target->GetPadNo() != forbiddenTarget){ return; }
+	//GetRandomTarget(forbiddenTarget);
 }
 
 void Enemy::CalcDamage(HitData hitData){
@@ -43,15 +48,15 @@ void Enemy::CalcDamage(HitData hitData){
 }
 
 void Enemy::CheckHitDamageArea(){
-	if (isInvincible){ return; }
-	HitData hit = managers->Damage()->CheckAllHitCircle(GCircle::Setup(position, parameter.hitRange), false, true);
-	if (hit == HitData::NoHit()){ return; }
-	Damage(hit.damage);
-	if (isKnockBack){
-		Knockback(hit.fromPosition, position, hit.knockbackPower);
-	}
-	DamageAction(hit);
-	return;
+	//if (isInvincible){ return; }
+	//HitData hit = managers->Damage()->CheckAllHitCircle(GCircle::Setup(position, parameter.hitRange), false, true);
+	//if (hit == HitData::NoHit()){ return; }
+	//Damage(hit.damage);
+	//if (isKnockBack){
+	//	Knockback(hit.fromPosition, position, hit.knockbackPower);
+	//}
+	//DamageAction(hit);
+	//return;
 }
 
 bool Enemy::GetIsUse(){
@@ -81,27 +86,27 @@ IMAGE_ASSET_NAME Enemy::GetAssetName(){
 //-----private-----
 
 void Enemy::GetRandomTarget(int forbiddenTarget){
-	vector<int> plList = managers->Player()->GetEnablePlayerIndexList();
-	int plNum = plList.size();
-	target = NULL;
+	//std::vector<int> plList = managers->Player()->GetEnablePlayerIndexList();
+	//int plNum = plList.size();
+	//target = NULL;
 
-	if (plNum <= 0){
-		return;
-	}
-	if (plNum == 1 && plList[0] == forbiddenTarget){
-		return;
-	}
+	//if (plNum <= 0){
+	//	return;
+	//}
+	//if (plNum == 1 && plList[0] == forbiddenTarget){
+	//	return;
+	//}
 
-	while (true){
-		int targetIndex = GetRand(plNum - 1);
-		if (plList[targetIndex] == forbiddenTarget){ continue; }
-		SetTarget(plList[targetIndex]);
-		break;
-	}
+	//while (true){
+	//	int targetIndex = GetRand(plNum - 1);
+	//	if (plList[targetIndex] == forbiddenTarget){ continue; }
+	//	SetTarget(plList[targetIndex]);
+	//	break;
+	//}
 }
 
 void Enemy::SetTarget(int targetIndex){
-	this->target = managers->Player()->GetPlayerData(targetIndex);
+//	this->target = managers->Player()->GetPlayerData(targetIndex);
 }
 
 void Enemy::Damage(int damage){

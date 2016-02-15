@@ -1,10 +1,11 @@
 #include "GameMain.h"
-#include"ScreenLayout.h"
-#include"TextureMapping.h"
+#include "ScreenLayout.h"
+#include "TextureMapping.h"
+#include "DamageAreaManager.h"
+
 
 SceneGameMain::SceneGameMain(){
 	device			= DeviceManager::GetInstance();
-	managers		= Managers::GetInstance();
 	imageBackGround = device->Image()->CopyImageData(imageAsset_GameMain_BackGround);
 
 	this->screen = std::make_shared<ScreenLayout>(e_Double, &blur);
@@ -18,10 +19,9 @@ void SceneGameMain::Initialize(SceneMediateData sceneData){
 }
 
 SceneMediateData SceneGameMain::Update(){
-	SceneMediateData nextScene;
 	camera->Update();
-	nextScene = AllManagersUpdate();
-	return nextScene;
+	AllManagersUpdate();
+	return SceneMediateData::Setup(SCENE_GAMEMAIN);
 }
 
 
@@ -47,33 +47,31 @@ void SceneGameMain::LocalDraw()
 }
 
 void SceneGameMain::AllManagersInitialize(int startPlayerIndex){
-	managers->Player()->Initialize(startPlayerIndex);
-	managers->Enemy()->Initialize();
-	managers->Damage()->Initialize();
-	managers->Item()->Initialize();
+	playerManager		->Initialize();
+	enemyManager		->Initialize();
+	itemManager			->Initialize();
+	damageAreaManager	->Initialize();
 
-	camera = std::make_shared<Camera>(managers->Player()->GetPlayerData(0),0);
+	camera = std::make_shared<Camera>(playerManager->GetPlayerData(0),0);
 }
 
-SceneMediateData SceneGameMain::AllManagersUpdate(){
-	managers->Player()->Update();
-	SceneMediateData nextScene = managers->Enemy()->Update();
-	managers->Damage()->Update();
-	managers->Item()->Update();
-
-	return nextScene;
+void SceneGameMain::AllManagersUpdate(){
+	playerManager->Update();
+	enemyManager->Update();
+	itemManager->Update();
+	damageAreaManager->Update();
 }
 
 void SceneGameMain::AllManagersDraw(){
-	managers->Damage()->Draw();
-	managers->Item()->Draw();
-	managers->Player()->Draw();
-	managers->Enemy()->Draw();
+	playerManager->Draw();
+	enemyManager->Draw();
+	itemManager->Draw();
+	damageAreaManager->Draw();
 }
 
 void SceneGameMain::AllManagersFinalize(){
-	managers->Player()->Finalize();
-	managers->Enemy()->Finalize();
-	managers->Damage()->Finalize();
-	managers->Item()->Finalize();
+	playerManager->Finalize();
+	enemyManager->Finalize();
+	itemManager->Finalize();
+	damageAreaManager->Finalize();
 }

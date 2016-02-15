@@ -4,8 +4,8 @@
 SceneManager::SceneManager(){
 	SceneMediateData startupSceneData = SceneMediateData::Setup(SCENE_TITLE);
 
-	sceneMap.insert(map<SceneName, IScenes*>::value_type(SCENE_TITLE	, new SceneTitle()));
-	sceneMap.insert(map<SceneName, IScenes*>::value_type(SCENE_GAMEMAIN	, new SceneGameMain()));
+	sceneMap.insert(std::map<SceneName, IScenes*>::value_type(SCENE_TITLE	, new SceneTitle()));
+	sceneMap.insert(std::map<SceneName, IScenes*>::value_type(SCENE_GAMEMAIN	, new SceneGameMain()));
 
 	sceneMap[startupSceneData.nextScene]->Initialize(startupSceneData);
 	ChangeScene(startupSceneData);

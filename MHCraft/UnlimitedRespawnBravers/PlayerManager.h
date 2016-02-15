@@ -3,7 +3,6 @@
 
 #include "Player.h"
 #include "DeviceManager.h"
-#include "Managers.h"
 #include "ItemManager.h"
 
 class PlayerManager
@@ -12,40 +11,29 @@ public:
 	PlayerManager();
 	~PlayerManager();
 
-	void		AddPlayerList(int padNo, IMAGE_ASSET_NAME assetName, PlayerColorList colors);
-	void		Initialize(int startPlayer);
-	SceneMediateData		Update();
-	void		Draw();
-	void		Finalize();
-	int			GetJoinNum();
-	vector<int>	GetEnablePlayerIndexList();
-	Player*		GetPlayerData(int index);
-	void		CheckHitAllPlayer();
-	void		SetAddForbiddenCounter();
+	void	Setup();
+	void	AddPlayerList(int playerNo, int padNo);
+	void	Initialize();
+	void	Update();
+	void	Draw();
+	void	Finalize();
+	Player*	GetPlayerData(int index);
 
 private:
 	DeviceManager*				device;
-	Managers*					managers;
-	array<Player*, USE_PAD_MAX>	playerList;
-	vector<int>					enablePlayerIndexList;
+	std::array<Player*, USE_PAD_MAX>	playerList;
+	std::array<int, USE_PAD_MAX>		padNoList;
 	int							count;
 	int							countAddForbidden;
 
-	void InitializeAllPlayers(int startPlayer);
-	void PlayerUpdate();
-	void CheckAddPlayer();
-	void RefleshPlayerList();
-	void DeletePlayer(int index);
-	void DeleteEnablePlayerIndexList(int padNo);
-	void CheckHitToEnemy(int index);
-	void CheckHitToItem(int index);
-	void ClearPlayerList();
-	void CheckAndDeleteEndPlayer(int index);
-	void AddTempPlayer(int index);
+	void InitializeAllPlayers();
+	void UpdateAllPlayers();
+	void DrawAllPlayers();
+	void PlayerDisable(int index);
+	void DeleteAllPlayers();
 	void Counting();
 	void ResetCounter();
 	void ResetAddPlayerForbiddenCounter();
-	void AddPlayerNaviRegister();
 };
 
 

@@ -2,9 +2,9 @@
 #define _CHARACTER_DAMAGEAREA_DAMAGEAREAMANAGER_H_
 
 #include "GSystemHub.h"
-#include "Managers.h"
-#include "DamageAreaCircle.h"
-#include "DamageAreaRectangle.h"
+class AbstractDamageArea;
+class DamageAreaCircle;
+class DamageAreaRectangle;
 
 
 class DamageAreaManager
@@ -14,7 +14,7 @@ public:
 	~DamageAreaManager();
 
 	void Initialize();
-	SceneMediateData Update();
+	void Update();
 	void Draw();
 	void Finalize();
 
@@ -24,8 +24,7 @@ public:
 	void RefleshDamageArea();
 
 private:
-	vector<AbstractDamageArea*> damageAreaList;
-	Managers* managers;
+	std::vector<AbstractDamageArea*> damageAreaList;
 	void RemoveDamageArea(int index);
 	void ClearDamageArea();
 };

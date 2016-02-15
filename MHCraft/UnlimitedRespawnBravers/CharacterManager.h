@@ -16,7 +16,7 @@ public:
 	void AddCharacter(ICharacter* character);
 
 private:
-	vector<ICharacter*> characters;
+	std::vector<ICharacter*> characters;
 
 	void RemoveDeadCharacter();
 	void CheckAndRemoveDeadCharacter(int index);

@@ -13,13 +13,13 @@ public:
 	UIData(){}
 	~UIData(){}
 
-	string	text;
+	std::string	text;
 	Vec2	position;
 	int		size;
 	int		color;
 	bool	isDisp;
-	static UIData Setup(Vec2 position, int size, string text, int color = -1, bool isDisp = true);
-	static UIData NoData();
+	static	UIData Setup(Vec2 position, int size, std::string text, int color = -1, bool isDisp = true);
+	static	UIData NoData();
 
 	bool operator==(UIData other);
 	bool operator!=(UIData other);

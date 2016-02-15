@@ -2,8 +2,9 @@
 #define _CHARACTER_ENEMY_ENEMYGHOST_H_
 
 #include "Enemy.h"
-#include "Managers.h"
-#include "EnemyManager.h"
+
+class Managers;
+class EnemyManager;
 
 class EnemyKingPumpkin: public Enemy
 {

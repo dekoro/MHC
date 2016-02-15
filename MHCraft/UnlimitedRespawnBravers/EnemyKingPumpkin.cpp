@@ -1,5 +1,9 @@
 
 #include "EnemyKingPumpkin.h"
+#include "Managers.h"
+#include "EnemyManager.h"
+#include "DamageAreaManager.h"
+#include "SoundRenderer.h"
 
 EnemyKingPumpkin::EnemyKingPumpkin(vector<Enemy*>* enemyList) :Enemy(enemyList, imageAsset_Enemy_BigPumpkin){
 	Vec2 pos = Vec2::Setup(640, 300);

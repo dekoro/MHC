@@ -1,6 +1,7 @@
 #include "ImageRenderer.h"
 #include"NowLoading.h"
 
+using namespace std;
 
 ImageRenderer::ImageRenderer(){
 	SetupImageMap();
