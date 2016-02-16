@@ -1,4 +1,6 @@
 #include "DamageAreaManager.h"
+#include "DamageAreaCircle.h"
+#include "DamageAreaRectangle.h"
 
 DamageAreaManager::DamageAreaManager(){
 }
@@ -9,17 +11,13 @@ DamageAreaManager::~DamageAreaManager(){
 
 
 void DamageAreaManager::Initialize(){
-	managers = Managers::GetInstance();
 	damageAreaList.clear();
 }
 
-SceneMediateData DamageAreaManager::Update(){
-	for each(AbstractDamageArea* da in damageAreaList){
+void DamageAreaManager::Update(){
+	for(AbstractDamageArea* da : damageAreaList){
 		da->Update();
 	}
-	RefleshDamageArea();
-	return SceneMediateData::Setup(SCENE_GAMEMAIN);
-
 }
 
 void DamageAreaManager::Draw(){

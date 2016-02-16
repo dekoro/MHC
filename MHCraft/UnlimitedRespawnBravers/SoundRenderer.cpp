@@ -45,7 +45,7 @@ bool SoundRenderer::IsPlay(SoundAsset assetName){
 }
 
 void SoundRenderer::AddSoundMap(SoundAsset assetName, char* fileName, bool isMusic = false){
-	soundMap.insert(map<SoundAsset, SoundData*>::value_type(assetName, new SoundData(fileName, isMusic)));
+	soundMap.insert(std::map<SoundAsset, SoundData*>::value_type(assetName, new SoundData(fileName, isMusic)));
 	if (isMusic){
 		ChangeVolumeSoundMem(120, soundMap[assetName]->GetDataHandle());
 	}

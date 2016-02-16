@@ -48,7 +48,7 @@ class Debug;
 }
 
 #define STR(startMessage, leftMessage){\
-	string(startMessage)+leftMessage\
+	std::string(startMessage)+leftMessage\
 }
 
 #endif

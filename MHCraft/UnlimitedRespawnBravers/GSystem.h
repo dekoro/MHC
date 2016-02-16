@@ -3,31 +3,37 @@
 
 #define DISPLAY_SIZE_W		1280
 #define DISPLAY_SIZE_H		720
-#define USE_PAD_MAX			16
+#define MAX_PLAYER			4
 #define GKEY_NUM			7
 #define KEYBOARD_NUM		256
 #define ANIME_FRAME_NUM		128
 #define	GAME_FPS			60
 #define PI					3.14159265359
 
-#define WAKANNE_SKIP
+#define PLAYER_ATTACK_STOP_COUNT		20
+#define PLAYER_DAMAGE_INVINCIBLE_COUNT	120
+#define PLAYER_DAMAGE_STOP_COUNT		30
+
+#define DEFAULT_PLAYER_HEALTH	10
+#define DEFAULT_PLAYER_SP		10
+#define DEFAULT_PLAYER_SPEED	5
 
 #include "SystemHub.h"
 #include "Vec2.h"
 #include "GMath.h"
 
-enum SceneName{
+enum SceneName {
 	SCENE_TITLE,
 	SCENE_GAMEMAIN
 };
 
-struct Window{
-	const static int WIDTH		= 1280;
-	const static int HEIGHT		= 720;
-	const static int COLOR_BIT	= 32;
+struct Window {
+	const static int WIDTH = 1280;
+	const static int HEIGHT = 720;
+	const static int COLOR_BIT = 32;
 };
 
-const int defaultKeyConfigPad[ GKEY_NUM ] = {
+const int defaultKeyConfigPad[GKEY_NUM] = {
 	PAD_INPUT_UP,
 	PAD_INPUT_DOWN,
 	PAD_INPUT_LEFT,
@@ -37,7 +43,7 @@ const int defaultKeyConfigPad[ GKEY_NUM ] = {
 	PAD_INPUT_3
 };
 
-const int defaultKeyConfigKeyboard[ GKEY_NUM ] = {
+const int defaultKeyConfigKeyboard[GKEY_NUM] = {
 	KEY_INPUT_UP,
 	KEY_INPUT_DOWN,
 	KEY_INPUT_LEFT,
@@ -47,9 +53,9 @@ const int defaultKeyConfigKeyboard[ GKEY_NUM ] = {
 	KEY_INPUT_C,
 };
 
-class PlayerColorList{
+class PlayerColorList {
 public:
-	PlayerColorList(){}
+	PlayerColorList() {}
 	unsigned int colorHair;
 	unsigned int colorSkin;
 	unsigned int colorArmer;
@@ -63,9 +69,9 @@ public:
 
 };
 
-class AnimeData{
+class AnimeData {
 public:
-	AnimeData(){}
+	AnimeData() {}
 	int		XNum;
 	int		typeNum;
 	int		oneSizeX;
@@ -76,14 +82,14 @@ public:
 
 
 	void				SetupAnimeData(int XNum, int typeNum, int oneSizeX, int oneSizeY, int skipFrame, int isLoop);
-	int					GetFrameAllNum(){ return (XNum * typeNum > 0) ? XNum*typeNum : 1; }
+	int					GetFrameAllNum() { return (XNum * typeNum > 0) ? XNum*typeNum : 1; }
 	static AnimeData	Setup(int XNum, int typeNum, int oneSizeX, int oneSizeY, int skipFrame, int isLoop);
 };
 
 class CharacterInformation
 {
 public:
-	CharacterInformation(){}
+	CharacterInformation() {}
 	int		health;
 	int		maxHealth;
 	int		sp;
@@ -97,10 +103,10 @@ public:
 	CharacterInformation* SetupSelf(int health, int sp, int attackPower, int pushPower, double speed, double hitRange);
 };
 
-class FPS{
+class FPS {
 public:
-	FPS(){ ResetCount(); }
-	~FPS(){}
+	FPS() { ResetCount(); }
+	~FPS() {}
 	void SleepNextFrame();
 
 private:
@@ -116,9 +122,9 @@ private:
 class HitData
 {
 public:
-	HitData(){}
+	HitData() {}
 	HitData(Vec2 fromPos, int power, int damage);
-	~HitData(){}
+	~HitData() {}
 	Vec2	fromPosition;
 	double	hitRange;
 	int		damage;
@@ -135,12 +141,12 @@ private:
 
 };
 
-class SceneMediateData{
+class SceneMediateData {
 public:
 	SceneName	nextScene;
 	int			playerIndex;
 
-	static SceneMediateData Setup(SceneName nextScene, int playerIndex=-1);
+	static SceneMediateData Setup(SceneName nextScene, int playerIndex = -1);
 private:
 };
 

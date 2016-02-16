@@ -4,17 +4,19 @@
 #include "GSystemHub.h"
 #include "ICharacter.h"
 #include "IAttackable.h"
-#include "Player.h"
-#include "DeviceManager.h"
-#include "Managers.h"
-#include "PlayerManager.h"
+
+class Player;
+class EnemyManager;
+class DeviceManager;
+class PlayerManager;
+class DamageAreaManager;
 
 #include"CutEffect.h"
 
 class Enemy
 {
 public:
-	Enemy(vector<Enemy*>* enemyList, IMAGE_ASSET_NAME assetName);
+	Enemy(std::vector<Enemy*>* enemyList, IMAGE_ASSET_NAME assetName);
 	virtual ~Enemy();
 
 	void					SetupData(Vec2 startPos, CharacterInformation chParam, bool isKnockback = true);
@@ -33,9 +35,11 @@ public:
 	bool					GetIsDead();
 	IMAGE_ASSET_NAME		GetAssetName();
 
+
 protected:
 	DeviceManager*			device;
-	Managers*				managers;
+	EnemyManager*			enemyManager;
+	PlayerManager*			playerManager;
 	Player*					target;
 	ImageData*				imageData;
 	Vec2					position;

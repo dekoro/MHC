@@ -10,11 +10,11 @@ public:
 	Debug(){}
 	~Debug(){}
 	static void CheckDebugMode();
-	static void Alert(string startMessage);
+	static void Alert(std::string startMessage);
 
 	static void DrawString(int x, int y, char* string, unsigned int color);
-	static void PrintStringLine(string str);
-	static void ClearPrint();
+	//static void PrintStringLine(std::string str);
+	//static void ClearPrint();
 
 	//void DrawImage(int x, int y, int z, int imageData);
 	//void DrawImage(int x, int y, int z, int imageData, int imageIndex);

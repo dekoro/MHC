@@ -19,7 +19,6 @@ protected:
 	Vec2	position;
 	bool	isDead;
 
-
 private:
 
 };

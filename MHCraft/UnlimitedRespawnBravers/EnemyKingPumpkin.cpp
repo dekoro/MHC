@@ -1,7 +1,13 @@
 
 #include "EnemyKingPumpkin.h"
+#include "DeviceManager.h"
+#include "EnemyManager.h"
+#include "DamageAreaManager.h"
+#include "SoundRenderer.h"
+#include "ItemManager.h"
 
-EnemyKingPumpkin::EnemyKingPumpkin(vector<Enemy*>* enemyList) :Enemy(enemyList, imageAsset_Enemy_BigPumpkin){
+
+EnemyKingPumpkin::EnemyKingPumpkin(std::vector<Enemy*>* enemyList) :Enemy(enemyList, imageAsset_Enemy_BigPumpkin){
 	Vec2 pos = Vec2::Setup(640, 300);
 
 	CharacterInformation prm = CharacterInformation::Setup(300, 0, 2, 150, 1, 128);
@@ -11,6 +17,7 @@ EnemyKingPumpkin::EnemyKingPumpkin(vector<Enemy*>* enemyList) :Enemy(enemyList, 
 	SetupData(pos, prm, false);
 	Initialize();
 	cntChange = maxCntChange = 300;
+	device = DeviceManager::GetInstance();
 }
 
 EnemyKingPumpkin::~EnemyKingPumpkin(){
@@ -66,17 +73,18 @@ void EnemyKingPumpkin::DamageAction(HitData hitData){
 
 //-----private---
 void EnemyKingPumpkin::Damage(int damage){
-	int joinNum = managers->Player()->GetJoinNum();
-	if (parameter.health > 0){
-		parameter.health -= damage*(5 - (joinNum+2) / 4);
-	}
+	//int joinNum = playerManager->GetJoinNum();
+	//if (parameter.health > 0){
+	//	parameter.health -= damage*(5 - (joinNum+2) / 4);
+	//}
+	parameter.health -= damage;
 	CheckIsDead();
 }
 
 void EnemyKingPumpkin::Move(){
 	if (cntInvisible > 0){ return; }
 	if (isDead){ return; }
-	managers->Enemy()->CalcSpawnMob(180);
+	enemyManager->CalcSpawnMob(180);
 	position += moveVelocity;
 	CheckHitWall();
 	Breaking();
@@ -144,10 +152,9 @@ void EnemyKingPumpkin::DeadEffect(){
 		float  oneSideLength = 192;
 		Vec2 dropPosition;
 		do{
-			dropPosition = Vec2::Setup(position.X + (float)(GetRand(oneSideLength * 2) - oneSideLength)
-									 , position.Y + (float)(GetRand(oneSideLength * 2) - oneSideLength));
+			dropPosition = Vec2::Setup(position.X + ((float)GetRand((int)oneSideLength * 2) - oneSideLength)
+									 , position.Y + ((float)GetRand((int)oneSideLength * 2) - oneSideLength));
 		} while (!GMath::CheckHitCircleToPoint(GCircle::Setup(position, (double)oneSideLength), dropPosition));
-		managers->Item()->AddItemLollipop(dropPosition);
 	}
 	countForDeadEffect++;
 }
@@ -166,19 +173,17 @@ void EnemyKingPumpkin::CountDeadTimer(){
 		return;
 	}
 	if (cntDead > -640){ return; }
-	managers->Enemy()->gameMode = GameMode_Clear;
 	isUse = false;
 }
 
 void EnemyKingPumpkin::AttackAllEnemy(){
 	GRectangle attackArea = GRectangle::Setup(-Window::WIDTH, -Window::HEIGHT, Window::WIDTH*3, Window::HEIGHT*3);
 	HitData hitData			= HitData::Setup(position, 1, 99999);
-	managers->Damage()->AddDamageAreaRectangle(attackArea, 30, hitData, false, true);
 }
 
 void EnemyKingPumpkin::DispInfoRegister(){
 	if (parameter.health <= 0){ return; }
-	UIData ui = UIData::Setup(Vec2::Setup(600, 5), 20, STR("BOSS Žc‚èHP : ",to_string(parameter.health)));
+	UIData ui = UIData::Setup(Vec2::Setup(600, 5), 20, STR("BOSS Žc‚èHP : ",std::to_string(parameter.health)));
 	UI::GetInstance()->AddUI(ui);
 }
 
