@@ -11,7 +11,8 @@ SceneGameMain::SceneGameMain(){
 	device = DeviceManager::GetInstance();
 	managers = Managers::GetInstance();
 	imageBackGround = device->Image()->CopyImageData(imageAsset_GameMain_BackGround);
-	stage = std::make_shared<Stage>(loader.GetDate());
+	//stage = std::make_shared<Stage>(loader.GetDate());
+	stage = std::make_shared<Stage>(100,100);
 	device->Image()->LoadMapTip("Resource/mapchip.png", 8, 4, (4 * 8) - 3);
 	this->screen = std::make_shared<ScreenLayout>(e_Quad);
 }

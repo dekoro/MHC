@@ -1,5 +1,7 @@
 #include "Random.h"
 
+Random* Random::instance = new Random();
+
 Random::Random(){
 
 }
@@ -8,12 +10,6 @@ Random::~Random(){
 	SAFE_DELETE(instance);
 }
 
-Random* Random::Instance(){
-	if (!instance){
-		instance = new Random();
-	}
-	return instance;
-}
 
 void Random::SetSeed(int seed){
 	SRand(seed);
