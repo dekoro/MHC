@@ -1,0 +1,400 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ソース ファイル\Device">
+      <UniqueIdentifier>{a3524f99-da7b-4388-8fef-7baab1d3acab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Device\Input">
+      <UniqueIdentifier>{3a7bc0d5-24ce-4f11-b28c-1f1493e3dbc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GSystem">
+      <UniqueIdentifier>{f2256e3f-715e-4199-981c-83b2a150a3c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\DataManager">
+      <UniqueIdentifier>{afbf7478-cc39-436b-b06d-8db9b4fb91a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneManager">
+      <UniqueIdentifier>{2dee3330-e824-495a-b380-b6cf58dbac72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneManager\Title">
+      <UniqueIdentifier>{19415f78-3202-40bd-b55d-00a55162693a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Character">
+      <UniqueIdentifier>{8ca90bc2-fcf2-43c6-91d4-27d4672f7408}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Device\Renderer">
+      <UniqueIdentifier>{5ddfa983-7676-4d6a-800b-60df85103c2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneManager\GameMain">
+      <UniqueIdentifier>{e9265366-dca6-494f-8e63-0b1458cc147d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Character\Enemy">
+      <UniqueIdentifier>{d48edd89-13a9-4ca6-9e1e-96386448f9fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Character\Player">
+      <UniqueIdentifier>{d5ac0803-cdaf-44a9-bdb1-7b8e96306861}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Character\DamageArea">
+      <UniqueIdentifier>{197453b2-9ce5-4bbc-a466-0689cdc69ff2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Character\Item">
+      <UniqueIdentifier>{d0509f6b-5a54-479e-a1d2-0e8584233d67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneManager\GameMain\Events">
+      <UniqueIdentifier>{1dea7320-f07d-4163-a9e4-ec6b940a7f9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneManager\Ending">
+      <UniqueIdentifier>{baa71f66-f7b0-4ec3-abda-93a7630e6c7d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="FlagManager.cpp">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="GSystem.cpp">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>ソース ファイル\Device\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageData.cpp">
+      <Filter>ソース ファイル\DataManager</Filter>
+    </ClCompile>
+    <ClCompile Include="GMath.cpp">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Vec2.cpp">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="IScenes.cpp">
+      <Filter>ソース ファイル\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>ソース ファイル\SceneManager\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageRenderer.cpp">
+      <Filter>ソース ファイル\Device\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundRenderer.cpp">
+      <Filter>ソース ファイル\Device\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundData.cpp">
+      <Filter>ソース ファイル\DataManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug.cpp">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Macro.cpp">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="InputState.cpp">
+      <Filter>ソース ファイル\Device\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePad.cpp">
+      <Filter>ソース ファイル\Device\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterImageData.cpp">
+      <Filter>ソース ファイル\DataManager</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>ソース ファイル\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMain.cpp">
+      <Filter>ソース ファイル\SceneManager\GameMain</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>ソース ファイル\Device\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Test.cpp">
+      <Filter>ソース ファイル\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>ソース ファイル\Character\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerManager.cpp">
+      <Filter>ソース ファイル\Character\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyManager.cpp">
+      <Filter>ソース ファイル\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceManager.cpp">
+      <Filter>ソース ファイル\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>ソース ファイル\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GCircle.cpp">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="DamageAreaCircle.cpp">
+      <Filter>ソース ファイル\Character\DamageArea</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterManager.cpp">
+      <Filter>ソース ファイル\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractDamageArea.cpp">
+      <Filter>ソース ファイル\Character\DamageArea</Filter>
+    </ClCompile>
+    <ClCompile Include="DamageAreaRectangle.cpp">
+      <Filter>ソース ファイル\Character\DamageArea</Filter>
+    </ClCompile>
+    <ClCompile Include="DamageAreaManager.cpp">
+      <Filter>ソース ファイル\Character\DamageArea</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyGhost.cpp">
+      <Filter>ソース ファイル\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemLolipop.cpp">
+      <Filter>ソース ファイル\Character\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemManager.cpp">
+      <Filter>ソース ファイル\Character\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="AItem.cpp">
+      <Filter>ソース ファイル\Character\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyKingPumpkin.cpp">
+      <Filter>ソース ファイル\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="EventManager.h">
+      <Filter>ソース ファイル\SceneManager\GameMain\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractDamageArea.h">
+      <Filter>ソース ファイル\Character\DamageArea</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageAreaCircle.h">
+      <Filter>ソース ファイル\Character\DamageArea</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageAreaManager.h">
+      <Filter>ソース ファイル\Character\DamageArea</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageAreaRectangle.h">
+      <Filter>ソース ファイル\Character\DamageArea</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyManager.h">
+      <Filter>ソース ファイル\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyKingPumpkin.h">
+      <Filter>ソース ファイル\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyGhost.h">
+      <Filter>ソース ファイル\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Test.h">
+      <Filter>ソース ファイル\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>ソース ファイル\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="AItem.h">
+      <Filter>ソース ファイル\Character\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemLollipop.h">
+      <Filter>ソース ファイル\Character\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemManager.h">
+      <Filter>ソース ファイル\Character\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>ソース ファイル\Character\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerManager.h">
+      <Filter>ソース ファイル\Character\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterManager.h">
+      <Filter>ソース ファイル\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterImageData.h">
+      <Filter>ソース ファイル\DataManager</Filter>
+    </ClInclude>
+    <ClInclude Include="IImageData.h">
+      <Filter>ソース ファイル\DataManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageData.h">
+      <Filter>ソース ファイル\DataManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundData.h">
+      <Filter>ソース ファイル\DataManager</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumGKey.h">
+      <Filter>ソース ファイル\Device\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePad.h">
+      <Filter>ソース ファイル\Device\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="IInput.h">
+      <Filter>ソース ファイル\Device\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>ソース ファイル\Device\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="InputState.h">
+      <Filter>ソース ファイル\Device\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard.h">
+      <Filter>ソース ファイル\Device\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="NumPad.h">
+      <Filter>ソース ファイル\Device\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageRenderer.h">
+      <Filter>ソース ファイル\Device\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundRenderer.h">
+      <Filter>ソース ファイル\Device\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Debug.h">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Enum.h">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="FlagManager.h">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="GCircle.h">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="GMath.h">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="GSystem.h">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Macro.h">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec2.h">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceManager.h">
+      <Filter>ソース ファイル\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Ending.h">
+      <Filter>ソース ファイル\SceneManager\Ending</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMain.h">
+      <Filter>ソース ファイル\SceneManager\GameMain</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>ソース ファイル\SceneManager\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="IScenes.h">
+      <Filter>ソース ファイル\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="GRectangle.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GSystemHub.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderHub.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemHub.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resource\FIGHTER_WALK.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Resource\Item_Lollipop.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Resource\Enemy_Ghost.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Resource\Enemy_Bat.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Resource\Enemy_KingPumpkin.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Resource\Title_BackGround.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Resource\GameMain_BackGround.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Resource\Title_PushXButton.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Resource\Title_BGM.mp3">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+    <Media Include="Resource\SE_Decision.mp3">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+    <Media Include="Resource\SE_KillBoss.mp3">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+    <Media Include="Resource\SE_Win.mp3">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+    <Media Include="Resource\Music_Lose.mp3">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+    <Media Include="Resource\SE_Attack.mp3">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+    <Media Include="Resource\SE_Damage.mp3">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+    <Media Include="Resource\SE_Kill.mp3">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+    <Media Include="Resource\SE_Drop.wav">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+    <Media Include="Resource\SE_Get.wav">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+    <Media Include="Resource\GameMain_BGM_normal.mp3">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+    <Media Include="Resource\GameMain_BGM_boss.mp3">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LeafLife.cd" />
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
