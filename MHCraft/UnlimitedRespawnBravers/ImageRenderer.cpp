@@ -226,9 +226,14 @@ int ImageRenderer::GetMapTipHundle(int num)
 	return	this->mapTip[num];
 }
 
-Vec2 ImageRenderer::GetMapTipSize()
+int ImageRenderer::GetMapTipSizeX()
 {
-	return mapTipSize;
+	return this->mapTipSizeX;
+}
+
+int ImageRenderer::GetMapTipSizeY()
+{
+	return this->mapTipSizeY;
 }
 
 void ImageRenderer::LoadMapTip(std::string filePath,int xNum,int yNum,int totalNum)
@@ -243,7 +248,9 @@ void ImageRenderer::LoadMapTip(std::string filePath,int xNum,int yNum,int totalN
 	localSizeX = x / xNum;
 	localSizeY= y / yNum;
 
-	this->mapTipSize = Vec2(localSizeX, localSizeY);
+	this->mapTipSizeX = localSizeX;
+
+	this->mapTipSizeY = localSizeY;
 
 	LoadDivGraph(filePath.c_str(), totalNum, xNum, yNum, localSizeX, localSizeY, gra);
 

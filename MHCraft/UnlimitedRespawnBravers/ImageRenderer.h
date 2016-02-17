@@ -58,7 +58,8 @@ public:
 	//ファイルパス 横の数　縦の数　総分割数 
 	void LoadMapTip(std::string filePath, int xNum, int yNum,int totalNum);
 
-	Vec2 GetMapTipSize();
+	int GetMapTipSizeX();
+	int GetMapTipSizeY();
 	
 private:
 	map<int, CharacterImageData*>		characterImageMap;
@@ -66,7 +67,8 @@ private:
 	map<IMAGE_ASSET_NAME, char*>		imageFilePathMap;
 	map<IMAGE_ASSET_NAME, AnimeData>	animeDataMap;
 	vector<int> mapTip;
-	Vec2 mapTipSize;
+	int mapTipSizeX;
+	int mapTipSizeY;
 
 	void SetupImageMap();
 	void SetupImageFilePathMap();

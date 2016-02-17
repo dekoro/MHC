@@ -33,8 +33,8 @@ void Stage::Draw()
 	mapEach([&](int y, int x)
 	{
 		DeviceManager::GetInstance()->Image()->DrawLT(DeviceManager::GetInstance()->Image()->GetMapTipHundle(mapDate[y][x]),
-			Vec2((x * -DeviceManager::GetInstance()->Image()->GetMapTipSize().X) + (50 * 32),
-			(y* -DeviceManager::GetInstance()->Image()->GetMapTipSize().Y) + (50 * 32)
+			Vec2((x * -DeviceManager::GetInstance()->Image()->GetMapTipSizeX()) + (50 * 32),
+			(y* -DeviceManager::GetInstance()->Image()->GetMapTipSizeY()) + (50 * 32)
 			));
 	});
 }
@@ -53,7 +53,7 @@ void Stage::mapEach(std::function<void(int y, int x)> Action)
 void Stage::MapCreate()
 {
 
-	for (int i = 0; i < 100; ++i)
+	for (int i = 0; i < 10; ++i)
 	{
 		mapEach([&](int y, int x)
 		{
@@ -92,95 +92,46 @@ void Stage::CheckCircumference(int y, int x)
 
 void Stage::Generate(int y, int x, int num)
 {
-	using namespace std;
+	static const float map_Denominator = mapDate.size() * mapDate[y].size(); 
+	int mapFloorCount = 0;
+	float mapRate = 0; 
 
-	function<void()> Action[9] = {
-		[&](){ mapDate[y][x] = ChangeMap0(); },
-		[&](){ mapDate[y][x] = ChangeMap1(); },
-		[&](){ mapDate[y][x] = ChangeMap2(); },
-		[&](){ mapDate[y][x] = ChangeMap3(); },
-		[&](){ mapDate[y][x] = ChangeMap4(); },
-		[&](){ mapDate[y][x] = ChangeMap5(); },
-		[&](){ mapDate[y][x] = ChangeMap6(); },
-		[&](){ mapDate[y][x] = ChangeMap7(); },
-		[&](){ mapDate[y][x] = ChangeMap8(); },
-	};
+	mapEach([&](int y,int x){
+		if (mapDate[y][x] == 1)
+			mapFloorCount++;
+	});
 
-	Action[num]();
+	mapRate = (float)mapFloorCount / map_Denominator;
+
+	static int rate[9] = 
+	{0,10,20,20,50,80,80,90,100};
+
+	int r = this->rnd->GetRandom(100);
+
+	if (mapRate  >= 0.8)
+	{
+		rate[4] = 40;
+	}
+	else if (mapRate <= 0.8)
+	{
+		rate[4] = 60;
+	}
+	else
+	{
+		rate[4] = 50;
+	}
+
+	if (rate[num] >= r)
+	{
+		mapDate[y][x] = 1;
+	}
+	else
+	{
+		mapDate[y][x] = 0;
+	}
+
 }
 
-int Stage::ChangeMap0()
-{
-	return 1;
-}
-
-int Stage::ChangeMap1()
-{
-	if (rnd->GetRandom(10) == 0)
-		return 0;
-
-	return 1;
-}
-
-int Stage::ChangeMap2()
-{
-	int num = rnd->GetRandom(10);
-	if (num == 0 || num == 1)
-		return 0;
-
-	return 1;
-
-}
-
-int Stage::ChangeMap3()
-{
-	int num = rnd->GetRandom(10);
-	if (num == 0 || num == 1)
-		return 0;
-
-	return 1;
-}
-
-int Stage::ChangeMap4()
-{
-
-	int num = rnd->GetRandom(1);
-	if (num == 0)
-		return 0;
-
-	return 1;
-}
-
-int Stage::ChangeMap5()
-{
-	int num = rnd->GetRandom(10);
-	if (num == 0 || num == 1)
-		return 1;
-
-	return 0;
-}
-
-int Stage::ChangeMap6()
-{
-	int num = rnd->GetRandom(10);
-	if (num == 0 || num == 1)
-		return 1;
-
-	return 0;
-}
-
-int Stage::ChangeMap7()
-{
-	if (rnd->GetRandom(10) == 0)
-		return 1;
-
-	return 0;
-}
-
-int Stage::ChangeMap8()
-{
-	return 0;
-}
 
 int Stage::CheckIndex(int y, int x, int checkX, int checkY)
 {

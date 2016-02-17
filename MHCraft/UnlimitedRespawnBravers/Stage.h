@@ -20,15 +20,6 @@ private:
 	void CheckCircumference(int y, int x);
 
 	void Generate(int y, int x, int num);
-	int ChangeMap0();//マップの変化
-	int ChangeMap1();
-	int ChangeMap2();
-	int ChangeMap3();
-	int ChangeMap4();
-	int ChangeMap5();
-	int ChangeMap6();
-	int ChangeMap7();
-	int ChangeMap8();
 
 	//配列のチェック
 	int RightCheck(int y, int x);//右側チェック
@@ -56,6 +47,8 @@ private:
 	void mapEach(std::function<void(int, int)> Action);
 
 	std::vector <std::vector<int>> mapDate;
+
+	std::function<void(int, int)> Action;
 
 	Random* rnd;
 };
