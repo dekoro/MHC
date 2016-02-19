@@ -1,30 +1,19 @@
         #include "DamageAreaRectangle.h"
 
-DamageAreaRectangle::DamageAreaRectangle(GRectangle hitArea, int stayCount, HitData hitData, bool isToPlayer, bool isToEnemy) :AbstractDamageArea(stayCount, hitData, isToPlayer, isToEnemy){
+DamageAreaRectangle::DamageAreaRectangle(GRectangle hitArea, int stayCount, bool isToPlayer, bool isToEnemy) :AbstractDamageArea(stayCount, isToPlayer, isToEnemy){
 	this->hitArea = hitArea;
 }
 
-
-
-HitData DamageAreaRectangle::IsHitAndDamage(Vec2 position){
-	if (GMath::CheckHitRectangleToPoint(hitArea, position)){
-		return GetHitData();
-	}
-	return HitData::NoHit();
+bool DamageAreaRectangle::CheckIsHit(Vec2 position){
+	return (GMath::CheckHitRectangleToPoint(hitArea, position));
 }
 
-HitData DamageAreaRectangle::IsHitAndDamage(GCircle circle){
-	if (GMath::CheckHitCircleToRectangle(circle, hitArea)){
-		return GetHitData();
-	}
-	return HitData::NoHit();
+bool DamageAreaRectangle::CheckIsHit(GCircle circle){
+	return (GMath::CheckHitCircleToRectangle(circle, hitArea));
 }
 
-HitData DamageAreaRectangle::IsHitAndDamage(GRectangle rectangle){
-	if (GMath::CheckHitRectangleToRectangle(hitArea, rectangle)){
-		return GetHitData();
-	}
-	return HitData::NoHit();
+bool DamageAreaRectangle::CheckIsHit(GRectangle rectangle){
+	return (GMath::CheckHitRectangleToRectangle(hitArea, rectangle));
 }
 
 void DamageAreaRectangle::Draw(){

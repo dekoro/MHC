@@ -11,19 +11,17 @@
 class AbstractDamageArea
 {
 public:
-	AbstractDamageArea(int stayCount, HitData hitData, bool isToPlayer, bool isToEnemy);
+	AbstractDamageArea(int stayCount, bool hittabeToPlayer, bool hittableToEnemy);
 	virtual ~AbstractDamageArea(){}
 
-	virtual HitData IsHitAndDamage(Vec2 position)			= 0;
-	virtual HitData IsHitAndDamage(GCircle circle)			= 0;
-	virtual HitData IsHitAndDamage(GRectangle rectangle)	= 0;
-	virtual void	Draw()									= 0;
+	virtual bool CheckIsHit(Vec2 position)			= 0;
+	virtual bool CheckIsHit(GCircle circle)			= 0;
+	virtual void Draw()								= 0;
 
-	void	Setup(int stayCount, HitData hitData, bool isToPlayer, bool isToEnemy);
+	void	Setup(int stayCount, bool hittableToPlayer, bool hittableToEnemy);
 	void	Update();
-	bool	IsHitPlayer();
-	bool	IsHitEnemy();
-	HitData	GetHitData();
+	bool	IsHittableToPlayer();
+	bool	IsHittableToEnemy();
 	bool	GetIsDead();
 
 protected:
@@ -31,9 +29,8 @@ protected:
 private:
 	int		maxStayCount;
 	int		stayCount;
-	HitData	hitData;
-	bool	isHitPlayer;
-	bool	isHitEnemy;
+	bool	isHittableToPlayer;
+	bool	isHittableToEnemy;
 	bool	isDead;
 
 	void	DestructorCount();

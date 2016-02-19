@@ -90,6 +90,12 @@ int	Vec2::GetIntY(){
 
 Vec2::Vec2(float x, float y): X(x), Y(y){}
 
+Vec2 * Vec2::operator=(Vec2 other){
+	X = other.X;
+	Y = other.Y;
+	return this;
+}
+
 Vec2* Vec2::operator+=(Vec2 other){
 	X += other.X;
 	Y += other.Y;

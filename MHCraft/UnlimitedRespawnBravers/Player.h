@@ -54,6 +54,7 @@ private:
 	bool	isEnable;
 	bool	isWalk;
 
+	void	CheckControll();
 	void	SetAnimeData(AnimeData animeData);
 	void	SetDamageArea();
 	void	LoadImageHandle(IMAGE_ASSET_NAME assetName);
@@ -65,7 +66,7 @@ private:
 	void	CheckIsDead();
 	void	CheckIsOverHeal();
 	void	CountDeadTimer();
-	void	CountdownInvincible();\
+	void	CountdownInvincible();
 	void	Clamp();
 };
 

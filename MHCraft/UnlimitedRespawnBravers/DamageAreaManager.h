@@ -13,20 +13,20 @@ public:
 	DamageAreaManager();
 	~DamageAreaManager();
 
-	void Initialize();
-	void Update();
-	void Draw();
-	void Finalize();
+	void	Initialize();
+	void	Update();
+	void	Draw();
+	void	Finalize();
 
-	void AddDamageAreaCircle(GCircle hitArea, int stayCount, HitData hitData, bool isToPlayer, bool isToEnemy);
-	void AddDamageAreaRectangle(GRectangle hitArea, int stayCount, HitData hitData, bool isToPlayer, bool isToEnemy);
-	HitData CheckAllHitCircle(GCircle target, bool isTargetPlayer, bool isTargetEnemy);
-	void RefleshDamageArea();
+	void	AddDamageAreaCircle(GCircle hitArea, int stayCount, bool isToPlayer, bool isToEnemy);
+	void	AddDamageAreaRectangle(GRectangle hitArea, int stayCount, bool isToPlayer, bool isToEnemy);
+	HitData	CheckAllHitCircle(GCircle target, bool isTargetPlayer, bool isTargetEnemy);
+	void	RefleshDamageArea();
 
 private:
 	std::vector<AbstractDamageArea*> damageAreaList;
-	void RemoveDamageArea(int index);
-	void ClearDamageArea();
+	void	RemoveDamageArea(int index);
+	void	ClearDamageArea();
 };
 
 

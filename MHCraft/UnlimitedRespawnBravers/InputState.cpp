@@ -17,7 +17,7 @@ void InputState::SetupInputState(int padInput){
 
 void InputState::Update(){
 	preState = curState;
-	curState = GetJoypadInputState(GetDxPadType());
+	curState = GetJoypadInputState(GetDxPadType(padIndex));
 }
 
 
@@ -49,6 +49,16 @@ void InputState::ChangeKeyConfig(GKey inputKey[GKEY_NUM]){
 	for (int i = 0; i < GKEY_NUM; i++){
 		keyConfigList[i] = inputKey[i];
 	}
+}
+
+Vec2 InputState::GetMoveVector(){
+	if (moveStickState == Vec2::Zero()) { return Vec2::Zero();  }
+	return moveStickState;
+}
+
+Vec2 InputState::GetAttackVector(){
+	if (attackStickState == Vec2::Zero()) { return Vec2::Zero(); }
+	return attackStickState;
 }
 
 int InputState::GetPadIndex(){
@@ -108,9 +118,40 @@ bool InputState::IsInput(int preORcurState, int keyCode){
 	return ((preORcurState & keyCode) != 0);
 }
 
-int InputState::GetDxPadType(){
+int InputState::GetDxPadType(int padIndex){
 	return DX_INPUT_PAD1 + padIndex;
 }
+
+Vec2 InputState::GetLeftStickState(int padNo) {
+	int inputPadNo = InputState::GetDxPadType(padNo);
+	XINPUT_STATE	inputState;
+	int isError = GetJoypadXInputState(inputPadNo, &inputState);
+	if (isError == -1) { return Vec2::Zero(); }
+
+	return  GMath::GetStickStateToVec2(inputState.ThumbLX, inputState.ThumbLY);
+}
+
+Vec2 InputState::GetRightStickState(int padNo) {
+	int inputPadNo = InputState::GetDxPadType(padNo);
+	XINPUT_STATE	inputState;
+	int isError = GetJoypadXInputState(inputPadNo, &inputState);
+	if (isError == -1) { return Vec2::Zero(); }
+
+	return  GMath::GetStickStateToVec2(inputState.ThumbRX, inputState.ThumbRY);
+}
+
+Vec2 InputState::GetMoveKeyState()
+{
+	Debug::Alert(STR("実装されていない\"InputState::GetMoveKeyState()\"を使用しようとしました。", ""));
+	return Vec2::Zero();
+}
+
+Vec2 InputState::GetMouseState()
+{
+	Debug::Alert(STR("実装されていない\"InputState::GetMouseState()\"を使用しようとしました。", ""));
+	return Vec2::Zero();
+}
+
 
 
 

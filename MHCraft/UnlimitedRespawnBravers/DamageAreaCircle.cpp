@@ -1,35 +1,26 @@
 #include "DamageAreaCircle.h"
 
-DamageAreaCircle::DamageAreaCircle(GCircle hitArea, int stayCount, HitData hitData, bool isToPlayer, bool isToEnemy) :AbstractDamageArea(stayCount, hitData, isToPlayer, isToEnemy){
+DamageAreaCircle::DamageAreaCircle(GCircle hitArea, int stayCount, bool isToPlayer, bool isToEnemy) :AbstractDamageArea(stayCount, isToPlayer, isToEnemy){
 	this->hitArea = hitArea;
 }
 
-HitData DamageAreaCircle::IsHitAndDamage(Vec2 position){
-	if (GMath::CheckHitCircleToPoint(hitArea, position)){
-		return GetHitData();
-	}
-	return HitData::NoHit();
+bool DamageAreaCircle::CheckIsHit(Vec2 position){
+	return (GMath::CheckHitCircleToPoint(hitArea, position));
 }
 
-HitData DamageAreaCircle::IsHitAndDamage(GCircle circle){
-	if (GMath::CheckHitCircleToCircle(hitArea, circle)){
-		return GetHitData();
-	}
-	return HitData::NoHit();
+bool DamageAreaCircle::CheckIsHit(GCircle circle){
+	return (GMath::CheckHitCircleToCircle(hitArea, circle));
 }
 
-HitData DamageAreaCircle::IsHitAndDamage(GRectangle rectangle){
-	if (GMath::CheckHitCircleToRectangle(hitArea, rectangle)){
-		return GetHitData();
-	}
-	return HitData::NoHit();
+bool DamageAreaCircle::CheckIsHit(GRectangle rectangle){
+	return (GMath::CheckHitCircleToRectangle(hitArea, rectangle));
 }
 
 void DamageAreaCircle::Draw(){
 	Debug::DrawSimpleCircle(hitArea, GetColor(255, 128, 128));
 }
 
-void DamageAreaCircle::ChangePosition(GCircle circle){
+void DamageAreaCircle::ChangeParameter(GCircle circle){
 	hitArea = circle;
 }
 

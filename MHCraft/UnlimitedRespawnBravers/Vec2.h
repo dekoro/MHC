@@ -29,6 +29,7 @@ public:
 	int		GetIntY();
 
 
+	Vec2*	operator=(Vec2 other);
 	Vec2*	operator+=(Vec2 other);
 	Vec2*	operator-=(Vec2 other);
 	Vec2*	operator*=(Vec2 other);

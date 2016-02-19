@@ -2,11 +2,12 @@
 #define _GSYSTEM_GMATH_H_
 
 #include "SystemHub.h"
-#include "GSystem.h"
-#include "Vec2.h"
-#include "GRectangle.h"
-#include "GCircle.h"
-#include "Debug.h"
+
+class Vec2;
+class GCircle;
+class GRectangle;
+
+
 class GMath
 {
 public:
@@ -31,7 +32,7 @@ public:
 	static bool		CheckHitRectangleToPoint(GRectangle rectangle, Vec2 point);
 	static bool		CheckHitRectangleToRectangle(GRectangle rect1, GRectangle rect2);
 	static bool		CheckHitRectangleToRectangle(Vec2 pos1TL, Vec2 pos1BR, Vec2 pos2TL, Vec2 pos2BR);
-
+	static Vec2		GetStickStateToVec2(short ThumbX, short ThumbY);
 private:
 
 };

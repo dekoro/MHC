@@ -6,25 +6,19 @@
 class DamageAreaRectangle: public AbstractDamageArea
 {
 public:
-	DamageAreaRectangle(GRectangle hitArea, int stayCount, HitData hitData, bool isToPlayer, bool isToEnemy);
+	DamageAreaRectangle(GRectangle hitArea, int stayCount, bool isToPlayer, bool isToEnemy);
 	~DamageAreaRectangle(){}
 
-	HitData IsHitAndDamage(Vec2 position);
-	HitData IsHitAndDamage(GCircle circle);
-	HitData IsHitAndDamage(GRectangle rectangle);
+	bool	CheckIsHit(Vec2 position);
+	bool	CheckIsHit(GCircle circle);
+	bool	CheckIsHit(GRectangle rectangle);
 	void	Draw();
 
 	void	ChangePosition(GRectangle rectangle);
-	void	ChangePosition(Vec2 posision);
+	void	ChangePosition(Vec2 posCenter);
 private:
 	GRectangle hitArea;
 };
-
-
-
-
-
-
 #endif
 
 

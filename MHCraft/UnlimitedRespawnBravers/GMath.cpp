@@ -1,4 +1,9 @@
 #include "GMath.h"
+#include "GSystem.h"
+#include "GRectangle.h"
+#include "GCircle.h"
+#include "Debug.h"
+#include "Vec2.h"
 
 GMath::GMath(){
 
@@ -106,4 +111,13 @@ bool GMath::CheckHitRectangleToRectangle(Vec2 pos1TL, Vec2 pos1BR, Vec2 pos2TL, 
 	GRectangle rect1(pos1TL.Y, pos1BR.Y, pos1TL.X, pos1BR.X);
 	GRectangle rect2(pos2TL.Y, pos2BR.Y, pos2TL.X, pos2BR.X);
 	return CheckHitRectangleToRectangle(rect1, rect2);
+}
+
+Vec2 GMath::GetStickStateToVec2(short ThumbX, short ThumbY) {
+	if (ThumbX == 0 && ThumbY == 0) { return Vec2::Zero(); }
+	float stateX = (float)ThumbX / 32767;
+	float stateY = (float)ThumbY / 32767;
+	Vec2 state = Vec2::Setup(stateX, stateY);
+	state.NormalizeSelf();
+	return state;;
 }

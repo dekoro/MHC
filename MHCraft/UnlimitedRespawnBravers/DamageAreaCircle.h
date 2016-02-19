@@ -6,20 +6,18 @@
 class DamageAreaCircle: public AbstractDamageArea
 {
 public:
-	DamageAreaCircle(GCircle hitArea, int stayCount, HitData hitData, bool isToPlayer, bool isToEnemy);
+	DamageAreaCircle(GCircle hitArea, int stayCount, bool isToPlayer, bool isToEnemy);
 	~DamageAreaCircle(){}
 
-	HitData IsHitAndDamage(Vec2 position);
-	HitData IsHitAndDamage(GCircle circle);
-	HitData IsHitAndDamage(GRectangle rectangle);
+	bool CheckIsHit(Vec2 position);
+	bool CheckIsHit(GCircle circle);
+	bool CheckIsHit(GRectangle rectangle);
 	void	Draw();
 
-	void	ChangePosition(GCircle circle);
+	void	ChangeParameter(GCircle circle);
 	void	ChangePosition(Vec2 posCenter);
 private:
 	GCircle hitArea;
-
-
 };
 
 

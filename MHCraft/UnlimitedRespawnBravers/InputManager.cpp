@@ -70,6 +70,7 @@ void InputManager::LeaveGamePad(int padNo){
 }
 
 
+
 //---private---
 
 void InputManager::SetupGamePadList(){

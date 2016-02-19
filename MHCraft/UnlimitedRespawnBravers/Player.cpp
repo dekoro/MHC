@@ -127,6 +127,11 @@ int Player::GetPadNo()
 }
 
 
+void Player::CheckControll(){
+	InputState* input = device->Input()->GetInputState(padNo);
+	if (input->CheckKeyDown(GKey_Up));
+}
+
 //---private---
 void Player::SetAnimeData(AnimeData animeData){
 	this->animeData = animeData;
