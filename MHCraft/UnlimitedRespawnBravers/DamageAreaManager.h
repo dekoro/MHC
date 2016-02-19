@@ -5,7 +5,6 @@
 class AbstractDamageArea;
 class DamageAreaCircle;
 class DamageAreaRectangle;
-class DamageAreaQuadrangle;
 
 
 class DamageAreaManager
@@ -19,10 +18,8 @@ public:
 	void	Draw();
 	void	Finalize();
 
-	DamageAreaCircle*		AddDamageAreaCircle(GCircle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy);
-	DamageAreaRectangle*	AddDamageAreaRectangle(GRectangle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy);
-	DamageAreaQuadrangle*	AddDamageAreaQuadrangle(GQuadrangle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy);
-	HitData	CheckAllHitRectangle(GRectangle target, bool isTargetPlayer, bool isTargetEnemy);
+	void	AddDamageAreaCircle(GCircle hitArea, int stayCount, bool isToPlayer, bool isToEnemy);
+	void	AddDamageAreaRectangle(GRectangle hitArea, int stayCount, bool isToPlayer, bool isToEnemy);
 	HitData	CheckAllHitCircle(GCircle target, bool isTargetPlayer, bool isTargetEnemy);
 	void	RefleshDamageArea();
 
