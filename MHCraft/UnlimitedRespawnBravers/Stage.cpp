@@ -17,7 +17,7 @@ Stage::Stage(int mapSizeX, int mapSizeY)
 		this->mapDate[y].resize(mapSizeX);
 		for (int x = 0; x < mapSizeX; ++x)
 		{
-			mapDate[y][x] = rnd->GetRandom(1);
+			mapDate[y][x] = FLOOR;
 		}
 	}
 
@@ -52,83 +52,145 @@ void Stage::mapEach(std::function<void(int y, int x)> Action)
 
 void Stage::MapCreate()
 {
-
-	for (int i = 0; i < 10; ++i)
+	for (int i = 0; i < 30; i++)
 	{
-		mapEach([&](int y, int x)
+		WaterGenerate();
+	}
+
+	MapTipEncode(WATER);
+
+}
+
+
+void Stage::WaterGenerate()
+{
+	int width = rnd->GetRandom(5, 20);
+	int height = rnd->GetRandom(5, 20);
+
+	int arrangePositionX = rnd->GetRandom(mapDate.size());
+	int arrangePositionY = rnd->GetRandom(mapDate[0].size());
+
+	if (ScopeSearch(arrangePositionY, height, arrangePositionX, width, FLOOR))//範囲がすべて床か検索
+	{
+		for (int y = arrangePositionY; y < height + arrangePositionY; ++y)
 		{
-			CheckCircumference(y, x);
-		});
-	}
-}
-
-
-void Stage::CheckCircumference(int y, int x)
-{
-
-	int floorCount = 0;//周囲の地面の数
-	using namespace std;
-	function<void()> Action[8] = {
-		[&](){ floorCount += RightCheck(y, x); },
-		[&](){ floorCount += LeftCheck(y, x); },
-		[&](){ floorCount += HeightCheck(y, x); },
-		[&](){ floorCount += LowCheck(y, x); },
-		[&](){ floorCount += HeightRightCheck(y, x); },
-		[&](){ floorCount += HeightLeftCheck(y, x); },
-		[&](){ floorCount += LowRightCheck(y, x); },
-		[&](){ floorCount += LowLeftCheck(y, x); },
-	};
-
-	for (int i = 0; i < 8; ++i)
-	{
-		Action[i]();
+			for (int x = arrangePositionX; x < width + arrangePositionX; ++x)
+			{
+				mapDate[y][x] = WATER;
+			}
+		}
 	}
 
 
-
-	Generate(y, x, floorCount);
 }
 
-
-void Stage::Generate(int y, int x, int num)
+void Stage::MapTipEncode(int mapNum)
 {
-	static const float map_Denominator = mapDate.size() * mapDate[y].size(); 
-	int mapFloorCount = 0;
-	float mapRate = 0; 
+	mapEach([&](int y, int x){
+		if (mapDate[y][x] == mapNum)
+		{
+			e_Direction dir = DirectionCheck(y,x,FLOOR);
 
-	mapEach([&](int y,int x){
-		if (mapDate[y][x] == 1)
-			mapFloorCount++;
+			switch (dir)
+			{
+			case e_Height:
+				mapDate[y][x] = WATER_HEIGHT;
+				break;
+			case e_Low:
+				mapDate[y][x] = WATER_LOW;
+				break;
+			case e_MapRight:
+				mapDate[y][x] = WATER_RIGHT;
+				break;
+			case e_MapLeft:
+				mapDate[y][x] = WATER_LEFT;
+				break;
+			case e_Height_Right:
+				mapDate[y][x] = WATER_HEIGHT_RIGHT;
+				break;
+			case e_Height_Left:
+				mapDate[y][x] = WATER_HEIGHT_LEFT;
+				break;
+			case e_Low_Right:
+				mapDate[y][x] = WATER_LOW_RIGHT;
+				break;
+			case e_Low_Left:
+				mapDate[y][x] = WATER_LOW_LEFTT;
+				break;
+			case e_Norn:
+				break;
+			default:
+				break;
+			}
+
+		}
 	});
+}
 
-	mapRate = (float)mapFloorCount / map_Denominator;
+e_Direction Stage::DirectionCheck(int y, int x,int mapNum)
+{
+	if (HeightRightCheck(y, x, mapNum) && RightCheck(y, x, mapNum) && HeightCheck(y, x, mapNum))
+		return e_Height_Right;
+	if (HeightLeftCheck(y, x, mapNum) && LeftCheck(y, x, mapNum) && HeightCheck(y, x, mapNum))
+		return e_Height_Left;
+	if (LowRightCheck(y, x, mapNum) && RightCheck(y, x, mapNum) && LowCheck(y, x, mapNum))
+		return e_Low_Right;
+	if (LowLeftCheck(y, x, mapNum) && LeftCheck(y, x, mapNum) && LowCheck(y, x, mapNum))
+		return e_Low_Left;
 
-	static int rate[9] = 
-	{0,10,20,20,50,80,80,90,100};
+	if (RightCheck(y, x, mapNum))
+		return e_MapRight;
+	if (LeftCheck(y, x, mapNum))
+		return e_MapLeft;
+	if (HeightCheck(y, x, mapNum))
+		return e_Height;
+	if (LowCheck(y, x, mapNum))
+		return e_Low;
 
-	int r = this->rnd->GetRandom(100);
+	return e_Norn;
+}
 
-	if (mapRate  >= 0.8)
+//スペースが空いてるか確認する
+bool Stage::ScopeSearch(int begin1, int end1, int begin2, int end2, int mapNum)
+{
+	int count = 0;
+
+	for (int y = begin1; y < end1 + begin1; ++y)
 	{
-		rate[4] = 40;
-	}
-	else if (mapRate <= 0.8)
-	{
-		rate[4] = 60;
-	}
-	else
-	{
-		rate[4] = 50;
+		for (int x = begin2; x < end2 + begin2; ++x)
+		{
+			if (OutOfLength(y, x, 0, 0))
+			{
+				return false;
+			}
+			if (mapDate[y][x] == mapNum)
+			{
+				count++;
+			}
+		}
 	}
 
-	if (rate[num] >= r)
+	if (count >= end1 * end2)
 	{
-		mapDate[y][x] = 1;
+		return true;
 	}
-	else
-	{
-		mapDate[y][x] = 0;
-	}
+	return false;
+}
+
+
+void Stage::CheckCircumference(int y, int x, int mapNum)
+{
+
+	int count = 0;//周囲の対象の数
+
+	count += RightCheck(y, x, mapNum);
+	count += LeftCheck(y, x, mapNum);
+	count += HeightCheck(y, x, mapNum);
+	count += LowCheck(y, x, mapNum);
+	count += HeightRightCheck(y, x, mapNum);
+	count += HeightLeftCheck(y, x, mapNum);
+	count += LowRightCheck(y, x, mapNum);
+	count += LowLeftCheck(y, x, mapNum);
 
 }
 
@@ -143,44 +205,44 @@ int Stage::CheckIndex(int y, int x, int checkX, int checkY)
 	return mapDate[y + checkY][x + checkX];
 }
 
-int Stage::HeightCheck(int y, int x)
+bool Stage::HeightCheck(int y, int x, int checNum)
 {
-	return CheckIndex(y, x, 0, -1) == 1 ? 1 : 0;
+	return CheckIndex(y, x, 0, -1) == checNum;
 }
 
-int Stage::LowCheck(int y, int x)
+bool Stage::LowCheck(int y, int x, int checNum)
 {
-	return CheckIndex(y, x, 0, +1) == 1 ? 1 : 0;
+	return CheckIndex(y, x, 0, +1) == checNum;
 }
 
-int Stage::RightCheck(int y, int x)
+bool Stage::RightCheck(int y, int x, int checNum)
 {
-	return  CheckIndex(y, x, 1, 0) == 1 ? 1 : 0;
+	return  CheckIndex(y, x, 1, 0) == checNum;
 }
 
-int Stage::LeftCheck(int y, int x)
+bool Stage::LeftCheck(int y, int x, int checNum)
 {
-	return CheckIndex(y, x, -1, 0) == 1 ? 1 : 0;
+	return CheckIndex(y, x, -1, 0) == checNum;
 }
 
-int Stage::HeightRightCheck(int y, int x)
+bool Stage::HeightRightCheck(int y, int x, int checNum)
 {
-	return CheckIndex(y, x, 1, -1) == 1 ? 1 : 0;
+	return CheckIndex(y, x, 1, -1) == checNum;
 }
 
-int Stage::HeightLeftCheck(int y, int x)
+bool Stage::HeightLeftCheck(int y, int x, int checNum)
 {
-	return CheckIndex(y, x, -1, -1) == 1 ? 1 : 0;
+	return CheckIndex(y, x, -1, -1) == checNum;
 }
 
-int Stage::LowRightCheck(int y, int x)
+bool Stage::LowRightCheck(int y, int x, int checNum)
 {
-	return CheckIndex(y, x, 1, 1) == 1 ? 1 : 0;
+	return CheckIndex(y, x, 1, 1) == checNum;
 }
 
-int Stage::LowLeftCheck(int y, int x)
+bool Stage::LowLeftCheck(int y, int x, int checNum)
 {
-	return CheckIndex(y, x, -1, 1) == 1 ? 1 : 0;
+	return CheckIndex(y, x, -1, 1) == checNum;
 }
 
 bool Stage::OutOfLength(int y, int x, int checkX, int checkY)
