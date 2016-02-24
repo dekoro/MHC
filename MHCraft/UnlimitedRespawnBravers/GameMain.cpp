@@ -17,7 +17,6 @@ SceneGameMain::SceneGameMain(){
 	
 	
 	device->Image()->LoadMapTip("Resource/mapchip.png", 8, 4, (4 * 8) - 3);
-	this->screen = std::make_shared<ScreenLayout>(e_Quad);
 }
 
 SceneGameMain::~SceneGameMain(){
@@ -28,6 +27,7 @@ void SceneGameMain::Initialize(SceneMediateData sceneData){
 	blur = std::make_shared<Blur>();
 	cut = std::make_shared<Cutting>(e_Left);
 	AllManagersInitialize(sceneData.playerIndex);
+	this->screen = std::make_shared<ScreenLayout>((e_ScreenLayout)sceneData.playerIndex);
 	screen->Initialize(managers->Player());
 }
 

@@ -214,6 +214,18 @@
     <Filter Include="ソース ファイル\Effect\EffectList">
       <UniqueIdentifier>{ef4fad16-8d5c-4c2a-9f32-95f4c9379b2f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Device\Selecter">
+      <UniqueIdentifier>{6214e2fb-8a8b-4623-b7b3-fb787e2860f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Device\Selecter">
+      <UniqueIdentifier>{deb76c6a-706a-42c3-9cdc-142c8f3132fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneManager\SelectScene">
+      <UniqueIdentifier>{29457d0e-b539-4841-8039-9826b11e9ca6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\GSystem\SceneManager\SelectScene">
+      <UniqueIdentifier>{e3741946-3f3d-42e9-9865-8e060781d289}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FlagManager.cpp">
@@ -392,6 +404,12 @@
     </ClCompile>
     <ClCompile Include="EffectList.cpp">
       <Filter>ソース ファイル\Effect\EffectList</Filter>
+    </ClCompile>
+    <ClCompile Include="Selecter.cpp">
+      <Filter>ソース ファイル\Device\Selecter</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectScene.cpp">
+      <Filter>ソース ファイル\SceneManager\SelectScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -607,6 +625,12 @@
     </ClInclude>
     <ClInclude Include="EffectList.h">
       <Filter>ヘッダー ファイル\Effect\EffectList</Filter>
+    </ClInclude>
+    <ClInclude Include="Selecter.h">
+      <Filter>ヘッダー ファイル\Device\Selecter</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectScene.h">
+      <Filter>ヘッダー ファイル\GSystem\SceneManager\SelectScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

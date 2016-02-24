@@ -18,7 +18,8 @@
 
 enum SceneName{
 	SCENE_TITLE,
-	SCENE_GAMEMAIN
+	SCENE_GAMEMAIN,
+	SCENE_SELECT,
 };
 
 struct Window{

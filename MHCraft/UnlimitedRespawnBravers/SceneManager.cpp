@@ -1,10 +1,12 @@
 #include "SceneManager.h"
 #include"GameMain.h"
+#include"SelectScene.h"
 
 SceneManager::SceneManager(){
-	SceneMediateData startupSceneData = SceneMediateData::Setup(SCENE_TITLE);
+	SceneMediateData startupSceneData = SceneMediateData::Setup(SCENE_SELECT);
 
 	sceneMap.insert(map<SceneName, IScenes*>::value_type(SCENE_TITLE	, new SceneTitle()));
+	sceneMap.insert(map<SceneName, IScenes*>::value_type(SCENE_SELECT, new SelectScene()));
 	sceneMap.insert(map<SceneName, IScenes*>::value_type(SCENE_GAMEMAIN	, new SceneGameMain()));
 
 	sceneMap[startupSceneData.nextScene]->Initialize(startupSceneData);
