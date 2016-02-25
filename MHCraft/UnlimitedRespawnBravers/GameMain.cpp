@@ -14,9 +14,13 @@ SceneGameMain::SceneGameMain(){
 	//stage = std::make_shared<Stage>(loader.GetDate());
 	
 	stage = std::make_shared<Stage>(100,100);
-	
-	
+
+
 	device->Image()->LoadMapTip("Resource/mapchip.png", 8, 4, (4 * 8) - 3);
+
+	anime.AddMotion("a", device->GetInstance()->Image()->LoadMotion("Resource/mapchip2.png", 8, 4, 8, (4 * 8) - 3, 8));
+	anime.AddMotion("b", device->GetInstance()->Image()->LoadMotion("Resource/mapchip2.png", 8, 4, 16, (4 * 8) - 3, 8));
+
 }
 
 SceneGameMain::~SceneGameMain(){
@@ -34,6 +38,7 @@ void SceneGameMain::Initialize(SceneMediateData sceneData){
 SceneMediateData SceneGameMain::Update(){
 	SceneMediateData nextScene;
 	nextScene = AllManagersUpdate();
+	anime.Update();
 	return nextScene;
 }
 
@@ -60,6 +65,13 @@ void SceneGameMain::LocalDraw()
 
 	stage->Draw();
 	AllManagersDraw();
+
+	if (device->GetInstance()->Input()->CheckKeyDownAllPad(GKey_Attack))
+	device->GetInstance()->Image()->DrawLT(anime.GetMotion("a"),Vec2(0,0));
+
+	if (device->GetInstance()->Input()->CheckKeyDownAllPad(GKey_Skill))
+		device->GetInstance()->Image()->DrawLT(anime.GetMotion("b"), Vec2(0, 0));
+
 }
 
 void SceneGameMain::AllManagersInitialize(int startPlayerIndex){

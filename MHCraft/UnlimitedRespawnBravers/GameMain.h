@@ -17,6 +17,7 @@
 #include"Blur.h"
 #include"Stage.h"
 #include"TextLoader.h"
+#include"Animation.h"
 
 
 class SceneGameMain: public IScenes
@@ -33,6 +34,9 @@ private:
 	DeviceManager*	device;
 	Managers*		managers;
 	ImageData*		imageBackGround;
+	
+	//テスト
+	Animation anime;
 	
 
 	//テスト

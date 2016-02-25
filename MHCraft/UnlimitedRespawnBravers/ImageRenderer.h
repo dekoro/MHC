@@ -61,6 +61,11 @@ public:
 	int GetMapTipSizeX();
 	int GetMapTipSizeY();
 	
+	//アニメーション読み込み
+	//ファイルパス 横の数　縦の数　総分割数 
+	std::vector<int> LoadMotion(std::string filePath, int xNum, int yNum,int startNum, int totalNum,int totalMotionNum);
+
+
 private:
 	map<int, CharacterImageData*>		characterImageMap;
 	map<IMAGE_ASSET_NAME, ImageData*>	imageMap;

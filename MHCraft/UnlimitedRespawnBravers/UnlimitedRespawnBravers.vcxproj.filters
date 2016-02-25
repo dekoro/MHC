@@ -226,6 +226,12 @@
     <Filter Include="ヘッダー ファイル\GSystem\SceneManager\SelectScene">
       <UniqueIdentifier>{e3741946-3f3d-42e9-9865-8e060781d289}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Character\Animation">
+      <UniqueIdentifier>{21c24345-0233-4ee3-875e-ccb1f800484b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Character\Animation">
+      <UniqueIdentifier>{dd6573c4-1f31-48e7-a0d0-80dc605597e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FlagManager.cpp">
@@ -410,6 +416,9 @@
     </ClCompile>
     <ClCompile Include="SelectScene.cpp">
       <Filter>ソース ファイル\SceneManager\SelectScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>ソース ファイル\Character\Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -631,6 +640,9 @@
     </ClInclude>
     <ClInclude Include="SelectScene.h">
       <Filter>ヘッダー ファイル\GSystem\SceneManager\SelectScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>ヘッダー ファイル\Character\Animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
