@@ -8,7 +8,7 @@
 #include "PlayerManager.h"
 #include "EnemyManager.h"
 #include "ItemManager.h"
-
+#include "LaserManager.h"
 #include "ScreenLayout.h"
 #include "TextureMapping.h"
 #include "DamageAreaManager.h"
@@ -24,10 +24,11 @@ SceneGameMain::SceneGameMain(){
 	device->Image()->LoadMapTip("Resource/Title_BackGround.png", 5, 5, 25);
 	this->screen = std::make_shared<ScreenLayout>(e_Double, blur.get());
 
-	playerManager	  = std::make_shared<PlayerManager>();
-	enemyManager	  = std::make_shared<EnemyManager>();
-	itemManager		  = std::make_shared<ItemManager>();
-	damageAreaManager = std::make_shared<DamageAreaManager>();
+	laserManager		= std::make_shared<LaserManager>();
+	damageAreaManager	= std::make_shared<DamageAreaManager>();
+	playerManager		= std::make_shared<PlayerManager>(laserManager.get(), damageAreaManager.get());
+	enemyManager		= std::make_shared<EnemyManager>();
+	itemManager			= std::make_shared<ItemManager>();
 }
 
 SceneGameMain::~SceneGameMain(){
@@ -86,30 +87,33 @@ void SceneGameMain::AllManagersInitialize(){
 	playerManager		->Initialize();
 	enemyManager		->Initialize();
 	itemManager			->Initialize();
+	laserManager		->Initialize();
 	damageAreaManager	->Initialize();
 
 	camera = std::make_shared<Camera>(playerManager->GetPlayerData(0),0);
 }
 
 void SceneGameMain::AllManagersUpdate(){
-	playerManager->Update();
-	enemyManager->Update();
-	itemManager->Update();
-	damageAreaManager->Update();
+	playerManager		->Update();
+	enemyManager		->Update();
+	itemManager			->Update();
+	laserManager		->Update();
+	damageAreaManager	->Update();
 }
 
 void SceneGameMain::AllManagersDraw(){
-	playerManager->Draw();
-	enemyManager->Draw();
-	itemManager->Draw();
-	damageAreaManager->Draw();
+	playerManager		->Draw();
+	enemyManager		->Draw();
+	itemManager			->Draw();
+	laserManager		->Draw();
+	damageAreaManager	->Draw();
 }
 
 void SceneGameMain::AllManagersFinalize(){
-	playerManager->Finalize();
-	enemyManager->Finalize();
-	itemManager->Finalize();
-	damageAreaManager->Finalize();
+	playerManager		->Finalize();
+	enemyManager		->Finalize();
+	itemManager			->Finalize();
+	damageAreaManager	->Finalize();
 }
 
 void SceneGameMain::ShaderLoad()

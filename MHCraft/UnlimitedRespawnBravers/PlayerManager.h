@@ -5,11 +5,15 @@
 class Player;
 class DeviceManager;
 class ItemManager;
+class DamageAreaManager;
+class LaserManager;
+
+
 
 class PlayerManager
 {
 public:
-	PlayerManager();
+	PlayerManager(LaserManager* laserManager, DamageAreaManager* damageareaManager);
 	~PlayerManager();
 
 	void		SpawnPlayer(int padNo, Vec2 position);

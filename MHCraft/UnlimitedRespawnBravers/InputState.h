@@ -35,9 +35,9 @@ public:
 	Vec2		GetMouseState();
 
 protected:
-	void ResetKeyConfig();
-	bool IsInput(int preORcurState, GKey key);
-	bool IsInput(int preORcurState, int keyCode);
+	void		ResetKeyConfig();
+	bool		IsInput(int preORcurState, GKey key);
+	bool		IsInput(int preORcurState, int keyCode);
 
 private:
 	int				padIndex;

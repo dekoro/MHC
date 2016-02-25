@@ -23,16 +23,17 @@ GRectangle GRectangle::Setup(Vec2 posCenter, int width, int height){
 int GRectangle::GetTop(){
 	return Y;
 }
+
 int GRectangle::GetBottom(){
 	return Y + height;
 }
 int GRectangle::GetLeft(){
 	return X;
 }
+
 int GRectangle::GetRight(){
 	return X + width;
 }
-
 
 Vec2 GRectangle::GetPositionLeftTop(){
 	return Vec2::Setup(GetLeft(), GetTop());

@@ -4,16 +4,19 @@
 #include "GSystemHub.h"
 #include "ICharacter.h"
 #include "IAttackable.h"
-#include "DamageAreaManager.h"
 #include "Cutting.h"//å„Ç≈çÌèú
-#include <memory>
+#include "InputState.h"
 
+class AbstractDamageArea;
 class DeviceManager;
+class DamageAreaManager;
+class DamageAreaCircle;
+class LaserManager;
 
 class Player : public ICharacter, public IAttackable
 {
 public:
-	Player(int padNo);
+	Player(int padNo, LaserManager* laserManager, DamageAreaManager* damageAreaManager);
 	~Player();
 	void	Initialize();
 	void	Update();
@@ -26,21 +29,24 @@ public:
 	CharacterInformation GetParameter();
 	GCircle	GetHitArea();
 	int		GetLeftHealth();
+	float	GetLeftHealthPercent(int digits);
 	void	Damage(int damage);
 	void	Heal(int heal);
-	float	GetLeftHealthPercent(int digits);
 	bool	FlashManager(int counter);
 	void	Spawn(Vec2 position);
 	int		GetPadNo();
 	void	Dispone();
 	Vec2	GetPosition();
-	void	Attack(float angleDig, int chargeLevel);
-	void	Move(Vec2 velocity, float multiply=1.0f);
+	void	CheckHitDamageArea(AbstractDamageArea* damageArea);
 
 private:	
 	DeviceManager*				device;
+	InputState*					inputState;
+	DamageAreaManager*			damageAreaManager;
+	LaserManager*				laserManager;
 	AnimeData					animeData;
 	CharacterInformation		parameter;
+	DamageAreaCircle*			hitArea;
 	std::shared_ptr<Cutting>	cut;
 	int		padNo;
 	int		imageHandle;
@@ -68,6 +74,9 @@ private:
 	void	CountDeadTimer();
 	void	CountdownInvincible();
 	void	Clamp();
+	void	ControllManager();
+	void	Attack(Vec2 vector, int chargeLevel);
+	void	Move(Vec2 velocity, float multiply=1.0f);
 };
 
 #endif

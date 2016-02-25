@@ -1,12 +1,20 @@
 #include "Player.h"
 #include "DeviceManager.h"
+#include "LaserManager.h"
+#include "AbstractDamageArea.h"
+#include "DamageAreaCircle.h"
+#include "DamageAreaRectangle.h"
+#include "Laser.h"
 
-Player::Player(int padNo){
-	this->device		= DeviceManager::GetInstance();
-	this->padNo			= padNo;
-	maxStopCntAttack	= PLAYER_ATTACK_STOP_COUNT;
-	cntInvincible		= PLAYER_DAMAGE_INVINCIBLE_COUNT;
-	isEnable			= false;
+Player::Player(int padNo, LaserManager* laserManager, DamageAreaManager* damageAreaManager){
+	this->device			= DeviceManager::GetInstance();
+	this->padNo				= padNo;
+	this->damageAreaManager = damageAreaManager;
+	this->laserManager		= laserManager;
+	maxStopCntAttack		= PLAYER_ATTACK_STOP_COUNT;
+	cntInvincible			= PLAYER_DAMAGE_INVINCIBLE_COUNT;
+	isEnable				= false;
+	inputState				= device->Input()->GetInputState(padNo);
 }
 
 Player::~Player() {
@@ -33,16 +41,19 @@ void Player::Initialize() {
 
 void Player::Update(){
 	CountdownInvincible();
+	ControllManager();
 }
 
 void Player::Draw() {
 	int attackImage = (cntStop > 0) ? 4 : 0;
-	device->Image()->ChangeImageType(imageHandle, imageType + attackImage);
-	device->Image()->ChangeAnimePlay(imageHandle, animeData.isAnimation);
+	//device->Image()->ChangeImageType(imageHandle, imageType + attackImage);
+	device->Image()->DrawLT(imageHandle, position);
+//	device->Image()->ChangeAnimePlay(imageHandle, animeData.isAnimation);
 
 	cut->Rendering([&]()
 	{
 		device->Image()->DrawPlayerCenter(imageHandle, position);
+		device->Image()->DrawLT(imageHandle, position);
 	}, device->GetInstance()->Image()->GetHGraphics(imageHandle));
 
 
@@ -90,8 +101,13 @@ Vec2 Player::GetPosition() {
 	return position;
 }
 
-GCircle Player::GetHitArea() {
+void Player::CheckHitDamageArea(AbstractDamageArea* damageArea){
+	if (hitArea->CheckIsHitAndDamage(damageArea) == HitData::NoHit()) { return; }
+	HitData hitData = damageArea->GetHitData();
+	Damage(hitData.damage);
+}
 
+GCircle Player::GetHitArea() {
 	return GCircle::Setup(position, parameter.hitRange);
 }
 
@@ -129,7 +145,6 @@ int Player::GetPadNo()
 
 void Player::CheckControll(){
 	InputState* input = device->Input()->GetInputState(padNo);
-	if (input->CheckKeyDown(GKey_Up));
 }
 
 //---private---
@@ -139,16 +154,15 @@ void Player::SetAnimeData(AnimeData animeData){
 
 void Player::LoadImageHandle(IMAGE_ASSET_NAME assetName){
 	imageHandle = device->Image()->AddCharacterImageMap(assetName);
-
 }
 
-void Player::Attack(float angleDeg, int chargeLevel){
-	if (--cntStop > 0){
-		return;
-	}
-	if (!device->Input()->GetInputState(padNo)->CheckKeyPush(GKey_Attack)){ return; }
-
+void Player::Attack(Vec2 vector, int chargeLevel){
+	if (--cntStop > 0){ return; }
 	cntStop = maxStopCntAttack;
+	shared_ptr<Laser> laser = make_shared<Laser>(damageAreaManager, 30, 5, position, vector, 16, 10, 1, 15);
+//	shared_ptr<Laser> laser = make_shared<Laser>(damageAreaManager, 5, 30, position, Vec2::Setup(0, 1), 64, 10, 1, 5);
+	laserManager->AddLaser(laser);
+
 }
 
 void Player::ChangeImageType(int type) {
@@ -158,7 +172,7 @@ void Player::ChangeImageType(int type) {
 
 void Player::Move(Vec2 velocity, float multiply){
 	if (velocity == Vec2::Zero()) { return; }
-	if (cntStop > 0){ return; }
+//	if (cntStop > 0){ return; }
 	velocity.NormalizeSelf();
 	position		+= velocity * parameter.speed * multiply;
 	Clamp();
@@ -223,6 +237,13 @@ void Player::Clamp(){
 	if (position.Y - imageHalfSize.Y < 0) { position.Y = imageHalfSize.Y; }
 	if (position.X + imageHalfSize.X > Window::WIDTH) { position.X = Window::WIDTH - imageHalfSize.X; }
 	if (position.Y + imageHalfSize.Y > Window::HEIGHT) { position.Y = Window::HEIGHT - imageHalfSize.Y; }
+}
+
+void Player::ControllManager(){
+	Vec2 moveVec = inputState->GetMoveVector();
+	Vec2 attackVec = inputState->GetAttackVector();
+	if (moveVec		!= Vec2::Zero()) { Move(moveVec);		 }
+	if (attackVec	!= Vec2::Zero()) { Attack(attackVec, 1); }
 }
 
 

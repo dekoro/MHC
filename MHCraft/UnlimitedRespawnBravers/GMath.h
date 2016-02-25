@@ -6,6 +6,7 @@
 class Vec2;
 class GCircle;
 class GRectangle;
+class GQuadrangle;
 
 
 class GMath
@@ -26,6 +27,7 @@ public:
 	static bool		CheckHitCircleToRectangle(GCircle circle, GRectangle rectangle);
 	static bool		CheckHitCircleToRectangle(Vec2 posCenterCircle, double radiusCirle	, Vec2 posRectangleTL, Vec2 posRectangleBR);
 	static bool		CheckHitCircleToRectangle(Vec2 posCenterCircle, double radiusCirle	, GRectangle rectangle);
+	static bool		CheckHitCircleToQuadrangle(GCircle circle, GQuadrangle quadrangle);
 	static bool		CheckHitCircleToPoint(GCircle circle, Vec2 posPoint);
 	static bool		CheckHitCircleToPoint(Vec2 posCenterCircle, double radius, Vec2 posPoint);
 
@@ -33,6 +35,8 @@ public:
 	static bool		CheckHitRectangleToRectangle(GRectangle rect1, GRectangle rect2);
 	static bool		CheckHitRectangleToRectangle(Vec2 pos1TL, Vec2 pos1BR, Vec2 pos2TL, Vec2 pos2BR);
 	static Vec2		GetStickStateToVec2(short ThumbX, short ThumbY);
+	static float	CutHighAndLow(float value, float high, float low, float start = 0, float end = 1);
+	static float	CutNearAndFarByZero(float value, float nearByZero, float farByZero, float end = 1);
 private:
 
 };

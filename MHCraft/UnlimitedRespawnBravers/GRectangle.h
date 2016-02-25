@@ -24,6 +24,8 @@ public:
 	Vec2 GetPositionLeftBottom();
 	Vec2 GetPositionRightBottom();
 	Vec2 GetPositionCenter();
+
+private:
 };
 
 #endif

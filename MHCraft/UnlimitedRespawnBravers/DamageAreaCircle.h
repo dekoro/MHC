@@ -2,18 +2,18 @@
 #define _CHARACTER_DAMAGEAREA_DAMAGEAREACIRCLE_H_
 
 #include "AbstractDamageArea.h"
+#include "GCircle.h"
 
-class DamageAreaCircle: public AbstractDamageArea
-{
+class DamageAreaCircle: public AbstractDamageArea{
 public:
-	DamageAreaCircle(GCircle hitArea, int stayCount, bool isToPlayer, bool isToEnemy);
+	DamageAreaCircle(GCircle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy);
 	~DamageAreaCircle(){}
 
-	bool CheckIsHit(Vec2 position);
-	bool CheckIsHit(GCircle circle);
-	bool CheckIsHit(GRectangle rectangle);
+	HitData CheckIsHitAndDamage(Vec2 position);
+	HitData CheckIsHitAndDamage(GCircle circle);
+	HitData CheckIsHitAndDamage(GRectangle rectangle);
+	HitData CheckIsHitAndDamage(AbstractDamageArea* damageArea);
 	void	Draw();
-
 	void	ChangeParameter(GCircle circle);
 	void	ChangePosition(Vec2 posCenter);
 private:

@@ -4,6 +4,7 @@
 #include "GCircle.h"
 #include "Debug.h"
 #include "Vec2.h"
+#include "GQuadrangle.h"
 
 GMath::GMath(){
 
@@ -52,6 +53,8 @@ bool GMath::CheckHitCircleToCircle(Vec2 posCenter1, double radius1, Vec2 posCent
 	return (posCenter1.Distance(posCenter2) <= (radius1+radius2));
 }
 
+
+
 bool GMath::CheckHitCircleToRectangle(GCircle circle, GRectangle rectangle){
 	Vec2	posLT	= rectangle.GetPositionLeftTop();
 	Vec2	posRB	= rectangle.GetPositionRightBottom();
@@ -79,6 +82,26 @@ bool GMath::CheckHitCircleToRectangle(Vec2 posCenterCircle, double radiusCirle, 
 
 bool GMath::CheckHitCircleToRectangle(Vec2 posCenterCircle, double radiusCirle, GRectangle rectangle){
 	return CheckHitCircleToRectangle(GCircle::Setup(posCenterCircle, radiusCirle), rectangle);
+}
+
+bool GMath::CheckHitCircleToQuadrangle(GCircle circle, GQuadrangle quadrangle){
+	Vec2	posLT = quadrangle.GetPoint1();
+	Vec2	posRB = quadrangle.GetPoint3();
+	Vec2	posC = circle.posCenter;
+	double	radC = circle.radius;
+
+	GCircle	circleOverRectangle = GCircle::Setup(quadrangle.GetCenterPosition(), posLT.Distance(posRB) / 2);
+	if (!GMath::CheckHitCircleToCircle(circle, circleOverRectangle)) { return false; }
+
+	Vec2	posRT = quadrangle.GetPoint2();
+	Vec2	posLB = quadrangle.GetPoint4();
+
+	if (Vec2::Cross(posRT, posLT, circle.posCenter) > circle.radius) { return false; }
+	if (Vec2::Cross(posLT, posLB, circle.posCenter) > circle.radius) { return false; }
+	if (Vec2::Cross(posLB, posRB, circle.posCenter) > circle.radius) { return false; }
+	if (Vec2::Cross(posRB, posRT, circle.posCenter) > circle.radius) { return false; }
+	return true;
+
 }
 
 
@@ -113,11 +136,25 @@ bool GMath::CheckHitRectangleToRectangle(Vec2 pos1TL, Vec2 pos1BR, Vec2 pos2TL, 
 	return CheckHitRectangleToRectangle(rect1, rect2);
 }
 
+
 Vec2 GMath::GetStickStateToVec2(short ThumbX, short ThumbY) {
-	if (ThumbX == 0 && ThumbY == 0) { return Vec2::Zero(); }
-	float stateX = (float)ThumbX / 32767;
-	float stateY = (float)ThumbY / 32767;
+	float stateX = CutNearAndFarByZero((float)ThumbX / SHRT_MAX, CONTROLLER_STICK_LOWER_LIMIT, CONTROLLER_STICK_HIGHER_LIMIT);
+	float stateY = CutNearAndFarByZero((float)ThumbY / SHRT_MAX, CONTROLLER_STICK_LOWER_LIMIT, CONTROLLER_STICK_HIGHER_LIMIT);
 	Vec2 state = Vec2::Setup(stateX, stateY);
 	state.NormalizeSelf();
-	return state;;
+	return state;
+}
+
+float GMath::CutHighAndLow(float value, float high, float low, float start, float end){
+	if (value < low)	{ return start;	}
+	if (value > high)	{ return end;	}
+	return value;
+}
+
+float GMath::CutNearAndFarByZero(float value, float nearByZero, float farByZero, float end){
+	if (value == 0) { return 0; }
+	float	absValue = abs(value);
+	bool	isPlus	 = (value > 0);
+	float	cutted	 = CutHighAndLow(absValue, farByZero, nearByZero, 0, end);
+	return	cutted * (-1+2*isPlus);
 }

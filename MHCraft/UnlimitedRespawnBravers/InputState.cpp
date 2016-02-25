@@ -16,8 +16,10 @@ void InputState::SetupInputState(int padInput){
 }
 
 void InputState::Update(){
-	preState = curState;
-	curState = GetJoypadInputState(GetDxPadType(padIndex));
+	preState			= curState;
+	curState			= GetJoypadInputState(GetDxPadType(padIndex));
+	moveStickState		= GetLeftStickState(padIndex);
+	attackStickState	= GetRightStickState(padIndex);
 }
 
 

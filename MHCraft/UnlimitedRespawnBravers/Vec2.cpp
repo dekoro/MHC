@@ -1,4 +1,5 @@
 #include "Vec2.h"
+#include "GMath.h"
 
 Vec2 Vec2::Zero(){
 	Vec2 tmp(0, 0);
@@ -21,6 +22,13 @@ Vec2 Vec2::Setup(float X, float Y){
 	tmp.X = X;
 	tmp.Y = Y;
 	return tmp;
+}
+Vec2 Vec2::GetVelocityFromDeg(double angleDeg){
+	return GetVelocityFromRad(GMath::ChangeDegToRad(angleDeg));
+}
+
+Vec2 Vec2::GetVelocityFromRad(double angleRad){ 
+	return 	Vec2::Setup(cos(angleRad), sin(angleRad));
 }
 
 double Vec2::Distance(Vec2 position1, Vec2 position2){
@@ -79,6 +87,16 @@ Vec2* Vec2::SetupSelf(float X, float Y){
 	this->Y = Y;
 	return this;
 }
+
+
+double	Vec2::GetAngleDeg(){
+	return GMath::ChangeRadToDeg(GetAngleRad());
+}
+
+double	Vec2::GetAngleRad(){
+	return GMath::CalcAngleRad(Vec2::Zero(), *this);
+}
+
 
 int	Vec2::GetIntX(){
 	return (int)X;

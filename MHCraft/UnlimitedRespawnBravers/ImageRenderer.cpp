@@ -20,7 +20,7 @@ void ImageRenderer::Update(){
 
 void ImageRenderer::DrawPlayerCenter(int imageIndex, Vec2 positionCenter){
 	int imageHandle = characterImageMap[imageIndex]->GetImageHandle();
-	Draw(imageHandle, positionCenter.GetIntX() - GetSizeHalfImageX(imageIndex), positionCenter.GetIntY() - GetSizeHalfImageY(imageIndex));
+	DrawLT(imageHandle, positionCenter.GetIntX() - GetSizeHalfImageX(imageIndex), positionCenter.GetIntY() - GetSizeHalfImageY(imageIndex));
 }
 
 //プレイヤー専用？のグラフィックハンドル取得メソッド

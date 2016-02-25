@@ -54,6 +54,9 @@
     <Filter Include="ソース ファイル\SceneManager\Ending">
       <UniqueIdentifier>{baa71f66-f7b0-4ec3-abda-93a7630e6c7d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Character\Laser">
+      <UniqueIdentifier>{8f037a8a-6044-40ec-a7b0-c2141d41719a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FlagManager.cpp">
@@ -137,9 +140,6 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>ソース ファイル\Character\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Rectangle.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="GCircle.cpp">
       <Filter>ソース ファイル\GSystem</Filter>
     </ClCompile>
@@ -175,6 +175,72 @@
     </ClCompile>
     <ClCompile Include="UI.cpp">
       <Filter>ソース ファイル\GSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="GRectangle.cpp">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseEffect.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Blur.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ChildWindow.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CutEffect.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Cutting.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ErrorCheck.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Fragment.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="NowLoading.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="PostEffect.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenLayout.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="TextLoader.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureMapping.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GQuadrangle.cpp">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Laser.cpp">
+      <Filter>ソース ファイル\Character\Laser</Filter>
+    </ClCompile>
+    <ClCompile Include="DamageAreaQuadrangle.cpp">
+      <Filter>ソース ファイル\Character\DamageArea</Filter>
+    </ClCompile>
+    <ClCompile Include="LaserManager.cpp">
+      <Filter>ソース ファイル\Character\Laser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -316,9 +382,6 @@
     <ClInclude Include="IScenes.h">
       <Filter>ソース ファイル\SceneManager</Filter>
     </ClInclude>
-    <ClInclude Include="GRectangle.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="GSystemHub.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
@@ -327,6 +390,30 @@
     </ClInclude>
     <ClInclude Include="SystemHub.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GRectangle.h">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseEffect.h" />
+    <ClInclude Include="Blur.h" />
+    <ClInclude Include="CameraManager.h" />
+    <ClInclude Include="ChildWindow.h" />
+    <ClInclude Include="CutEffect.h" />
+    <ClInclude Include="Cutting.h" />
+    <ClInclude Include="EffectManager.h" />
+    <ClInclude Include="ErrorCheck.h" />
+    <ClInclude Include="e_Directon.h" />
+    <ClInclude Include="e_ScreenLayout.h" />
+    <ClInclude Include="Fragment.h" />
+    <ClInclude Include="NowLoading.h" />
+    <ClInclude Include="PostEffect.h" />
+    <ClInclude Include="ScreenLayout.h" />
+    <ClInclude Include="Stage.h" />
+    <ClInclude Include="TextLoader.h" />
+    <ClInclude Include="TextureMapping.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="LaserManager.h">
+      <Filter>ソース ファイル\Character\Laser</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -396,5 +483,14 @@
   <ItemGroup>
     <None Include="LeafLife.cd" />
     <None Include="packages.config" />
+    <None Include="DamageAreaQuadrangle.h">
+      <Filter>ソース ファイル\Character\DamageArea</Filter>
+    </None>
+    <None Include="GQuadrangle.h">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </None>
+    <None Include="Laser.h">
+      <Filter>ソース ファイル\Character\Laser</Filter>
+    </None>
   </ItemGroup>
 </Project>

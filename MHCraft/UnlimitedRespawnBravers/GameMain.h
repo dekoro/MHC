@@ -14,11 +14,12 @@
 #include"Stage.h"
 #include"TextLoader.h"
 
-
+class CharacterManager;
 class PlayerManager;
 class EnemyManager;
 class ItemManager;
 class DamageAreaManager;
+class LaserManager;
 
 
 class SceneGameMain: public IScenes
@@ -36,6 +37,7 @@ private:
 	ImageData*			imageBackGround;
 	TextureMapping		texMapEffect;
 
+	std::shared_ptr<LaserManager>		laserManager;
 	std::shared_ptr<PlayerManager>		playerManager;
 	std::shared_ptr<EnemyManager>		enemyManager;
 	std::shared_ptr<DamageAreaManager>	damageAreaManager;

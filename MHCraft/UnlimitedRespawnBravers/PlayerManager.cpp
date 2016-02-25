@@ -1,13 +1,15 @@
 #include "PlayerManager.h"
 #include "player.h"
+#include "DamageAreaManager.h"
 #include "EnemyManager.h"
 #include "ItemManager.h"
 #include "DeviceManager.h"
+#include "LaserManager.h"
 
-PlayerManager::PlayerManager(){
+PlayerManager::PlayerManager(LaserManager* laserManager, DamageAreaManager* damageareaManager){
 	device	= DeviceManager::GetInstance();
 	for (int i = 0; i < MAX_PLAYER; ++i) {
-		player[i] = new Player(i);
+		player[i] = new Player(i, laserManager, damageareaManager);
 	}
 }
 
@@ -80,14 +82,9 @@ void PlayerManager::UpdateAllPlayers(){
 	}
 }
 
-void PlayerManager::MoveAllPlayers()
-{
+void PlayerManager::MoveAllPlayers(){
 	for (int i = 0; i < MAX_PLAYER; ++i) {
 		InputState* input = device->Input()->GetInputState(i);
-		if (input->CheckKeyDown(GKey_Up))		{ player[i]->Move(Vec2::Setup( 0,  1)); }
-		if (input->CheckKeyDown(GKey_Down))		{ player[i]->Move(Vec2::Setup( 0, -1)); }
-		if (input->CheckKeyDown(GKey_Left))		{ player[i]->Move(Vec2::Setup(-1,  0)); }
-		if (input->CheckKeyDown(GKey_Right))	{ player[i]->Move(Vec2::Setup(1,  0)); }
 	}
 }
 

@@ -1,13 +1,16 @@
 #ifndef _SystemHub_H_
 #define _SystemHub_H_
 
-#include <stdio.h>
-#include <math.h>
+#include <cstdio>
+#include <cmath>
 #include <map>
 #include <vector>
 #include <iostream>
 #include <array>
 #include <cpplinq.hpp>
+#include <limits>
+#include <memory>
+
 
 #include "DxLib.h"
 
