@@ -163,11 +163,16 @@ void ImageRenderer::SetupImageMap(){
 	SetupImageMapInstance();
 }
 
-//画像サイズを毎フレーム取得しているので直す必要あり
 void ImageRenderer::Draw(int imageHandle, int posX, int posY){
-	int x;
-	GetGraphSize(imageHandle,&x,nullptr);
-	DrawBillboard3D(VGet(posX, posY, 0), 0.5f, 0.5f, x, 0.0f, imageHandle, TRUE);
+	int x,y ;
+	GetGraphSize(imageHandle,&x,&y);
+	DrawBillboard3D(VGet(posX + 10, posY + 10, 0), 0.5f, 0.5f, x, 0.0f, imageHandle, TRUE);
+	//DrawModiBillboard3D(VGet(posX, posY, 0), posX - (x/2), posY + (y / 2),
+	//	posX + (x / 2), posY + (y / 2),
+	//	posX + (x / 2), posY - (y / 2),
+	//	posX - (x / 2), posY - (y / 2),
+	//	imageHandle,
+	//	TRUE);
 }
 
 //ハンドル　中心　拡大率

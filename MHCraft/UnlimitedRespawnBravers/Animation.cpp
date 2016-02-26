@@ -1,8 +1,9 @@
 #include"Animation.h"
 #include"ErrorCheck.h"
 
-Animation::Animation()
+Animation::Animation(int intarval) :intarval(intarval)
 {
+	Initialize();
 }
 
 Animation::~Animation()
@@ -26,12 +27,17 @@ int Animation::GetMotion()
 void Animation::Initialize()
 {
 	this->motionCount = 0;
+	intarvalCount = 0;
 	this->isEnd = false;
 }
 
 void Animation::Update()
 {
-	if (!currentMotion.isLoop)
+	intarvalCount = intarvalCount < intarval ? ++intarvalCount : 0;
+
+	if (intarvalCount != 0) return;
+
+	if (currentMotion.isLoop)
 		this->motionCount = motionCount < this->currentMotion.motions.size() - 1 ? ++motionCount : 0;
 	else
 	{

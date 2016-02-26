@@ -6,7 +6,7 @@
 #include "DamageAreaRectangle.h"
 #include "DamageAreaManager.h"
 
-Player::Player(int padNo, LaserManager* laserManager, DamageAreaManager* damageAreaManager){
+Player::Player(int padNo, LaserManager* laserManager, DamageAreaManager* damageAreaManager) : motion(30){
 	this->device = DeviceManager::GetInstance();
 	this->padNo = padNo;
 	this->damageAreaManager = damageAreaManager;
@@ -16,6 +16,11 @@ Player::Player(int padNo, LaserManager* laserManager, DamageAreaManager* damageA
 	cntInvincible = PLAYER_DAMAGE_INVINCIBLE_COUNT;
 	isEnable = false;
 	inputState = device->Input()->GetInputState(padNo);
+
+	motion.AddMotion(e_STAND,device->Image()->LoadMotion("Resource/player_sprite_sheet.png",4,2,0,8,2),true);
+	motion.AddMotion(e_WALK, device->Image()->LoadMotion("Resource/player_sprite_sheet.png", 4, 2, 4, 8, 4), true);
+	this->state = e_STAND;
+	motion.ChangeMotion(e_WALK);
 }
 
 Player::~Player() {
@@ -39,11 +44,19 @@ void Player::Initialize() {
 	isWalk = false;
 	cntInvincible = 120;
 	cut = std::make_shared<Cutting>(e_Right);
+	motion.Initialize();
+	this->state = e_STAND;
 }
 
 void Player::Update(){
+//	state = e_STAND;
 	CountdownInvincible();
 	ControllManager();
+
+	motion.Update();
+
+//	motion.ChangeMotion(state);//このメソッドは前フレーム前と違う引数が入るとアニメーションを初期化する
+
 	HitData hit = damageAreaManager->CheckAllHitCircle(GetHitArea(), false, true);
 	if (hit == HitData::NoHit()){ return; }
 
@@ -54,12 +67,12 @@ void Player::Update(){
 void Player::Draw() {
 	int attackImage = (cntStop > 0) ? 4 : 0;
 	//device->Image()->ChangeImageType(imageHandle, imageType + attackImage);
-	device->Image()->DrawLT(imageHandle, position);
+//	device->Image()->DrawLT(imageHandle, position);
 	//	device->Image()->ChangeAnimePlay(imageHandle, animeData.isAnimation);
 
 
 	//device->Image()->DrawPlayerCenter(imageHandle, position);
-	device->Image()->DrawLT(imageHandle, position);
+	device->Image()->DrawLT(motion.GetMotion(), position);
 
 
 }
@@ -185,6 +198,7 @@ void Player::ChangeImageType(int type) {
 void Player::Move(Vec2 velocity, float multiply){
 	if (velocity == Vec2::Zero()) { return; }
 	//	if (cntStop > 0){ return; }
+	//state = e_WALK;
 	velocity.NormalizeSelf();
 	position += velocity * parameter.speed * multiply;
 	Clamp();

@@ -7,6 +7,7 @@
 #include "Cutting.h"//Œã‚Åíœ
 #include "InputState.h"
 #include "Laser.h"
+#include"Animation.h"
 
 class AbstractDamageArea;
 class DeviceManager;
@@ -51,6 +52,9 @@ private:
 	DamageAreaCircle*			hitArea;
 	std::shared_ptr<Cutting>	cut;
 	LaserData					laserData;
+	Animation motion;
+	e_Motion state;//ƒvƒŒƒCƒ„[‚Ìó‘Ô
+
 	int		width;
 	int		height;
 	int		padNo;

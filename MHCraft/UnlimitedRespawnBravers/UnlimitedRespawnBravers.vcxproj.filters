@@ -426,6 +426,9 @@
     <ClCompile Include="InputState.cpp">
       <Filter>ソース ファイル\Device\Input</Filter>
     </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>ソース ファイル\Character\Animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GMath.h">
@@ -643,6 +646,9 @@
     </ClInclude>
     <ClInclude Include="InputState.h">
       <Filter>ヘッダー ファイル\Device\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>ヘッダー ファイル\Character\Animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
