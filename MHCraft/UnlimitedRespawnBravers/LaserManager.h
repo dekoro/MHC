@@ -2,26 +2,29 @@
 #define _CHARACTER_LASER_LASERMANAGER_H_
 
 #include "SystemHub.h"
+#include "GSystem.h"
+
 using namespace std;
 
 class Laser;
-
+class LaserData;
+class DamageAreaManager;
 
 class LaserManager{
 public:
-	LaserManager();
+	LaserManager(DamageAreaManager* damageAreaManager);
 	~LaserManager();
 
 	void Initialize();
 	void Update();
 	void Draw();
-	void AddLaser(shared_ptr<Laser> laser);
+	void AddLaser(LaserData laserData);
 
 private:
-	vector<shared_ptr<Laser>> lasers;
-	void DeleteEndLaser();
-	void ClearAllLaser();
-
+	shared_ptr<Laser> lasers[MAX_LASER_NUM];
+	DamageAreaManager* damageAreaManager;
+	void	ClearAllLaser();
+	int		GetEmptyNum();
 };
 
 

@@ -4,10 +4,10 @@ GRectangle::GRectangle(int X, int Y, int width, int height){}
 
 GRectangle GRectangle::Setup(int x, int y, int width, int height){
 	GRectangle tmp;
-	tmp.X = x;
-	tmp.Y = y;
-	tmp.width = width;
-	tmp.height = height;
+	tmp.X		= x;
+	tmp.Y		= y;
+	tmp.width	= width;
+	tmp.height	= height;
 	return tmp;
 }
 

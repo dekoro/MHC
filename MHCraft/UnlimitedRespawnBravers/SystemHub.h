@@ -10,6 +10,7 @@
 #include <cpplinq.hpp>
 #include <limits>
 #include <memory>
+#include <float.h>
 
 
 #include "DxLib.h"

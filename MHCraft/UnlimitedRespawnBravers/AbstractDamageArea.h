@@ -25,6 +25,7 @@ public:
 	bool	IsHittableToEnemy();
 	bool	GetIsDead();
 	HitData	GetHitData();
+	void	Kill();
 
 protected:
 

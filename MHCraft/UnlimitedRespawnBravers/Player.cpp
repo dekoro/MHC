@@ -4,13 +4,14 @@
 #include "AbstractDamageArea.h"
 #include "DamageAreaCircle.h"
 #include "DamageAreaRectangle.h"
-#include "Laser.h"
+#include "DamageAreaManager.h"
 
 Player::Player(int padNo, LaserManager* laserManager, DamageAreaManager* damageAreaManager){
 	this->device			= DeviceManager::GetInstance();
 	this->padNo				= padNo;
 	this->damageAreaManager = damageAreaManager;
 	this->laserManager		= laserManager;
+	height = 32, width = 32;
 	maxStopCntAttack		= PLAYER_ATTACK_STOP_COUNT;
 	cntInvincible			= PLAYER_DAMAGE_INVINCIBLE_COUNT;
 	isEnable				= false;
@@ -28,20 +29,26 @@ void Player::Setup(CharacterInformation parameter){
 		GetRand(255), GetRand(255), GetRand(255));
 	SetAnimeData(device->Image()->GetAnimeData(imageAsset_player_fighter));
 	imageHandle = device->Image()->AddCharacterImageMap(imageAsset_player_fighter);
+	laserData = LaserData::Setup(30, 5, position, Vec2::Zero(), 16, 5, 1, 15, 120);
 //	LoadImageHandle(assetName);
 	
 }
 
 void Player::Initialize() {
-	isDead			= false;
-	isWalk			= false;
-	cntInvincible	= 120;
+	isDead = false;
+	isWalk = false;
+	cntInvincible = 120;
 	cut = std::make_shared<Cutting>(e_Right);
 }
 
 void Player::Update(){
 	CountdownInvincible();
 	ControllManager();
+	HitData hit =damageAreaManager->CheckAllHitCircle(GetHitArea(), false, true);
+	if (hit == HitData::NoHit()){ return; }
+
+	Knockback(GMath::CalcAngleRad(hit.fromPosition, position), hit.knockbackPower);
+	Damage(hit.damage);
 }
 
 void Player::Draw() {
@@ -101,14 +108,19 @@ Vec2 Player::GetPosition() {
 	return position;
 }
 
+Vec2 Player::GetCenterPosition() {
+	return position - Vec2::Setup((float)width/2, (float)height/2);
+}
+
 void Player::CheckHitDamageArea(AbstractDamageArea* damageArea){
 	if (hitArea->CheckIsHitAndDamage(damageArea) == HitData::NoHit()) { return; }
 	HitData hitData = damageArea->GetHitData();
+	Knockback(GMath::CalcAngleRad(hitData.fromPosition, position), hitData.knockbackPower);
 	Damage(hitData.damage);
 }
 
 GCircle Player::GetHitArea() {
-	return GCircle::Setup(position, parameter.hitRange);
+	return GCircle::Setup(GetCenterPosition(), parameter.hitRange);
 }
 
 int Player::GetLeftHealth() {
@@ -159,9 +171,11 @@ void Player::LoadImageHandle(IMAGE_ASSET_NAME assetName){
 void Player::Attack(Vec2 vector, int chargeLevel){
 	if (--cntStop > 0){ return; }
 	cntStop = maxStopCntAttack;
-	shared_ptr<Laser> laser = make_shared<Laser>(damageAreaManager, 30, 5, position, vector, 16, 10, 1, 15);
-//	shared_ptr<Laser> laser = make_shared<Laser>(damageAreaManager, 5, 30, position, Vec2::Setup(0, 1), 64, 10, 1, 5);
-	laserManager->AddLaser(laser);
+	laserData.shotPosition = GetCenterPosition();
+	double attackAngleDeg = vector.GetAngleDeg();
+	attackAngleDeg += GetRand(10) - 5;
+	laserData.velocity = Vec2::GetVelocityFromDeg(attackAngleDeg);
+	laserManager->AddLaser(laserData);
 
 }
 
@@ -195,6 +209,7 @@ void Player::Knockback(double angleRad, int power) {
 	Vec2 knockBackVec;
 	knockBackVec.SetupSelf((float)(cos(angleRad)), (float)(sin(angleRad)));
 	position += knockBackVec * power;
+	Clamp();
 }
 
 void Player::CheckIsDead() {
@@ -243,7 +258,9 @@ void Player::ControllManager(){
 	Vec2 moveVec = inputState->GetMoveVector();
 	Vec2 attackVec = inputState->GetAttackVector();
 	if (moveVec		!= Vec2::Zero()) { Move(moveVec);		 }
-	if (attackVec	!= Vec2::Zero()) { Attack(attackVec, 1); }
+	if (attackVec	!= Vec2::Zero()) {
+		Attack(attackVec, 1);
+	}
 }
 
 

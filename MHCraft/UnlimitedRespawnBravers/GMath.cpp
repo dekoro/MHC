@@ -14,8 +14,17 @@ GMath::~GMath(){
 
 }
 
-bool GMath::Inner(int value, int min, int max){
+bool GMath::Inner(float value, float min, float max){
 	return (min <= value && max > value);
+}
+
+
+bool GMath::OnField(float valueX, float valueY, float minX, float minY, float maxX, float maxY){
+	return Inner(valueX, minX, maxX) && Inner(valueY, minY, maxY);
+}
+
+bool GMath::OnField(Vec2 position, Vec2 minPosition, Vec2 maxPosition){
+	return OnField(position.GetIntX(), position.GetIntY(), minPosition.GetIntX(), minPosition.GetIntY(), maxPosition.GetIntX(), maxPosition.GetIntY());
 }
 
 template<typename T>
@@ -52,8 +61,6 @@ bool GMath::CheckHitCircleToCircle(Vec2 posCenter1, int radius1, Vec2 posCenter2
 bool GMath::CheckHitCircleToCircle(Vec2 posCenter1, double radius1, Vec2 posCenter2, double radius2){
 	return (posCenter1.Distance(posCenter2) <= (radius1+radius2));
 }
-
-
 
 bool GMath::CheckHitCircleToRectangle(GCircle circle, GRectangle rectangle){
 	Vec2	posLT	= rectangle.GetPositionLeftTop();
@@ -143,6 +150,16 @@ Vec2 GMath::GetStickStateToVec2(short ThumbX, short ThumbY) {
 	Vec2 state = Vec2::Setup(stateX, stateY);
 	state.NormalizeSelf();
 	return state;
+
+	/*
+		float stateX = CutNearAndFarByZero((float)ThumbX / SHRT_MAX, CONTROLLER_STICK_LOWER_LIMIT, CONTROLLER_STICK_HIGHER_LIMIT);
+	float stateY = CutNearAndFarByZero((float)ThumbY / SHRT_MAX, CONTROLLER_STICK_LOWER_LIMIT, CONTROLLER_STICK_HIGHER_LIMIT);
+	Vec2 state = Vec2::Setup(ThumbX, ThumbY);
+	Vec2 velocity = state /FLT_MAX;
+	if (Inner(velocity.Length(), CONTROLLER_STICK_LOWER_LIMIT, CONTROLLER_STICK_HIGHER_LIMIT)){ velocity.NormalizeSelf(); }
+	else { velocity = Vec2::Zero(); }
+	return velocity;
+	*/
 }
 
 float GMath::CutHighAndLow(float value, float high, float low, float start, float end){

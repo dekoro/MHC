@@ -6,6 +6,7 @@
 #include "IAttackable.h"
 #include "Cutting.h"//å„Ç≈çÌèú
 #include "InputState.h"
+#include "Laser.h"
 
 class AbstractDamageArea;
 class DeviceManager;
@@ -38,6 +39,7 @@ public:
 	void	Dispone();
 	Vec2	GetPosition();
 	void	CheckHitDamageArea(AbstractDamageArea* damageArea);
+	Vec2	GetCenterPosition();
 
 private:	
 	DeviceManager*				device;
@@ -48,6 +50,9 @@ private:
 	CharacterInformation		parameter;
 	DamageAreaCircle*			hitArea;
 	std::shared_ptr<Cutting>	cut;
+	LaserData					laserData;
+	int		width;
+	int		height;
 	int		padNo;
 	int		imageHandle;
 	int		imageType;

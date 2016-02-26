@@ -58,7 +58,7 @@ void Camera::Update()
 void Camera::SetPosition()
 {
 	//Z‚Í“K“–‚È‹——£—£‚·
-	SetCameraPositionAndTarget_UpVecY(VGet(this->position.x, this->position.y, 200), VGet(this->position.x, this->position.y, 0));
+	SetCameraPositionAndTarget_UpVecY(VGet(this->position.x, this->position.y, -200), VGet(this->position.x, this->position.y, 0));
 	SetupCamera_Ortho(scale);//‚Q‚cƒJƒƒ‰İ’è
 }
 

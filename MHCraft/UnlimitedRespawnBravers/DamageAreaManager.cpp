@@ -19,6 +19,7 @@ void DamageAreaManager::Update(){
 	for(AbstractDamageArea* da : damageAreaList){
 		da->Update();
 	}
+	RefleshDamageArea();
 }
 
 void DamageAreaManager::Draw(){

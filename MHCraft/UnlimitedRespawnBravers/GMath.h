@@ -2,6 +2,7 @@
 #define _GSYSTEM_GMATH_H_
 
 #include "SystemHub.h"
+#include "GSystem.h"
 
 class Vec2;
 class GCircle;
@@ -15,7 +16,9 @@ public:
 	GMath();
 	~GMath();
 
-	static bool Inner(int value, int min, int max);
+	static bool Inner(float value, float min, float max);
+	static bool OnField(float valueX, float valueY, float minX = FIELD_MIN_X, float minY = FIELD_MIN_Y, float maxX = FIELD_MAX_X, float maxY = FIELD_MAX_Y);
+	static bool OnField(Vec2 position, Vec2 minPosition, Vec2 maxPosition);
 	template<typename T> static T Clamp(T value, T min, T max);
 	template<typename T> static int GetCountMaxSize(T dataType, int oneLoopSize);
 	static double	ChangeDegToRad(double angleDeg);

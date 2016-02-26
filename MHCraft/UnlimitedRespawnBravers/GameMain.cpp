@@ -24,8 +24,8 @@ SceneGameMain::SceneGameMain(){
 	device->Image()->LoadMapTip("Resource/Title_BackGround.png", 5, 5, 25);
 	this->screen = std::make_shared<ScreenLayout>(e_Double, blur.get());
 
-	laserManager		= std::make_shared<LaserManager>();
 	damageAreaManager	= std::make_shared<DamageAreaManager>();
+	laserManager		= std::make_shared<LaserManager>(damageAreaManager.get());
 	playerManager		= std::make_shared<PlayerManager>(laserManager.get(), damageAreaManager.get());
 	enemyManager		= std::make_shared<EnemyManager>();
 	itemManager			= std::make_shared<ItemManager>();
@@ -38,7 +38,7 @@ void SceneGameMain::Initialize(SceneMediateData sceneData){
 	ShaderLoad();
 	blur = std::make_shared<Blur>();
 	cut = std::make_shared<Cutting>(e_Left);
-	this->screen = std::make_shared<ScreenLayout>(e_Quad, blur.get());
+	this->screen = std::make_shared<ScreenLayout>(e_Single, blur.get());
 
 	AllManagersInitialize();
 	for (int i = 0; i < MAX_PLAYER; ++i) {

@@ -40,6 +40,10 @@ HitData AbstractDamageArea::GetHitData(){
 	return hitData;
 }
 
+void AbstractDamageArea::Kill(){
+	isDead = true;
+}
+
 //-----private-----
 
 void AbstractDamageArea::DestructorCount(){

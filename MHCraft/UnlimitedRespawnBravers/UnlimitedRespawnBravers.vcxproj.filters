@@ -325,9 +325,6 @@
     <ClInclude Include="NumPad.h">
       <Filter>ソース ファイル\Device\Input</Filter>
     </ClInclude>
-    <ClInclude Include="ImageRenderer.h">
-      <Filter>ソース ファイル\Device\Input</Filter>
-    </ClInclude>
     <ClInclude Include="SoundRenderer.h">
       <Filter>ソース ファイル\Device\Input</Filter>
     </ClInclude>
@@ -414,6 +411,9 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="LaserManager.h">
       <Filter>ソース ファイル\Character\Laser</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageRenderer.h">
+      <Filter>ソース ファイル\Device\Renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
