@@ -5,6 +5,9 @@
 #include<DxLib.h>
 #include"e_ScreenLayout.h"
 #include<functional>
+#include"EffectList.h"
+#include"Camera.h"
+
 
 /*
 ポストエフェクト
@@ -15,26 +18,32 @@
 引数のエフェクトによって画面に与えるエフェクトを変える。
 */
 
+
+
 class BaseEffect;
 
 class PostEffect
 {
 public:
 	//エフェクトは後でシングルトンにする必要がありそう。
-	PostEffect(BaseEffect* effect);
-	PostEffect(BaseEffect* effect, e_ScreenLayout lauOut, e_ScreenNumber);
+	PostEffect(Player* player);
+	PostEffect(Player* player,e_ScreenLayout lauOut, e_ScreenNumber);//スクリーンの番号をそのままカメラのインプットに割り当てる
 	virtual ~PostEffect();
 
-	void Rendaring(std::function<void()> Draw,float scale);
-	
+	void Initialize();//シーンがシェーダの読み込みが終わってから実行する
+
+	void Rendaring(std::function<void()> Draw, float scale);
+
 private:
-	void VertexErch(std::function<void (int x)> action);
+	void VertexErch(std::function<void(int x)> action);
 
 
 private:
 	int hGraphics;
 	BaseEffect* effect;
+	EffectList effetList;
 	VERTEX2DSHADER vertex[4];
+	Camera camera;
 	unsigned int color;
 };
 

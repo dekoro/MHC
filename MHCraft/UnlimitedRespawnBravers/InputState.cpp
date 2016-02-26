@@ -1,10 +1,11 @@
 #include "InputState.h"
 
 InputState::InputState(int padNo){
-	this->padIndex	= padNo;
+	this->padIndex = padNo;
 	Leave();
-	preState = 0;
-	curState = 0;
+
+	GetJoypadXInputState(GetDxPadType(), &preState);
+	GetJoypadXInputState(GetDxPadType(), &curState);
 }
 
 InputState::~InputState(){
@@ -17,7 +18,7 @@ void InputState::SetupInputState(int padInput){
 
 void InputState::Update(){
 	preState = curState;
-	curState = GetJoypadInputState(GetDxPadType());
+	GetJoypadXInputState(GetDxPadType(), &curState);
 }
 
 
@@ -38,7 +39,7 @@ bool InputState::CheckKeyFree(GKey key){
 }
 
 bool InputState::CheckAnyKeyPush(){
-	return (IsInput(curState, -1) && curState != preState);
+	return (IsInput(curState, -1) && curState.Buttons != preState.Buttons);
 }
 
 void InputState::ChangeKeyConfig(GKey key, int inputKey){
@@ -78,40 +79,48 @@ bool InputState::CheckJoinSign(){
 //--protected--
 
 void InputState::ResetKeyConfig(){
-	keyConfigList[GKey_Up]		= PAD_INPUT_UP;
-	keyConfigList[GKey_Down]	= PAD_INPUT_DOWN;
-	keyConfigList[GKey_Left]	= PAD_INPUT_LEFT;
-	keyConfigList[GKey_Right]	= PAD_INPUT_RIGHT;
-	keyConfigList[GKey_Attack]	= PAD_INPUT_1;
-	keyConfigList[GKey_Skill]	= PAD_INPUT_2;
-	keyConfigList[GKey_Appeal]	= PAD_INPUT_3;
+	keyConfigList[GKey_Up] = XINPUT_BUTTON_DPAD_UP;
+	keyConfigList[GKey_Down] = XINPUT_BUTTON_DPAD_DOWN;
+	keyConfigList[GKey_Left] = XINPUT_BUTTON_DPAD_LEFT;
+	keyConfigList[GKey_Right] = XINPUT_BUTTON_DPAD_RIGHT;
+	keyConfigList[GKey_Attack] = XINPUT_BUTTON_A;
+	keyConfigList[GKey_Skill] = XINPUT_BUTTON_B;
+	keyConfigList[GKey_Appeal] = PAD_INPUT_3; 
 
-	keyConfigListKeyboard[GKey_Up]		= KEY_INPUT_UP;
-	keyConfigListKeyboard[GKey_Down]	= KEY_INPUT_DOWN;
-	keyConfigListKeyboard[GKey_Left]	= KEY_INPUT_LEFT;
-	keyConfigListKeyboard[GKey_Right]	= KEY_INPUT_RIGHT;
-	keyConfigListKeyboard[GKey_Attack]	= KEY_INPUT_Z;
-	keyConfigListKeyboard[GKey_Skill]	= KEY_INPUT_X;
-	keyConfigListKeyboard[GKey_Appeal]	= KEY_INPUT_C;
+	keyConfigListKeyboard[GKey_Up] = KEY_INPUT_UP;
+	keyConfigListKeyboard[GKey_Down] = KEY_INPUT_DOWN;
+	keyConfigListKeyboard[GKey_Left] = KEY_INPUT_LEFT;
+	keyConfigListKeyboard[GKey_Right] = KEY_INPUT_RIGHT;
+	keyConfigListKeyboard[GKey_Attack] = KEY_INPUT_Z;
+	keyConfigListKeyboard[GKey_Skill] = KEY_INPUT_X;
+	keyConfigListKeyboard[GKey_Appeal] = KEY_INPUT_C;
 
 }
 
-bool InputState::IsInput(int preORcurState, GKey key){
+bool InputState::IsInput(XINPUT_STATE preORcurState, GKey key){
 	/*
 	int keyConfig = keyConfigList[key];
 	int isHit = preORcurState & keyConfig;
 	return (isHit != 0);
 	*/
-	return ((preORcurState & keyConfigList[key]) != 0);
+	return ((preORcurState.Buttons[keyConfigList[key]]) != 0);
 }
-bool InputState::IsInput(int preORcurState, int keyCode){
-	return ((preORcurState & keyCode) != 0);
+bool InputState::IsInput(XINPUT_STATE preORcurState, int keyCode){
+	return ((preORcurState.Buttons[keyCode]) != 0);
 }
 
 int InputState::GetDxPadType(){
 	return DX_INPUT_PAD1 + padIndex;
 }
 
+bool InputState::CheckLeftTrigger()
+{
+	return	this->curState.LeftTrigger != 0;
+}
 
+bool InputState::CheckRightTrigger()
+{
+	return	this->curState.RightTrigger != 0;
+}
 
 

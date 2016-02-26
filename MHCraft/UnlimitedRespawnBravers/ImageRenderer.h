@@ -39,11 +39,12 @@ public:
 	void		DrawBackGround();
 	void		ChangeImageType(int imageIndex, int	type);
 	void		ChangeAnimePlay(int imageIndex, bool isPlay);
-	int			AddCharacterImageMap(IMAGE_ASSET_NAME pathIndex);
+	int			AddCharacterImageMap(IMAGE_ASSET_NAME pathIndex, PlayerColorList playerColorList);
 	void		RemoveBaseImageMap(IMAGE_ASSET_NAME assetName);
 	void		RemoveCharacterImageMap(int imageMap);
 	void		ClearImageMap();
 	AnimeData	GetAnimeData(IMAGE_ASSET_NAME animeDataIndex);
+	void		AddCountPlayerAnimation(IMAGE_ASSET_NAME);
 	ImageData*	CopyImageData(IMAGE_ASSET_NAME);
 	Vec2		GetCharacterImageHalfSize(int imageIndex);
 
@@ -57,15 +58,22 @@ public:
 	//ファイルパス 横の数　縦の数　総分割数 
 	void LoadMapTip(std::string filePath, int xNum, int yNum,int totalNum);
 
-	Vec2 GetMapTipSize();
+	int GetMapTipSizeX();
+	int GetMapTipSizeY();
 	
+	//アニメーション読み込み
+	//ファイルパス 横の数　縦の数　総分割数 
+	std::vector<int> LoadMotion(std::string filePath, int xNum, int yNum,int startNum, int totalNum,int totalMotionNum);
+
+
 private:
-	std::vector<int> mapTip;
-	Vec2 mapTipSize;
-	std::map<int, CharacterImageData*>		characterImageMap;
-	std::map<IMAGE_ASSET_NAME, ImageData*>	imageMap;
-	std::map<IMAGE_ASSET_NAME, char*>		imageFilePathMap;
-	std::map<IMAGE_ASSET_NAME, AnimeData>	animeDataMap;
+	map<int, CharacterImageData*>		characterImageMap;
+	map<IMAGE_ASSET_NAME, ImageData*>	imageMap;
+	map<IMAGE_ASSET_NAME, char*>		imageFilePathMap;
+	map<IMAGE_ASSET_NAME, AnimeData>	animeDataMap;
+	vector<int> mapTip;
+	int mapTipSizeX;
+	int mapTipSizeY;
 
 	void SetupImageMap();
 	void SetupImageFilePathMap();

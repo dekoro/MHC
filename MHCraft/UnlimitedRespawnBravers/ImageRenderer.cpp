@@ -166,7 +166,7 @@ void ImageRenderer::SetupImageMap(){
 
 //画像サイズを毎フレーム取得しているので直す必要あり
 void ImageRenderer::Draw(int imageHandle, int posX, int posY){
-	int x;//GetSizeHalfImageXが正常に動作しないのでとりあえず毎フレーム取得後で修正
+	int x;
 	GetGraphSize(imageHandle,&x,nullptr);
 	DrawBillboard3D(VGet(posX, posY, 0), 0.5f, 0.5f, x, 0.0f, imageHandle, TRUE);
 }
@@ -221,12 +221,20 @@ void ImageRenderer::CheckNumAndSize(int imageHandle, int* numX, int* numY, int* 
 
 int ImageRenderer::GetMapTipHundle(int num)
 {
+	if (num == -1)
+		return 15;
+
 	return	this->mapTip[num];
 }
 
-Vec2 ImageRenderer::GetMapTipSize()
+int ImageRenderer::GetMapTipSizeX()
 {
-	return mapTipSize;
+	return this->mapTipSizeX;
+}
+
+int ImageRenderer::GetMapTipSizeY()
+{
+	return this->mapTipSizeY;
 }
 
 void ImageRenderer::LoadMapTip(std::string filePath,int xNum,int yNum,int totalNum)
@@ -241,7 +249,9 @@ void ImageRenderer::LoadMapTip(std::string filePath,int xNum,int yNum,int totalN
 	localSizeX = x / xNum;
 	localSizeY= y / yNum;
 
-	this->mapTipSize = Vec2(localSizeX, localSizeY);
+	this->mapTipSizeX = localSizeX;
+
+	this->mapTipSizeY = localSizeY;
 
 	LoadDivGraph(filePath.c_str(), totalNum, xNum, yNum, localSizeX, localSizeY, gra);
 
@@ -252,4 +262,36 @@ void ImageRenderer::LoadMapTip(std::string filePath,int xNum,int yNum,int totalN
 	}
 
 	delete[] gra;
+}
+
+std::vector<int> ImageRenderer::LoadMotion(std::string filePath, int xNum, int yNum, int startNum, int totalNum, int totalMotionNum)
+{
+	std::vector<int> tempMotion;
+
+	tempMotion.resize(totalMotionNum);
+
+	int *gra = new int[totalNum];
+	int resourceGraphics = LoadGraph(filePath.c_str());
+	int x = 0, y = 0;//もと画像のサイズ
+	int localSizeX = 0, localSizeY = 0;
+	int count = 0;
+	GetGraphSize(resourceGraphics, &x, &y);
+
+	localSizeX = x / xNum;
+	localSizeY = y / yNum;
+
+	this->mapTipSizeX = localSizeX;
+
+	this->mapTipSizeY = localSizeY;
+
+	LoadDivGraph(filePath.c_str(), totalNum, xNum, yNum, localSizeX, localSizeY, gra);
+
+	for (int i = startNum; i < startNum + totalMotionNum; i++)
+	{
+		tempMotion[count++] = gra[i];
+	}
+
+	delete[] gra;
+
+	return tempMotion;
 }
