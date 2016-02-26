@@ -1,28 +1,28 @@
-        #include "DamageAreaRectangle.h"
+#include "DamageAreaRectangle.h"
+#include "DamageAreaCircle.h"
+#include "GSystem.h"
+#include "GCircle.h"
+#include "Debug.h"
 
-DamageAreaRectangle::DamageAreaRectangle(GRectangle hitArea, int stayCount, HitData hitData, bool isToPlayer, bool isToEnemy) :AbstractDamageArea(stayCount, hitData, isToPlayer, isToEnemy){
+DamageAreaRectangle::DamageAreaRectangle(GRectangle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy) :AbstractDamageArea(stayCount, hitData, isToPlayer, isToEnemy){
 	this->hitArea = hitArea;
 }
 
-
-
-HitData DamageAreaRectangle::IsHitAndDamage(Vec2 position){
-	if (GMath::CheckHitRectangleToPoint(hitArea, position)){
-		return GetHitData();
-	}
+HitData DamageAreaRectangle::CheckIsHitAndDamage(Vec2 position){
+	if (GMath::CheckHitRectangleToPoint(hitArea, position)) { return GetHitData(); }
 	return HitData::NoHit();
 }
-
-HitData DamageAreaRectangle::IsHitAndDamage(GCircle circle){
-	if (GMath::CheckHitCircleToRectangle(circle, hitArea)){
-		return GetHitData();
-	}
+HitData DamageAreaRectangle::CheckIsHitAndDamage(GCircle circle){
+	if (GMath::CheckHitCircleToRectangle(circle, hitArea)) { return GetHitData(); }
 	return HitData::NoHit();
 }
-
-HitData DamageAreaRectangle::IsHitAndDamage(GRectangle rectangle){
-	if (GMath::CheckHitRectangleToRectangle(hitArea, rectangle)){
-		return GetHitData();
+HitData DamageAreaRectangle::CheckIsHitAndDamage(GRectangle rectangle){
+	if (GMath::CheckHitRectangleToRectangle(hitArea, rectangle)) { return GetHitData(); }
+	return HitData::NoHit();
+}
+HitData DamageAreaRectangle::CheckIsHitAndDamage(AbstractDamageArea * damageArea){
+	if (typeid(damageArea) == typeid(AbstractDamageArea)) {
+		return damageArea->CheckIsHitAndDamage(hitArea);
 	}
 	return HitData::NoHit();
 }
@@ -34,14 +34,9 @@ void DamageAreaRectangle::Draw(){
 void	DamageAreaRectangle::ChangePosition(GRectangle rectangle){
 	hitArea = rectangle;
 }
+
 void	DamageAreaRectangle::ChangePosition(Vec2 posision){
 	hitArea.X = posision.GetIntX();
 	hitArea.Y = posision.GetIntY();
 }
-
-
-
-
-
-
 

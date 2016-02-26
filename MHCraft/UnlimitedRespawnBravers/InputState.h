@@ -27,6 +27,10 @@ public:
 	void Join();
 	void Leave();
 	bool CheckJoinSign();
+	Vec2 GetLeftStickState();
+	Vec2 GetRightStickState();
+	Vec2 GetLeftStickLeanVector();
+	Vec2 GetRightStickLeanVector();
 
 
 	int keyConfigListKeyboard[GKEY_NUM];
@@ -42,6 +46,8 @@ private:
 	XINPUT_STATE curState;
 	XINPUT_STATE preState;
 	int GetDxPadType();
+	Vec2 leftStickState;
+	Vec2 rightStickState;
 
 
 };

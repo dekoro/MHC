@@ -16,7 +16,6 @@ EnemyManager::~EnemyManager(){
 }
 
 void EnemyManager::Initialize(){
-	managers	= Managers::GetInstance();
 	device		= DeviceManager::GetInstance();
 	for each(Enemy* ie in enemyList){
 		ie->Initialize();
@@ -36,8 +35,6 @@ SceneMediateData EnemyManager::Update(){
 	for (int i = 0; i < enemyListNum; i++){
 		enemyList[i]->Update();
 	}
-
-	if (managers->Player()->GetJoinNum() <= 0){ gameMode = GameMode_GameOver; }
 
 	switch (gameMode){
 	case GameMode_Main:
@@ -144,8 +141,8 @@ void EnemyManager::ClearEnemy(){
 
 void EnemyManager::CalcSpawnMob(int rate){
 	if (--spawnCount > 0){ return; }
-	int spawnCountTemp = rate - managers->Player()->GetJoinNum() * 3;
-	spawnCount = (spawnCountTemp > 5) ? spawnCountTemp : 5;
+	//int spawnCountTemp = rate - managers->Player()->GetJoinNum() * 3;
+	//spawnCount = (spawnCountTemp > 5) ? spawnCountTemp : 5;
 	AddEnemy(imageAsset_Enemy_Ghost);
 }
 
@@ -158,18 +155,18 @@ void EnemyManager::CalcSpawnBoss(){
 }
 
 void EnemyManager::LotDropItem(Vec2 position){
-	int rate =  managers->Player()->GetJoinNum();
-	if (GetRand(rate) != GetRand(rate)){ return; }
+	//int rate =  managers->Player()->GetJoinNum();
+	//if (GetRand(rate) != GetRand(rate)){ return; }
 	DropItem(position);
 }
 
 
 void EnemyManager::DropItem(Vec2 position){
-	managers->Item()->AddItemLollipop(position);
+	//managers->Item()->AddItemLollipop(position);
 }
 
 void EnemyManager::CalcHervestLollipop(){
-	int getLollipopNum = managers->Item()->GetCountGetItem();
+	int getLollipopNum = 0;/*managers->Item()->GetCountGetItem();*/
 	UI::GetInstance()->AddUI(UIData::Setup(Vec2::Setup(5, 5),20, STR("Lollipop : ", to_string(getLollipopNum) + "ŒÂ\n")));
 	if (isBoss){ return; }
 	int left = normaLollipop - getLollipopNum;

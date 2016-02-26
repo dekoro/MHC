@@ -12,6 +12,8 @@ public:
 	static	Vec2	One();
 	static  Vec2	Normalize(Vec2 other);
 	static	Vec2	Setup(float X, float Y);
+	static	Vec2	GetVelocityFromDeg(double angleDeg);
+	static	Vec2	GetVelocityFromRad(double angleRad);
 	static	double	Distance(Vec2 position1, Vec2 position2);
 	static	float	DistanceF(Vec2 position1, Vec2 position2);
 	static	double	Dot(Vec2 fromPos, Vec2 toPos, Vec2 posTarget);
@@ -25,10 +27,13 @@ public:
 	float	LengthF();
 	Vec2*	NormalizeSelf();
 	Vec2*	SetupSelf(float X, float Y);
+	double	GetAngleDeg();
+	double	GetAngleRad();
 	int		GetIntX();
 	int		GetIntY();
 
 
+	Vec2*	operator=(Vec2 other);
 	Vec2*	operator+=(Vec2 other);
 	Vec2*	operator-=(Vec2 other);
 	Vec2*	operator*=(Vec2 other);

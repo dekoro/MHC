@@ -1,10 +1,8 @@
 #include "Title.h"
 
-
 SceneTitle::SceneTitle(){
 	device = DeviceManager::GetInstance();
 	imageBackGround = device->Image()->CopyImageData(imageAsset_Title_BackGround);
-	//	postEffect = std::make_shared<PostEffect>(&texMapEffect);//テスト
 }
 
 SceneTitle::~SceneTitle(){
@@ -13,11 +11,10 @@ SceneTitle::~SceneTitle(){
 
 void SceneTitle::Initialize(SceneMediateData sceneData){
 	device->Sound()->Play(Music_Title_BGM);
-	nextSceneCount = 30;
-	enterPlayerIndex = -1;
-	counter = 0;
-	isEnd = false;
-	//SetCameraPositionAndTarget_UpVecY(VGet(500,0, -50), VGet(0, 0, 0));
+	nextSceneCount		= 30;
+	enterPlayerIndex	= -1;
+	counter				= 0;
+	isEnd				= false;
 
 	//SetupCamera_Ortho(2000.0f);//２Ｄカメラ設定
 }
@@ -28,33 +25,31 @@ SceneMediateData SceneTitle::Update(){
 		enterPlayerIndex = CheckControllPadNo();
 	}
 	if (nextSceneCount <= 0){
-		sceneData.playerIndex = enterPlayerIndex;
-		sceneData.nextScene = SCENE_GAMEMAIN;
+		sceneData.playerIndex	= enterPlayerIndex;
+		sceneData.nextScene		= SCENE_GAMEMAIN;
 	}
 	if (device->Input()->CheckKeyPushAllPad(GKey_Attack)) isEnd = true;
-	if (isEnd)
-	{
+	if (isEnd)	{
 		CountdownNextScene();
 	}
 	counter++;
 	return sceneData;
-
 }
 
 void SceneTitle::Draw(){
-
 	LocalDraw();
+	int x;
+	int y;
+	double cx, cy;
+	GetMousePoint(&x, &y);
+	double rotateSpeed = GMath::ChangeDegToRad(1);
 }
 
-void SceneTitle::LocalDraw()
-{
+void SceneTitle::LocalDraw(){
 	//device->Image()->DrawBackGround(imageBackGround->GetImageHandle());
 	DrawGraph(0, 0, imageBackGround->GetImageHandle(), TRUE);
 	DrawFlashPushXButton();
-
 }
-
-
 
 void SceneTitle::Finalize(){
 	device->Sound()->Stop(Music_Title_BGM);

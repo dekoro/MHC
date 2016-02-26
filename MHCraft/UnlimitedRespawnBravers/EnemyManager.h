@@ -35,7 +35,7 @@ public:
 	void DeadPlayerActioon();
 
 private:
-	Managers*		managers;
+//	Managers*		managers;
 	vector<Enemy*>	enemyList;
 	DeviceManager*	device;
 	int				stage;

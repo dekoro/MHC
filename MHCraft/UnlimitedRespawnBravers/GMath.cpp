@@ -1,4 +1,10 @@
 #include "GMath.h"
+#include "GSystem.h"
+#include "GRectangle.h"
+#include "GCircle.h"
+#include "Debug.h"
+#include "Vec2.h"
+#include "GQuadrangle.h"
 
 GMath::GMath(){
 
@@ -8,15 +14,35 @@ GMath::~GMath(){
 
 }
 
+bool GMath::Inner(float value, float min, float max){
+	return (min <= value && max > value);
+}
+
+
+bool GMath::OnField(float valueX, float valueY, float minX, float minY, float maxX, float maxY){
+	return Inner(valueX, minX, maxX) && Inner(valueY, minY, maxY);
+}
+
+bool GMath::OnField(Vec2 position, Vec2 minPosition, Vec2 maxPosition){
+	return OnField(position.GetIntX(), position.GetIntY(), minPosition.GetIntX(), minPosition.GetIntY(), maxPosition.GetIntX(), maxPosition.GetIntY());
+}
+
+template<typename T>
+T GMath::Clamp(T value, T min, T max){
+	if (value < min) { return min; }
+	if (value > max) { return max; }
+	return value;
+}
+
 template<typename T>
 static int GMath::GetCountMaxSize(T dataType, int oneLoopSize){
 	return ((int)sizeof(dataType)* 8 / oneLoopSize)*oneLoopSize;
 }
-double ChangeDegToRad(double angleDeg){
+double GMath::ChangeDegToRad(double angleDeg){
 	return angleDeg * PI / 180;
 }
 
-double ChangeRadToDeg(double angleRad){
+double GMath::ChangeRadToDeg(double angleRad){
 	return angleRad * 180 / PI;
 }
 
@@ -65,6 +91,26 @@ bool GMath::CheckHitCircleToRectangle(Vec2 posCenterCircle, double radiusCirle, 
 	return CheckHitCircleToRectangle(GCircle::Setup(posCenterCircle, radiusCirle), rectangle);
 }
 
+bool GMath::CheckHitCircleToQuadrangle(GCircle circle, GQuadrangle quadrangle){
+	Vec2	posLT = quadrangle.GetPoint1();
+	Vec2	posRB = quadrangle.GetPoint3();
+	Vec2	posC = circle.posCenter;
+	double	radC = circle.radius;
+
+	GCircle	circleOverRectangle = GCircle::Setup(quadrangle.GetCenterPosition(), posLT.Distance(posRB) / 2);
+	if (!GMath::CheckHitCircleToCircle(circle, circleOverRectangle)) { return false; }
+
+	Vec2	posRT = quadrangle.GetPoint2();
+	Vec2	posLB = quadrangle.GetPoint4();
+
+	if (Vec2::Cross(posRT, posLT, circle.posCenter) > circle.radius) { return false; }
+	if (Vec2::Cross(posLT, posLB, circle.posCenter) > circle.radius) { return false; }
+	if (Vec2::Cross(posLB, posRB, circle.posCenter) > circle.radius) { return false; }
+	if (Vec2::Cross(posRB, posRT, circle.posCenter) > circle.radius) { return false; }
+	return true;
+
+}
+
 
 bool GMath::CheckHitCircleToPoint(GCircle circle, Vec2 posPoint){
 	return (Vec2::Distance(circle.posCenter, posPoint) <= circle.radius);
@@ -95,4 +141,37 @@ bool GMath::CheckHitRectangleToRectangle(Vec2 pos1TL, Vec2 pos1BR, Vec2 pos2TL, 
 	GRectangle rect1(pos1TL.Y, pos1BR.Y, pos1TL.X, pos1BR.X);
 	GRectangle rect2(pos2TL.Y, pos2BR.Y, pos2TL.X, pos2BR.X);
 	return CheckHitRectangleToRectangle(rect1, rect2);
+}
+
+
+Vec2 GMath::GetStickStateToVec2(short ThumbX, short ThumbY) {
+	float stateX = CutNearAndFarByZero((float)ThumbX / SHRT_MAX, CONTROLLER_STICK_LOWER_LIMIT, CONTROLLER_STICK_HIGHER_LIMIT);
+	float stateY = CutNearAndFarByZero((float)ThumbY / SHRT_MAX, CONTROLLER_STICK_LOWER_LIMIT, CONTROLLER_STICK_HIGHER_LIMIT);
+	Vec2 state = Vec2::Setup(stateX, stateY);
+	state.NormalizeSelf();
+	return state;
+
+	/*
+		float stateX = CutNearAndFarByZero((float)ThumbX / SHRT_MAX, CONTROLLER_STICK_LOWER_LIMIT, CONTROLLER_STICK_HIGHER_LIMIT);
+	float stateY = CutNearAndFarByZero((float)ThumbY / SHRT_MAX, CONTROLLER_STICK_LOWER_LIMIT, CONTROLLER_STICK_HIGHER_LIMIT);
+	Vec2 state = Vec2::Setup(ThumbX, ThumbY);
+	Vec2 velocity = state /FLT_MAX;
+	if (Inner(velocity.Length(), CONTROLLER_STICK_LOWER_LIMIT, CONTROLLER_STICK_HIGHER_LIMIT)){ velocity.NormalizeSelf(); }
+	else { velocity = Vec2::Zero(); }
+	return velocity;
+	*/
+}
+
+float GMath::CutHighAndLow(float value, float high, float low, float start, float end){
+	if (value < low)	{ return start;	}
+	if (value > high)	{ return end;	}
+	return value;
+}
+
+float GMath::CutNearAndFarByZero(float value, float nearByZero, float farByZero, float end){
+	if (value == 0) { return 0; }
+	float	absValue = abs(value);
+	bool	isPlus	 = (value > 0);
+	float	cutted	 = CutHighAndLow(absValue, farByZero, nearByZero, 0, end);
+	return	cutted * (-1+2*isPlus);
 }

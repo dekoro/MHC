@@ -66,7 +66,7 @@ void EnemyKingPumpkin::DamageAction(HitData hitData){
 
 //-----private---
 void EnemyKingPumpkin::Damage(int damage){
-	int joinNum = managers->Player()->GetJoinNum();
+	int joinNum = 0;/*managers->Player()->GetJoinNum();*/
 	if (parameter.health > 0){
 		parameter.health -= damage*(5 - (joinNum+2) / 4);
 	}
@@ -76,7 +76,7 @@ void EnemyKingPumpkin::Damage(int damage){
 void EnemyKingPumpkin::Move(){
 	if (cntInvisible > 0){ return; }
 	if (isDead){ return; }
-	managers->Enemy()->CalcSpawnMob(180);
+//	managers->Enemy()->CalcSpawnMob(180);
 	position += moveVelocity;
 	CheckHitWall();
 	Breaking();
@@ -147,7 +147,7 @@ void EnemyKingPumpkin::DeadEffect(){
 			dropPosition = Vec2::Setup(position.X + (float)(GetRand(oneSideLength * 2) - oneSideLength)
 									 , position.Y + (float)(GetRand(oneSideLength * 2) - oneSideLength));
 		} while (!GMath::CheckHitCircleToPoint(GCircle::Setup(position, (double)oneSideLength), dropPosition));
-		managers->Item()->AddItemLollipop(dropPosition);
+//		managers->Item()->AddItemLollipop(dropPosition);
 	}
 	countForDeadEffect++;
 }
@@ -166,14 +166,14 @@ void EnemyKingPumpkin::CountDeadTimer(){
 		return;
 	}
 	if (cntDead > -640){ return; }
-	managers->Enemy()->gameMode = GameMode_Clear;
+//	managers->Enemy()->gameMode = GameMode_Clear;
 	isUse = false;
 }
 
 void EnemyKingPumpkin::AttackAllEnemy(){
 	GRectangle attackArea = GRectangle::Setup(-Window::WIDTH, -Window::HEIGHT, Window::WIDTH*3, Window::HEIGHT*3);
 	HitData hitData			= HitData::Setup(position, 1, 99999);
-	managers->Damage()->AddDamageAreaRectangle(attackArea, 30, hitData, false, true);
+//	managers->Damage()->AddDamageAreaRectangle(attackArea, 30, hitData, false, true);
 }
 
 void EnemyKingPumpkin::DispInfoRegister(){

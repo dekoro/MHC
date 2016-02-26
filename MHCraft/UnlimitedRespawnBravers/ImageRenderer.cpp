@@ -19,7 +19,7 @@ void ImageRenderer::Update(){
 
 void ImageRenderer::DrawPlayerCenter(int imageIndex, Vec2 positionCenter){
 	int imageHandle = characterImageMap[imageIndex]->GetImageHandle();
-	Draw(imageHandle, positionCenter.GetIntX() - GetSizeHalfImageX(imageIndex), positionCenter.GetIntY() - GetSizeHalfImageY(imageIndex));
+	DrawLT(imageHandle, positionCenter.GetIntX() - GetSizeHalfImageX(imageIndex), positionCenter.GetIntY() - GetSizeHalfImageY(imageIndex));
 }
 
 //プレイヤー専用？のグラフィックハンドル取得メソッド
@@ -100,7 +100,7 @@ Vec2 ImageRenderer::GetCharacterImageHalfSize(int imageIndex){
 //---private---
 
 void ImageRenderer::SetupImageFilePathMap(){
-	imageFilePathMap.insert(map<IMAGE_ASSET_NAME, char*>::value_type(imageAsset_player_fighter		, "./Resource/Enemy_KingPumpkin.png"));
+	imageFilePathMap.insert(map<IMAGE_ASSET_NAME, char*>::value_type(imageAsset_player_fighter		, "./Resource/FIGHTER_WALK.bmp"));
 
 	imageFilePathMap.insert(map<IMAGE_ASSET_NAME, char*>::value_type(imageAsset_Enemy_Bat			, "./Resource/Enemy_Bat.png"));
 	imageFilePathMap.insert(map<IMAGE_ASSET_NAME, char*>::value_type(imageAsset_Enemy_Ghost			, "./Resource/Enemy_Ghost.png"));

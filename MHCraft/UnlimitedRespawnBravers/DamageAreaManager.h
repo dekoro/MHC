@@ -2,9 +2,10 @@
 #define _CHARACTER_DAMAGEAREA_DAMAGEAREAMANAGER_H_
 
 #include "GSystemHub.h"
-#include "Managers.h"
-#include "DamageAreaCircle.h"
-#include "DamageAreaRectangle.h"
+class AbstractDamageArea;
+class DamageAreaCircle;
+class DamageAreaRectangle;
+class DamageAreaQuadrangle;
 
 
 class DamageAreaManager
@@ -13,21 +14,22 @@ public:
 	DamageAreaManager();
 	~DamageAreaManager();
 
-	void Initialize();
-	SceneMediateData Update();
-	void Draw();
-	void Finalize();
+	void	Initialize();
+	void	Update();
+	void	Draw();
+	void	Finalize();
 
-	void AddDamageAreaCircle(GCircle hitArea, int stayCount, HitData hitData, bool isToPlayer, bool isToEnemy);
-	void AddDamageAreaRectangle(GRectangle hitArea, int stayCount, HitData hitData, bool isToPlayer, bool isToEnemy);
-	HitData CheckAllHitCircle(GCircle target, bool isTargetPlayer, bool isTargetEnemy);
-	void RefleshDamageArea();
+	DamageAreaCircle*		AddDamageAreaCircle(GCircle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy);
+	DamageAreaRectangle*	AddDamageAreaRectangle(GRectangle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy);
+	DamageAreaQuadrangle*	AddDamageAreaQuadrangle(GQuadrangle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy);
+	HitData	CheckAllHitRectangle(GRectangle target, bool isTargetPlayer, bool isTargetEnemy);
+	HitData	CheckAllHitCircle(GCircle target, bool isTargetPlayer, bool isTargetEnemy);
+	void	RefleshDamageArea();
 
 private:
-	vector<AbstractDamageArea*> damageAreaList;
-	Managers* managers;
-	void RemoveDamageArea(int index);
-	void ClearDamageArea();
+	std::vector<AbstractDamageArea*> damageAreaList;
+	void	RemoveDamageArea(int index);
+	void	ClearDamageArea();
 };
 
 

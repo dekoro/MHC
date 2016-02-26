@@ -12,6 +12,7 @@
 #include "FlagManager.h"
 #include "GMath.h"
 #include "Random.h"
+#include "GCircle.h"
 #include "GRectangle.h"
 #include "UI.h"
 

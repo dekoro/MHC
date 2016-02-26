@@ -4,10 +4,6 @@
 #include "GSystemHub.h"
 #include "GMath.h"
 #include "IScenes.h"
-#include "Managers.h"
-#include "PlayerManager.h"
-#include "EnemyManager.h"
-#include "ItemManager.h"
 
 #include<memory>
 #include"Camera.h"
@@ -17,7 +13,14 @@
 #include"Blur.h"
 #include"Stage.h"
 #include"TextLoader.h"
-#include"Animation.h"
+
+
+class CharacterManager;
+class PlayerManager;
+class EnemyManager;
+class ItemManager;
+class DamageAreaManager;
+class LaserManager;
 
 
 class SceneGameMain: public IScenes
@@ -31,24 +34,24 @@ public:
 	void				Finalize();
 
 private:
+
 	DeviceManager*	device;
-	Managers*		managers;
 	ImageData*		imageBackGround;
 	
-	//テスト
-	Animation anime;
-	
-
-	//テスト
-	std::shared_ptr<BaseEffect> blur;
-	std::shared_ptr<Cutting> cut;
 	std::shared_ptr<ScreenLayout> screen;
 	std::shared_ptr<Stage> stage;
 
 
+	std::shared_ptr<LaserManager>		laserManager;
+	std::shared_ptr<PlayerManager>		playerManager;
+	std::shared_ptr<EnemyManager>		enemyManager;
+	std::shared_ptr<DamageAreaManager>	damageAreaManager;
+	std::shared_ptr<ItemManager>		itemManager;
+
+
 	void LocalDraw();
 	void AllManagersInitialize(int startPlayerIndex);
-	SceneMediateData AllManagersUpdate();
+	void AllManagersUpdate();
 	void AllManagersDraw();
 	void AllManagersFinalize();
 	void ShaderLoad();

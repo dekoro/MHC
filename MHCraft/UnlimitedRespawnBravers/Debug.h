@@ -4,6 +4,8 @@
 #include "SystemHub.h"
 #include "Macro.h"
 
+class GQuadrangle;
+
 class Debug
 {
 public:
@@ -36,6 +38,8 @@ public:
 	static void DrawSimpleLine(int X1, int Y1, int X2, int Y2, int color = 0);
 	static void DrawSimpleArrow(Vec2 posStart, Vec2 posEnd, int color = 0);
 	static void DrawSimpleArrow(int fromX, int fromY, int toX, int toY, int color = 0);
+	static void DrawSimpleQuadrangle(GQuadrangle rectangle, int color = 0);
+	static void DrawSimpleQuadrangle(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, unsigned int color = 0);
 
 private:
 	static bool isDebugMode;

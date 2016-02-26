@@ -1,4 +1,7 @@
 #include "DamageAreaManager.h"
+#include "DamageAreaCircle.h"
+#include "DamageAreaRectangle.h"
+#include "DamageAreaQuadrangle.h"
 
 DamageAreaManager::DamageAreaManager(){
 }
@@ -9,17 +12,14 @@ DamageAreaManager::~DamageAreaManager(){
 
 
 void DamageAreaManager::Initialize(){
-	managers = Managers::GetInstance();
 	damageAreaList.clear();
 }
 
-SceneMediateData DamageAreaManager::Update(){
-	for each(AbstractDamageArea* da in damageAreaList){
+void DamageAreaManager::Update(){
+	for(AbstractDamageArea* da : damageAreaList){
 		da->Update();
 	}
 	RefleshDamageArea();
-	return SceneMediateData::Setup(SCENE_GAMEMAIN);
-
 }
 
 void DamageAreaManager::Draw(){
@@ -32,25 +32,48 @@ void DamageAreaManager::Finalize(){
 	ClearDamageArea();
 }
 
-void DamageAreaManager::AddDamageAreaCircle(GCircle hitArea, int stayCount, HitData hitData, bool isToPlayer, bool isToEnemy){
-	damageAreaList.push_back(new DamageAreaCircle(hitArea, stayCount, hitData, isToPlayer, isToEnemy));
+DamageAreaCircle* DamageAreaManager::AddDamageAreaCircle(GCircle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy){
+	DamageAreaCircle* damageAreaCircle = new DamageAreaCircle(hitArea, hitData, stayCount, isToPlayer, isToEnemy);
+	damageAreaList.push_back(damageAreaCircle);
+	return damageAreaCircle;
 }
 
-void DamageAreaManager::AddDamageAreaRectangle(GRectangle hitArea, int stayCount, HitData hitData, bool isToPlayer, bool isToEnemy){
-	damageAreaList.push_back(new DamageAreaRectangle(hitArea, stayCount, hitData, isToPlayer, isToEnemy));
+DamageAreaRectangle* DamageAreaManager::AddDamageAreaRectangle(GRectangle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy){
+	DamageAreaRectangle* damageAreaRectangle = new DamageAreaRectangle(hitArea, hitData, stayCount, isToPlayer, isToEnemy);
+	damageAreaList.push_back(damageAreaRectangle);
+	return damageAreaRectangle;
 }
 
+DamageAreaQuadrangle*	DamageAreaManager::AddDamageAreaQuadrangle(GQuadrangle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy){
+	DamageAreaQuadrangle* damageAreaQuadrangle = new DamageAreaQuadrangle(hitArea, hitData, stayCount, isToPlayer, isToEnemy);
+	damageAreaList.push_back(damageAreaQuadrangle);
+	return damageAreaQuadrangle;
+}
+
+
+HitData DamageAreaManager::CheckAllHitRectangle(GRectangle target, bool isTargetPlayer, bool isTargetEnemy){
+	HitData tmpHit = HitData::NoHit();
+	if (damageAreaList.empty()) { return HitData::NoHit(); }
+	for each(AbstractDamageArea* dmg in damageAreaList) {
+		tmpHit = dmg->CheckIsHitAndDamage(target);
+		if (tmpHit != HitData::NoHit()) {
+			return  tmpHit;
+		}
+	}
+	return HitData::NoHit();
+}
 
 HitData DamageAreaManager::CheckAllHitCircle(GCircle target, bool isTargetPlayer, bool isTargetEnemy){
-	HitData tmpHit;
+	HitData tmpHit = HitData::NoHit();
 	if (damageAreaList.empty()){ return HitData::NoHit(); }
 	for each(AbstractDamageArea* dmg in damageAreaList){
-		tmpHit = dmg->IsHitAndDamage(target);
+		tmpHit = dmg->CheckIsHitAndDamage(target);
 		if(tmpHit != HitData::NoHit()){
 			return  tmpHit;
 		}
 	}
 	return HitData::NoHit();
+
 }
 
 void DamageAreaManager::RefleshDamageArea(){

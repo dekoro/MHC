@@ -1,41 +1,41 @@
 #ifndef _CHARACTTER_DAMAGEAREA_ABSTRACTDAMAGEAREA_H_
 #define _CHARACTTER_DAMAGEAREA_ABSTRACTDAMAGEAREA_H_
 
-#include "SystemHub.h"
-#include "Debug.h"
 #include "GSystem.h"
-#include "Vec2.h"
-#include "GRectangle.h"
-#include "GCircle.h"
+class Vec2;
+class GRectangle;
+class GCircle;
+class GQuadrangle;
 
 class AbstractDamageArea
 {
 public:
-	AbstractDamageArea(int stayCount, HitData hitData, bool isToPlayer, bool isToEnemy);
+	AbstractDamageArea(int stayCount, HitData hitData, bool hittabeToPlayer, bool hittableToEnemy);
 	virtual ~AbstractDamageArea(){}
 
-	virtual HitData IsHitAndDamage(Vec2 position)			= 0;
-	virtual HitData IsHitAndDamage(GCircle circle)			= 0;
-	virtual HitData IsHitAndDamage(GRectangle rectangle)	= 0;
-	virtual void	Draw()									= 0;
+	virtual HitData CheckIsHitAndDamage(Vec2 position)					= 0;
+	virtual HitData CheckIsHitAndDamage(GCircle circle)					= 0;
+	virtual HitData CheckIsHitAndDamage(GRectangle rectangle)			= 0;
+	virtual HitData CheckIsHitAndDamage(AbstractDamageArea* damageArea)	= 0;
+	virtual void Draw()										= 0;
 
-	void	Setup(int stayCount, HitData hitData, bool isToPlayer, bool isToEnemy);
+	void	Setup(int stayCount, HitData hitData, bool hittableToPlayer, bool hittableToEnemy);
 	void	Update();
-	bool	IsHitPlayer();
-	bool	IsHitEnemy();
-	HitData	GetHitData();
+	bool	IsHittableToPlayer();
+	bool	IsHittableToEnemy();
 	bool	GetIsDead();
+	HitData	GetHitData();
+	void	Kill();
 
 protected:
 
 private:
 	int		maxStayCount;
 	int		stayCount;
-	HitData	hitData;
-	bool	isHitPlayer;
-	bool	isHitEnemy;
+	bool	isHittableToPlayer;
+	bool	isHittableToEnemy;
 	bool	isDead;
-
+	HitData	hitData;
 	void	DestructorCount();
 
 

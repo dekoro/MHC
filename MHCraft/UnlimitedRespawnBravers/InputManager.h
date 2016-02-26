@@ -4,7 +4,7 @@
 #include "GSystem.h"
 #include "Macro.h"
 #include "InputState.h"
-#include"Keyboard.h"
+#include "Keyboard.h"
 
 class InputManager
 {
@@ -26,7 +26,6 @@ private:
 	void		SetupGamePadList();
 	void		FinalizeGamePadList();
 	Keyboard key;
-//	int JoinGamePad();
 };
 
 

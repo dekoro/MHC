@@ -35,7 +35,7 @@ public:
 
 protected:
 	DeviceManager*			device;
-	Managers*				managers;
+//	Managers*				managers;
 	Player*					target;
 	ImageData*				imageData;
 	Vec2					position;

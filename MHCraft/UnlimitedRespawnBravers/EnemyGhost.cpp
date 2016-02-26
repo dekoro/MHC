@@ -55,21 +55,21 @@ void EnemyGhost::Move(){
 
 //-----private-----
 void EnemyGhost::GetRandomTarget(int forbiddenTarget){
-	vector<int> plList	= managers->Player()->GetEnablePlayerIndexList();
-	int			plNum	= plList.size();
+//	vector<int> plList = vector<int>();//managers->Player()->GetEnablePlayerIndexList();
+	int			plNum = 0;//plList.size();
 	target				= NULL;
 	if (plNum <= 0){
 		return;
 	}
 
-	if (plNum == 1 && plList[0] == forbiddenTarget){
-		return;
-	}
+	//if (plNum == 1 && plList[0] == forbiddenTarget){
+	//	return;
+	//}
 
 	while (true){
 		int targetIndex = GetRand(plNum - 1);
-		if (plList[targetIndex] == forbiddenTarget){ continue; }
-		SetTarget(plList[targetIndex]);
+	//	if (plList[targetIndex] == forbiddenTarget){ continue; }
+	//	SetTarget(plList[targetIndex]);
 		break;
 	}
 }
@@ -83,7 +83,7 @@ HitData	EnemyGhost::CalcAttackToPlayer(Vec2 posOther, double rangeOther){
 }
 
 void	EnemyGhost::SetTarget(int targetIndex){
-	this->target = managers->Player()->GetPlayerData(targetIndex);
+//	this->target = managers->Player()->GetPlayerData(targetIndex);
 }
 
 void EnemyGhost::Accelarate(){

@@ -3,7 +3,7 @@
 Enemy::Enemy(vector<Enemy*>* enemyList, IMAGE_ASSET_NAME assetName):cutEffect(60 * 3,Vec2(1,1)){
 	enemyList->push_back(this);
 	device			= DeviceManager::GetInstance();
-	managers		= Managers::GetInstance();
+//	managers		= Managers::GetInstance();
 	cntDead			= 30;
 	isDead			= false;
 	isUse			= true;
@@ -46,7 +46,7 @@ void Enemy::CalcDamage(HitData hitData){
 
 void Enemy::CheckHitDamageArea(){
 	if (isInvincible){ return; }
-	HitData hit = managers->Damage()->CheckAllHitCircle(GCircle::Setup(position, parameter.hitRange), false, true);
+	HitData hit = HitData::NoHit();//managers->Damage()->CheckAllHitCircle(GCircle::Setup(position, parameter.hitRange), false, true);
 	if (hit == HitData::NoHit()){ return; }
 	Damage(hit.damage);
 	if (isKnockBack){
@@ -83,7 +83,7 @@ IMAGE_ASSET_NAME Enemy::GetAssetName(){
 //-----private-----
 
 void Enemy::GetRandomTarget(int forbiddenTarget){
-	vector<int> plList = managers->Player()->GetEnablePlayerIndexList();
+	/*vector<int> plList = managers->Player()->GetEnablePlayerIndexList();
 	int plNum = plList.size();
 	target = NULL;
 
@@ -99,11 +99,11 @@ void Enemy::GetRandomTarget(int forbiddenTarget){
 		if (plList[targetIndex] == forbiddenTarget){ continue; }
 		SetTarget(plList[targetIndex]);
 		break;
-	}
+	}*/
 }
 
 void Enemy::SetTarget(int targetIndex){
-	this->target = managers->Player()->GetPlayerData(targetIndex);
+//	this->target = managers->Player()->GetPlayerData(targetIndex);
 }
 
 void Enemy::Damage(int damage){

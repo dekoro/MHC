@@ -19,6 +19,8 @@ void InputState::SetupInputState(int padInput){
 void InputState::Update(){
 	preState = curState;
 	GetJoypadXInputState(GetDxPadType(), &curState);
+	leftStickState = GetLeftStickState();
+	rightStickState = GetRightStickState();
 }
 
 
@@ -75,6 +77,35 @@ bool InputState::CheckJoinSign(){
 	if (!CheckAnyKeyPush()){ return false; }
 	return true;
 }
+
+Vec2 InputState::GetLeftStickState() {
+	int inputPadNo = InputState::GetDxPadType();
+	XINPUT_STATE	inputState;
+	int isError = GetJoypadXInputState(inputPadNo, &inputState);
+	if (isError == -1) { return Vec2::Zero(); }
+
+	return  GMath::GetStickStateToVec2(inputState.ThumbLX, inputState.ThumbLY);
+}
+
+Vec2 InputState::GetRightStickState() {
+	int inputPadNo = InputState::GetDxPadType();
+	XINPUT_STATE	inputState;
+	int isError = GetJoypadXInputState(inputPadNo, &inputState);
+	if (isError == -1) { return Vec2::Zero(); }
+
+	return  GMath::GetStickStateToVec2(inputState.ThumbRX, inputState.ThumbRY);
+}
+
+Vec2 InputState::GetLeftStickLeanVector(){
+	if (leftStickState == Vec2::Zero()) { return Vec2::Zero(); }
+	return leftStickState;
+}
+
+Vec2 InputState::GetRightStickLeanVector(){
+	if (rightStickState == Vec2::Zero()) { return Vec2::Zero(); }
+	return rightStickState;
+}
+
 
 //--protected--
 
