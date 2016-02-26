@@ -1,10 +1,10 @@
 #ifndef _CHARACTER_PLAYERMANAGER_H_
 #define _CHARACTER_PLAYERMANAGER_H_
 
-#include "GSystem.h"
-class Player;
-class DeviceManager;
-class ItemManager;
+#include "Player.h"
+#include "DeviceManager.h"
+#include "Managers.h"
+#include "ItemManager.h"
 
 class PlayerManager
 {
@@ -12,28 +12,42 @@ public:
 	PlayerManager();
 	~PlayerManager();
 
-	void		SpawnPlayer(int padNo, Vec2 position);
-	void		Setup();
-	void		Initialize();
-	void		Update();
+	void		AddPlayerList(int padNo, IMAGE_ASSET_NAME assetName, PlayerColorList colors);
+	void		Initialize(int startPlayer);
+	SceneMediateData		Update();
 	void		Draw();
 	void		Finalize();
 	int			GetJoinNum();
+	vector<int>	GetEnablePlayerIndexList();
 	Player*		GetPlayerData(int index);
+	void		CheckHitAllPlayer();
+	void		SetAddForbiddenCounter();
 
 private:
-	DeviceManager*	device;
-	Player*			player[MAX_PLAYER];
+	DeviceManager*				device;
+	Managers*					managers;
+	array<Player*, USE_PAD_MAX>	playerList;
+	vector<int>					enablePlayerIndexList;
+	int							count;
+	int							countAddForbidden;
 
-	void InitializeAllPlayers();
-	void UpdateAllPlayers();
-	void MoveAllPlayers();
-	void AttackAllPlayers();
-	void DrawAllPlayers();
-	void FinalizeAllPlayers();
-	void PlayerDisable(int index);
-	void DeleteAllPlayers();
+	void InitializeAllPlayers(int startPlayer);
+	void PlayerUpdate();
+	void CheckAddPlayer();
+	void RefleshPlayerList();
+	void DeletePlayer(int index);
+	void DeleteEnablePlayerIndexList(int padNo);
+	void CheckHitToEnemy(int index);
+	void CheckHitToItem(int index);
+	void ClearPlayerList();
+	void CheckAndDeleteEndPlayer(int index);
+	void AddTempPlayer(int index);
+	void Counting();
+	void ResetCounter();
+	void ResetAddPlayerForbiddenCounter();
+	void AddPlayerNaviRegister();
 };
+
 
 
 #endif

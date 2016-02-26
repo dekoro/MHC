@@ -5,6 +5,7 @@
 #include<time.h>
 #include<assert.h>
 #include"TextLoader.h"
+#include<thread>
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int cCmdShow){
 	bool windowMode = TRUE;
@@ -21,7 +22,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	if (DxLib_Init() == -1){ return -1; }
 	Debug::CheckDebugMode();
 	DeviceManager*	deviceManager = DeviceManager::GetInstance();
-	SceneManager*	sceneManager = new SceneManager();
+	SceneManager*	sceneManager;
+
+	std::thread t([&](){sceneManager = new SceneManager(); });
+
+
 	FPS*			fps = new FPS();
 	MSG msg;
 
@@ -32,6 +37,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//SetScreenFlipTargetWindow(NULL);
 
 	int a = 0;
+
+	t.join();
 
 	while (!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen()){
 		///Ç±Ç±Ç©ÇÁçXêV

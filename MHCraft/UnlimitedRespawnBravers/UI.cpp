@@ -1,6 +1,6 @@
 #include "UI.h"
 
-UIData UIData::Setup(Vec2 position, int size, std::string text, int color, bool isDisp){
+UIData UIData::Setup(Vec2 position, int size, string text, int color, bool isDisp){
 	UIData tmp;
 	tmp.position	= position;
 	tmp.size		= size;

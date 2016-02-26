@@ -13,8 +13,7 @@ public:
 	GMath();
 	~GMath();
 
-	static bool Inner(int value, int min, int max);
-	template<typename T> static T Clamp(T value, T min, T max);
+	static int Sum(int a, int b);
 	template<typename T> static int GetCountMaxSize(T dataType, int oneLoopSize);
 	static double	ChangeDegToRad(double angleDeg);
 	static double	ChangeRadToDeg(double angleRad);

@@ -1,13 +1,11 @@
 #include "ItemManager.h"
-#include "AItem.h"
-#include "ItemLollipop.h"
 
 ItemManager::~ItemManager(){
 	ClearItemList();
 }
 
 void ItemManager::CheckHitPlayer(Player* player){
-	for(AItem* item : itemList){
+	for each(AItem* item in itemList){
 		if (item->IsPickupItem(player)){
 			CountupGetItem();
 		}
@@ -15,15 +13,18 @@ void ItemManager::CheckHitPlayer(Player* player){
 }
 
 void ItemManager::Initialize(){
+	managers = Managers::GetInstance();
 	ClearItemList();
 	cntGetItem = 0;
 }
 
-void ItemManager::Update(){
+SceneMediateData ItemManager::Update(){
 	for each(AItem* item in itemList){
 		item->Update();
 	}
 	RefleshItemList();
+	return SceneMediateData::Setup(SCENE_GAMEMAIN);
+
 }
 
 void ItemManager::Draw(){
@@ -36,10 +37,10 @@ void ItemManager::Finalize(){
 
 }
 
-//void ItemManager::AddItemLollipop(Vec2 position){
-//	DeviceManager::GetInstance()->Sound()->Play(SE_Drop);
-//	itemList.push_back(new ItemLollipop(position));
-//}
+void ItemManager::AddItemLollipop(Vec2 position){
+	DeviceManager::GetInstance()->Sound()->Play(SE_Drop);
+	itemList.push_back(new ItemLollipop(position));
+}
 
 int	 ItemManager::GetCountGetItem(){
 	return cntGetItem;

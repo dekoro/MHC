@@ -2,12 +2,13 @@
 #define _CHARACTER_ENEMY_ENEMYGHOST_H_
 
 #include "Enemy.h"
-class EnemyManager;
-class DeiceManager;
+#include "Managers.h"
+#include "EnemyManager.h"
+
 class EnemyKingPumpkin: public Enemy
 {
 public:
-	EnemyKingPumpkin(std::vector<Enemy*>* enemyList);
+	EnemyKingPumpkin(vector<Enemy*>* enemyList);
 	~EnemyKingPumpkin();
 
 	void	Initialize();

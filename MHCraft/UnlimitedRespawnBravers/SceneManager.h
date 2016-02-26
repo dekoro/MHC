@@ -14,7 +14,7 @@ public:
 	void Draw();
 
 private:
-	std::map<SceneName, IScenes*> sceneMap;
+	map<SceneName, IScenes*> sceneMap;
 	SceneName curScene;
 
 	void ChangeScene(SceneMediateData nextSceneName);

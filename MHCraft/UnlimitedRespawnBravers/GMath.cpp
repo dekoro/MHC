@@ -8,26 +8,15 @@ GMath::~GMath(){
 
 }
 
-bool GMath::Inner(int value, int min, int max){
-	return (min <= value && max > value);
-}
-
-template<typename T>
-T GMath::Clamp(T value, T min, T max){
-	if (value < min) { return min; }
-	if (value > max) { return max; }
-	return value;
-}
-
 template<typename T>
 static int GMath::GetCountMaxSize(T dataType, int oneLoopSize){
 	return ((int)sizeof(dataType)* 8 / oneLoopSize)*oneLoopSize;
 }
-double GMath::ChangeDegToRad(double angleDeg){
+double ChangeDegToRad(double angleDeg){
 	return angleDeg * PI / 180;
 }
 
-double GMath::ChangeRadToDeg(double angleRad){
+double ChangeRadToDeg(double angleRad){
 	return angleRad * 180 / PI;
 }
 
