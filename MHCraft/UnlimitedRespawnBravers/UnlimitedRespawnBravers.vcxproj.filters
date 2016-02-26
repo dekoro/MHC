@@ -1,0 +1,716 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Device">
+      <UniqueIdentifier>{200bc4d5-b405-4945-9ca8-aac85e4a3135}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\DataManager">
+      <UniqueIdentifier>{49240f5b-924f-4e04-9f2f-98b430543645}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\GSystem">
+      <UniqueIdentifier>{89f247e4-eae5-4228-a15f-e90ec7257345}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Device\Input">
+      <UniqueIdentifier>{078d79a8-c086-4872-b4f6-f8d836277551}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Character">
+      <UniqueIdentifier>{9468593c-d072-4e64-98de-83536bfc96c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Device">
+      <UniqueIdentifier>{a3524f99-da7b-4388-8fef-7baab1d3acab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Device\Input">
+      <UniqueIdentifier>{3a7bc0d5-24ce-4f11-b28c-1f1493e3dbc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Device\Renderer">
+      <UniqueIdentifier>{46b27336-5a0c-4a6a-8cf9-0ac2917785be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GSystem">
+      <UniqueIdentifier>{f2256e3f-715e-4199-981c-83b2a150a3c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\DataManager">
+      <UniqueIdentifier>{afbf7478-cc39-436b-b06d-8db9b4fb91a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneManager">
+      <UniqueIdentifier>{2dee3330-e824-495a-b380-b6cf58dbac72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneManager\Title">
+      <UniqueIdentifier>{19415f78-3202-40bd-b55d-00a55162693a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Character">
+      <UniqueIdentifier>{8ca90bc2-fcf2-43c6-91d4-27d4672f7408}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Device\Renderer">
+      <UniqueIdentifier>{5ddfa983-7676-4d6a-800b-60df85103c2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneManager\GameMain">
+      <UniqueIdentifier>{e9265366-dca6-494f-8e63-0b1458cc147d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Character\Player">
+      <UniqueIdentifier>{bef6086a-e8d8-46ae-9313-f2af5ec25e7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Character\Enemy">
+      <UniqueIdentifier>{860410ac-86ee-41f4-9b08-cfd8ac053ce4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Character\Enemy">
+      <UniqueIdentifier>{d48edd89-13a9-4ca6-9e1e-96386448f9fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Character\Player">
+      <UniqueIdentifier>{d5ac0803-cdaf-44a9-bdb1-7b8e96306861}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Character\DamageArea">
+      <UniqueIdentifier>{368f5f08-2946-454d-8dbb-0b41a4f4c7c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Character\DamageArea">
+      <UniqueIdentifier>{197453b2-9ce5-4bbc-a466-0689cdc69ff2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Character\Item">
+      <UniqueIdentifier>{d0509f6b-5a54-479e-a1d2-0e8584233d67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Character\Item">
+      <UniqueIdentifier>{b61fa276-5a08-433f-8f23-ec69c39b77f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect">
+      <UniqueIdentifier>{1111c1d7-79a8-4b58-8aaf-8d25f70153ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\BaseEffect">
+      <UniqueIdentifier>{ec241e34-dc38-4978-84d0-df4724df0777}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect">
+      <UniqueIdentifier>{48e03657-a2ea-42bf-923e-9bbb690cd671}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\BaseEffect">
+      <UniqueIdentifier>{91d1a4de-d788-4dbb-94b1-3e69854b169c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\EffectManager">
+      <UniqueIdentifier>{be4adde6-f54e-409a-a475-5711e4bb41a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\EffectManager">
+      <UniqueIdentifier>{9a479cf2-11d0-462b-9fa9-8b2df0bed2ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ErorrCheck">
+      <UniqueIdentifier>{7b1303cf-160d-4ec9-8ad2-2ec0c5fbe590}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ErorrCheck">
+      <UniqueIdentifier>{89659727-132e-4882-8881-d14e5c1e3c9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneManager\NowLoading">
+      <UniqueIdentifier>{d2320f56-142a-4cfe-a78e-4b79ac4d91b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Device\Timer">
+      <UniqueIdentifier>{cbe23d79-0f63-491e-8a8a-64c0b51fe8cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Device\Timer">
+      <UniqueIdentifier>{3fce0fcf-705c-4b50-af6b-1ba07e9c51d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\PostEffect">
+      <UniqueIdentifier>{7c229c71-b336-4f55-adb7-ffc33b267ed0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\PostEffect">
+      <UniqueIdentifier>{c8c62ff9-4d35-46eb-a11a-3b89dec9cfdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\TextureMapping">
+      <UniqueIdentifier>{a2c043d5-cd24-4aa4-a533-c7c126907869}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\TextureMapping">
+      <UniqueIdentifier>{13f4d46b-a233-4a7e-94f8-e0e074076741}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Device\ScreenLayout">
+      <UniqueIdentifier>{64c6e1a7-426f-4ff5-938b-0c0bf321ad11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Device\ScreenLayout">
+      <UniqueIdentifier>{266e233a-0976-44b1-9bb8-1ff3da545a0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ChildWindow">
+      <UniqueIdentifier>{79d21264-a9c8-41a5-865f-ead681d3032e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ChildWindow">
+      <UniqueIdentifier>{f8ebd639-80d6-4925-a320-c31076a10d2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\GSystem\SceneManager">
+      <UniqueIdentifier>{f2f487b1-9a56-489d-b783-63bdcf6bfc88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\GSystem\SceneManager\Title">
+      <UniqueIdentifier>{879c4aeb-5a10-426f-ba25-a8e7d93bff82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\GSystem\SceneManager\GameMain">
+      <UniqueIdentifier>{216ea36e-30c5-4a0d-878e-b8ebfd906dd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\GSystem\SceneManager\GameMain\Events">
+      <UniqueIdentifier>{1dea7320-f07d-4163-a9e4-ec6b940a7f9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\GSystem\SceneManager\Ending">
+      <UniqueIdentifier>{baa71f66-f7b0-4ec3-abda-93a7630e6c7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\GSystem\SceneManager\NowLoading">
+      <UniqueIdentifier>{c86c5a90-25ac-497a-b3cc-420103d92531}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Device\Camera">
+      <UniqueIdentifier>{5ba443e1-dde9-4e73-a610-c86fd2225483}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Device\Camera">
+      <UniqueIdentifier>{4dc1ac93-2808-493d-8a19-9b98c0f9c2d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Device\Camera\CameraManager">
+      <UniqueIdentifier>{ed51001c-6d83-4d39-a24e-657c01915773}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Device\Camera\CameraManager">
+      <UniqueIdentifier>{61915d36-5635-4286-9f2f-54a151565900}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Device\ScreenLayout\e_ScreenLayout">
+      <UniqueIdentifier>{c732468f-205a-4115-b648-19e4735f54e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\Cutting">
+      <UniqueIdentifier>{bb1c8d61-ac97-449a-b74e-34a2db30d24f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\Blur">
+      <UniqueIdentifier>{b64a9b06-f144-4b3b-b626-9fa9a6a0ce62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\Blur">
+      <UniqueIdentifier>{8b6ee218-ba61-45cb-bd6b-17b66d34e3f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\CutEffect">
+      <UniqueIdentifier>{94fc8deb-3e98-48b7-851f-790ed077e37d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\CutEffect\Fragment">
+      <UniqueIdentifier>{9e4141c9-79f9-4a30-b534-f71eeef68fb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\CutEffect\Cutting">
+      <UniqueIdentifier>{4e9e6c49-2784-40db-965c-174d8c37c8ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Character\Stage">
+      <UniqueIdentifier>{e135ddf9-61a3-47ec-a8af-a1e6f5315ccd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\CutEffect">
+      <UniqueIdentifier>{378c591e-3558-427f-aab7-e4bb20a88ab7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\CutEffect\Fragment">
+      <UniqueIdentifier>{75aa0914-2a1b-4e20-a022-cb5d7e87452a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Character\Stage">
+      <UniqueIdentifier>{0fd26bae-391a-4193-9dd4-63a90fa8586f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Device\TextLoader">
+      <UniqueIdentifier>{554d4b23-78b7-428f-baf9-edf8c7c590ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Device\TextLoader">
+      <UniqueIdentifier>{1a4a1e5a-b1c5-4c7f-82d0-a255008eca3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\EffectList">
+      <UniqueIdentifier>{d07b9a6f-5031-4bf1-aab5-5f0f7432d9a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\EffectList">
+      <UniqueIdentifier>{ef4fad16-8d5c-4c2a-9f32-95f4c9379b2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Device\Selecter">
+      <UniqueIdentifier>{6214e2fb-8a8b-4623-b7b3-fb787e2860f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Device\Selecter">
+      <UniqueIdentifier>{deb76c6a-706a-42c3-9cdc-142c8f3132fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneManager\SelectScene">
+      <UniqueIdentifier>{29457d0e-b539-4841-8039-9826b11e9ca6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\GSystem\SceneManager\SelectScene">
+      <UniqueIdentifier>{e3741946-3f3d-42e9-9865-8e060781d289}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Character\Animation">
+      <UniqueIdentifier>{21c24345-0233-4ee3-875e-ccb1f800484b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Character\Animation">
+      <UniqueIdentifier>{dd6573c4-1f31-48e7-a0d0-80dc605597e0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="FlagManager.cpp">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="GSystem.cpp">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>ソース ファイル\Device\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageData.cpp">
+      <Filter>ソース ファイル\DataManager</Filter>
+    </ClCompile>
+    <ClCompile Include="GMath.cpp">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Vec2.cpp">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="IScenes.cpp">
+      <Filter>ソース ファイル\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>ソース ファイル\SceneManager\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageRenderer.cpp">
+      <Filter>ソース ファイル\Device\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundRenderer.cpp">
+      <Filter>ソース ファイル\Device\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundData.cpp">
+      <Filter>ソース ファイル\DataManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug.cpp">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Macro.cpp">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePad.cpp">
+      <Filter>ソース ファイル\Device\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterImageData.cpp">
+      <Filter>ソース ファイル\DataManager</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>ソース ファイル\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>ソース ファイル\Device\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Test.cpp">
+      <Filter>ソース ファイル\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>ソース ファイル\Character\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerManager.cpp">
+      <Filter>ソース ファイル\Character\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyManager.cpp">
+      <Filter>ソース ファイル\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceManager.cpp">
+      <Filter>ソース ファイル\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>ソース ファイル\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GCircle.cpp">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="DamageAreaCircle.cpp">
+      <Filter>ソース ファイル\Character\DamageArea</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterManager.cpp">
+      <Filter>ソース ファイル\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractDamageArea.cpp">
+      <Filter>ソース ファイル\Character\DamageArea</Filter>
+    </ClCompile>
+    <ClCompile Include="DamageAreaRectangle.cpp">
+      <Filter>ソース ファイル\Character\DamageArea</Filter>
+    </ClCompile>
+    <ClCompile Include="DamageAreaManager.cpp">
+      <Filter>ソース ファイル\Character\DamageArea</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyGhost.cpp">
+      <Filter>ソース ファイル\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemLolipop.cpp">
+      <Filter>ソース ファイル\Character\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemManager.cpp">
+      <Filter>ソース ファイル\Character\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="AItem.cpp">
+      <Filter>ソース ファイル\Character\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers.cpp">
+      <Filter>ソース ファイル\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyKingPumpkin.cpp">
+      <Filter>ソース ファイル\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>ソース ファイル\GSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureMapping.cpp">
+      <Filter>ソース ファイル\Effect\TextureMapping</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseEffect.cpp">
+      <Filter>ソース ファイル\Effect\BaseEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>ソース ファイル\Device\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="PostEffect.cpp">
+      <Filter>ソース ファイル\Effect\PostEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="NowLoading.cpp">
+      <Filter>ソース ファイル\SceneManager\NowLoading</Filter>
+    </ClCompile>
+    <ClCompile Include="ErrorCheck.cpp">
+      <Filter>ソース ファイル\ErorrCheck</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenLayout.cpp">
+      <Filter>ソース ファイル\Device\ScreenLayout</Filter>
+    </ClCompile>
+    <ClCompile Include="ChildWindow.cpp">
+      <Filter>ソース ファイル\ChildWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>ソース ファイル\Device\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>ソース ファイル\Device\Camera\CameraManager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMain.cpp">
+      <Filter>ソース ファイル\SceneManager\GameMain</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectManager.cpp">
+      <Filter>ソース ファイル\Effect\EffectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Blur.cpp">
+      <Filter>ソース ファイル\Effect\Blur</Filter>
+    </ClCompile>
+    <ClCompile Include="CutEffect.cpp">
+      <Filter>ソース ファイル\Effect\CutEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Fragment.cpp">
+      <Filter>ソース ファイル\Effect\CutEffect\Fragment</Filter>
+    </ClCompile>
+    <ClCompile Include="Cutting.cpp">
+      <Filter>ソース ファイル\Effect\CutEffect\Cutting</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage.cpp">
+      <Filter>ソース ファイル\Character\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="TextLoader.cpp">
+      <Filter>ソース ファイル\Device\TextLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="InputState.cpp">
+      <Filter>ソース ファイル\Device\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectList.cpp">
+      <Filter>ソース ファイル\Effect\EffectList</Filter>
+    </ClCompile>
+    <ClCompile Include="Selecter.cpp">
+      <Filter>ソース ファイル\Device\Selecter</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectScene.cpp">
+      <Filter>ソース ファイル\SceneManager\SelectScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>ソース ファイル\Character\Animation</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GMath.h">
+      <Filter>ヘッダー ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="IScenes.h">
+      <Filter>ヘッダー ファイル\GSystem\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>ヘッダー ファイル\GSystem\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Ending.h">
+      <Filter>ヘッダー ファイル\GSystem\SceneManager\Ending</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>ヘッダー ファイル\GSystem\SceneManager\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="GSystem.h">
+      <Filter>ヘッダー ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>ヘッダー ファイル\GSystem\SceneManager\GameMain\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumGKey.h">
+      <Filter>ヘッダー ファイル\Device\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageRenderer.h">
+      <Filter>ヘッダー ファイル\Device\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageData.h">
+      <Filter>ヘッダー ファイル\DataManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Macro.h">
+      <Filter>ヘッダー ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>ヘッダー ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="FlagManager.h">
+      <Filter>ヘッダー ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Debug.h">
+      <Filter>ヘッダー ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>ヘッダー ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderHub.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemHub.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GSystemHub.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard.h">
+      <Filter>ヘッダー ファイル\Device\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePad.h">
+      <Filter>ヘッダー ファイル\Device\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec2.h">
+      <Filter>ヘッダー ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundRenderer.h">
+      <Filter>ヘッダー ファイル\Device\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundData.h">
+      <Filter>ヘッダー ファイル\DataManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterManager.h">
+      <Filter>ヘッダー ファイル\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Enum.h">
+      <Filter>ヘッダー ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="IInput.h">
+      <Filter>ヘッダー ファイル\Device\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="NumPad.h">
+      <Filter>ヘッダー ファイル\Device\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterImageData.h">
+      <Filter>ヘッダー ファイル\DataManager</Filter>
+    </ClInclude>
+    <ClInclude Include="IImageData.h">
+      <Filter>ヘッダー ファイル\DataManager</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>ヘッダー ファイル\Device\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>ヘッダー ファイル\Character\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerManager.h">
+      <Filter>ヘッダー ファイル\Character\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyManager.h">
+      <Filter>ヘッダー ファイル\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Test.h">
+      <Filter>ヘッダー ファイル\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>ヘッダー ファイル\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceManager.h">
+      <Filter>ヘッダー ファイル\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="GRectangle.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GCircle.h">
+      <Filter>ヘッダー ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractDamageArea.h">
+      <Filter>ヘッダー ファイル\Character\DamageArea</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageAreaCircle.h">
+      <Filter>ヘッダー ファイル\Character\DamageArea</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageAreaRectangle.h">
+      <Filter>ヘッダー ファイル\Character\DamageArea</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageAreaManager.h">
+      <Filter>ヘッダー ファイル\Character\DamageArea</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyGhost.h">
+      <Filter>ヘッダー ファイル\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemLollipop.h">
+      <Filter>ヘッダー ファイル\Character\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemManager.h">
+      <Filter>ヘッダー ファイル\Character\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="AItem.h">
+      <Filter>ヘッダー ファイル\Character\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers.h">
+      <Filter>ヘッダー ファイル\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>ヘッダー ファイル\GSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyKingPumpkin.h">
+      <Filter>ヘッダー ファイル\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureMapping.h">
+      <Filter>ヘッダー ファイル\Effect\TextureMapping</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseEffect.h">
+      <Filter>ヘッダー ファイル\Effect\BaseEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>ヘッダー ファイル\Device\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="PostEffect.h">
+      <Filter>ヘッダー ファイル\Effect\PostEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="NowLoading.h">
+      <Filter>ヘッダー ファイル\GSystem\SceneManager\NowLoading</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorCheck.h">
+      <Filter>ヘッダー ファイル\ErorrCheck</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenLayout.h">
+      <Filter>ヘッダー ファイル\Device\ScreenLayout</Filter>
+    </ClInclude>
+    <ClInclude Include="ChildWindow.h">
+      <Filter>ヘッダー ファイル\ChildWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>ヘッダー ファイル\Device\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h">
+      <Filter>ヘッダー ファイル\Device\Camera\CameraManager</Filter>
+    </ClInclude>
+    <ClInclude Include="e_ScreenLayout.h">
+      <Filter>ヘッダー ファイル\Device\ScreenLayout\e_ScreenLayout</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMain.h">
+      <Filter>ヘッダー ファイル\GSystem\SceneManager\GameMain</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectManager.h">
+      <Filter>ヘッダー ファイル\Effect\EffectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Blur.h">
+      <Filter>ヘッダー ファイル\Effect\Blur</Filter>
+    </ClInclude>
+    <ClInclude Include="CutEffect.h">
+      <Filter>ヘッダー ファイル\Effect\CutEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Fragment.h">
+      <Filter>ヘッダー ファイル\Effect\CutEffect\Fragment</Filter>
+    </ClInclude>
+    <ClInclude Include="Cutting.h">
+      <Filter>ヘッダー ファイル\Effect\Cutting</Filter>
+    </ClInclude>
+    <ClInclude Include="e_Directon.h">
+      <Filter>ヘッダー ファイル\Effect\Cutting</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage.h">
+      <Filter>ヘッダー ファイル\Character\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="TextLoader.h">
+      <Filter>ヘッダー ファイル\Device\TextLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="InputState.h">
+      <Filter>ヘッダー ファイル\Device\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectList.h">
+      <Filter>ヘッダー ファイル\Effect\EffectList</Filter>
+    </ClInclude>
+    <ClInclude Include="Selecter.h">
+      <Filter>ヘッダー ファイル\Device\Selecter</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectScene.h">
+      <Filter>ヘッダー ファイル\GSystem\SceneManager\SelectScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>ヘッダー ファイル\Character\Animation</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resource\FIGHTER_WALK.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Resource\Item_Lollipop.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Resource\Enemy_Ghost.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Resource\Enemy_Bat.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Resource\Enemy_KingPumpkin.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Resource\Title_BackGround.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Resource\GameMain_BackGround.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Resource\Title_PushXButton.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Resource\Title_BGM.mp3">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+    <Media Include="Resource\SE_Decision.mp3">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+    <Media Include="Resource\SE_KillBoss.mp3">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+    <Media Include="Resource\SE_Win.mp3">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+    <Media Include="Resource\Music_Lose.mp3">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+    <Media Include="Resource\SE_Attack.mp3">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+    <Media Include="Resource\SE_Damage.mp3">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+    <Media Include="Resource\SE_Kill.mp3">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+    <Media Include="Resource\SE_Drop.wav">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+    <Media Include="Resource\SE_Get.wav">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+    <Media Include="Resource\GameMain_BGM_normal.mp3">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+    <Media Include="Resource\GameMain_BGM_boss.mp3">
+      <Filter>リソース ファイル</Filter>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LeafLife.cd" />
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

@@ -8,7 +8,7 @@ void Debug::CheckDebugMode(){
 #endif
 }
 
-void Debug::Alert(std::string startMessage){
+void Debug::Alert(string startMessage){
 	FAST_RETURN_VOID(!isDebugMode);
 	MessageBox(NULL, TEXT(startMessage.c_str()), TEXT("ERROR"), MB_OK);
 }
