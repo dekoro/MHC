@@ -18,9 +18,10 @@ SceneGameMain::SceneGameMain(){
 
 	device->Image()->LoadMapTip("Resource/mapchip.png", 8, 4, (4 * 8) - 3);
 
-	anime.AddMotion("a", device->GetInstance()->Image()->LoadMotion("Resource/mapchip2.png", 8, 4, 8, (4 * 8) - 3, 8));
-	anime.AddMotion("b", device->GetInstance()->Image()->LoadMotion("Resource/mapchip2.png", 8, 4, 16, (4 * 8) - 3, 8));
+	anime.AddMotion(e_STAND, device->GetInstance()->Image()->LoadMotion("Resource/mapchip2.png", 8, 4, 8, (4 * 8) - 3, 8),true);
+	anime.AddMotion(e_WALK, device->GetInstance()->Image()->LoadMotion("Resource/mapchip2.png", 8, 4, 16, (4 * 8) - 3, 8),false);
 
+	anime.ChangeMotion(e_STAND);
 }
 
 SceneGameMain::~SceneGameMain(){
@@ -66,12 +67,19 @@ void SceneGameMain::LocalDraw()
 	stage->Draw();
 	AllManagersDraw();
 
-	if (device->GetInstance()->Input()->CheckKeyDownAllPad(GKey_Attack))
-	device->GetInstance()->Image()->DrawLT(anime.GetMotion("a"),Vec2(0,0));
+	if (device->GetInstance()->Input()->CheckKeyDownAllPad(GKey_Skill)){
 
-	if (device->GetInstance()->Input()->CheckKeyDownAllPad(GKey_Skill))
-		device->GetInstance()->Image()->DrawLT(anime.GetMotion("b"), Vec2(0, 0));
+		anime.ChangeMotion(e_WALK);
+		if (!anime.IsEnd())
+		{
+			//anime.ChangeMotion("a");
+		}
+		else
+		{
+		}
+	}
 
+	device->GetInstance()->Image()->DrawLT(anime.GetMotion(), Vec2(0, 0));
 }
 
 void SceneGameMain::AllManagersInitialize(int startPlayerIndex){
