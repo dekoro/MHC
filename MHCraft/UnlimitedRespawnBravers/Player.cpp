@@ -6,7 +6,7 @@
 #include "DamageAreaRectangle.h"
 #include "DamageAreaManager.h"
 
-Player::Player(int padNo, LaserManager* laserManager, DamageAreaManager* damageAreaManager) : motion(30){
+Player::Player(int padNo, LaserManager* laserManager, DamageAreaManager* damageAreaManager){
 	this->device = DeviceManager::GetInstance();
 	this->padNo = padNo;
 	this->damageAreaManager = damageAreaManager;
@@ -15,12 +15,21 @@ Player::Player(int padNo, LaserManager* laserManager, DamageAreaManager* damageA
 	maxStopCntAttack = PLAYER_ATTACK_STOP_COUNT;
 	cntInvincible = PLAYER_DAMAGE_INVINCIBLE_COUNT;
 	isEnable = false;
-	inputState = device->Input()->GetInputState(padNo);
+	inputState = device->Input()->GetInputState(0);
 
-	motion.AddMotion(e_STAND,device->Image()->LoadMotion("Resource/player_sprite_sheet.png",4,2,0,8,2),true);
-	motion.AddMotion(e_WALK, device->Image()->LoadMotion("Resource/player_sprite_sheet.png", 4, 2, 4, 8, 4), true);
+	//DXライブリのビルボードが画像の変形に対応していないため右と左を用意
+	//みぎ　
+	motion.AddMotion(e_STAND, device->Image()->LoadMotion("Resource/player_sprite_sheet.png", 4, 4, 0, 16, 2), 20, true,e_AnimeRight);
+	motion.AddMotion(e_WALK, device->Image()->LoadMotion("Resource/player_sprite_sheet.png", 4, 4, 4, 16, 4), 5, true, e_AnimeRight);
+
+	//左
+	motion.AddMotion(e_STAND, device->Image()->LoadMotion("Resource/player_sprite_sheet.png", 4, 4, 8, 16, 2), 20, true, e_AnimeLeft);
+	motion.AddMotion(e_WALK, device->Image()->LoadMotion("Resource/player_sprite_sheet.png", 4, 4, 12,16, 4), 5, true, e_AnimeLeft);
+
+	this->dairection = e_AnimeRight;
 	this->state = e_STAND;
-	motion.ChangeMotion(e_WALK);
+	this->oldState = state;
+	motion.ChangeMotion(state);
 }
 
 Player::~Player() {
@@ -33,7 +42,6 @@ void Player::Setup(CharacterInformation parameter){
 		GetRand(255), GetRand(255), GetRand(255),
 		GetRand(255), GetRand(255), GetRand(255));
 	SetAnimeData(device->Image()->GetAnimeData(imageAsset_player_fighter));
-	imageHandle = LoadGraph("Resource/Enemy_KingPumpkin.png");//AddCharacterImageMap(imageAsset_player_fighter);
 	laserData = LaserData::Setup(30, 5, position, Vec2::Zero(), 16, 5, 1, 15, 120);
 	//	LoadImageHandle(assetName);
 
@@ -46,22 +54,30 @@ void Player::Initialize() {
 	cut = std::make_shared<Cutting>(e_Right);
 	motion.Initialize();
 	this->state = e_STAND;
+	this->dairection = e_AnimeRight;
 }
 
 void Player::Update(){
-//	state = e_STAND;
+	state = e_STAND;
 	CountdownInvincible();
 	ControllManager();
 
 	motion.Update();
 
-//	motion.ChangeMotion(state);//このメソッドは前フレーム前と違う引数が入るとアニメーションを初期化する
+
+	if (state != oldState)
+	{
+		motion.ChangeMotion(state);
+	}
+	oldState = state;
 
 	HitData hit = damageAreaManager->CheckAllHitCircle(GetHitArea(), false, true);
 	if (hit == HitData::NoHit()){ return; }
 
 	Knockback(GMath::CalcAngleRad(hit.fromPosition, position), hit.knockbackPower);
 	Damage(hit.damage);
+
+
 }
 
 void Player::Draw() {
@@ -72,7 +88,8 @@ void Player::Draw() {
 
 
 	//device->Image()->DrawPlayerCenter(imageHandle, position);
-	device->Image()->DrawLT(motion.GetMotion(), position);
+		device->Image()->DrawLT(motion.GetMotion(this->dairection), position);
+
 
 
 }
@@ -198,7 +215,7 @@ void Player::ChangeImageType(int type) {
 void Player::Move(Vec2 velocity, float multiply){
 	if (velocity == Vec2::Zero()) { return; }
 	//	if (cntStop > 0){ return; }
-	//state = e_WALK;
+	state = e_WALK;
 	velocity.NormalizeSelf();
 	position += velocity * parameter.speed * multiply;
 	Clamp();
@@ -269,12 +286,28 @@ void Player::Clamp(){
 void Player::ControllManager(){
 	Vec2 moveVec = inputState->GetLeftStickLeanVector();
 	Vec2 attackVec = inputState->GetRightStickLeanVector();
+	CheckDirection(moveVec);
 	if (moveVec != Vec2::Zero()) { Move(moveVec); }
 	if (attackVec != Vec2::Zero()) {
 		Attack(attackVec, 1);
 	}
 }
 
+void Player::CheckDirection(Vec2 velocity)
+{
+	if (velocity == Vec2::Zero()) { return; }
+
+	if (velocity.X >= 0)
+	{
+		this->dairection = e_AnimeRight;
+	}
+	else if (velocity.X < 0)
+	{
+		this->dairection = e_AnimeLeft;
+	}
+
+
+}
 
 
 

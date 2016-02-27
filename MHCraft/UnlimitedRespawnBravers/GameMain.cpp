@@ -69,7 +69,7 @@ void SceneGameMain::LocalDraw()
 }
 
 void SceneGameMain::AllManagersInitialize(int startPlayerIndex){
-	for (int i = 0; i < startPlayerIndex; i++)
+	for (int i = 0; i <= startPlayerIndex; i++)
 	{
 		playerManager->SpawnPlayer(i,Vec2());
 	}
@@ -83,7 +83,7 @@ void SceneGameMain::AllManagersInitialize(int startPlayerIndex){
 
 void SceneGameMain::AllManagersUpdate(){
 	playerManager		->Update();
-	enemyManager		->Update();
+//	enemyManager		->Update();
 	laserManager		->Update();
 	damageAreaManager	->Update();
 }

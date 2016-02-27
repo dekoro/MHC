@@ -80,12 +80,12 @@ private:
 	const int WATER = 1;
 	const int WATER_HEIGHT = 14;
 	const int WATER_LOW = 7;
-	const int WATER_RIGHT = 13;
-	const int WATER_LEFT = 8;
-	const int WATER_HEIGHT_RIGHT = 11;
-	const int WATER_HEIGHT_LEFT = 10;
-	const int WATER_LOW_RIGHT  =9;
-	const int WATER_LOW_LEFTT = 12;
+	const int WATER_RIGHT = 8;
+	const int WATER_LEFT = 13;
+	const int WATER_HEIGHT_RIGHT = 10;
+	const int WATER_HEIGHT_LEFT = 11;
+	const int WATER_LOW_RIGHT  =12;
+	const int WATER_LOW_LEFTT = 9;
 };
 
 #endif

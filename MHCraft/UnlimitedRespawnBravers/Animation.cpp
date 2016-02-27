@@ -1,7 +1,7 @@
 #include"Animation.h"
 #include"ErrorCheck.h"
 
-Animation::Animation(int intarval) :intarval(intarval)
+Animation::Animation() 
 {
 	Initialize();
 }
@@ -10,12 +10,13 @@ Animation::~Animation()
 {
 }
 
-void Animation::AddMotion(e_Motion motionName, std::vector<int > motion, bool isLoop)
+void Animation::AddMotion(e_Motion motionName, std::vector<int > motion, int intarval,bool isLoop)
 {
 	CheckAlreadyThere(motionName, this->motions);
 
 	this->motions[motionName].motions = motion;
 	this->motions[motionName].isLoop = isLoop;
+	this->motions[motionName].intarval = intarval;
 }
 
 int Animation::GetMotion()
@@ -27,13 +28,13 @@ int Animation::GetMotion()
 void Animation::Initialize()
 {
 	this->motionCount = 0;
-	intarvalCount = 0;
+	this->intarvalCount = 0;
 	this->isEnd = false;
 }
 
 void Animation::Update()
 {
-	intarvalCount = intarvalCount < intarval ? ++intarvalCount : 0;
+	intarvalCount = intarvalCount < currentMotion.intarval ? ++intarvalCount : 0;
 
 	if (intarvalCount != 0) return;
 
@@ -51,6 +52,7 @@ void Animation::ChangeMotion(e_Motion motionName)
 	this->currentMotion.motions = this->motions[motionName].motions;
 	currentMotion.currentName = motionName;
 	currentMotion.isLoop = motions[motionName].isLoop;
+	currentMotion.intarval = motions[motionName].intarval;
 }
 
 bool Animation::IsEnd()

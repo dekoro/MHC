@@ -232,6 +232,12 @@
     <Filter Include="ヘッダー ファイル\Device\Selecter\GSystem\SceneManager\SelectScene">
       <UniqueIdentifier>{e3741946-3f3d-42e9-9865-8e060781d289}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Character\Animation\AnimeDirection">
+      <UniqueIdentifier>{e2099971-284b-4b97-b228-6d6a36b5b971}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Character\Animation\AnimeDirection">
+      <UniqueIdentifier>{4c61f9ee-8ef3-4f4f-97ad-c6069a1096ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FlagManager.cpp">
@@ -428,6 +434,9 @@
     </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>ソース ファイル\Character\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimeDirection.cpp">
+      <Filter>ソース ファイル\Character\Animation\AnimeDirection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -649,6 +658,9 @@
     </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>ヘッダー ファイル\Character\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimeDirection.h">
+      <Filter>ヘッダー ファイル\Character\Animation\AnimeDirection</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

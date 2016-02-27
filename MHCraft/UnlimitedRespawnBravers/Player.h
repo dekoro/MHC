@@ -7,13 +7,15 @@
 #include "Cutting.h"//後で削除
 #include "InputState.h"
 #include "Laser.h"
-#include"Animation.h"
+#include"AnimeDirection.h"
 
 class AbstractDamageArea;
 class DeviceManager;
 class DamageAreaManager;
 class DamageAreaCircle;
 class LaserManager;
+
+
 
 class Player : public ICharacter, public IAttackable
 {
@@ -52,8 +54,10 @@ private:
 	DamageAreaCircle*			hitArea;
 	std::shared_ptr<Cutting>	cut;
 	LaserData					laserData;
-	Animation motion;
+	AnimeDirection motion;
 	e_Motion state;//プレイヤーの状態
+	e_Motion oldState;//プレイヤーの状態
+	e_AnimeDirection dairection;
 
 	int		width;
 	int		height;
@@ -86,6 +90,7 @@ private:
 	void	ControllManager();
 	void	Attack(Vec2 vector, int chargeLevel);
 	void	Move(Vec2 velocity, float multiply=1.0f);
+	void    CheckDirection(Vec2 velocity);
 };
 
 #endif
