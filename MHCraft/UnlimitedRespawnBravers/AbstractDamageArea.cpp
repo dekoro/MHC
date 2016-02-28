@@ -1,4 +1,5 @@
 #include "AbstractDamageArea.h"
+<<<<<<< HEAD
 #include "Vec2.h"
 #include "GRectangle.h"
 #include "GCircle.h"
@@ -10,13 +11,17 @@
 AbstractDamageArea::AbstractDamageArea(int stayCount, HitData hitData, bool isToPlayer, bool isToEnemy, IHittable* hitter){
 	this->hitter = hitter;
 	Setup(stayCount, hitData, isToPlayer, isToEnemy);
+=======
+
+AbstractDamageArea::AbstractDamageArea(int stayCount, bool isToPlayer, bool isToEnemy){
+	Setup(stayCount, isToPlayer, isToEnemy);
+>>>>>>> dd6161f1f6dd4edff83a4142ec6e3a66898c1b40
 }
 
 
-void AbstractDamageArea::Setup(int stayCount, HitData hitData, bool isToPlayer, bool isToEnemy){
+void AbstractDamageArea::Setup(int stayCount, bool isToPlayer, bool isToEnemy){
 	this->maxStayCount			= stayCount;
 	this->stayCount				= stayCount;
-	this->hitData				= hitData;
 	this->isHittableToPlayer	= isToPlayer;
 	this->isHittableToEnemy		= isToEnemy;
 	this->isDead				= (!isToPlayer && !isToEnemy);		//“G–¡•û‚ ‚½‚è”»’è–³‚¢‚È‚ç‘¦Á‹
@@ -38,6 +43,7 @@ bool AbstractDamageArea::GetIsDead(){
 	return isDead;
 }
 
+<<<<<<< HEAD
 HitData AbstractDamageArea::GetHitData(){
 	return hitData;
 }
@@ -51,6 +57,8 @@ void AbstractDamageArea::Kill(){
 	isDead = true;
 }
 
+=======
+>>>>>>> dd6161f1f6dd4edff83a4142ec6e3a66898c1b40
 //-----private-----
 
 void AbstractDamageArea::DestructorCount(){

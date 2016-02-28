@@ -1,8 +1,11 @@
 #include "DamageAreaManager.h"
 #include "DamageAreaCircle.h"
 #include "DamageAreaRectangle.h"
+<<<<<<< HEAD
 #include "DamageAreaQuadrangle.h"
 #include "IHittable.h"
+=======
+>>>>>>> dd6161f1f6dd4edff83a4142ec6e3a66898c1b40
 
 DamageAreaManager::DamageAreaManager(){
 }
@@ -18,7 +21,6 @@ void DamageAreaManager::Update(){
 	for(AbstractDamageArea* da : damageAreaList){
 		da->Update();
 	}
-	RefleshDamageArea();
 }
 
 void DamageAreaManager::Draw(){
@@ -31,6 +33,7 @@ void DamageAreaManager::Finalize(){
 	ClearDamageArea();
 }
 
+<<<<<<< HEAD
 DamageAreaCircle* DamageAreaManager::AddDamageAreaCircle(GCircle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy, IHittable* hitter){
 	DamageAreaCircle* damageAreaCircle = new DamageAreaCircle(hitArea, hitData, stayCount, isToPlayer, isToEnemy, hitter);
 	damageAreaList.push_back(damageAreaCircle);
@@ -60,15 +63,29 @@ HitData DamageAreaManager::CheckAllHitRectangle(GRectangle target, bool isTarget
 		}
 	}
 	return HitData::NoHit();
+=======
+void DamageAreaManager::AddDamageAreaCircle(GCircle hitArea, int stayCount, bool isToPlayer, bool isToEnemy){
+	damageAreaList.push_back(new DamageAreaCircle(hitArea, stayCount, isToPlayer, isToEnemy));
+}
+
+void DamageAreaManager::AddDamageAreaRectangle(GRectangle hitArea, int stayCount, bool isToPlayer, bool isToEnemy){
+	damageAreaList.push_back(new DamageAreaRectangle(hitArea, stayCount, isToPlayer, isToEnemy));
+>>>>>>> dd6161f1f6dd4edff83a4142ec6e3a66898c1b40
 }
 
 HitData DamageAreaManager::CheckAllHitCircle(GCircle target, bool isTargetPlayer, bool isTargetEnemy){
 	HitData tmpHit = HitData::NoHit();
 	if (damageAreaList.empty()){ return HitData::NoHit(); }
+<<<<<<< HEAD
 	for (AbstractDamageArea* dmg: damageAreaList){
 		tmpHit = dmg->CheckIsHitAndDamage(target);
 		if (tmpHit != HitData::NoHit()){
 			dmg->HitProcess();
+=======
+	for each(AbstractDamageArea* dmg in damageAreaList){
+		if (!dmg->CheckIsHit(target)) { continue; }
+		if(tmpHit != HitData::NoHit()){
+>>>>>>> dd6161f1f6dd4edff83a4142ec6e3a66898c1b40
 			return  tmpHit;
 		}
 

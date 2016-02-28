@@ -2,12 +2,10 @@
 #define _GSYSTEM_GMATH_H_
 
 #include "SystemHub.h"
-#include "GSystem.h"
 
 class Vec2;
 class GCircle;
 class GRectangle;
-class GQuadrangle;
 
 
 class GMath
@@ -16,9 +14,7 @@ public:
 	GMath();
 	~GMath();
 
-	static bool Inner(float value, float min, float max);
-	static bool OnField(float valueX, float valueY, float minX = FIELD_MIN_X, float minY = FIELD_MIN_Y, float maxX = FIELD_MAX_X, float maxY = FIELD_MAX_Y);
-	static bool OnField(Vec2 position, Vec2 minPosition, Vec2 maxPosition);
+	static bool Inner(int value, int min, int max);
 	template<typename T> static T Clamp(T value, T min, T max);
 	template<typename T> static int GetCountMaxSize(T dataType, int oneLoopSize);
 	static double	ChangeDegToRad(double angleDeg);
@@ -30,7 +26,6 @@ public:
 	static bool		CheckHitCircleToRectangle(GCircle circle, GRectangle rectangle);
 	static bool		CheckHitCircleToRectangle(Vec2 posCenterCircle, double radiusCirle	, Vec2 posRectangleTL, Vec2 posRectangleBR);
 	static bool		CheckHitCircleToRectangle(Vec2 posCenterCircle, double radiusCirle	, GRectangle rectangle);
-	static bool		CheckHitCircleToQuadrangle(GCircle circle, GQuadrangle quadrangle);
 	static bool		CheckHitCircleToPoint(GCircle circle, Vec2 posPoint);
 	static bool		CheckHitCircleToPoint(Vec2 posCenterCircle, double radius, Vec2 posPoint);
 
@@ -38,8 +33,6 @@ public:
 	static bool		CheckHitRectangleToRectangle(GRectangle rect1, GRectangle rect2);
 	static bool		CheckHitRectangleToRectangle(Vec2 pos1TL, Vec2 pos1BR, Vec2 pos2TL, Vec2 pos2BR);
 	static Vec2		GetStickStateToVec2(short ThumbX, short ThumbY);
-	static float	CutHighAndLow(float value, float high, float low, float start = 0, float end = 1);
-	static float	CutNearAndFarByZero(float value, float nearByZero, float farByZero, float end = 1);
 private:
 
 };
