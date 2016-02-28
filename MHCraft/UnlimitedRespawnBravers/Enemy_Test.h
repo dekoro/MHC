@@ -6,7 +6,7 @@
 class Enemy_Test : public Enemy
 {
 public:
-	Enemy_Test(vector<Enemy*>* enemyList);
+	Enemy_Test(DamageAreaManager* damageAreaManager, vector<Enemy*>* enemyList);
 	~Enemy_Test();
 	void Initialize();
 	void Update() override;

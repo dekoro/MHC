@@ -6,8 +6,8 @@
 #include "Debug.h"
 #include "Vec2.h"
 
-DamageAreaQuadrangle::DamageAreaQuadrangle(GQuadrangle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy)
-	:AbstractDamageArea(stayCount, hitData, isToPlayer, isToEnemy) {
+DamageAreaQuadrangle::DamageAreaQuadrangle(GQuadrangle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy, IHittable* hitter)
+:AbstractDamageArea(stayCount, hitData, isToPlayer, isToEnemy, hitter) {
 	this->damageArea		= hitArea;
 }
 

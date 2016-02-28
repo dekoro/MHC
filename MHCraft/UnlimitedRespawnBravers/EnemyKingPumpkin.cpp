@@ -1,7 +1,7 @@
 
 #include "EnemyKingPumpkin.h"
 
-EnemyKingPumpkin::EnemyKingPumpkin(vector<Enemy*>* enemyList) :Enemy(enemyList, imageAsset_Enemy_BigPumpkin){
+EnemyKingPumpkin::EnemyKingPumpkin(DamageAreaManager* damageAreaManager, vector<Enemy*>* enemyList) :Enemy(damageAreaManager, enemyList, imageAsset_Enemy_BigPumpkin){
 	Vec2 pos = Vec2::Setup(640, 300);
 
 	CharacterInformation prm = CharacterInformation::Setup(300, 0, 2, 150, 1, 128);

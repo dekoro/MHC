@@ -27,10 +27,10 @@ void LaserManager::Draw(){
 		ls->Draw();
 	}
 }
-void LaserManager::AddLaser(LaserData laserData){
+void LaserManager::AddLaser(LaserData laserData, int shooterNo){
 	int emptyNo = GetEmptyNum();
 	if (emptyNo == -1){ return; }
-	lasers[emptyNo]->Set(laserData);
+	lasers[emptyNo]->Set(laserData, shooterNo);
 }
 
 void LaserManager::ClearAllLaser(){

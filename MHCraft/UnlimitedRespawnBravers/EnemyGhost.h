@@ -6,7 +6,7 @@
 class EnemyGhost : public Enemy
 {
 public:
-	EnemyGhost(vector<Enemy*>* enemyList);
+	EnemyGhost(DamageAreaManager* damageAreaManager, vector<Enemy*>* enemyList);
 	~EnemyGhost();
 	void	Initialize();
 	void	Update() override;

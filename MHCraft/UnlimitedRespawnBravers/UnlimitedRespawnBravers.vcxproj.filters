@@ -644,6 +644,9 @@
     <ClInclude Include="InputState.h">
       <Filter>ヘッダー ファイル\Device\Input</Filter>
     </ClInclude>
+    <ClInclude Include="IHittable.h">
+      <Filter>ヘッダー ファイル\Character\DamageArea</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource\FIGHTER_WALK.bmp">

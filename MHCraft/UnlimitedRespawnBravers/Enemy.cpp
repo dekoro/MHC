@@ -1,7 +1,10 @@
 #include "Enemy.h"
+#include "DamageAreaManager.h"
 
-Enemy::Enemy(vector<Enemy*>* enemyList, IMAGE_ASSET_NAME assetName):cutEffect(60 * 3,Vec2(1,1)){
+
+Enemy::Enemy(DamageAreaManager* damageAreaManager, vector<Enemy*>* enemyList, IMAGE_ASSET_NAME assetName) :cutEffect(60 * 3, Vec2(1, 1)){
 	enemyList->push_back(this);
+	this->damageAreaManager = damageAreaManager;
 	device			= DeviceManager::GetInstance();
 //	managers		= Managers::GetInstance();
 	cntDead			= 30;
@@ -46,7 +49,7 @@ void Enemy::CalcDamage(HitData hitData){
 
 void Enemy::CheckHitDamageArea(){
 	if (isInvincible){ return; }
-	HitData hit = HitData::NoHit();//managers->Damage()->CheckAllHitCircle(GCircle::Setup(position, parameter.hitRange), false, true);
+	HitData hit = damageAreaManager->CheckAllHitCircle(GCircle::Setup(position, parameter.hitRange), false, true);
 	if (hit == HitData::NoHit()){ return; }
 	Damage(hit.damage);
 	if (isKnockBack){

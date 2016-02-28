@@ -5,24 +5,27 @@
 
 Laser::Laser(DamageAreaManager* damageAreaManager){
 	this->damageAreaManager = damageAreaManager;
+	isUse = false;
 }
 
 Laser::~Laser(){}
 
 
 
-void Laser::Set(double width, double height, Vec2 shotPosition, double angleDeg, double lengthFromShotPosition, int knockBackPower, int damage, double speed, int liveCount){
-	Vec2 point1position = Vec2::Setup(shotPosition.X + lengthFromShotPosition, shotPosition.Y - height / 2);
-	GQuadrangle damageArea = GQuadrangle::Setup(point1position.X, point1position.Y, width, height);
+void Laser::Set(double width, double height, Vec2 shotPosition, double angleDeg, double lengthFromShotPosition, int knockBackPower, int damage, double speed, int liveCount, int shooterNo){
+	Vec2 point1position		= Vec2::Setup(shotPosition.X + lengthFromShotPosition, shotPosition.Y - height / 2);
+	GQuadrangle damageArea	= GQuadrangle::Setup(point1position.X, point1position.Y, width, height);
 	damageArea.Rotate(shotPosition, GMath::ChangeDegToRad(angleDeg));
-	HitData hitData = HitData::Setup(damageArea.GetCenterPosition(), knockBackPower, damage);
-	angleRad = GMath::ChangeDegToRad(angleDeg);
+	HitData hitData			= HitData::Setup(damageArea.GetCenterPosition(), knockBackPower, damage, shooterNo);
+	angleRad				= GMath::ChangeDegToRad(angleDeg);
 	Setup(damageArea, hitData, Vec2::GetVelocityFromDeg(angleDeg), speed, liveCount);
 }
-void Laser::Set(double width, double height, Vec2 shotPosition, Vec2 velocity, double lengthFromShotPosition, int knockBackPower, int damage, double speed, int liveCount){
-	Set(width, height, shotPosition, velocity.GetAngleDeg(), lengthFromShotPosition, knockBackPower, damage, speed, liveCount);
+
+void Laser::Set(double width, double height, Vec2 shotPosition, Vec2 velocity, double lengthFromShotPosition, int knockBackPower, int damage, double speed, int liveCount, int shooterNo){
+	Set(width, height, shotPosition, velocity.GetAngleDeg(), lengthFromShotPosition, knockBackPower, damage, speed, liveCount, shooterNo);
 }
-void Laser::Set(LaserData laserData){
+
+void Laser::Set(LaserData laserData, int shooterNo){
 	Set(laserData.width,
 		laserData.height,
 		laserData.shotPosition,
@@ -31,7 +34,8 @@ void Laser::Set(LaserData laserData){
 		laserData.knockBackPower,
 		laserData.damage,
 		laserData.speed,
-		laserData.liveCount);
+		laserData.liveCount,
+		shooterNo);
 }
 
 void Laser::Initialize(){
@@ -42,6 +46,7 @@ void Laser::Update(){
 	Move();
 	CheckDead();
 }
+
 void Laser::Draw(){
 	GQuadrangle quadrangle = damageArea->damageArea;
 	VECTOR pos1 = VGet((quadrangle.x4 - quadrangle.x1) / 2 + quadrangle.x1, (quadrangle.y4 - quadrangle.y1) / 2 + quadrangle.y1, 0);
@@ -54,13 +59,19 @@ void Laser::Draw(){
 }
 
 bool Laser::GetIsUse(){
-	return (liveCounter > 0);
+	return isUse;
 }
 
 void Laser::Kill(){
 	isUse = false;
 	damageArea->Kill();
 }
+
+void Laser::HitFunction(){
+	Kill();
+}
+
+
 
 void Laser::Move(){
 	if (moveVeclocity == Vec2::Zero()){ return; }
@@ -71,7 +82,7 @@ void Laser::Move(){
 
 void Laser::Setup(GQuadrangle damageArea, HitData hitData, Vec2 velocity, float speed, int liveCount){
 	this->speed			= speed;
-	this->damageArea	= damageAreaManager->AddDamageAreaQuadrangle(damageArea, hitData, 120, true, true);
+	this->damageArea	= damageAreaManager->AddDamageAreaQuadrangle(damageArea, hitData, 120, true, true, this);
 	this->liveCounter	= liveCount;
 	this->isUse			= true;
 	position = damageArea.GetCenterPosition();
@@ -86,6 +97,11 @@ void Laser::CheckDead(){
 	}
 
 }
+
+void Laser::Hit(){
+	Kill();
+}
+
 
 LaserData LaserData::Setup(double width, double height, Vec2 shotPosition, Vec2 velocity, double lengthFromShotPosition, int knockBackPower, int damage, double speed, int liveCount){
 	LaserData tmp;

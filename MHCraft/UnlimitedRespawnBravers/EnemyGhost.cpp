@@ -1,6 +1,6 @@
 #include "EnemyGhost.h"
 
-EnemyGhost::EnemyGhost(vector<Enemy*>* enemyList) :Enemy(enemyList, imageAsset_Enemy_Ghost){
+EnemyGhost::EnemyGhost(DamageAreaManager* damageAreaManager, vector<Enemy*>* enemyList) :Enemy(damageAreaManager, enemyList, imageAsset_Enemy_Ghost){
 	Vec2 pos	= Vec2::Setup((float)GetRand(Window::WIDTH), (float)GetRand(Window::HEIGHT));
 	startSpeed	= 0.05;
 	maxSpeed	= 4;

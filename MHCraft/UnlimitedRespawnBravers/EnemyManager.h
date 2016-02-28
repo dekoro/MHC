@@ -3,6 +3,7 @@
 
 #include "GSystemHub.h"
 #include "Enemy.h"
+class DamageAreaManager;
 
 enum GameMode{
 	GameMode_Main,
@@ -19,7 +20,7 @@ enum GameDeadOrClear{
 class EnemyManager
 {
 public:
-	EnemyManager();
+	EnemyManager(DamageAreaManager* damageAreaManager);
 	~EnemyManager();
 	
 	void				Initialize();
@@ -38,6 +39,7 @@ private:
 //	Managers*		managers;
 	vector<Enemy*>	enemyList;
 	DeviceManager*	device;
+	DamageAreaManager* damageAreaManager;
 	int				stage;
 	int				normaLollipop;
 

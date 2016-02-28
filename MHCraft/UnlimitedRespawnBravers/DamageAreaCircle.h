@@ -6,7 +6,7 @@
 
 class DamageAreaCircle: public AbstractDamageArea{
 public:
-	DamageAreaCircle(GCircle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy);
+	DamageAreaCircle(GCircle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy, IHittable* hitter = NULL);
 	~DamageAreaCircle(){}
 
 	HitData CheckIsHitAndDamage(Vec2 position);

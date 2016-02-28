@@ -136,15 +136,16 @@ class HitData
 {
 public:
 	HitData() {}
-	HitData(Vec2 fromPos, int power, int damage);
+	HitData(Vec2 fromPos, int power, int damage, int shooterPlayerNo = -1);
 	~HitData() {}
 	Vec2	fromPosition;
 	double	hitRange;
 	int		damage;
 	int		knockbackPower;
+	int shooterPlayerNo;
 
-	static HitData	Setup(Vec2 fromPos, int power, int damage);
-	HitData*		SetupSelf(Vec2 fromPos, int power, int damage);
+	static HitData	Setup(Vec2 fromPos, int power, int damage, int shooterPlayerNo = -1);
+	HitData*		SetupSelf(Vec2 fromPos, int power, int damage, int shooterPlayerNo = -1);
 	static HitData	NoHit();
 
 	bool operator==(HitData other);
