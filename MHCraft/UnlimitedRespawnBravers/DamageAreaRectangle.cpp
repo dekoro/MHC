@@ -3,8 +3,9 @@
 #include "GSystem.h"
 #include "GCircle.h"
 #include "Debug.h"
+#include "IHittable.h"
 
-DamageAreaRectangle::DamageAreaRectangle(GRectangle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy) :AbstractDamageArea(stayCount, hitData, isToPlayer, isToEnemy){
+DamageAreaRectangle::DamageAreaRectangle(GRectangle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy, IHittable* hitter) :AbstractDamageArea(stayCount, hitData, isToPlayer, isToEnemy, hitter){
 	this->hitArea = hitArea;
 }
 

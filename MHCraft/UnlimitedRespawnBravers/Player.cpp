@@ -9,9 +9,10 @@
 Player::Player(int padNo, LaserManager* laserManager, DamageAreaManager* damageAreaManager){
 	this->device			= DeviceManager::GetInstance();
 	this->padNo				= padNo;
-	this->damageAreaManager = damageAreaManager;
+	this->damageAreaManager	= damageAreaManager;
 	this->laserManager		= laserManager;
-	height = 32, width = 32;
+	height					= 32;
+	width					= 32;
 	maxStopCntAttack		= PLAYER_ATTACK_STOP_COUNT;
 	cntInvincible			= PLAYER_DAMAGE_INVINCIBLE_COUNT;
 	isEnable				= false;
@@ -23,29 +24,28 @@ Player::~Player() {
 }
 
 void Player::Setup(CharacterInformation parameter){
-	this->parameter			= parameter;
-	PlayerColorList playerColor = PlayerColorList::Setup(GetRand(255), GetRand(255), GetRand(255),
-		GetRand(255), GetRand(255), GetRand(255),
-		GetRand(255), GetRand(255), GetRand(255));
+	this->parameter = parameter;
 	SetAnimeData(device->Image()->GetAnimeData(imageAsset_player_fighter));
-	imageHandle = device->Image()->AddCharacterImageMap(imageAsset_player_fighter);
-	laserData = LaserData::Setup(30, 5, position, Vec2::Zero(), 16, 5, 1, 15, 120);
-//	LoadImageHandle(assetName);
-	
+	imageHandle		= LoadGraph("Resource/Enemy_KingPumpkin.png");//AddCharacterImageMap(imageAsset_player_fighter);
+	laserData		= LaserData::Setup(30, 5, position, Vec2::Zero(), 16, 5, 1, 15, 60);
+	maxAttackCount	= 5;
+	leftAttackCount	= 0;
+	isAttackInput	= false;
+	attackVec		= Vec2::Zero();
 }
 
 void Player::Initialize() {
-	isDead = false;
-	isWalk = false;
-	cntInvincible = 120;
-	cut = std::make_shared<Cutting>(e_Right);
+	isDead			= false;
+	isWalk			= false;
+	cntInvincible	= 120;
+	cut				= std::make_shared<Cutting>(e_Right);
 }
 
 void Player::Update(){
 	CountdownInvincible();
 	ControllManager();
-	HitData hit =damageAreaManager->CheckAllHitCircle(GetHitArea(), false, true);
-	if (hit == HitData::NoHit()){ return; }
+	HitData hit = damageAreaManager->CheckAllHitCircle(GetHitArea(), false, true);
+	if (hit == HitData::NoHit() || hit.shooterPlayerNo == padNo){ return; }
 
 	Knockback(GMath::CalcAngleRad(hit.fromPosition, position), hit.knockbackPower);
 	Damage(hit.damage);
@@ -53,27 +53,8 @@ void Player::Update(){
 
 void Player::Draw() {
 	int attackImage = (cntStop > 0) ? 4 : 0;
-	//device->Image()->ChangeImageType(imageHandle, imageType + attackImage);
 	device->Image()->DrawLT(imageHandle, position);
-//	device->Image()->ChangeAnimePlay(imageHandle, animeData.isAnimation);
-
-	cut->Rendering([&]()
-	{
-		device->Image()->DrawPlayerCenter(imageHandle, position);
-		device->Image()->DrawLT(imageHandle, position);
-	}, device->GetInstance()->Image()->GetHGraphics(imageHandle));
-
-
 }
-//=======
-//void Player::Draw() {
-//	if (!isEnable) { return; }
-//	int attackImage = (cntStop > 0) ? 4 : 0;
-//	device->Image()->ChangeImageType(imageHandle, imageType + attackImage);
-//	device->Image()->ChangeAnimePlay(imageHandle, animeData.isAnimation);
-//	device->Image()->DrawPlayerCenter(imageHandle, position);
-//}
-//>>>>>>> ForDev_TempOmori
 
 void Player::Finalize()
 {
@@ -109,7 +90,7 @@ Vec2 Player::GetPosition() {
 }
 
 Vec2 Player::GetCenterPosition() {
-	return position - Vec2::Setup((float)width/2, (float)height/2);
+	return position - Vec2::Setup((float)width / 2, (float)height / 2);
 }
 
 void Player::CheckHitDamageArea(AbstractDamageArea* damageArea){
@@ -145,8 +126,8 @@ void Player::Heal(int heal) {
 
 void Player::Spawn(Vec2 position)
 {
-	isEnable		= true;
-	this->position	= position;
+	isEnable = true;
+	this->position = position;
 }
 
 int Player::GetPadNo()
@@ -165,7 +146,7 @@ void Player::SetAnimeData(AnimeData animeData){
 }
 
 void Player::LoadImageHandle(IMAGE_ASSET_NAME assetName){
-	imageHandle = device->Image()->AddCharacterImageMap(assetName);
+	imageHandle = device->Image()->GetHGraphics(0);//AddCharacterImageMap(assetName);
 }
 
 void Player::Attack(Vec2 vector, int chargeLevel){
@@ -175,7 +156,7 @@ void Player::Attack(Vec2 vector, int chargeLevel){
 	double attackAngleDeg = vector.GetAngleDeg();
 	attackAngleDeg += GetRand(10) - 5;
 	laserData.velocity = Vec2::GetVelocityFromDeg(attackAngleDeg);
-	laserManager->AddLaser(laserData);
+	laserManager->AddLaser(laserData, padNo);
 
 }
 
@@ -186,9 +167,9 @@ void Player::ChangeImageType(int type) {
 
 void Player::Move(Vec2 velocity, float multiply){
 	if (velocity == Vec2::Zero()) { return; }
-//	if (cntStop > 0){ return; }
+	//	if (cntStop > 0){ return; }
 	velocity.NormalizeSelf();
-	position		+= velocity * parameter.speed * multiply;
+	position += velocity * parameter.speed * multiply;
 	Clamp();
 }
 
@@ -247,18 +228,25 @@ bool Player::FlashManager(int counter){
 
 
 void Player::Clamp(){
-	Vec2 imageHalfSize = device->Image()->GetCharacterImageHalfSize(imageHandle);
-	if (position.X - imageHalfSize.X < 0) { position.X = imageHalfSize.X; }
-	if (position.Y - imageHalfSize.Y < 0) { position.Y = imageHalfSize.Y; }
-	if (position.X + imageHalfSize.X > Window::WIDTH) { position.X = Window::WIDTH - imageHalfSize.X; }
-	if (position.Y + imageHalfSize.Y > Window::HEIGHT) { position.Y = Window::HEIGHT - imageHalfSize.Y; }
+	//Vec2 imageHalfSize = device->Image()->GetCharacterImageHalfSize(imageHandle);
+	//if (position.X - imageHalfSize.X < 0) { position.X = imageHalfSize.X; }
+	//if (position.Y - imageHalfSize.Y < 0) { position.Y = imageHalfSize.Y; }
+	//if (position.X + imageHalfSize.X > Window::WIDTH) { position.X = Window::WIDTH - imageHalfSize.X; }
+	//if (position.Y + imageHalfSize.Y > Window::HEIGHT) { position.Y = Window::HEIGHT - imageHalfSize.Y; }
 }
 
 void Player::ControllManager(){
-	Vec2 moveVec = inputState->GetMoveVector();
-	Vec2 attackVec = inputState->GetAttackVector();
-	if (moveVec		!= Vec2::Zero()) { Move(moveVec);		 }
-	if (attackVec	!= Vec2::Zero()) {
+	Vec2 moveVec = inputState->GetLeftStickLeanVector();
+	if (moveVec != Vec2::Zero()) { Move(moveVec); }
+
+	Vec2 tmpAttackVec = inputState->GetRightStickLeanVector();
+	if (tmpAttackVec != Vec2::Zero()){ attackVec = tmpAttackVec; }
+	if (tmpAttackVec == Vec2::Zero()){ isAttackInput = false; }
+	if (tmpAttackVec != Vec2::Zero() && !isAttackInput) {
+		isAttackInput = true;
+		leftAttackCount = maxAttackCount;
+	}
+	if (--leftAttackCount > 0){
 		Attack(attackVec, 1);
 	}
 }

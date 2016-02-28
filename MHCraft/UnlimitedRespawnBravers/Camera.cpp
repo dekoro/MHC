@@ -34,17 +34,17 @@ void Camera::Update()
 	this->position.y = player->GetPosition().Y;
 
 	//‚Æ‚è‚ ‚¦‚¸0‚ðŽw’èAŒã‚Åƒƒ“ƒo•Ï”‚ÌpadNum‚ðˆø”‚É“ü‚ê‚é
-	if (DeviceManager::GetInstance()->Input()->GetInputState(0)->CheckKeyDown(GKey_Attack))
+	if (DeviceManager::GetInstance()->Input()->GetInputState(this->padNum)->CheckLeftTrigger())
 	{
 		this->scale += scaleUp;
 	}
-	if (DeviceManager::GetInstance()->Input()->GetInputState(0)->CheckKeyDown(GKey_Skill))
+	if (DeviceManager::GetInstance()->Input()->GetInputState(this->padNum)->CheckRightTrigger())
 	{
 		this->scale -= scaleUp;
 	}
 	
-	if (DeviceManager::GetInstance()->Input()->GetInputState(0)->CheckKeyDown(GKey_Skill) && 
-		DeviceManager::GetInstance()->Input()->GetInputState(0)->CheckKeyDown(GKey_Attack))
+	if (DeviceManager::GetInstance()->Input()->GetInputState(this->padNum)->CheckKeyDown(GKey_Skill) &&
+		DeviceManager::GetInstance()->Input()->GetInputState(this->padNum)->CheckKeyDown(GKey_Attack))
 	{
 		scale = originScale;
 	}

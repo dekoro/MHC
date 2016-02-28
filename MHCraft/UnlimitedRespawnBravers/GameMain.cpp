@@ -1,34 +1,31 @@
 #include "GameMain.h"
+#include"ScreenLayout.h"
+#include"TextureMapping.h"
+#include"EffectManager.h"
+#include"e_Directon.h"
+#include"TextLoader.h"
 #include "GMath.h"
-#include "ScreenLayout.h"
-#include "TextureMapping.h"
-#include "EffectManager.h"
-#include "e_Directon.h"
-#include "TextLoader.h"
 #include "PlayerManager.h"
 #include "EnemyManager.h"
-#include "ItemManager.h"
 #include "LaserManager.h"
-#include "ScreenLayout.h"
-#include "TextureMapping.h"
 #include "DamageAreaManager.h"
 
-
 SceneGameMain::SceneGameMain(){
-
 	TextLoader loader;
-	loader.LoadDate("a.txt");
-	stage			= std::make_shared<Stage>(loader.GetDate());
-	device			= DeviceManager::GetInstance();
-	imageBackGround = device->Image()->CopyImageData(imageAsset_GameMain_BackGround);
-	device->Image()->LoadMapTip("Resource/Title_BackGround.png", 5, 5, 25);
-	this->screen = std::make_shared<ScreenLayout>(e_Double, blur.get());
+	loader.LoadDate("testMap.csv");
+	device = DeviceManager::GetInstance();
+	//stage = std::make_shared<Stage>(loader.GetDate());
+	
+	stage = std::make_shared<Stage>(100,100);
+
+
+	device->Image()->LoadMapTip("Resource/mapchip.png", 8, 4, (4 * 8) - 3);
 
 	damageAreaManager	= std::make_shared<DamageAreaManager>();
 	laserManager		= std::make_shared<LaserManager>(damageAreaManager.get());
 	playerManager		= std::make_shared<PlayerManager>(laserManager.get(), damageAreaManager.get());
-	enemyManager		= std::make_shared<EnemyManager>();
-	itemManager			= std::make_shared<ItemManager>();
+	enemyManager		= std::make_shared<EnemyManager>(damageAreaManager.get());
+
 }
 
 SceneGameMain::~SceneGameMain(){
@@ -36,36 +33,25 @@ SceneGameMain::~SceneGameMain(){
 
 void SceneGameMain::Initialize(SceneMediateData sceneData){
 	ShaderLoad();
-	blur = std::make_shared<Blur>();
-	cut = std::make_shared<Cutting>(e_Left);
-	this->screen = std::make_shared<ScreenLayout>(e_Single, blur.get());
 
-	AllManagersInitialize();
-	for (int i = 0; i < MAX_PLAYER; ++i) {
-		playerManager->SpawnPlayer(i, Vec2::Setup(150, 150));
-	}
+	AllManagersInitialize(sceneData.playerIndex);
+	this->screen = std::make_shared<ScreenLayout>((e_ScreenLayout)sceneData.playerIndex);
+	screen->Initialize(playerManager.get());
+
 }
 
 SceneMediateData SceneGameMain::Update(){
-//	if (playerManager->GetJoinNum() <= 0) { return SceneMediateData::Setup(SCENE_TITLE); }
 	AllManagersUpdate();
-	return SceneMediateData::Setup(SCENE_GAMEMAIN);
+	return SceneMediateData::Setup(SCENE_GAMEMAIN, 1);
 }
 
 
 void SceneGameMain::Draw(){
+
 	screen->Rendaring([&]()
 	{
-		camera->SetPosition();
 		LocalDraw();
 	});
-	/*camera->SetPosition();
-	LocalDraw();*/
-
-	//blur->Rendering([&](){
-	//	device->GetInstance()->Image()->DrawBackGround();
-	//});
-	AllManagersDraw();
 }
 
 void SceneGameMain::Finalize(){
@@ -82,21 +68,22 @@ void SceneGameMain::LocalDraw()
 	AllManagersDraw();
 }
 
-void SceneGameMain::AllManagersInitialize(){
+void SceneGameMain::AllManagersInitialize(int startPlayerIndex){
+	for (int i = 0; i < startPlayerIndex; i++)
+	{
+		playerManager->SpawnPlayer(i,Vec2());
+	}
+
 	playerManager		->Setup();
 	playerManager		->Initialize();
 	enemyManager		->Initialize();
-	itemManager			->Initialize();
 	laserManager		->Initialize();
 	damageAreaManager	->Initialize();
-
-	camera = std::make_shared<Camera>(playerManager->GetPlayerData(0),0);
 }
 
 void SceneGameMain::AllManagersUpdate(){
 	playerManager		->Update();
 	enemyManager		->Update();
-	itemManager			->Update();
 	laserManager		->Update();
 	damageAreaManager	->Update();
 }
@@ -104,7 +91,6 @@ void SceneGameMain::AllManagersUpdate(){
 void SceneGameMain::AllManagersDraw(){
 	playerManager		->Draw();
 	enemyManager		->Draw();
-	itemManager			->Draw();
 	laserManager		->Draw();
 	damageAreaManager	->Draw();
 }
@@ -112,7 +98,6 @@ void SceneGameMain::AllManagersDraw(){
 void SceneGameMain::AllManagersFinalize(){
 	playerManager		->Finalize();
 	enemyManager		->Finalize();
-	itemManager			->Finalize();
 	damageAreaManager	->Finalize();
 }
 

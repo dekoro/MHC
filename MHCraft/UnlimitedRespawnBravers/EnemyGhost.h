@@ -6,7 +6,7 @@
 class EnemyGhost : public Enemy
 {
 public:
-	EnemyGhost(std::vector<Enemy*>* enemyList);
+	EnemyGhost(DamageAreaManager* damageAreaManager, vector<Enemy*>* enemyList);
 	~EnemyGhost();
 	void	Initialize();
 	void	Update() override;
@@ -15,13 +15,12 @@ public:
 	void	DamageAction(HitData hitData);
 
 private:
-	DeviceManager*	device;
-	AnimeData*		animeData;
-	double			angleDeg;
-	double			startSpeed;
-	double			maxSpeed;
-	double			accelSpeed;
-	int				cntSetup;
+	AnimeData*	animeData;
+	double		angleDeg;
+	double		startSpeed;
+	double		maxSpeed;
+	double		accelSpeed;
+	int			cntSetup;
 
 	void		GetRandomTarget(int forbiddenTarget);
 	HitData		CalcAttackToPlayer(Vec2 posOther, double rangeOther);

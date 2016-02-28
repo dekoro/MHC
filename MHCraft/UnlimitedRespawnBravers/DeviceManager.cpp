@@ -32,5 +32,6 @@ DeviceManager::DeviceManager(){
 	inputManager	= new InputManager();
 	imageRenderer	= new ImageRenderer();
 	soundRenderer	= new SoundRenderer();
+
 }
 

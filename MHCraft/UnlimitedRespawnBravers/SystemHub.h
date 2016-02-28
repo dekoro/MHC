@@ -15,5 +15,6 @@
 
 #include "DxLib.h"
 
+using namespace std;
 
 #endif

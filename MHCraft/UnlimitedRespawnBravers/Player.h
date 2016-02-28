@@ -51,6 +51,10 @@ private:
 	DamageAreaCircle*			hitArea;
 	std::shared_ptr<Cutting>	cut;
 	LaserData					laserData;
+	Vec2						attackVec;
+	int		maxAttackCount;
+	int		leftAttackCount;
+	bool	isAttackInput;
 	int		width;
 	int		height;
 	int		padNo;

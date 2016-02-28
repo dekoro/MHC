@@ -1,11 +1,11 @@
 #ifndef _SCENEMANAGER_GAMEMAIN_GAMEMAIN_H_
 #define _SCENEMANAGER_GAMEMAIN_GAMEMAIN_H_
 
-#include<memory>
-
 #include "GSystemHub.h"
+#include "GMath.h"
 #include "IScenes.h"
 
+#include<memory>
 #include"Camera.h"
 #include"TextureMapping.h"
 #include"ScreenLayout.h"
@@ -13,6 +13,7 @@
 #include"Blur.h"
 #include"Stage.h"
 #include"TextLoader.h"
+
 
 class CharacterManager;
 class PlayerManager;
@@ -33,23 +34,23 @@ public:
 	void				Finalize();
 
 private:
-	DeviceManager*		device;
-	ImageData*			imageBackGround;
-	TextureMapping		texMapEffect;
+
+	DeviceManager*	device;
+	ImageData*		imageBackGround;
+	
+	std::shared_ptr<ScreenLayout> screen;
+	std::shared_ptr<Stage> stage;
+
 
 	std::shared_ptr<LaserManager>		laserManager;
 	std::shared_ptr<PlayerManager>		playerManager;
 	std::shared_ptr<EnemyManager>		enemyManager;
 	std::shared_ptr<DamageAreaManager>	damageAreaManager;
 	std::shared_ptr<ItemManager>		itemManager;
-	std::shared_ptr<BaseEffect>			blur;
-	std::shared_ptr<Cutting>			cut;
-	std::shared_ptr<Camera>				camera;
-	std::shared_ptr<ScreenLayout>		screen;
-	std::shared_ptr<Stage>				stage;
+
 
 	void LocalDraw();
-	void AllManagersInitialize();
+	void AllManagersInitialize(int startPlayerIndex);
 	void AllManagersUpdate();
 	void AllManagersDraw();
 	void AllManagersFinalize();

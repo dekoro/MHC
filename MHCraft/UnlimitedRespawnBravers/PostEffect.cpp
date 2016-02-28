@@ -3,9 +3,14 @@
 #include"BaseEffect.h"
 #include"GSystem.h"
 #include"ChildWindow.h"
+#include"EffectManager.h"
+#include"Blur.h"
+#include"TextureMapping.h"
+#include<memory>
+#include"Player.h"
 
 //レイアウトが無ければシングルウィンドウ用配置
-PostEffect::PostEffect(BaseEffect* effect) : hGraphics(hGraphics), effect(effect)
+PostEffect::PostEffect(Player* player) : hGraphics(hGraphics), camera(player,0)
 {
 	this->hGraphics = MakeScreen(Window::WIDTH, Window::HEIGHT);
 	this->color = GetColor(255,0,0);
@@ -20,7 +25,7 @@ PostEffect::PostEffect(BaseEffect* effect) : hGraphics(hGraphics), effect(effect
 }
 
 //とりあえずswitchで、後でファクタリング
-PostEffect::PostEffect(BaseEffect* effect, e_ScreenLayout layOut, e_ScreenNumber number) : hGraphics(hGraphics), effect(effect)
+PostEffect::PostEffect(Player* player, e_ScreenLayout layOut, e_ScreenNumber number) : hGraphics(hGraphics), camera(player, number)
 {
 	int lWidth = Window::WIDTH, lHeight = Window::HEIGHT;
 
@@ -131,9 +136,18 @@ PostEffect::PostEffect(BaseEffect* effect, e_ScreenLayout layOut, e_ScreenNumber
 		vertex[i].u = vertex[i].su = (float)(i % 2);
 		vertex[i].v = vertex[i].sv = (float)(i / 2);
 	});
+
 }
 
+void PostEffect::Initialize()
+{
 
+	this->effetList.AddEffect("Normal", std::make_shared<TextureMapping>());
+	this->effetList.AddEffect("Blur", std::make_shared<Blur>());
+
+	this->effect = effetList.GetEffect("Blur");//通常の描画
+	camera.Initialize();
+}
 
 PostEffect::~PostEffect()
 {
@@ -146,6 +160,8 @@ void PostEffect::Rendaring(std::function<void()> Draw,float scale)
 
 	ClearDrawScreen();
 	//各カメラのスケールをあてる
+	camera.Update();
+	camera.SetPosition();
 
 	Draw();
 

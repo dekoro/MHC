@@ -3,13 +3,15 @@
 
 #include "SystemHub.h"
 #include "Macro.h"
-#include <memory>
-
 class Random
 {
 public:
 	~Random();
-	static Random*	Instance();
+	static	Random*	Instance()
+	{
+		return instance;
+	}
+
 	void	SetSeed(int seed);
 	int		GetRandom(int max);
 	int		GetRandom(int min, int max);
@@ -21,7 +23,7 @@ public:
 	float	GetRandomF(float min, float max);
 private:
 	Random();
-	static std::shared_ptr<Random> instance;
+static	Random* instance;
 
 };
 

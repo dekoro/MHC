@@ -4,9 +4,11 @@
 #include "GCircle.h"
 #include "Debug.h"
 #include "GSystem.h"
+#include "IHittable.h"
 
 
-AbstractDamageArea::AbstractDamageArea(int stayCount, HitData hitData, bool isToPlayer, bool isToEnemy){
+AbstractDamageArea::AbstractDamageArea(int stayCount, HitData hitData, bool isToPlayer, bool isToEnemy, IHittable* hitter){
+	this->hitter = hitter;
 	Setup(stayCount, hitData, isToPlayer, isToEnemy);
 }
 
@@ -38,6 +40,11 @@ bool AbstractDamageArea::GetIsDead(){
 
 HitData AbstractDamageArea::GetHitData(){
 	return hitData;
+}
+
+void AbstractDamageArea::HitProcess(){
+	if (hitter == NULL){ return; }
+	hitter->HitFunction();
 }
 
 void AbstractDamageArea::Kill(){
