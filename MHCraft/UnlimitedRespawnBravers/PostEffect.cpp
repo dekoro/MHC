@@ -191,7 +191,7 @@ void PostEffect::VertexErch(std::function<void(int x)> action)
 void PostEffect::ChangeShader(std::string name)
 {
 	this->effect = effetList.GetEffect(name);//’Êí‚Ì•`‰æ
-	//effect->Initialize();
+	effect->Initialize();
 }
 
 void PostEffect::SetUseBlurConst(Vec2 direction, float shift)
