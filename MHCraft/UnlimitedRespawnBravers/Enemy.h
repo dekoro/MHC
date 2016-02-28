@@ -14,7 +14,7 @@
 class Enemy
 {
 public:
-	Enemy(vector<Enemy*>* enemyList, IMAGE_ASSET_NAME assetName);
+	Enemy(DamageAreaManager* damageAreaManager, vector<Enemy*>* enemyList, IMAGE_ASSET_NAME assetName);
 	virtual ~Enemy();
 
 	void					SetupData(Vec2 startPos, CharacterInformation chParam, bool isKnockback = true);
@@ -35,7 +35,7 @@ public:
 
 protected:
 	DeviceManager*			device;
-//	Managers*				managers;
+	DamageAreaManager*		damageAreaManager;
 	Player*					target;
 	ImageData*				imageData;
 	Vec2					position;

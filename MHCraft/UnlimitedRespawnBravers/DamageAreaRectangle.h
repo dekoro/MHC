@@ -2,13 +2,14 @@
 #define _CHARACTER_DAMAGEAREA_DAMAGEAREARECTANGLE_H_
 #include "GSystem.h"
 #include "AbstractDamageArea.h"
-
 #include "GRectangle.h"
+
+
 
 class DamageAreaRectangle: public AbstractDamageArea
 {
 public:
-	DamageAreaRectangle(GRectangle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy);
+	DamageAreaRectangle(GRectangle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy, IHittable* hitter = NULL);
 	~DamageAreaRectangle(){}
 
 	HitData	CheckIsHitAndDamage(Vec2 position);

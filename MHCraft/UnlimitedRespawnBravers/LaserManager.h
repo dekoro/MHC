@@ -18,7 +18,7 @@ public:
 	void Initialize();
 	void Update();
 	void Draw();
-	void AddLaser(LaserData laserData);
+	void AddLaser(LaserData laserData, int shooterNo);
 
 private:
 	shared_ptr<Laser> lasers[MAX_LASER_NUM];

@@ -32,7 +32,7 @@ public:
 
 	void Initialize();//シーンがシェーダの読み込みが終わってから実行する
 
-	void Rendaring(std::function<void()> Draw);
+	void Rendaring(std::function<void()> Draw, float scale);
 
 private:
 	void VertexErch(std::function<void(int x)> action);
@@ -40,7 +40,7 @@ private:
 
 private:
 	int hGraphics;
-	BaseEffect* effect[4];
+	BaseEffect* effect;
 	EffectList effetList;
 	VERTEX2DSHADER vertex[4];
 	Camera camera;

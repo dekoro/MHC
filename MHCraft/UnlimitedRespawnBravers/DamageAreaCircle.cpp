@@ -5,8 +5,8 @@
 #include "Debug.h"
 #include "Vec2.h"
 
-DamageAreaCircle::DamageAreaCircle(GCircle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy)
-	:AbstractDamageArea(stayCount, hitData, isToPlayer, isToEnemy){
+DamageAreaCircle::DamageAreaCircle(GCircle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy, IHittable* hitter)
+	:AbstractDamageArea(stayCount, hitData, isToPlayer, isToEnemy, hitter){
 	this->hitArea = hitArea;
 }
 

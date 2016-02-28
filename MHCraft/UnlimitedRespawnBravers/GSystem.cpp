@@ -90,13 +90,13 @@ int FPS::CalcSleepTime(){
 	return (int)((float)(nextSecondCount-nowCount)/(sleepCount));
 }
 
-HitData::HitData(Vec2 fromPos, int power, int damage):fromPosition(fromPos), knockbackPower(power), damage(damage){}
+HitData::HitData(Vec2 fromPos, int power, int damage, int shooterPlayerNo) :fromPosition(fromPos), knockbackPower(power), damage(damage), shooterPlayerNo(shooterPlayerNo){}
 
-HitData HitData::Setup(Vec2 fromPos, int power, int damage){
-	return HitData(fromPos, power, damage);
+HitData HitData::Setup(Vec2 fromPos, int power, int damage, int shooterPlayerNo){
+	return HitData(fromPos, power, damage, shooterPlayerNo);
 }
 
-HitData* HitData::SetupSelf(Vec2 fromPos , int power, int damage){
+HitData* HitData::SetupSelf(Vec2 fromPos, int power, int damage, int shooterPlayerNo){
 	this->fromPosition	= fromPos;
 	this->damage			= power;
 
@@ -104,7 +104,7 @@ HitData* HitData::SetupSelf(Vec2 fromPos , int power, int damage){
 }
 
 HitData HitData::NoHit(){
-	return HitData(Vec2::Zero(), -1, -1);
+	return HitData(Vec2::Zero(), -1, -1, -1);
 }
 
 bool HitData::operator==(HitData other){

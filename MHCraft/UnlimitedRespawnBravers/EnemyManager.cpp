@@ -1,11 +1,13 @@
 #include "EnemyManager.h"
 #include "ItemManager.h"
+#include "DamageAreaManager.h"
 
 #include "Enemy_Test.h"
 #include "EnemyGhost.h"
 #include "EnemyKingPumpkin.h"
 
-EnemyManager::EnemyManager(){
+EnemyManager::EnemyManager(DamageAreaManager* damageAreaManager){
+	this->damageAreaManager = damageAreaManager;
 	stage			= 1;
 	normaLollipop	= 10+5*(stage-1);
 	SetFontSize(20);
@@ -85,10 +87,10 @@ void EnemyManager::Finalize(){
 void EnemyManager::AddEnemy(IMAGE_ASSET_NAME asset){
 	switch (asset){
 	case imageAsset_Enemy_Ghost:
-		new EnemyGhost(&enemyList);
+		new EnemyGhost(damageAreaManager, &enemyList);
 		break;
 	case imageAsset_Enemy_BigPumpkin :
-		new EnemyKingPumpkin(&enemyList);
+		new EnemyKingPumpkin(damageAreaManager, &enemyList);
 		break;
 	default:
 		Debug::Alert(STR("EnemyManager::AddEnemy\n","想定外の引数"+to_string(asset)+"がコールされました。"));

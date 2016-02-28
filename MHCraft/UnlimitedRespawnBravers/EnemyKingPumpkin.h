@@ -8,7 +8,7 @@
 class EnemyKingPumpkin: public Enemy
 {
 public:
-	EnemyKingPumpkin(vector<Enemy*>* enemyList);
+	EnemyKingPumpkin(DamageAreaManager* damageAreaManager, vector<Enemy*>* enemyList);
 	~EnemyKingPumpkin();
 
 	void	Initialize();

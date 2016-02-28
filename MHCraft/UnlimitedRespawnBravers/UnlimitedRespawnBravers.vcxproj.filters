@@ -232,12 +232,6 @@
     <Filter Include="ヘッダー ファイル\Device\Selecter\GSystem\SceneManager\SelectScene">
       <UniqueIdentifier>{e3741946-3f3d-42e9-9865-8e060781d289}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Character\Animation\AnimeDirection">
-      <UniqueIdentifier>{e2099971-284b-4b97-b228-6d6a36b5b971}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Character\Animation\AnimeDirection">
-      <UniqueIdentifier>{4c61f9ee-8ef3-4f4f-97ad-c6069a1096ee}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FlagManager.cpp">
@@ -269,9 +263,6 @@
     </ClCompile>
     <ClCompile Include="Title.cpp">
       <Filter>ソース ファイル\SceneManager\Title</Filter>
-    </ClCompile>
-    <ClCompile Include="ImageRenderer.cpp">
-      <Filter>ソース ファイル\Device\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="SoundRenderer.cpp">
       <Filter>ソース ファイル\Device\Renderer</Filter>
@@ -399,9 +390,6 @@
     <ClCompile Include="Cutting.cpp">
       <Filter>ソース ファイル\Effect\CutEffect\Cutting</Filter>
     </ClCompile>
-    <ClCompile Include="Stage.cpp">
-      <Filter>ソース ファイル\Character\Stage</Filter>
-    </ClCompile>
     <ClCompile Include="TextLoader.cpp">
       <Filter>ソース ファイル\Device\TextLoader</Filter>
     </ClCompile>
@@ -432,11 +420,17 @@
     <ClCompile Include="InputState.cpp">
       <Filter>ソース ファイル\Device\Input</Filter>
     </ClCompile>
+    <ClCompile Include="AnimeDirection.cpp">
+      <Filter>ソース ファイル\Character\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageRenderer.cpp">
+      <Filter>ソース ファイル\Device\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>ソース ファイル\Character\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="AnimeDirection.cpp">
-      <Filter>ソース ファイル\Character\Animation\AnimeDirection</Filter>
+    <ClCompile Include="Stage.cpp">
+      <Filter>ソース ファイル\Character\Stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -460,9 +454,6 @@
     </ClInclude>
     <ClInclude Include="EnumGKey.h">
       <Filter>ヘッダー ファイル\Device\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="ImageRenderer.h">
-      <Filter>ヘッダー ファイル\Device\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="ImageData.h">
       <Filter>ヘッダー ファイル\DataManager</Filter>
@@ -635,9 +626,6 @@
     <ClInclude Include="e_Directon.h">
       <Filter>ヘッダー ファイル\Effect\Cutting</Filter>
     </ClInclude>
-    <ClInclude Include="Stage.h">
-      <Filter>ヘッダー ファイル\Character\Stage</Filter>
-    </ClInclude>
     <ClInclude Include="TextLoader.h">
       <Filter>ヘッダー ファイル\Device\TextLoader</Filter>
     </ClInclude>
@@ -656,11 +644,17 @@
     <ClInclude Include="InputState.h">
       <Filter>ヘッダー ファイル\Device\Input</Filter>
     </ClInclude>
+    <ClInclude Include="AnimeDirection.h">
+      <Filter>ヘッダー ファイル\Character\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageRenderer.h">
+      <Filter>ヘッダー ファイル\Device\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>ヘッダー ファイル\Character\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="AnimeDirection.h">
-      <Filter>ヘッダー ファイル\Character\Animation\AnimeDirection</Filter>
+    <ClInclude Include="Stage.h">
+      <Filter>ヘッダー ファイル\Character\Stage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

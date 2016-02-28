@@ -6,7 +6,7 @@
 
 class DamageAreaQuadrangle :public AbstractDamageArea {
 public:
-	DamageAreaQuadrangle(GQuadrangle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy);
+	DamageAreaQuadrangle(GQuadrangle hitArea, HitData hitData, int stayCount, bool isToPlayer, bool isToEnemy, IHittable* hitter = NULL);
 	~DamageAreaQuadrangle() {}
 
 	GQuadrangle damageArea;

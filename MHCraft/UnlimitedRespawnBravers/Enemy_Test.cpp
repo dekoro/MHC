@@ -1,6 +1,6 @@
 #include "Enemy_Test.h"
 
-Enemy_Test::Enemy_Test(vector<Enemy*>* enemyList) :Enemy(enemyList, imageAsset_Enemy_Test){
+Enemy_Test::Enemy_Test(DamageAreaManager* damageAreaManager, vector<Enemy*>* enemyList) :Enemy(damageAreaManager, enemyList, imageAsset_Enemy_Test){
 	Vec2 pos					= Vec2::Setup((float)GetRand(Window::WIDTH), (float)GetRand(Window::HEIGHT));
 	CharacterInformation prm	= CharacterInformation::Setup(2, 0, 1, 30, 2, 32);
 	SetupData(pos, prm);
