@@ -264,9 +264,6 @@
     <ClCompile Include="Title.cpp">
       <Filter>ソース ファイル\SceneManager\Title</Filter>
     </ClCompile>
-    <ClCompile Include="ImageRenderer.cpp">
-      <Filter>ソース ファイル\Device\Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="SoundRenderer.cpp">
       <Filter>ソース ファイル\Device\Renderer</Filter>
     </ClCompile>
@@ -393,9 +390,6 @@
     <ClCompile Include="Cutting.cpp">
       <Filter>ソース ファイル\Effect\CutEffect\Cutting</Filter>
     </ClCompile>
-    <ClCompile Include="Stage.cpp">
-      <Filter>ソース ファイル\Character\Stage</Filter>
-    </ClCompile>
     <ClCompile Include="TextLoader.cpp">
       <Filter>ソース ファイル\Device\TextLoader</Filter>
     </ClCompile>
@@ -426,6 +420,18 @@
     <ClCompile Include="InputState.cpp">
       <Filter>ソース ファイル\Device\Input</Filter>
     </ClCompile>
+    <ClCompile Include="AnimeDirection.cpp">
+      <Filter>ソース ファイル\Character\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageRenderer.cpp">
+      <Filter>ソース ファイル\Device\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>ソース ファイル\Character\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage.cpp">
+      <Filter>ソース ファイル\Character\Stage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GMath.h">
@@ -448,9 +454,6 @@
     </ClInclude>
     <ClInclude Include="EnumGKey.h">
       <Filter>ヘッダー ファイル\Device\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="ImageRenderer.h">
-      <Filter>ヘッダー ファイル\Device\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="ImageData.h">
       <Filter>ヘッダー ファイル\DataManager</Filter>
@@ -623,9 +626,6 @@
     <ClInclude Include="e_Directon.h">
       <Filter>ヘッダー ファイル\Effect\Cutting</Filter>
     </ClInclude>
-    <ClInclude Include="Stage.h">
-      <Filter>ヘッダー ファイル\Character\Stage</Filter>
-    </ClInclude>
     <ClInclude Include="TextLoader.h">
       <Filter>ヘッダー ファイル\Device\TextLoader</Filter>
     </ClInclude>
@@ -644,8 +644,17 @@
     <ClInclude Include="InputState.h">
       <Filter>ヘッダー ファイル\Device\Input</Filter>
     </ClInclude>
-    <ClInclude Include="IHittable.h">
-      <Filter>ヘッダー ファイル\Character\DamageArea</Filter>
+    <ClInclude Include="AnimeDirection.h">
+      <Filter>ヘッダー ファイル\Character\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageRenderer.h">
+      <Filter>ヘッダー ファイル\Device\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>ヘッダー ファイル\Character\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage.h">
+      <Filter>ヘッダー ファイル\Character\Stage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -17,6 +17,20 @@ Player::Player(int padNo, LaserManager* laserManager, DamageAreaManager* damageA
 	cntInvincible			= PLAYER_DAMAGE_INVINCIBLE_COUNT;
 	isEnable				= false;
 	inputState				= device->Input()->GetInputState(padNo);
+
+	//DXライブリのビルボードが画像の変形に対応していないため右と左を用意
+	//みぎ　
+	motion.AddMotion(e_STAND, device->Image()->LoadMotion("Resource/player_sprite_sheet.png", 4, 4, 0, 16, 2), 20, true, e_AnimeRight);
+	motion.AddMotion(e_WALK, device->Image()->LoadMotion("Resource/player_sprite_sheet.png", 4, 4, 4, 16, 4), 5, true, e_AnimeRight);
+
+	//左
+	motion.AddMotion(e_STAND, device->Image()->LoadMotion("Resource/player_sprite_sheet.png", 4, 4, 8, 16, 2), 20, true, e_AnimeLeft);
+	motion.AddMotion(e_WALK, device->Image()->LoadMotion("Resource/player_sprite_sheet.png", 4, 4, 12, 16, 4), 5, true, e_AnimeLeft);
+
+	this->dairection = e_AnimeRight;
+	this->state = e_STAND;
+	this->oldState = state;
+	motion.ChangeMotion(state);
 }
 
 Player::~Player() {
@@ -39,11 +53,26 @@ void Player::Initialize() {
 	isWalk			= false;
 	cntInvincible	= 120;
 	cut				= std::make_shared<Cutting>(e_Right);
+	motion.Initialize();
+	this->state = e_STAND;
+	this->dairection = e_AnimeRight;
 }
 
 void Player::Update(){
+	state = e_STAND;
 	CountdownInvincible();
 	ControllManager();
+
+	motion.Update();
+
+
+	if (state != oldState)
+	{
+		motion.ChangeMotion(state);
+	}
+
+	oldState = state;
+
 	HitData hit = damageAreaManager->CheckAllHitCircle(GetHitArea(), false, true);
 	if (hit == HitData::NoHit() || hit.shooterPlayerNo == padNo){ return; }
 
@@ -53,7 +82,7 @@ void Player::Update(){
 
 void Player::Draw() {
 	int attackImage = (cntStop > 0) ? 4 : 0;
-	device->Image()->DrawLT(imageHandle, position);
+	device->Image()->DrawLT(motion.GetMotion(this->dairection), position, 3);
 }
 
 void Player::Finalize()
@@ -238,7 +267,7 @@ void Player::Clamp(){
 void Player::ControllManager(){
 	Vec2 moveVec = inputState->GetLeftStickLeanVector();
 	if (moveVec != Vec2::Zero()) { Move(moveVec); }
-
+	CheckDirection(moveVec);
 	Vec2 tmpAttackVec = inputState->GetRightStickLeanVector();
 	if (tmpAttackVec != Vec2::Zero()){ attackVec = tmpAttackVec; }
 	if (tmpAttackVec == Vec2::Zero()){ isAttackInput = false; }
@@ -251,7 +280,21 @@ void Player::ControllManager(){
 	}
 }
 
+void Player::CheckDirection(Vec2 velocity)
+{
+	if (velocity == Vec2::Zero()) { return; }
+	this->state = e_WALK;
+	if (velocity.X >= 0)
+	{
+		this->dairection = e_AnimeRight;
+	}
+	else if (velocity.X < 0)
+	{
+		this->dairection = e_AnimeLeft;
+	}
 
+
+}
 
 
 
