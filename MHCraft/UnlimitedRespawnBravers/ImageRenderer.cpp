@@ -42,6 +42,10 @@ void ImageRenderer::DrawLT(int imageHandle, Vec2 position){
 	Draw(imageHandle, position.GetIntX(), position.GetIntY());
 }
 
+void ImageRenderer::DrawLT(int imageHandle, Vec2 position,float scale){
+	Draw(imageHandle, position.GetIntX(), position.GetIntY(),scale);
+}
+
 void ImageRenderer::DrawLT(int imageHandle, int posX, int posY){
 	Draw(imageHandle, posX, posY);
 }
@@ -166,13 +170,13 @@ void ImageRenderer::SetupImageMap(){
 void ImageRenderer::Draw(int imageHandle, int posX, int posY){
 	int x,y ;
 	GetGraphSize(imageHandle,&x,&y);
-	DrawBillboard3D(VGet(posX + 10, posY + 10, 0), 0.5f, 0.5f, x, 0.0f, imageHandle, TRUE);
-	//DrawModiBillboard3D(VGet(posX, posY, 0), posX - (x/2), posY + (y / 2),
-	//	posX + (x / 2), posY + (y / 2),
-	//	posX + (x / 2), posY - (y / 2),
-	//	posX - (x / 2), posY - (y / 2),
-	//	imageHandle,
-	//	TRUE);
+	DrawBillboard3D(VGet(posX, posY, 0), 0.5f, 0.5f, x, 0.0f, imageHandle, TRUE);
+}
+
+void ImageRenderer::Draw(int imageHandle, int posX, int posY , float scale){
+	int x, y;
+	GetGraphSize(imageHandle, &x, &y);
+	DrawBillboard3D(VGet(posX, posY, 0), 0.5f, 0.5f, x * scale, 0.0f, imageHandle, TRUE);
 }
 
 //ハンドル　中心　拡大率

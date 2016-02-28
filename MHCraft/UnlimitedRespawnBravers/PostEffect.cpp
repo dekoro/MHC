@@ -24,7 +24,7 @@ PostEffect::PostEffect(Player* player) : hGraphics(hGraphics), camera(player,0)
 	});
 }
 
-//とりあえずswitchで、後でファクタリング
+//とりあえずswitchで、後でファクタリング、しようかな
 PostEffect::PostEffect(Player* player, e_ScreenLayout layOut, e_ScreenNumber number) : hGraphics(hGraphics), camera(player, number)
 {
 	int lWidth = Window::WIDTH, lHeight = Window::HEIGHT;
@@ -145,7 +145,7 @@ void PostEffect::Initialize()
 	this->effetList.AddEffect("Normal", std::make_shared<TextureMapping>());
 	this->effetList.AddEffect("Blur", std::make_shared<Blur>());
 
-	this->effect = effetList.GetEffect("Blur");//通常の描画
+	this->effect[0] = effetList.GetEffect("Blur");//通常の描画
 	camera.Initialize();
 }
 
@@ -154,7 +154,7 @@ PostEffect::~PostEffect()
 	delete(effect);
 }
 
-void PostEffect::Rendaring(std::function<void()> Draw,float scale)
+void PostEffect::Rendaring(std::function<void()> Draw)
 {
 	SetDrawScreen(this->hGraphics);
 
@@ -169,7 +169,7 @@ void PostEffect::Rendaring(std::function<void()> Draw,float scale)
 
 	SetUseTextureToShader(0, hGraphics);
 
-	effect->Rendering([&](){
+	effect[0]->Rendering([&](){
 
 	DrawPrimitive2DToShader(vertex, 4, DX_PRIMTYPE_TRIANGLESTRIP);
 

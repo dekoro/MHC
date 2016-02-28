@@ -33,7 +33,7 @@ int AnimeDirection::GetMotion(e_AnimeDirection direction)
 
 bool AnimeDirection::IsEnd(e_AnimeDirection direction)
 {
-	anime[direction].IsEnd();
+	return anime[direction].IsEnd();
 }
 
 void AnimeDirection::ChangeMotion( e_Motion name)

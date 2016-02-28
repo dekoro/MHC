@@ -86,6 +86,10 @@ private:
 	const int WATER_HEIGHT_LEFT = 11;
 	const int WATER_LOW_RIGHT  =12;
 	const int WATER_LOW_LEFTT = 9;
+	const int WATER_CORNER_HEIGHT_RIGHT = 4;
+	const int WATER_CORNER_HEIGHT_LEFT = 5;
+	const int WATER_CORNER_LOW_RIGHT = 3;
+	const int WATER_CORNER_LOW_LEFT = 6;
 };
 
 #endif

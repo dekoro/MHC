@@ -31,22 +31,22 @@ void Blur::SetDirectionAndVelocity(Vec2 direction,float velocity)
 
 void Blur::ConstSet()
 {
-	if (input->CheckKeyDownAllPad(GKey_Up))
+	if (input->GetInputState(0)->CheckKeyDown(GKey_Up))
 	{
 		this->directoin.y = 1;
 		velocity += 0.002;
 	}
-	if (input->CheckKeyDownAllPad(GKey_Down))
+	if (input->GetInputState(0)->CheckKeyDown(GKey_Down))
 	{
 		this->directoin.y = -1;
 		velocity += 0.002;
 	}
-	if (input->CheckKeyDownAllPad(GKey_Right))
+	if (input->GetInputState(0)->CheckKeyDown(GKey_Right))
 	{
 		this->directoin.x = 1;
 		velocity += 0.002;
 	}
-	if (input->CheckKeyDownAllPad(GKey_Left))
+	if (input->GetInputState(0)->CheckKeyDown(GKey_Left))
 	{
 		this->directoin.x = -1;
 		velocity += 0.002;

@@ -88,7 +88,7 @@ void Player::Draw() {
 
 
 	//device->Image()->DrawPlayerCenter(imageHandle, position);
-		device->Image()->DrawLT(motion.GetMotion(this->dairection), position);
+		device->Image()->DrawLT(motion.GetMotion(this->dairection), position,3);
 
 
 

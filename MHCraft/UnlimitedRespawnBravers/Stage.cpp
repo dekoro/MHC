@@ -124,6 +124,31 @@ void Stage::MapTipEncode(int mapNum)
 			}
 
 		}
+
+		//if (mapDate[y][x] == mapNum)
+		//{
+		//	e_Direction dir = DirectionCheck(y, x, WATER);
+
+		//	switch (dir)
+		//	{
+		//	case e_Height_Right:
+		//		mapDate[y][x] = WATER_CORNER_HEIGHT_RIGHT;
+		//		break;
+		//	case e_Height_Left:
+		//		mapDate[y][x] = WATER_CORNER_HEIGHT_LEFT;
+		//		break;
+		//	case e_Low_Right:
+		//		mapDate[y][x] = WATER_CORNER_LOW_RIGHT;
+		//		break;
+		//	case e_Low_Left:
+		//		mapDate[y][x] = WATER_CORNER_LOW_LEFT;
+		//		break;
+		//	case e_Norn:
+		//		break;
+		//	default:
+		//		break;
+		//	}
+		//}
 	});
 }
 
