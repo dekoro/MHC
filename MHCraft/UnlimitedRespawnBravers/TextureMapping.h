@@ -10,7 +10,15 @@ public:
 	TextureMapping();
 	~TextureMapping();
 
+	void Initialize();
+
+	void SetRevaerse(bool b);
+
 private:
+	void ConstSet()override;
+
+private:
+	bool isReverse;
 
 };
 

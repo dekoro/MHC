@@ -15,6 +15,8 @@ public:
 	BaseEffect(int psHundle = 0,int vsHundle = 0);
 	virtual ~BaseEffect();
 
+	virtual void Initialize(){};
+
 	virtual void Rendering(std::function<void()> Draw);
 
 	virtual void Rendering(std::function<void()> Draw, int hGra);

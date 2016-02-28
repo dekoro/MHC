@@ -7,7 +7,6 @@
 Blur::Blur() : BaseEffect(EffectManager::GetInstance()->GetEffect("Blur"))
 {
 	Initialize();
-	input = DeviceManager::GetInstance()->Input();
 }
 
 Blur::~Blur()
@@ -31,38 +30,7 @@ void Blur::SetDirectionAndVelocity(Vec2 direction,float velocity)
 
 void Blur::ConstSet()
 {
-	if (input->CheckKeyDownAllPad(GKey_Up))
-	{
-		this->directoin.y = 1;
-		velocity += 0.002;
-	}
-	if (input->CheckKeyDownAllPad(GKey_Down))
-	{
-		this->directoin.y = -1;
-		velocity += 0.002;
-	}
-	if (input->CheckKeyDownAllPad(GKey_Right))
-	{
-		this->directoin.x = 1;
-		velocity += 0.002;
-	}
-	if (input->CheckKeyDownAllPad(GKey_Left))
-	{
-		this->directoin.x = -1;
-		velocity += 0.002;
-	}
-	if (!input->CheckKeyDownAllPad(GKey_Up)&&
-		!input->CheckKeyDownAllPad(GKey_Down)&&
-		!input->CheckKeyDownAllPad(GKey_Right)&&
-		!input->CheckKeyDownAllPad(GKey_Left))
-	{
-		velocity = 0;
-	}
+	directoin.z = min(directoin.z, 0.008);
 
-	velocity = min(velocity,0.008);
-
-	directoin.z = velocity;
-
-	//SetDirectionAndVelocity(Vec2(1, 1), 0.02f);
 	SetPSConstF(0,this->directoin);
 }

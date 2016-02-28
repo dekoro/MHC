@@ -24,7 +24,7 @@ private:
 	Vec2 pos;
 	Vec2 direction;
 	const Vec2 originDirection;
-	const float  velocity = 0.2f;
+	const float  velocity = 0.0002f;
 	const float END_VELOCITY = 10.0f;
 };
 

@@ -32,7 +32,7 @@ void Frangment::Update()
 void Frangment::Draw(int hGraphics, Vec2 pos)
 {
 	fragment.Rendering([&](){
-		DeviceManager::GetInstance()->Image()->DrawLT(hGraphics, pos + this->pos);
+		DeviceManager::GetInstance()->Image()->DrawLTUseToShader(hGraphics, pos + this->pos);
 	});
 }
 

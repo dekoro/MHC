@@ -145,8 +145,9 @@ void PostEffect::Initialize()
 	this->effetList.AddEffect("Normal", std::make_shared<TextureMapping>());
 	this->effetList.AddEffect("Blur", std::make_shared<Blur>());
 
-	this->effect = effetList.GetEffect("Blur");//’Êí‚Ì•`‰æ
+	this->effect = effetList.GetEffect("Normal");//’Êí‚Ì•`‰æ
 	camera.Initialize();
+	effect->Initialize();
 }
 
 PostEffect::~PostEffect()
@@ -154,7 +155,7 @@ PostEffect::~PostEffect()
 	delete(effect);
 }
 
-void PostEffect::Rendaring(std::function<void()> Draw,float scale)
+void PostEffect::Rendaring(std::function<void()> Draw)
 {
 	SetDrawScreen(this->hGraphics);
 
@@ -186,3 +187,30 @@ void PostEffect::VertexErch(std::function<void(int x)> action)
 		action(i);
 	}
 }
+
+void PostEffect::ChangeShader(std::string name)
+{
+	this->effect = effetList.GetEffect(name);//’Êí‚Ì•`‰æ
+	//effect->Initialize();
+}
+
+void PostEffect::SetUseBlurConst(Vec2 direction, float shift)
+{
+	Blur* pBlur = dynamic_cast<Blur*>(effect);
+
+	if (pBlur == NULL)
+		return;
+
+	pBlur->SetDirectionAndVelocity(direction, shift);
+}
+
+void PostEffect::SetUseTexMapConst(bool b)
+{
+	TextureMapping* pTex = dynamic_cast<TextureMapping*>(effect);
+
+	if (pTex == NULL)
+		return;
+
+	pTex->SetRevaerse(b);
+}
+

@@ -1,5 +1,6 @@
 #include "ImageRenderer.h"
 #include"NowLoading.h"
+#include<DxLib.h>
 
 
 ImageRenderer::ImageRenderer(){
@@ -40,6 +41,15 @@ void ImageRenderer::DrawRotation(IMAGE_ASSET_NAME asset, int posCX, int posCY, d
 
 void ImageRenderer::DrawLT(int imageHandle, Vec2 position){
 	Draw(imageHandle, position.GetIntX(), position.GetIntY());
+}
+
+void ImageRenderer::DrawLTUseToShader(int imageHandle, Vec2 position){
+	DrawUseToShader(imageHandle, position.GetIntX(), position.GetIntY());
+}
+
+
+void ImageRenderer::DrawLT(int imageHandle, Vec2 position,float scale){
+	Draw(imageHandle, position.GetIntX(), position.GetIntY(),scale);
 }
 
 void ImageRenderer::DrawLT(int imageHandle, int posX, int posY){
@@ -163,11 +173,22 @@ void ImageRenderer::SetupImageMap(){
 	SetupImageMapInstance();
 }
 
-//画像サイズを毎フレーム取得しているので直す必要あり
 void ImageRenderer::Draw(int imageHandle, int posX, int posY){
-	int x;
-	GetGraphSize(imageHandle,&x,nullptr);
+	int x,y ;
+	GetGraphSize(imageHandle,&x,&y);
 	DrawBillboard3D(VGet(posX, posY, 0), 0.5f, 0.5f, x, 0.0f, imageHandle, TRUE);
+}
+
+void ImageRenderer::Draw(int imageHandle, int posX, int posY , float scale){
+	int x, y;
+	GetGraphSize(imageHandle, &x, &y);
+	DrawBillboard3D(VGet(posX, posY, 0), 0.5f, 0.5f, x * scale, 0.0f, imageHandle, TRUE);
+}
+
+void ImageRenderer::DrawUseToShader(int imageHandle, int posX, int posY){
+	int x, y;
+	GetGraphSize(imageHandle, &x, &y);
+	DrawBillboard3DToShader(VGet(posX, posY, 0), 0.5f, 0.5f, x, 0.0f, imageHandle, TRUE);
 }
 
 //ハンドル　中心　拡大率

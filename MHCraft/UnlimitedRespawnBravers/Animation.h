@@ -5,19 +5,22 @@
 #include<vector>
 #include<string>
 
-struct Anime
-{
-	std::vector<int> motions;
-	bool isLoop;
-	std::string currentName;
-};
-
 enum e_Motion
 {
 	e_STAND,//ëÂãC
 	e_WALK,//ï‡Ç´
 	e_ATTACK,//çUåÇ
 };
+
+struct Anime
+{
+	std::vector<int> motions;
+	bool isLoop;
+	e_Motion currentName;
+	int intarval;
+};
+
+
 
 class Animation
 {
@@ -27,7 +30,7 @@ public:
 
 	void Initialize();
 
-	void AddMotion(e_Motion motionName, std::vector<int> motions, bool isLoop);
+	void AddMotion(e_Motion motionName, std::vector<int> motions,int intarval, bool isLoop);
 
 	int GetMotion();
 
@@ -43,6 +46,8 @@ private:
 	Anime currentMotion;
 
 	int motionCount;
+
+	int intarvalCount;
 
 	bool isEnd;
 };

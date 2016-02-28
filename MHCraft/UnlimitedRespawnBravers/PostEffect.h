@@ -32,7 +32,16 @@ public:
 
 	void Initialize();//シーンがシェーダの読み込みが終わってから実行する
 
-	void Rendaring(std::function<void()> Draw, float scale);
+	void Rendaring(std::function<void()> Draw);
+
+	void ChangeShader(std::string name);
+
+	//シェーダごとの定数設定関数////////////
+	//ブラー
+	void SetUseBlurConst(Vec2 direction, float shit);
+	//テクスチャマッピング
+	void SetUseTexMapConst(bool b);
+
 
 private:
 	void VertexErch(std::function<void(int x)> action);

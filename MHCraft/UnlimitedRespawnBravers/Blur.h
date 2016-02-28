@@ -13,17 +13,15 @@ public:
 	Blur();
 	~Blur();
 
-	void Initialize();
+	void Initialize() override;
 
-	void SetDirectionAndVelocity(Vec2 direction,float velocity);//アップキャストして使ってください
+	void SetDirectionAndVelocity(Vec2 direction,float velocity);//ダウンキャストして使ってください
 
 private:
 	void ConstSet()override;
 
 private:
 	FLOAT4 directoin;
-	InputManager* input;//テスト
-	float velocity = 0;//テスト
 };
 
 

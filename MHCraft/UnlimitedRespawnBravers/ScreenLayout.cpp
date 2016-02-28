@@ -46,11 +46,27 @@ void ScreenLayout::Initialize(PlayerManager* players)
 	}
 }
 
+void ScreenLayout::SetUseBlurConst(Vec2 direction, float shift, e_ScreenNumber screenNum)
+{
+	ChangeToScreenShader("Blur", screenNum);
+	Screens[screenNum]->SetUseBlurConst(direction,shift);
+}
+
+void ScreenLayout::SetUseTexMapConst(bool b, e_ScreenNumber screenNum)
+{
+	ChangeToScreenShader("Normal", screenNum);
+	Screens[screenNum]->SetUseTexMapConst(b);
+}
+
 void ScreenLayout::Rendaring(std::function<void()> Draw)
 {
-	float a[4] = {20,500,1000,2000};
 	for (int i = 0; i <= layOut; ++i)
 	{
-		this->Screens[(e_ScreenLayout)i]->Rendaring(Draw,a[i]);
+		this->Screens[i]->Rendaring(Draw);
 	}
+}
+
+void ScreenLayout::ChangeToScreenShader(std::string name, e_ScreenNumber screenNum)
+{
+	this->Screens[screenNum]->ChangeShader(name);
 }

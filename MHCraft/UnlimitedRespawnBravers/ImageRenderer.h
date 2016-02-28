@@ -35,6 +35,8 @@ public:
 	void		DrawRotation(IMAGE_ASSET_NAME asset, int posCX, int posCY, double angleDeg);
 	void		DrawRotation(int imageHandle, int posX, int posY, double angleDeg);
 	void		DrawLT(int imageHandle, Vec2 position);
+	void		DrawLTUseToShader(int imageHandle, Vec2 position);
+	void		DrawLT(int imageHandle, Vec2 position, float scale);
 	void		DrawLT(int imageHandle, int posX, int posY);
 	void		DrawBackGround();
 	void		ChangeImageType(int imageIndex, int	type);
@@ -81,6 +83,8 @@ private:
 	void AddImageMap(IMAGE_ASSET_NAME assetName);
 	void SetupImageMapInstance();
 	void Draw(int imageHandle, int posX, int posY);
+	void DrawUseToShader(int imageHandle, int posX, int posY);
+	void Draw(int imageHandle, int posX, int posY, float scale);
 	void Draw(int imageHandle, VECTOR pos, float scale);
 	bool CheckConnotationCharacterImageMap(int index);
 	bool CheckConnotationBaseImageMap(IMAGE_ASSET_NAME assetName);

@@ -42,6 +42,15 @@ void SceneGameMain::Initialize(SceneMediateData sceneData){
 
 SceneMediateData SceneGameMain::Update(){
 	AllManagersUpdate();
+	if (device->GetInstance()->Input()->GetInputState(0)->CheckKeyDown(GKey_Up))
+	{
+		screen->SetUseTexMapConst(true,e_First);
+	}
+	else
+	{
+		screen->SetUseBlurConst(Vec2(1,0),0.2, e_First);
+	}
+
 	return SceneMediateData::Setup(SCENE_GAMEMAIN, 1);
 }
 
@@ -103,10 +112,10 @@ void SceneGameMain::AllManagersFinalize(){
 
 void SceneGameMain::ShaderLoad()
 {
-	EffectManager::GetInstance()->AddEffect("CutLeft", "Shader/PSCutRight.pso");
+	EffectManager::GetInstance()->AddEffect("CutLeft", "Shader/PSCutLeft.pso");
 	EffectManager::GetInstance()->AddEffect("CutRight", "Shader/PSCutRight.pso");
 	EffectManager::GetInstance()->AddEffect("Blur", "Shader/PSBlur.pso");
-	EffectManager::GetInstance()->AddEffect("TexMap", "Shader/PSCutRight.pso");
+	EffectManager::GetInstance()->AddEffect("TexMap", "Shader/PSTextureMapping.pso");
 
 
 }

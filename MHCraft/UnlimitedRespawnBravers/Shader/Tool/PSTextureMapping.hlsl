@@ -1,21 +1,22 @@
 // 描画するテクスチャ
 sampler Texture : register( s0 ) ;
 
-float4 pos : register(c0);
+float b : register(c0);
 
 
-
-struct OutPut
+float4 main(float2 uv : TEXCOORD0) : COLOR//入力値
 {
-	float4 color0:COLOR0;
-};
+	float4 color = (float4)0;
 
 
-OutPut main(float2 uv : TEXCOORD0)//入力値
-{
-	OutPut o;
+	color = tex2D(Texture, uv);
 
-	o.color0 = tex2D(Texture, uv);
+	if (b == 1)
+	{
+		//color.rgb = 1 - color.rgb;
+		color.rgb = 1 - color.rgb;
+	}
 
-	return o;
+
+	return color;
 }

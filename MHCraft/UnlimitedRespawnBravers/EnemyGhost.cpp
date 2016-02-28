@@ -35,13 +35,8 @@ void EnemyGhost::Draw(){
 	int posX = position.GetIntX();
 	int posY = position.GetIntY();
 	
-	if (!isDead){
 		device->Image()->DrawRotation(imageData->GetImageHandle(), position.GetIntX(), position.GetIntY(), angleDeg);
-	}
-	else
-	{
-		cutEffect.Cut(imageData->GetImageHandle(), position);
-	}
+
 }
 
 void EnemyGhost::Move(){
