@@ -154,7 +154,7 @@ PostEffect::~PostEffect()
 	delete(effect);
 }
 
-void PostEffect::Rendaring(std::function<void()> Draw,float scale)
+void PostEffect::Rendaring(std::function<void()> Draw)
 {
 	SetDrawScreen(this->hGraphics);
 
