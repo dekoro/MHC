@@ -41,6 +41,7 @@ public:
 	Vec2	GetPosition();
 	void	CheckHitDamageArea(AbstractDamageArea* damageArea);
 	Vec2	GetCenterPosition();
+	void	Die();
 
 private:	
 	DeviceManager*				device;

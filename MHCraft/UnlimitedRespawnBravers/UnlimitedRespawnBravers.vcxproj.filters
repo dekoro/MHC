@@ -211,32 +211,35 @@
     <Filter Include="ヘッダー ファイル\Device\Selecter\GSystem">
       <UniqueIdentifier>{89f247e4-eae5-4228-a15f-e90ec7257345}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\Device\Selecter\GSystem\SceneManager">
+    <Filter Include="ヘッダー ファイル\SceneManager">
       <UniqueIdentifier>{f2f487b1-9a56-489d-b783-63bdcf6bfc88}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\Device\Selecter\GSystem\SceneManager\Title">
+    <Filter Include="ヘッダー ファイル\SceneManager\Title">
       <UniqueIdentifier>{879c4aeb-5a10-426f-ba25-a8e7d93bff82}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\Device\Selecter\GSystem\SceneManager\GameMain">
+    <Filter Include="ヘッダー ファイル\SceneManager\GameMain">
       <UniqueIdentifier>{216ea36e-30c5-4a0d-878e-b8ebfd906dd3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\Device\Selecter\GSystem\SceneManager\GameMain\Events">
+    <Filter Include="ヘッダー ファイル\SceneManager\GameMain\Events">
       <UniqueIdentifier>{1dea7320-f07d-4163-a9e4-ec6b940a7f9f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\Device\Selecter\GSystem\SceneManager\Ending">
-      <UniqueIdentifier>{baa71f66-f7b0-4ec3-abda-93a7630e6c7d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Device\Selecter\GSystem\SceneManager\NowLoading">
+    <Filter Include="ヘッダー ファイル\SceneManager\NowLoading">
       <UniqueIdentifier>{c86c5a90-25ac-497a-b3cc-420103d92531}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\Device\Selecter\GSystem\SceneManager\SelectScene">
+    <Filter Include="ヘッダー ファイル\SceneManager\SelectScene">
       <UniqueIdentifier>{e3741946-3f3d-42e9-9865-8e060781d289}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\Effect\ZoomBlur">
-      <UniqueIdentifier>{b7b93268-5cd5-4193-9658-dc1dc656be28}</UniqueIdentifier>
+    <Filter Include="ヘッダー ファイル\SceneManager\GameClearScene">
+      <UniqueIdentifier>{baa71f66-f7b0-4ec3-abda-93a7630e6c7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\SceneManager\GameOverScene">
+      <UniqueIdentifier>{7cb3d4fe-98ec-4ae2-9698-0ce24fd9e365}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\Effect\ZoomBlur">
-      <UniqueIdentifier>{c729541d-822a-4d27-99c7-c896bf8f5abd}</UniqueIdentifier>
+      <UniqueIdentifier>{e86e141f-26be-496e-8d69-04584fa54a13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\ZoomBlur">
+      <UniqueIdentifier>{017434b8-7540-4ed1-8809-1b13d8458601}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -269,6 +272,9 @@
     </ClCompile>
     <ClCompile Include="Title.cpp">
       <Filter>ソース ファイル\SceneManager\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageRenderer.cpp">
+      <Filter>ソース ファイル\Device\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="SoundRenderer.cpp">
       <Filter>ソース ファイル\Device\Renderer</Filter>
@@ -396,6 +402,9 @@
     <ClCompile Include="Cutting.cpp">
       <Filter>ソース ファイル\Effect\CutEffect\Cutting</Filter>
     </ClCompile>
+    <ClCompile Include="Stage.cpp">
+      <Filter>ソース ファイル\Character\Stage</Filter>
+    </ClCompile>
     <ClCompile Include="TextLoader.cpp">
       <Filter>ソース ファイル\Device\TextLoader</Filter>
     </ClCompile>
@@ -426,17 +435,23 @@
     <ClCompile Include="InputState.cpp">
       <Filter>ソース ファイル\Device\Input</Filter>
     </ClCompile>
+    <ClCompile Include="GameClearScene.cpp">
+      <Filter>ソース ファイル\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverScene.cpp">
+      <Filter>ソース ファイル\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyInoshishi.cpp">
+      <Filter>ソース ファイル\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyInoshishiMure.cpp">
+      <Filter>ソース ファイル\Character\Enemy</Filter>
+    </ClCompile>
     <ClCompile Include="AnimeDirection.cpp">
       <Filter>ソース ファイル\Character\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="ImageRenderer.cpp">
-      <Filter>ソース ファイル\Device\Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>ソース ファイル\Character\Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="Stage.cpp">
-      <Filter>ソース ファイル\Character\Stage</Filter>
     </ClCompile>
     <ClCompile Include="ZoomBlur.cpp">
       <Filter>ソース ファイル\Effect\ZoomBlur</Filter>
@@ -447,22 +462,22 @@
       <Filter>ヘッダー ファイル\Device\Selecter\GSystem</Filter>
     </ClInclude>
     <ClInclude Include="IScenes.h">
-      <Filter>ヘッダー ファイル\Device\Selecter\GSystem\SceneManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Ending.h">
-      <Filter>ヘッダー ファイル\Device\Selecter\GSystem\SceneManager\Ending</Filter>
+      <Filter>ヘッダー ファイル\SceneManager</Filter>
     </ClInclude>
     <ClInclude Include="Title.h">
-      <Filter>ヘッダー ファイル\Device\Selecter\GSystem\SceneManager\Title</Filter>
+      <Filter>ヘッダー ファイル\SceneManager\Title</Filter>
     </ClInclude>
     <ClInclude Include="GSystem.h">
       <Filter>ヘッダー ファイル\Device\Selecter\GSystem</Filter>
     </ClInclude>
     <ClInclude Include="EventManager.h">
-      <Filter>ヘッダー ファイル\Device\Selecter\GSystem\SceneManager\GameMain\Events</Filter>
+      <Filter>ヘッダー ファイル\SceneManager\GameMain\Events</Filter>
     </ClInclude>
     <ClInclude Include="EnumGKey.h">
       <Filter>ヘッダー ファイル\Device\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageRenderer.h">
+      <Filter>ヘッダー ファイル\Device\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="ImageData.h">
       <Filter>ヘッダー ファイル\DataManager</Filter>
@@ -594,7 +609,7 @@
       <Filter>ヘッダー ファイル\Effect\PostEffect</Filter>
     </ClInclude>
     <ClInclude Include="NowLoading.h">
-      <Filter>ヘッダー ファイル\Device\Selecter\GSystem\SceneManager\NowLoading</Filter>
+      <Filter>ヘッダー ファイル\SceneManager\NowLoading</Filter>
     </ClInclude>
     <ClInclude Include="ErrorCheck.h">
       <Filter>ヘッダー ファイル\ErorrCheck</Filter>
@@ -615,7 +630,7 @@
       <Filter>ヘッダー ファイル\Device\ScreenLayout\e_ScreenLayout</Filter>
     </ClInclude>
     <ClInclude Include="GameMain.h">
-      <Filter>ヘッダー ファイル\Device\Selecter\GSystem\SceneManager\GameMain</Filter>
+      <Filter>ヘッダー ファイル\SceneManager\GameMain</Filter>
     </ClInclude>
     <ClInclude Include="EffectManager.h">
       <Filter>ヘッダー ファイル\Effect\EffectManager</Filter>
@@ -635,6 +650,9 @@
     <ClInclude Include="e_Directon.h">
       <Filter>ヘッダー ファイル\Effect\Cutting</Filter>
     </ClInclude>
+    <ClInclude Include="Stage.h">
+      <Filter>ヘッダー ファイル\Character\Stage</Filter>
+    </ClInclude>
     <ClInclude Include="TextLoader.h">
       <Filter>ヘッダー ファイル\Device\TextLoader</Filter>
     </ClInclude>
@@ -645,7 +663,7 @@
       <Filter>ソース ファイル\Effect\EffectList</Filter>
     </ClInclude>
     <ClInclude Include="SelectScene.h">
-      <Filter>ヘッダー ファイル\Device\Selecter\GSystem\SceneManager\SelectScene</Filter>
+      <Filter>ヘッダー ファイル\SceneManager\SelectScene</Filter>
     </ClInclude>
     <ClInclude Include="Selecter.h">
       <Filter>ヘッダー ファイル\Device\Selecter</Filter>
@@ -653,17 +671,26 @@
     <ClInclude Include="InputState.h">
       <Filter>ヘッダー ファイル\Device\Input</Filter>
     </ClInclude>
+    <ClInclude Include="IHittable.h">
+      <Filter>ヘッダー ファイル\Character\DamageArea</Filter>
+    </ClInclude>
+    <ClInclude Include="GameClearScene.h">
+      <Filter>ヘッダー ファイル\SceneManager\GameClearScene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverScene.h">
+      <Filter>ヘッダー ファイル\SceneManager\GameOverScene</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyInoshishi.h">
+      <Filter>ヘッダー ファイル\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyInoshishiMure.h">
+      <Filter>ヘッダー ファイル\Character\Enemy</Filter>
+    </ClInclude>
     <ClInclude Include="AnimeDirection.h">
       <Filter>ヘッダー ファイル\Character\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="ImageRenderer.h">
-      <Filter>ヘッダー ファイル\Device\Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>ヘッダー ファイル\Character\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="Stage.h">
-      <Filter>ヘッダー ファイル\Character\Stage</Filter>
     </ClInclude>
     <ClInclude Include="ZoomBlur.h">
       <Filter>ヘッダー ファイル\Effect\ZoomBlur</Filter>
@@ -692,6 +719,12 @@
       <Filter>リソース ファイル</Filter>
     </Image>
     <Image Include="Resource\Title_PushXButton.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Resource\GameOver_BackGround.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Resource\GameClear_BackGround.png">
       <Filter>リソース ファイル</Filter>
     </Image>
   </ItemGroup>

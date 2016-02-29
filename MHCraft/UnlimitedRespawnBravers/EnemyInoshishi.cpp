@@ -61,11 +61,13 @@ int GetGroupCount(int groupNum, vector<Enemy*>enemyList)
 	return count;
 }
 
-EnemyInoshishi::EnemyInoshishi(vector<Enemy*> *enemyList) :Enemy(enemyList, imageAsset_Enemy_Ghost)
+EnemyInoshishi::EnemyInoshishi(DamageAreaManager* damageAreaManager, vector<Enemy*> *enemyList, PlayerManager* playerManager) :Enemy(damageAreaManager, enemyList, imageAsset_Enemy_Ghost)
 {
 	angle = 0.0f;
-	//Vec2 pos = Vec2::Setup(Window::WIDTH / 2, Window::HEIGHT / 2);
-	Vec2 pos = Vec2::Setup(GetRand(Window::WIDTH), GetRand(Window::HEIGHT));
+	this->playerManaser = playerManager;
+	int distanceFieldX = FIELD_MAX_X - FIELD_MIN_X;
+	int distanceFieldY = FIELD_MAX_Y - FIELD_MIN_Y;
+	Vec2 pos = Vec2::Setup(GetRand(distanceFieldX)+FIELD_MIN_X, GetRand(distanceFieldY)+FIELD_MIN_Y);
 
 
 	group = GetSpaceGroupNum(*enemyList);
@@ -102,6 +104,7 @@ void EnemyInoshishi::Initialize()
 	state = STATE_STOP;
 	SetMoveCount();
 	SetAngle();
+	targetSarchRange = targetSerchRangeNormal;
 }
 
 void EnemyInoshishi::Draw()
@@ -124,7 +127,8 @@ void EnemyInoshishi::Draw()
 	float rate = isElder ? 5.0f / 2.0f : 1.0f;
 
 	
-	device->Image()->DrawExtend(imageData->GetImageHandle(), posX, posY, 0.0f, rate);
+	//device->Image()->DrawExtend(imageData->GetImageHandle(), posX, posY, 0.0f, rate);
+	device->Image()->DrawLT(imageData->GetImageHandle(), posX, posY, rate);
 	//DrawCircle(posX, posY, 100, GetColor(255, 255, 255), FALSE);
 	SetDrawBright(255, 255, 255);
 }
@@ -188,6 +192,7 @@ void EnemyInoshishi::SetAngle()
 void EnemyInoshishi::SetSpeedToElder()
 {
 	if (!OutOfElderRange(100))return;
+	if (elder->GetIsDead()){ targetSarchRange = targetSerchRangeAnger; }
 	Vec2 toElder = elder->GetPosition() - GetPosition();
 	toElder.NormalizeSelf();
 	toElder *= 2.0f;
@@ -218,10 +223,12 @@ void EnemyInoshishi::Move()
 	position += (speed * rate);
 
 	float range = 32 / 2.0f;
-	position.X = std::fminf(position.X, Window::WIDTH - range);
-	position.X = std::fmaxf(0.0f + range, position.X);
-	position.Y = std::fminf(position.Y, Window::HEIGHT - range);
-	position.Y = std::fmaxf(0.0f + range, position.Y);
+
+	position.X = std::fminf(position.X, FIELD_MAX_X - range);
+	position.X = std::fmaxf(position.X, FIELD_MIN_X + range);
+
+	position.Y = std::fminf(position.Y, FIELD_MAX_Y - range);
+	position.Y = std::fmaxf(position.Y, FIELD_MIN_Y + range);
 
 	SetSpeedToElder();
 	if (moveCount > 0)return;
@@ -232,19 +239,14 @@ void EnemyInoshishi::Move()
 
 void EnemyInoshishi::CheckTargetPlayer()
 {
-	vector<int>pl = managers->Player()->GetEnablePlayerIndexList();
-	int plNum = pl.size();
-	target = NULL;
-	if (plNum <= 0)return;
-
-	float range = 100.0f;
-
-	for (int i = 0; i < plNum; i++)
+	std::array<Player*, MAX_PLAYER> pl = playerManaser->GetPlayers();
+	for (int i = 0; i < MAX_PLAYER; i++)
 	{
-		Vec2 pPos = managers->Player()->GetPlayerData(i)->GetPosition();
+		if (pl[i]->GetIsDead()){ continue; }
+		Vec2 pPos = playerManaser->GetPlayerData(i)->GetPosition();
 		Vec2 vec = pPos - position;
 
-		bool isRange = vec.Length() < range;
+		bool isRange = vec.Length() < targetSarchRange;
 
 		if (isRange)
 		{
@@ -254,9 +256,9 @@ void EnemyInoshishi::CheckTargetPlayer()
 	}
 }
 
-void EnemyInoshishi::SetTarget(int targetIndex)
+void EnemyInoshishi::SetTarget(Player* target)
 {
-	this->target = managers->Player()->GetPlayerData(targetIndex);
+	this->target = target;
 }
 
 void EnemyInoshishi::DamageAction(HitData hitData){

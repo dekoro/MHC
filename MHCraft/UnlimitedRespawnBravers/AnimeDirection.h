@@ -1,8 +1,8 @@
-#ifndef ANIME_DIRECTION
-#define ANIME_DIRECTION
+#ifndef _ANIME_DIRECTION_
+#define _ANIME_DIRECTION_
 
-#include"Animation.h"
-#include<functional>
+#include "Animation.h"
+#include <functional>
 
 enum e_AnimeDirection
 {
@@ -13,8 +13,8 @@ enum e_AnimeDirection
 class AnimeDirection
 {
 public:
-	AnimeDirection();
-	~AnimeDirection();
+	AnimeDirection(){}
+	~AnimeDirection(){}
 
 	void Initialize();
 

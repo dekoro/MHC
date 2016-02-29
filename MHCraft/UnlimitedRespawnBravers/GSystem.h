@@ -23,11 +23,13 @@
 #define CONTROLLER_STICK_LOWER_LIMIT		0.2
 #define CONTROLLER_STICK_HIGHER_LIMIT		0.8
 
-#define FIELD_MAX_Y	0
-#define FIELD_MIN_X	0
-#define FIELD_MIN_Y	100
-#define FIELD_MAX_X	100
-#define USE_PAD_MAX 4
+#define FIELD_SIZE 600
+
+#define FIELD_MIN_Y	-FIELD_SIZE
+#define FIELD_MIN_X	-FIELD_SIZE
+#define FIELD_MAX_Y	 FIELD_SIZE
+#define FIELD_MAX_X	 FIELD_SIZE
+//#define USE_PAD_MAX 4
 
 
 #include "SystemHub.h"
@@ -37,7 +39,9 @@
 enum SceneName {
 	SCENE_TITLE,
 	SCENE_GAMEMAIN,
-	SCENE_SELECT
+	SCENE_SELECT,
+	SCENE_CLEAR,
+	SCENE_GAMEOVER
 };
 
 struct Window {

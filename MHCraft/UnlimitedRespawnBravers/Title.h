@@ -16,19 +16,19 @@ public:
 	SceneMediateData	Update();
 	void				Draw() ;
 	void				Finalize();
-	ImageData*			imageBackGround;
-	int					counter;
 
 private:
 	DeviceManager*	device;
-	int		nextSceneCount;
-	int		enterPlayerIndex;
-	bool	isEnd;
-	int		CheckControllPadNo();
-	void	CountdownNextScene();
-	void	DrawFlashPushXButton();
+	ImageData*		imageBackGround;
+	int				counter;
+	int				nextSceneCount;
+	int				enterPlayerIndex;
+	bool			isEnd;
+	int				CheckControllPadNo();
+	void			CountdownNextScene();
+	void			DrawFlashPushXButton();
 	
-	void LocalDraw();
+	void			LocalDraw();
 
 };
 

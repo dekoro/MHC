@@ -154,7 +154,6 @@ void PostEffect::Initialize()
 
 PostEffect::~PostEffect()
 {
-	delete(effect);
 }
 
 void PostEffect::Rendaring(std::function<void()> Draw)

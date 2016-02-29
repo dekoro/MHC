@@ -21,11 +21,11 @@ SceneGameMain::SceneGameMain(){
 
 	device->Image()->LoadMapTip("Resource/mapchip.png", 8, 4, (4 * 8) - 3);
 
-	damageAreaManager = std::make_shared<DamageAreaManager>();
-	laserManager = std::make_shared<LaserManager>(damageAreaManager.get());
-	playerManager = std::make_shared<PlayerManager>(laserManager.get(), damageAreaManager.get());
-	enemyManager = std::make_shared<EnemyManager>(damageAreaManager.get());
 
+	damageAreaManager	= std::make_shared<DamageAreaManager>();
+	laserManager		= std::make_shared<LaserManager>(damageAreaManager.get());
+	playerManager		= std::make_shared<PlayerManager>(laserManager.get(), damageAreaManager.get());
+	enemyManager		= std::make_shared<EnemyManager>(damageAreaManager.get(), playerManager.get());
 }
 
 SceneGameMain::~SceneGameMain(){
@@ -44,11 +44,15 @@ SceneMediateData SceneGameMain::Update(){
 	AllManagersUpdate();
 
 	FadeIn();
-	//else
-	//{
-	//	screen->SetUseBlurConst(Vec2(1,0),0.2, e_First);
-	//}
 
+	if (enemyManager->GetLeftEnemyNum() <= 0){
+		SHaderDalete();
+		return SceneMediateData::Setup(SCENE_CLEAR);
+	}
+	if (playerManager->GetLivePlayerNum() <= 0){
+		SHaderDalete();
+		return SceneMediateData::Setup(SCENE_GAMEOVER);
+	}
 	return SceneMediateData::Setup(SCENE_GAMEMAIN, 1);
 }
 
@@ -63,6 +67,7 @@ void SceneGameMain::Draw(){
 
 void SceneGameMain::Finalize(){
 	AllManagersFinalize();
+	screen.reset();
 }
 
 //-----private-----
@@ -76,16 +81,15 @@ void SceneGameMain::LocalDraw()
 }
 
 void SceneGameMain::AllManagersInitialize(int startPlayerIndex){
-	for (int i = 0; i < startPlayerIndex; i++)
+	for (int i = 0; i < startPlayerIndex+1 ; i++)
 	{
 		playerManager->SpawnPlayer(i, Vec2());
 	}
 
-	playerManager->Setup();
-	playerManager->Initialize();
-	enemyManager->Initialize();
-	laserManager->Initialize();
-	damageAreaManager->Initialize();
+	playerManager		->Initialize();
+	enemyManager		->Initialize();
+	laserManager		->Initialize();
+	damageAreaManager	->Initialize();
 }
 
 void SceneGameMain::AllManagersUpdate(){

@@ -5,12 +5,14 @@
 #include "Enemy_Test.h"
 #include "EnemyGhost.h"
 #include "EnemyKingPumpkin.h"
+#include "EnemyInoshishi.h"
 
-EnemyManager::EnemyManager(DamageAreaManager* damageAreaManager){
+EnemyManager::EnemyManager(DamageAreaManager* damageAreaManager, PlayerManager* playerManager){
 	this->damageAreaManager = damageAreaManager;
+	this->playerManager = playerManager;
 	stage			= 1;
 	normaLollipop	= 10+5*(stage-1);
-	SetFontSize(20);
+	SetFontSize(1);
 }
 
 EnemyManager::~EnemyManager(){
@@ -24,29 +26,25 @@ void EnemyManager::Initialize(){
 	}
 	gameMode = GameMode_Main;
 	cntClear = cntGameOver = 60;
+	SpawnMob(ENEMY_BOSS_NUM * ENEMY_ENTOURAGE_PER_BOSS);
 	StageInitialize();
 }
 
 SceneMediateData EnemyManager::Update(){
 	bool isSceneEnd = false;
-	/*for each(Enemy* ie in enemyList){
-		ie->Update();
-	}*/
 
 	int enemyListNum = enemyList.size();
 	for (int i = 0; i < enemyListNum; i++){
 		enemyList[i]->Update();
 	}
 
+	RemoveNotUseEnemys();
+
+	return SceneMediateData::Setup(SceneName::SCENE_GAMEMAIN);
+
+/*
 	switch (gameMode){
 	case GameMode_Main:
-		if (isBoss){
-			device->Sound()->Stop(Music_GameMain_BGM_Normal);
-			CalcSpawnBoss();
-		}else{
-			device->Sound()->Play(Music_GameMain_BGM_Normal);
-			CalcSpawnMob();
-		}
 		break;
 	case GameMode_Clear:
 		isSceneEnd = ClearMode();
@@ -64,6 +62,7 @@ SceneMediateData EnemyManager::Update(){
 	} else{
 		return SceneMediateData::Setup(SCENE_GAMEMAIN);
 	}
+*/
 }
 
 void EnemyManager::Draw(){
@@ -87,7 +86,7 @@ void EnemyManager::Finalize(){
 void EnemyManager::AddEnemy(IMAGE_ASSET_NAME asset){
 	switch (asset){
 	case imageAsset_Enemy_Ghost:
-		new EnemyGhost(damageAreaManager, &enemyList);
+		new EnemyInoshishi(damageAreaManager, &enemyList, playerManager);
 		break;
 	case imageAsset_Enemy_BigPumpkin :
 		new EnemyKingPumpkin(damageAreaManager, &enemyList);
@@ -148,6 +147,12 @@ void EnemyManager::CalcSpawnMob(int rate){
 	AddEnemy(imageAsset_Enemy_Ghost);
 }
 
+void EnemyManager::SpawnMob(int spawnNum){
+	for (int i = 0; i < spawnNum; ++i){
+		AddEnemy(imageAsset_Enemy_Ghost);
+	}
+}
+
 void EnemyManager::CalcSpawnBoss(){
 	if (--cntIntervalSpawnBoss < 0){ return; }
 	if (cntIntervalSpawnBoss == 0){
@@ -164,19 +169,10 @@ void EnemyManager::LotDropItem(Vec2 position){
 
 
 void EnemyManager::DropItem(Vec2 position){
-	//managers->Item()->AddItemLollipop(position);
 }
 
 void EnemyManager::CalcHervestLollipop(){
-	int getLollipopNum = 0;/*managers->Item()->GetCountGetItem();*/
-	UI::GetInstance()->AddUI(UIData::Setup(Vec2::Setup(5, 5),20, STR("Lollipop : ", to_string(getLollipopNum) + "ŒÂ\n")));
-	if (isBoss){ return; }
-	int left = normaLollipop - getLollipopNum;
-	if (left <= 0){
-		isBoss = true;
-		return;
-	}
-	UI::GetInstance()->AddUI(UIData::Setup(Vec2::Setup(5,25), 20, STR("Žc‚è", to_string(left) + "ŒÂ")));
+
 }
 
 void EnemyManager::StageInitialize(){
@@ -188,6 +184,10 @@ void EnemyManager::DeadPlayerActioon(){
 	for (Enemy* en : enemyList){
 		en->DeadPlayerAction();
 	}
+}
+
+int EnemyManager::GetLeftEnemyNum(){
+	return enemyList.size();
 }
 
 

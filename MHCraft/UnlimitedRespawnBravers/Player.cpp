@@ -40,7 +40,7 @@ Player::~Player() {
 void Player::Setup(CharacterInformation parameter){
 	this->parameter = parameter;
 	SetAnimeData(device->Image()->GetAnimeData(imageAsset_player_fighter));
-	imageHandle		= LoadGraph("Resource/Enemy_KingPumpkin.png");//AddCharacterImageMap(imageAsset_player_fighter);
+	imageHandle		= LoadGraph("Resource/Enemy_KingPumpkin.png");
 	laserData		= LaserData::Setup(30, 5, position, Vec2::Zero(), 16, 5, 1, 15, 60);
 	maxAttackCount	= 5;
 	leftAttackCount	= 0;
@@ -49,7 +49,7 @@ void Player::Setup(CharacterInformation parameter){
 }
 
 void Player::Initialize() {
-	isDead			= false;
+	isDead			= !isEnable;
 	isWalk			= false;
 	cntInvincible	= 120;
 	cut				= std::make_shared<Cutting>(e_Right);
@@ -75,7 +75,7 @@ void Player::Update(){
 
 	HitData hit = damageAreaManager->CheckAllHitCircle(GetHitArea(), false, true);
 	if (hit == HitData::NoHit() || hit.shooterPlayerNo == padNo){ return; }
-
+	
 	Knockback(GMath::CalcAngleRad(hit.fromPosition, position), hit.knockbackPower);
 	Damage(hit.damage);
 }
@@ -93,6 +93,10 @@ void Player::Finalize()
 void Player::Dispone()
 {
 	isEnable = false;
+}
+
+void Player::Die(){
+	isDead = true;
 }
 
 int Player::GetImageHandle(){
@@ -224,7 +228,7 @@ void Player::Knockback(double angleRad, int power) {
 
 void Player::CheckIsDead() {
 	if (parameter.health <= 0) {
-		Dispone();
+		Die();
 	}
 }
 
@@ -257,11 +261,11 @@ bool Player::FlashManager(int counter){
 
 
 void Player::Clamp(){
-	//Vec2 imageHalfSize = device->Image()->GetCharacterImageHalfSize(imageHandle);
-	//if (position.X - imageHalfSize.X < 0) { position.X = imageHalfSize.X; }
-	//if (position.Y - imageHalfSize.Y < 0) { position.Y = imageHalfSize.Y; }
-	//if (position.X + imageHalfSize.X > Window::WIDTH) { position.X = Window::WIDTH - imageHalfSize.X; }
-	//if (position.Y + imageHalfSize.Y > Window::HEIGHT) { position.Y = Window::HEIGHT - imageHalfSize.Y; }
+	Vec2 imageHalfSize = Vec2::Zero();// device->Image()->GetCharacterImageHalfSize(imageHandle);
+	if (position.X - imageHalfSize.X < FIELD_MIN_X) { position.X = FIELD_MIN_X + imageHalfSize.X; }
+	if (position.Y - imageHalfSize.Y < FIELD_MIN_Y) { position.Y = FIELD_MIN_Y + imageHalfSize.Y; }
+	if (position.X + imageHalfSize.X > FIELD_MAX_X) { position.X = FIELD_MAX_X - imageHalfSize.X; }
+	if (position.Y + imageHalfSize.Y > FIELD_MAX_Y) { position.Y = FIELD_MAX_Y - imageHalfSize.Y; }
 }
 
 void Player::ControllManager(){

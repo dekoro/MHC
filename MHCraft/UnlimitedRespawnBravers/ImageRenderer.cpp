@@ -52,8 +52,8 @@ void ImageRenderer::DrawLT(int imageHandle, Vec2 position,float scale){
 	Draw(imageHandle, position.GetIntX(), position.GetIntY(),scale);
 }
 
-void ImageRenderer::DrawLT(int imageHandle, int posX, int posY){
-	Draw(imageHandle, posX, posY);
+void ImageRenderer::DrawLT(int imageHandle, int posX, int posY, float scale){
+	Draw(imageHandle, posX, posY, scale);
 }
 
 //îwåi
@@ -103,8 +103,14 @@ AnimeData ImageRenderer::GetAnimeData(IMAGE_ASSET_NAME animeDataIndex){
 ImageData* ImageRenderer::CopyImageData(IMAGE_ASSET_NAME asset){
 	return new ImageData(*imageMap[asset]);
 }
+
 Vec2 ImageRenderer::GetCharacterImageHalfSize(int imageIndex){
 	return Vec2::Setup((float)characterImageMap[imageIndex]->GetSizeHalfImageX(), (float)characterImageMap[imageIndex]->GetSizeHalfImageY());
+}
+
+void ImageRenderer::DrawExtend(int imageHandle, int x, int y, float angle, float rate)
+{
+	DrawRotaGraph(x, y, rate, angle, imageHandle, TRUE);
 }
 
 //---private---
@@ -121,6 +127,9 @@ void ImageRenderer::SetupImageFilePathMap(){
 	imageFilePathMap.insert(map<IMAGE_ASSET_NAME, char*>::value_type(imageAsset_Title_BackGround	, "./Resource/Title_BackGround.png"));
 	imageFilePathMap.insert(map<IMAGE_ASSET_NAME, char*>::value_type(imageAsset_Title_PushButton	, "./Resource/Title_PushXButton.png"));
 	imageFilePathMap.insert(map<IMAGE_ASSET_NAME, char*>::value_type(imageAsset_GameMain_BackGround	, "./Resource/GameMain_BackGround.png"));
+
+	imageFilePathMap.insert(map<IMAGE_ASSET_NAME, char*>::value_type(imageAsset_GameClear_BackGround, "./Resource/GameClear_BackGround.png"));
+	imageFilePathMap.insert(map<IMAGE_ASSET_NAME, char*>::value_type(imageAsset_GameOver_BackGround, "./Resource/GameOver_BackGround.png"));
 }
 
 void ImageRenderer::SetupAnimeDataMap(){
@@ -142,7 +151,9 @@ void ImageRenderer::SetupAnimeDataMap(){
 	
 	animeDataMap.insert(map<IMAGE_ASSET_NAME, AnimeData>::value_type(imageAsset_Title_BackGround	, AnimeData::Setup(1, 1, 1280, 720,  0, false)));
 	animeDataMap.insert(map<IMAGE_ASSET_NAME, AnimeData>::value_type(imageAsset_Title_PushButton	, AnimeData::Setup(1, 1,  696,  88,  0, false)));
-	animeDataMap.insert(map<IMAGE_ASSET_NAME, AnimeData>::value_type(imageAsset_GameMain_BackGround	, AnimeData::Setup(1, 1, 1280, 720,  0, false)));
+	animeDataMap.insert(map<IMAGE_ASSET_NAME, AnimeData>::value_type(imageAsset_GameMain_BackGround, AnimeData::Setup(1, 1, 1280, 720, 0, false)));
+	animeDataMap.insert(map<IMAGE_ASSET_NAME, AnimeData>::value_type(imageAsset_GameOver_BackGround, AnimeData::Setup(1, 1, 1280, 720, 0, false)));
+	animeDataMap.insert(map<IMAGE_ASSET_NAME, AnimeData>::value_type(imageAsset_GameClear_BackGround, AnimeData::Setup(1, 1, 1280, 720, 0, false)));
 }
 
 void ImageRenderer::SetupImageMapInstance(){
@@ -155,6 +166,8 @@ void ImageRenderer::SetupImageMapInstance(){
 	AddImageMap(imageAsset_Title_BackGround);
 	AddImageMap(imageAsset_Title_PushButton);
 	AddImageMap(imageAsset_GameMain_BackGround);
+	AddImageMap(imageAsset_GameOver_BackGround);
+	AddImageMap(imageAsset_GameClear_BackGround);
 	SetUseASyncLoadFlag(FALSE);
 	NowLoading("Resource/Title_BackGround.png");
 }
@@ -182,14 +195,14 @@ void ImageRenderer::Draw(int imageHandle, int posX, int posY){
 void ImageRenderer::Draw(int imageHandle, int posX, int posY , float scale){
 	int x, y;
 	GetGraphSize(imageHandle, &x, &y);
-	DrawBillboard3D(VGet(posX, posY, 0), 0.5f, 0.5f, x * scale, 0.0f, imageHandle, TRUE);
+	DrawBillboard3D(VGet(posX, posY, 0), 0.5f, 0.5f, scale*x, 0.0f, imageHandle, TRUE);
 }
 
 void ImageRenderer::DrawUseToShader(int imageHandle, int posX, int posY){
 	int x, y;
 	GetGraphSize(imageHandle, &x, &y);
 	DrawBillboard3D(VGet(posX, posY, 0), 0.5f, 0.5f, x, 0.0f, imageHandle, TRUE);
-//	DrawBillboard3DToShader(VGet(posX, posY, 0), 0.5f, 0.5f, x, 0.0f, imageHandle, TRUE);
+
 }
 
 //ÉnÉìÉhÉãÅ@íÜêSÅ@ägëÂó¶

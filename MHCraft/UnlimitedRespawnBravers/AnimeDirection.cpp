@@ -1,13 +1,13 @@
 #include"AnimeDirection.h"
 
 
-AnimeDirection::AnimeDirection()
-{
-}
-
-AnimeDirection::~AnimeDirection()
-{
-}
+//AnimeDirection::AnimeDirection()
+//{
+//}
+//
+//AnimeDirection::~AnimeDirection()
+//{
+//}
 
 void AnimeDirection::AddMotion(e_Motion motionName, std::vector<int> motions, int intarval, bool isLoop, e_AnimeDirection direction)
 {

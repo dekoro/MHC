@@ -19,7 +19,9 @@ enum IMAGE_ASSET_NAME{
 	imageAsset_Item_Lollipop,
 	imageAsset_Title_BackGround,
 	imageAsset_Title_PushButton,
-	imageAsset_GameMain_BackGround
+	imageAsset_GameMain_BackGround,
+	imageAsset_GameOver_BackGround,
+	imageAsset_GameClear_BackGround,
 };
 
 class ImageRenderer{
@@ -37,7 +39,7 @@ public:
 	void		DrawLT(int imageHandle, Vec2 position);
 	void		DrawLTUseToShader(int imageHandle, Vec2 position);
 	void		DrawLT(int imageHandle, Vec2 position, float scale);
-	void		DrawLT(int imageHandle, int posX, int posY);
+	void		DrawLT(int imageHandle, int posX, int posY, float scale = 1.0f);
 	void		DrawBackGround();
 	void		ChangeImageType(int imageIndex, int	type);
 	void		ChangeAnimePlay(int imageIndex, bool isPlay);
@@ -49,6 +51,7 @@ public:
 	void		AddCountPlayerAnimation(IMAGE_ASSET_NAME);
 	ImageData*	CopyImageData(IMAGE_ASSET_NAME);
 	Vec2		GetCharacterImageHalfSize(int imageIndex);
+	void		DrawExtend(int imageHandle, int x, int y, float angle, float rate);
 
 
 	///////////í«â¡Å´////////
