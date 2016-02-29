@@ -188,7 +188,8 @@ void ImageRenderer::Draw(int imageHandle, int posX, int posY , float scale){
 void ImageRenderer::DrawUseToShader(int imageHandle, int posX, int posY){
 	int x, y;
 	GetGraphSize(imageHandle, &x, &y);
-	DrawBillboard3DToShader(VGet(posX, posY, 0), 0.5f, 0.5f, x, 0.0f, imageHandle, TRUE);
+	DrawBillboard3D(VGet(posX, posY, 0), 0.5f, 0.5f, x, 0.0f, imageHandle, TRUE);
+//	DrawBillboard3DToShader(VGet(posX, posY, 0), 0.5f, 0.5f, x, 0.0f, imageHandle, TRUE);
 }
 
 //ハンドル　中心　拡大率
