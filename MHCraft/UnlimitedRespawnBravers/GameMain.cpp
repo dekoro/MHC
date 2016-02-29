@@ -42,14 +42,14 @@ void SceneGameMain::Initialize(SceneMediateData sceneData){
 
 SceneMediateData SceneGameMain::Update(){
 	AllManagersUpdate();
-	if (device->GetInstance()->Input()->GetInputState(0)->CheckKeyDown(GKey_Up))
-	{
-		screen->SetUseTexMapConst(true,e_First);
-	}
-	else
-	{
-		screen->SetUseBlurConst(Vec2(1,0),0.2, e_First);
-	}
+	//if (device->GetInstance()->Input()->GetInputState(0)->CheckKeyDown(GKey_Up))
+	//{
+	//	screen->SetUseTexMapConst(true,e_First);
+	//}
+	//else
+	//{
+	//	screen->SetUseBlurConst(Vec2(1,0),0.2, e_First);
+	//}
 
 	return SceneMediateData::Setup(SCENE_GAMEMAIN, 1);
 }
