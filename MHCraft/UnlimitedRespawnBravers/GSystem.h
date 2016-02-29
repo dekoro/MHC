@@ -37,7 +37,9 @@
 enum SceneName {
 	SCENE_TITLE,
 	SCENE_GAMEMAIN,
-	SCENE_SELECT
+	SCENE_SELECT,
+	SCENE_CLEAR,
+	SCENE_GAMEOVER
 };
 
 struct Window {

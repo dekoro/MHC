@@ -1,9 +1,11 @@
 #ifndef _CHARACTER_ENEMY_ENEMYMANAGER_H_
 #define _CHARACTER_ENEMY_ENEMYMANAGER_H_
 
+
 #include "GSystemHub.h"
 #include "Enemy.h"
 class DamageAreaManager;
+
 
 enum GameMode{
 	GameMode_Main,
@@ -30,13 +32,19 @@ public:
 	void				AddEnemy(IMAGE_ASSET_NAME asset);
 	void				LeaveTarget(int forbiddenTarget);
 	HitData				CalcAttackToPlayer(Vec2 position, double hitRadius);
-	void				CalcSpawnMob(int rate=90);
+	void				CalcSpawnMob(int rate = 90);
+	void				SpawnMob(int spawnNum);
 	void				CalcSpawnBoss();
 	GameMode			gameMode;
-	void DeadPlayerActioon();
+	void				DeadPlayerActioon();
+	int					GetLeftEnemyNum();
 
 private:
 //	Managers*		managers;
+
+	const int ENEMY_BOSS_NUM = 5;
+	const int ENEMY_ENTOURAGE_PER_BOSS = 10;
+
 	vector<Enemy*>	enemyList;
 	DeviceManager*	device;
 	DamageAreaManager* damageAreaManager;

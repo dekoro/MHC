@@ -1,13 +1,17 @@
 #include "SceneManager.h"
-#include"GameMain.h"
-#include"SelectScene.h"
+#include "GameMain.h"
+#include "SelectScene.h"
+#include "GameClearScene.h"
+#include "GameOverScene.h"
 
 SceneManager::SceneManager(){
 	SceneMediateData startupSceneData = SceneMediateData::Setup(SCENE_SELECT);
 
 	sceneMap.insert(map<SceneName, IScenes*>::value_type(SCENE_TITLE	, new SceneTitle()));
-	sceneMap.insert(map<SceneName, IScenes*>::value_type(SCENE_SELECT, new SelectScene()));
+	sceneMap.insert(map<SceneName, IScenes*>::value_type(SCENE_SELECT	, new SelectScene()));
 	sceneMap.insert(map<SceneName, IScenes*>::value_type(SCENE_GAMEMAIN	, new SceneGameMain()));
+	sceneMap.insert(map<SceneName, IScenes*>::value_type(SCENE_CLEAR	, new GameClearScene()));
+	sceneMap.insert(map<SceneName, IScenes*>::value_type(SCENE_GAMEOVER	, new GameOverScene()));
 
 	sceneMap[startupSceneData.nextScene]->Initialize(startupSceneData);
 	ChangeScene(startupSceneData);

@@ -24,6 +24,7 @@ public:
 	void		Finalize();
 	int			GetJoinNum();
 	Player*		GetPlayerData(int index);
+	int			GetLivePlayerNum();
 
 private:
 	DeviceManager*	device;

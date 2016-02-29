@@ -19,7 +19,9 @@ enum IMAGE_ASSET_NAME{
 	imageAsset_Item_Lollipop,
 	imageAsset_Title_BackGround,
 	imageAsset_Title_PushButton,
-	imageAsset_GameMain_BackGround
+	imageAsset_GameMain_BackGround,
+	imageAsset_GameOver_BackGround,
+	imageAsset_GameClear_BackGround,
 };
 
 class ImageRenderer{

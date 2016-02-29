@@ -111,6 +111,9 @@ void ImageRenderer::SetupImageFilePathMap(){
 	imageFilePathMap.insert(map<IMAGE_ASSET_NAME, char*>::value_type(imageAsset_Title_BackGround	, "./Resource/Title_BackGround.png"));
 	imageFilePathMap.insert(map<IMAGE_ASSET_NAME, char*>::value_type(imageAsset_Title_PushButton	, "./Resource/Title_PushXButton.png"));
 	imageFilePathMap.insert(map<IMAGE_ASSET_NAME, char*>::value_type(imageAsset_GameMain_BackGround	, "./Resource/GameMain_BackGround.png"));
+
+	imageFilePathMap.insert(map<IMAGE_ASSET_NAME, char*>::value_type(imageAsset_GameClear_BackGround, "./Resource/GameClear_BackGround.png"));
+	imageFilePathMap.insert(map<IMAGE_ASSET_NAME, char*>::value_type(imageAsset_GameOver_BackGround, "./Resource/GameOver_BackGround.png"));
 }
 
 void ImageRenderer::SetupAnimeDataMap(){
@@ -132,7 +135,9 @@ void ImageRenderer::SetupAnimeDataMap(){
 	
 	animeDataMap.insert(map<IMAGE_ASSET_NAME, AnimeData>::value_type(imageAsset_Title_BackGround	, AnimeData::Setup(1, 1, 1280, 720,  0, false)));
 	animeDataMap.insert(map<IMAGE_ASSET_NAME, AnimeData>::value_type(imageAsset_Title_PushButton	, AnimeData::Setup(1, 1,  696,  88,  0, false)));
-	animeDataMap.insert(map<IMAGE_ASSET_NAME, AnimeData>::value_type(imageAsset_GameMain_BackGround	, AnimeData::Setup(1, 1, 1280, 720,  0, false)));
+	animeDataMap.insert(map<IMAGE_ASSET_NAME, AnimeData>::value_type(imageAsset_GameMain_BackGround, AnimeData::Setup(1, 1, 1280, 720, 0, false)));
+	animeDataMap.insert(map<IMAGE_ASSET_NAME, AnimeData>::value_type(imageAsset_GameOver_BackGround, AnimeData::Setup(1, 1, 1280, 720, 0, false)));
+	animeDataMap.insert(map<IMAGE_ASSET_NAME, AnimeData>::value_type(imageAsset_GameClear_BackGround, AnimeData::Setup(1, 1, 1280, 720, 0, false)));
 }
 
 void ImageRenderer::SetupImageMapInstance(){
@@ -145,6 +150,8 @@ void ImageRenderer::SetupImageMapInstance(){
 	AddImageMap(imageAsset_Title_BackGround);
 	AddImageMap(imageAsset_Title_PushButton);
 	AddImageMap(imageAsset_GameMain_BackGround);
+	AddImageMap(imageAsset_GameOver_BackGround);
+	AddImageMap(imageAsset_GameClear_BackGround);
 	SetUseASyncLoadFlag(FALSE);
 	NowLoading("Resource/Title_BackGround.png");
 }

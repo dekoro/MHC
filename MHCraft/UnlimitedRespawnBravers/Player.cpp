@@ -26,7 +26,7 @@ Player::~Player() {
 void Player::Setup(CharacterInformation parameter){
 	this->parameter = parameter;
 	SetAnimeData(device->Image()->GetAnimeData(imageAsset_player_fighter));
-	imageHandle		= LoadGraph("Resource/Enemy_KingPumpkin.png");//AddCharacterImageMap(imageAsset_player_fighter);
+	imageHandle		= LoadGraph("Resource/Enemy_KingPumpkin.png");
 	laserData		= LaserData::Setup(30, 5, position, Vec2::Zero(), 16, 5, 1, 15, 60);
 	maxAttackCount	= 5;
 	leftAttackCount	= 0;
@@ -35,7 +35,7 @@ void Player::Setup(CharacterInformation parameter){
 }
 
 void Player::Initialize() {
-	isDead			= false;
+	isDead			= !isEnable;
 	isWalk			= false;
 	cntInvincible	= 120;
 	cut				= std::make_shared<Cutting>(e_Right);
@@ -46,7 +46,7 @@ void Player::Update(){
 	ControllManager();
 	HitData hit = damageAreaManager->CheckAllHitCircle(GetHitArea(), false, true);
 	if (hit == HitData::NoHit() || hit.shooterPlayerNo == padNo){ return; }
-
+	
 	Knockback(GMath::CalcAngleRad(hit.fromPosition, position), hit.knockbackPower);
 	Damage(hit.damage);
 }
@@ -64,6 +64,10 @@ void Player::Finalize()
 void Player::Dispone()
 {
 	isEnable = false;
+}
+
+void Player::Die(){
+	isDead = true;
 }
 
 int Player::GetImageHandle(){
@@ -195,7 +199,7 @@ void Player::Knockback(double angleRad, int power) {
 
 void Player::CheckIsDead() {
 	if (parameter.health <= 0) {
-		Dispone();
+		Die();
 	}
 }
 
@@ -236,6 +240,10 @@ void Player::Clamp(){
 }
 
 void Player::ControllManager(){
+	if(inputState->CheckKeyPush(GKey::GKey_Skill)){
+		Damage(1280);
+	}
+
 	Vec2 moveVec = inputState->GetLeftStickLeanVector();
 	if (moveVec != Vec2::Zero()) { Move(moveVec); }
 

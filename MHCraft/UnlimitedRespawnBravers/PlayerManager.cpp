@@ -1,5 +1,5 @@
 #include "PlayerManager.h"
-#include "player.h"
+#include "Player.h"
 #include "DamageAreaManager.h"
 #include "EnemyManager.h"
 #include "ItemManager.h"
@@ -66,6 +66,14 @@ Player* PlayerManager::GetPlayerData(int index){
 		return nullptr;
 	}
 	return player[index];
+}
+
+int PlayerManager::GetLivePlayerNum(){
+	int playerNum = 0;
+	for (int i = 0; i < MAX_PLAYER; ++i){
+		if (!player[i]->GetIsDead()){ ++playerNum; }
+	}
+	return playerNum;
 }
 
 //----private---

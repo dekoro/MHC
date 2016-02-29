@@ -49,7 +49,6 @@ DamageAreaQuadrangle*	DamageAreaManager::AddDamageAreaQuadrangle(GQuadrangle hit
 	return damageAreaQuadrangle;
 }
 
-
 HitData DamageAreaManager::CheckAllHitRectangle(GRectangle target, bool isTargetPlayer, bool isTargetEnemy){
 	HitData tmpHit = HitData::NoHit();
 	if (damageAreaList.empty()) { return HitData::NoHit(); }

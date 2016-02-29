@@ -17,6 +17,7 @@ void SelectScene::Initialize(SceneMediateData sceneData)
 	selecter.Initialize();
 	this->isEnd = false;
 	date = date.Setup(SCENE_SELECT,0);
+	SetFontSize(50);
 }
 
 SceneMediateData SelectScene::Update()
@@ -26,14 +27,12 @@ SceneMediateData SelectScene::Update()
 	if (input->CheckKeyDownAllPad(GKey_Attack))
 	{
 		date.playerIndex = selecter.GetCurrentNum();
-
 		isEnd = true;
 	}
 
 	if (isEnd)
 	{
 		date.nextScene = SCENE_GAMEMAIN;
-
 	}
 
 	return this->date;
@@ -41,7 +40,7 @@ SceneMediateData SelectScene::Update()
 
 void SelectScene::Draw()
 {
-	DrawFormatString(100, 100, GetColor(24, 255, 34), "%d", selecter.GetCurrentNum());
+	DrawFormatString(100, 100, GetColor(24, 255, 34), "%dPlayers", (selecter.GetCurrentNum()+1));
 }
 
 void SelectScene::Finalize()

@@ -20,10 +20,11 @@
 
 //SceneManager
  //Ending
- #include "Ending.h"
+ #include "GameOverScene.h"
+ #include "GameClearScene.h"
  //GameMain
   //Events
-  #include "EventManager.h"
+ #include "EventManager.h"
  #include "GameMain.h"
 
 

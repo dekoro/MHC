@@ -17,7 +17,7 @@ public:
 	virtual Vec2 GetPosition(){ return position; };
 protected:
 	Vec2	position;
-	bool	isDead;
+	bool	isDead = true;
 
 
 private:

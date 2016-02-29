@@ -26,7 +26,7 @@ SceneMediateData SceneTitle::Update(){
 	}
 	if (nextSceneCount <= 0){
 		sceneData.playerIndex	= enterPlayerIndex;
-		sceneData.nextScene		= SCENE_GAMEMAIN;
+		sceneData.nextScene		= SCENE_SELECT;
 	}
 	if (device->Input()->CheckKeyPushAllPad(GKey_Attack)) isEnd = true;
 	if (isEnd)	{

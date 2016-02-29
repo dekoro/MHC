@@ -42,6 +42,14 @@ void SceneGameMain::Initialize(SceneMediateData sceneData){
 
 SceneMediateData SceneGameMain::Update(){
 	AllManagersUpdate();
+	if (enemyManager->GetLeftEnemyNum() <= 0){
+		SHaderDalete();
+		return SceneMediateData::Setup(SCENE_CLEAR);
+	}
+	if (playerManager->GetLivePlayerNum() <= 0){
+		SHaderDalete();
+		return SceneMediateData::Setup(SCENE_GAMEOVER);
+	}
 	return SceneMediateData::Setup(SCENE_GAMEMAIN, 1);
 }
 
@@ -56,6 +64,7 @@ void SceneGameMain::Draw(){
 
 void SceneGameMain::Finalize(){
 	AllManagersFinalize();
+	screen.reset();
 }
 
 //-----private-----
@@ -69,12 +78,12 @@ void SceneGameMain::LocalDraw()
 }
 
 void SceneGameMain::AllManagersInitialize(int startPlayerIndex){
-	for (int i = 0; i < startPlayerIndex; i++)
+	for (int i = 0; i < startPlayerIndex+1 ; i++)
 	{
 		playerManager->SpawnPlayer(i,Vec2());
 	}
 
-	playerManager		->Setup();
+	//playerManager		->Setup();
 	playerManager		->Initialize();
 	enemyManager		->Initialize();
 	laserManager		->Initialize();
