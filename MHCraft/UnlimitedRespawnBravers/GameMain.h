@@ -37,6 +37,7 @@ private:
 
 	DeviceManager*	device;
 	ImageData*		imageBackGround;
+	bool nowStart;
 	
 	std::shared_ptr<ScreenLayout> screen;
 	std::shared_ptr<Stage> stage;
@@ -56,6 +57,7 @@ private:
 	void AllManagersFinalize();
 	void ShaderLoad();
 	void SHaderDalete();
+	void FadeIn();
 };
 
 

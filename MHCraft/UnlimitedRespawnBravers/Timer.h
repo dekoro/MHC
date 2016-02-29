@@ -17,6 +17,8 @@ public:
 	int GetTime();
 	int GetMaxTim();
 	bool IsEnd();
+
+	float Rate();
 protected:
 	int currentTime;
 	int maxTime;
