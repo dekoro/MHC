@@ -22,7 +22,7 @@ enum GameDeadOrClear{
 class EnemyManager
 {
 public:
-	EnemyManager(DamageAreaManager* damageAreaManager);
+	EnemyManager(DamageAreaManager* damageAreaManager, PlayerManager* playerManager);
 	~EnemyManager();
 	
 	void				Initialize();
@@ -45,11 +45,12 @@ private:
 	const int ENEMY_BOSS_NUM = 5;
 	const int ENEMY_ENTOURAGE_PER_BOSS = 10;
 
-	vector<Enemy*>	enemyList;
-	DeviceManager*	device;
-	DamageAreaManager* damageAreaManager;
-	int				stage;
-	int				normaLollipop;
+	vector<Enemy*>		enemyList;
+	DeviceManager*		device;
+	DamageAreaManager*	damageAreaManager;
+	PlayerManager*		playerManager;
+	int					stage;
+	int					normaLollipop;
 
 	void StageInitialize();
 	int	 spawnCount;

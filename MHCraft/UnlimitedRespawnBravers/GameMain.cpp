@@ -24,7 +24,7 @@ SceneGameMain::SceneGameMain(){
 	damageAreaManager	= std::make_shared<DamageAreaManager>();
 	laserManager		= std::make_shared<LaserManager>(damageAreaManager.get());
 	playerManager		= std::make_shared<PlayerManager>(laserManager.get(), damageAreaManager.get());
-	enemyManager		= std::make_shared<EnemyManager>(damageAreaManager.get());
+	enemyManager		= std::make_shared<EnemyManager>(damageAreaManager.get(), playerManager.get());
 
 }
 

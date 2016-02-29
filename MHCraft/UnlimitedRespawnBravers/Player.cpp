@@ -232,18 +232,14 @@ bool Player::FlashManager(int counter){
 
 
 void Player::Clamp(){
-	//Vec2 imageHalfSize = device->Image()->GetCharacterImageHalfSize(imageHandle);
-	//if (position.X - imageHalfSize.X < 0) { position.X = imageHalfSize.X; }
-	//if (position.Y - imageHalfSize.Y < 0) { position.Y = imageHalfSize.Y; }
-	//if (position.X + imageHalfSize.X > Window::WIDTH) { position.X = Window::WIDTH - imageHalfSize.X; }
-	//if (position.Y + imageHalfSize.Y > Window::HEIGHT) { position.Y = Window::HEIGHT - imageHalfSize.Y; }
+	Vec2 imageHalfSize = Vec2::Zero();// device->Image()->GetCharacterImageHalfSize(imageHandle);
+	if (position.X - imageHalfSize.X < FIELD_MIN_X) { position.X = FIELD_MIN_X + imageHalfSize.X; }
+	if (position.Y - imageHalfSize.Y < FIELD_MIN_Y) { position.Y = FIELD_MIN_Y + imageHalfSize.Y; }
+	if (position.X + imageHalfSize.X > FIELD_MAX_X) { position.X = FIELD_MAX_X - imageHalfSize.X; }
+	if (position.Y + imageHalfSize.Y > FIELD_MAX_Y) { position.Y = FIELD_MAX_Y - imageHalfSize.Y; }
 }
 
 void Player::ControllManager(){
-	if(inputState->CheckKeyPush(GKey::GKey_Skill)){
-		Damage(1280);
-	}
-
 	Vec2 moveVec = inputState->GetLeftStickLeanVector();
 	if (moveVec != Vec2::Zero()) { Move(moveVec); }
 

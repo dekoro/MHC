@@ -9,7 +9,7 @@
 PlayerManager::PlayerManager(LaserManager* laserManager, DamageAreaManager* damageareaManager){
 	device	= DeviceManager::GetInstance();
 	for (int i = 0; i < MAX_PLAYER; ++i) {
-		player[i] = new Player(i, laserManager, damageareaManager);
+		players[i] = new Player(i, laserManager, damageareaManager);
 	}
 }
 
@@ -19,9 +19,9 @@ PlayerManager::~PlayerManager(){
 
 void PlayerManager::SpawnPlayer(int padNo, Vec2 position){
 	if (!GMath::Inner(padNo, 0, MAX_PLAYER)) { return; }
-	if (player[padNo]->IsEnable()) { return; }
-	player[padNo]->Setup(CharacterInformation::Setup(10, 10, 5, 5, 3, 5.0));
-	player[padNo]->Spawn(position);
+	if (players[padNo]->IsEnable()) { return; }
+	players[padNo]->Setup(CharacterInformation::Setup(10, 10, 5, 5, 3, 5.0));
+	players[padNo]->Spawn(position);
 }
 
 void PlayerManager::Setup(){
@@ -55,7 +55,7 @@ int PlayerManager::GetJoinNum(){
 	//return sizeof(wheredPlayer) / sizeof(Player*);
 	int joinNum = 0;
 	for (int i = 0; i < MAX_PLAYER; ++i) {
-		if (player[i]->IsEnable()) { ++joinNum; }
+		if (players[i]->IsEnable()) { ++joinNum; }
 
 	}
 	return joinNum;
@@ -65,27 +65,32 @@ Player* PlayerManager::GetPlayerData(int index){
 	if (!GMath::Inner(index, 0, MAX_PLAYER)) {
 		return nullptr;
 	}
-	return player[index];
+	return players[index];
 }
 
 int PlayerManager::GetLivePlayerNum(){
 	int playerNum = 0;
 	for (int i = 0; i < MAX_PLAYER; ++i){
-		if (!player[i]->GetIsDead()){ ++playerNum; }
+		if (!players[i]->GetIsDead()){ ++playerNum; }
 	}
 	return playerNum;
+}
+
+
+std::array<Player*, MAX_PLAYER>	PlayerManager::GetPlayers(){
+	return players;
 }
 
 //----private---
 
 void PlayerManager::InitializeAllPlayers(){
-	for (Player* pl : player) {
+	for (Player* pl : players) {
 		pl->Initialize();
 	}
 }
 
 void PlayerManager::UpdateAllPlayers(){
-	for (Player* pl: player) {
+	for (Player* pl: players) {
 		pl->Update();
 	}
 }
@@ -101,23 +106,23 @@ void PlayerManager::AttackAllPlayers()
 }
 
 void PlayerManager::DrawAllPlayers(){
-	for (Player* pl: player) {
+	for (Player* pl: players) {
 		pl->Draw();
 	}
 }
 
 void PlayerManager::PlayerDisable(int index){
-	player[index]->Dispone();
+	players[index]->Dispone();
 }
 
 void PlayerManager::DeleteAllPlayers(){
 	for (int i = 0; i < MAX_PLAYER; i++){
-		SAFE_DELETE(player[i]);
+		SAFE_DELETE(players[i]);
 	}
 }
 
 void PlayerManager::FinalizeAllPlayers(){
-	for (Player* pl : player) {
+	for (Player* pl : players) {
 		pl->Finalize();
 	}
 

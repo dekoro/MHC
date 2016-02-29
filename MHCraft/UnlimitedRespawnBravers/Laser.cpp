@@ -91,7 +91,7 @@ void Laser::Setup(GQuadrangle damageArea, HitData hitData, Vec2 velocity, float 
 }
 
 void Laser::CheckDead(){
-	if (GMath::OnField(position.GetIntX(), position.GetIntY())){ liveCounter = 0; }
+	if (!GMath::OnField(position.GetIntX(), position.GetIntY())){ liveCounter = 0; }
 	if (--liveCounter < 0){
 		Kill();
 	}

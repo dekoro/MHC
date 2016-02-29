@@ -5,9 +5,11 @@
 #include "Enemy_Test.h"
 #include "EnemyGhost.h"
 #include "EnemyKingPumpkin.h"
+#include "EnemyInoshishi.h"
 
-EnemyManager::EnemyManager(DamageAreaManager* damageAreaManager){
+EnemyManager::EnemyManager(DamageAreaManager* damageAreaManager, PlayerManager* playerManager){
 	this->damageAreaManager = damageAreaManager;
+	this->playerManager = playerManager;
 	stage			= 1;
 	normaLollipop	= 10+5*(stage-1);
 	SetFontSize(1);
@@ -84,7 +86,7 @@ void EnemyManager::Finalize(){
 void EnemyManager::AddEnemy(IMAGE_ASSET_NAME asset){
 	switch (asset){
 	case imageAsset_Enemy_Ghost:
-		new EnemyGhost(damageAreaManager, &enemyList);
+		new EnemyInoshishi(damageAreaManager, &enemyList, playerManager);
 		break;
 	case imageAsset_Enemy_BigPumpkin :
 		new EnemyKingPumpkin(damageAreaManager, &enemyList);

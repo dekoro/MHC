@@ -435,6 +435,12 @@
     <ClCompile Include="GameOverScene.cpp">
       <Filter>ソース ファイル\SceneManager</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyInoshishi.cpp">
+      <Filter>ソース ファイル\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyInoshishiMure.cpp">
+      <Filter>ソース ファイル\Character\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GMath.h">
@@ -658,6 +664,12 @@
     </ClInclude>
     <ClInclude Include="GameOverScene.h">
       <Filter>ヘッダー ファイル\SceneManager\GameOverScene</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyInoshishi.h">
+      <Filter>ヘッダー ファイル\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyInoshishiMure.h">
+      <Filter>ヘッダー ファイル\Character\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

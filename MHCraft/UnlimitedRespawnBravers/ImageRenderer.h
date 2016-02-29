@@ -37,7 +37,7 @@ public:
 	void		DrawRotation(IMAGE_ASSET_NAME asset, int posCX, int posCY, double angleDeg);
 	void		DrawRotation(int imageHandle, int posX, int posY, double angleDeg);
 	void		DrawLT(int imageHandle, Vec2 position);
-	void		DrawLT(int imageHandle, int posX, int posY);
+	void		DrawLT(int imageHandle, int posX, int posY, float size = 1.0f);
 	void		DrawBackGround();
 	void		ChangeImageType(int imageIndex, int	type);
 	void		ChangeAnimePlay(int imageIndex, bool isPlay);
@@ -49,6 +49,7 @@ public:
 	void		AddCountPlayerAnimation(IMAGE_ASSET_NAME);
 	ImageData*	CopyImageData(IMAGE_ASSET_NAME);
 	Vec2		GetCharacterImageHalfSize(int imageIndex);
+	void		DrawExtend(int imageHandle, int x, int y, float angle, float rate);
 
 
 	///////////í«â¡Å´////////
@@ -82,7 +83,7 @@ private:
 	void SetupAnimeDataMap();
 	void AddImageMap(IMAGE_ASSET_NAME assetName);
 	void SetupImageMapInstance();
-	void Draw(int imageHandle, int posX, int posY);
+	void Draw(int imageHandle, int posX, int posY, float size=1.0f);
 	void Draw(int imageHandle, VECTOR pos, float scale);
 	bool CheckConnotationCharacterImageMap(int index);
 	bool CheckConnotationBaseImageMap(IMAGE_ASSET_NAME assetName);

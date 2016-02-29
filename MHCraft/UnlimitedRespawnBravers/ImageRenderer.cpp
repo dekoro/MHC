@@ -42,8 +42,8 @@ void ImageRenderer::DrawLT(int imageHandle, Vec2 position){
 	Draw(imageHandle, position.GetIntX(), position.GetIntY());
 }
 
-void ImageRenderer::DrawLT(int imageHandle, int posX, int posY){
-	Draw(imageHandle, posX, posY);
+void ImageRenderer::DrawLT(int imageHandle, int posX, int posY, float size){
+	Draw(imageHandle, posX, posY, size);
 }
 
 //背景
@@ -93,8 +93,14 @@ AnimeData ImageRenderer::GetAnimeData(IMAGE_ASSET_NAME animeDataIndex){
 ImageData* ImageRenderer::CopyImageData(IMAGE_ASSET_NAME asset){
 	return new ImageData(*imageMap[asset]);
 }
+
 Vec2 ImageRenderer::GetCharacterImageHalfSize(int imageIndex){
 	return Vec2::Setup((float)characterImageMap[imageIndex]->GetSizeHalfImageX(), (float)characterImageMap[imageIndex]->GetSizeHalfImageY());
+}
+
+void ImageRenderer::DrawExtend(int imageHandle, int x, int y, float angle, float rate)
+{
+	DrawRotaGraph(x, y, rate, angle, imageHandle, TRUE);
 }
 
 //---private---
@@ -171,10 +177,11 @@ void ImageRenderer::SetupImageMap(){
 }
 
 //画像サイズを毎フレーム取得しているので直す必要あり
-void ImageRenderer::Draw(int imageHandle, int posX, int posY){
-	int x;
-	GetGraphSize(imageHandle,&x,nullptr);
-	DrawBillboard3D(VGet(posX, posY, 0), 0.5f, 0.5f, x, 0.0f, imageHandle, TRUE);
+void ImageRenderer::Draw(int imageHandle, int posX, int posY, float size){
+	int size_i;
+	GetGraphSize(imageHandle,&size_i,nullptr);
+	float size_f = size_i * size;
+	DrawBillboard3D(VGet(posX, posY, 0), 0.5f, 0.5f, size_f, 0.0f, imageHandle, TRUE);
 }
 
 //ハンドル　中心　拡大率

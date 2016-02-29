@@ -22,7 +22,7 @@ public:
 	bool		CheckAnyKeyPush();
 
 private:
-	InputState*	inputStateList[USE_PAD_MAX];
+	InputState*	inputStateList[MAX_PLAYER];
 	void		SetupGamePadList();
 	void		FinalizeGamePadList();
 	Keyboard key;

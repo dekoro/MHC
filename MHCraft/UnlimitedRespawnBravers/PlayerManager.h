@@ -25,10 +25,11 @@ public:
 	int			GetJoinNum();
 	Player*		GetPlayerData(int index);
 	int			GetLivePlayerNum();
+	std::array<Player*, MAX_PLAYER>	GetPlayers();
 
 private:
-	DeviceManager*	device;
-	Player*			player[MAX_PLAYER];
+	DeviceManager*		device;
+	std::array<Player*, MAX_PLAYER>	players;
 
 	void InitializeAllPlayers();
 	void UpdateAllPlayers();

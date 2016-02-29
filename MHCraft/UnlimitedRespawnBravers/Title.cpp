@@ -56,7 +56,7 @@ void SceneTitle::Finalize(){
 }
 
 int SceneTitle::CheckControllPadNo(){
-	for (int i = 0; i < USE_PAD_MAX; i++){
+	for (int i = 0; i < MAX_PLAYER; i++){
 		if (device->Input()->GetInputState(i)->CheckKeyPush(GKey_Attack)){
 			return i;
 		}
