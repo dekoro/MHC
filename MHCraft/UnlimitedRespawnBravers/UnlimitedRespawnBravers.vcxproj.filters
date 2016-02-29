@@ -232,6 +232,12 @@
     <Filter Include="ヘッダー ファイル\Device\Selecter\GSystem\SceneManager\SelectScene">
       <UniqueIdentifier>{e3741946-3f3d-42e9-9865-8e060781d289}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Effect\ZoomBlur">
+      <UniqueIdentifier>{b7b93268-5cd5-4193-9658-dc1dc656be28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect\ZoomBlur">
+      <UniqueIdentifier>{c729541d-822a-4d27-99c7-c896bf8f5abd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FlagManager.cpp">
@@ -431,6 +437,9 @@
     </ClCompile>
     <ClCompile Include="Stage.cpp">
       <Filter>ソース ファイル\Character\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoomBlur.cpp">
+      <Filter>ソース ファイル\Effect\ZoomBlur</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -655,6 +664,9 @@
     </ClInclude>
     <ClInclude Include="Stage.h">
       <Filter>ヘッダー ファイル\Character\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="ZoomBlur.h">
+      <Filter>ヘッダー ファイル\Effect\ZoomBlur</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

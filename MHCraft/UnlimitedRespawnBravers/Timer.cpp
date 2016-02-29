@@ -39,3 +39,8 @@ bool Timer::IsEnd()
 {
 	return currentTime >= maxTime;
 }
+
+float Timer::Rate()
+{
+	return (float)currentTime / (float)maxTime;
+}

@@ -40,6 +40,8 @@ void ScreenLayout::Initialize(PlayerManager* players)
 		break;
 	}
 
+	this->screenNum = layOut;
+
 	for (auto s : Screens)
 	{
 		s->Initialize();
@@ -58,6 +60,13 @@ void ScreenLayout::SetUseTexMapConst(bool b, e_ScreenNumber screenNum)
 	Screens[screenNum]->SetUseTexMapConst(b);
 }
 
+void ScreenLayout::ZoomStart (e_ScreenNumber screenNum)
+{
+	ChangeToScreenShader("Zoom", screenNum);
+	Screens[screenNum]->ZoomStart();
+}
+
+
 void ScreenLayout::Rendaring(std::function<void()> Draw)
 {
 	for (int i = 0; i <= layOut; ++i)
@@ -69,4 +78,9 @@ void ScreenLayout::Rendaring(std::function<void()> Draw)
 void ScreenLayout::ChangeToScreenShader(std::string name, e_ScreenNumber screenNum)
 {
 	this->Screens[screenNum]->ChangeShader(name);
+}
+
+int ScreenLayout::GetScreenNum()
+{
+	return screenNum + 1;
 }

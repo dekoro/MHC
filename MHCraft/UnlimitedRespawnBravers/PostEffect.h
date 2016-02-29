@@ -41,11 +41,13 @@ public:
 	void SetUseBlurConst(Vec2 direction, float shit);
 	//テクスチャマッピング
 	void SetUseTexMapConst(bool b);
-
+	//ズームブラー
+	void ZoomStart();
 
 private:
 	void VertexErch(std::function<void(int x)> action);
 
+	void CheckZoomEnd();
 
 private:
 	int hGraphics;

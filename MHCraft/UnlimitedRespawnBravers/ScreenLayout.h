@@ -29,12 +29,17 @@ public:
 
 	void SetUseTexMapConst(bool b, e_ScreenNumber screenNum);
 
+	void ZoomStart(e_ScreenNumber screenNum);
+
+	int GetScreenNum();
+
 private:
 	void ChangeToScreenShader(std::string name, e_ScreenNumber screenNum);
 
 private:
 	std::vector<std::shared_ptr<PostEffect>> Screens;
 	e_ScreenLayout layOut;
+	int screenNum;
 
 };
 

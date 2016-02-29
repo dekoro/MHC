@@ -8,6 +8,7 @@
 #include"TextureMapping.h"
 #include<memory>
 #include"Player.h"
+#include"ZoomBlur.h"
 
 //レイアウトが無ければシングルウィンドウ用配置
 PostEffect::PostEffect(Player* player) : hGraphics(hGraphics), camera(player,0)
@@ -144,8 +145,9 @@ void PostEffect::Initialize()
 
 	this->effetList.AddEffect("Normal", std::make_shared<TextureMapping>());
 	this->effetList.AddEffect("Blur", std::make_shared<Blur>());
+	this->effetList.AddEffect("Zoom", std::make_shared<ZoomBlur>());
 
-	this->effect = effetList.GetEffect("Normal");//通常の描画
+	this->effect = effetList.GetEffect("Zoom");//通常の描画
 	camera.Initialize();
 	effect->Initialize();
 }
@@ -157,6 +159,8 @@ PostEffect::~PostEffect()
 
 void PostEffect::Rendaring(std::function<void()> Draw)
 {
+	CheckZoomEnd();
+
 	SetDrawScreen(this->hGraphics);
 
 	ClearDrawScreen();
@@ -214,3 +218,24 @@ void PostEffect::SetUseTexMapConst(bool b)
 	pTex->SetRevaerse(b);
 }
 
+void PostEffect::ZoomStart()
+{
+	ZoomBlur* pTex = dynamic_cast<ZoomBlur*>(effect);
+
+	if (pTex == NULL)
+		return;
+
+	pTex->IsStart();
+}
+
+void PostEffect::CheckZoomEnd()
+{
+	ZoomBlur* pTex = dynamic_cast<ZoomBlur*>(effect);
+
+	if (pTex == NULL)
+		return;
+	if (pTex->IsEnd())
+	{
+		ChangeShader("Normal");
+	}
+}
